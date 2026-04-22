@@ -43,7 +43,7 @@ type IconOffset = {
 };
 
 const menuItems: MenuItem[] = [
-  { label: "Home", icon: House, href: "/" },
+  { label: "Home", icon: House, href: "/", gif: "/Gifs/Home.gif" },
   { label: "SHE", image: "/Icons/SHE.png", href: "/portfolio/SHE" },
   { label: "Antonia Website", icon: TreeDeciduous, href: "/portfolio/antonia" },
 ];
