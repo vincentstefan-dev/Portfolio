@@ -42,7 +42,7 @@ type GlowStyle = {
 
 const menuItems: MenuItem[] = [
   { label: "Home", icon: House, href: "/", gif: "/Gifs/home.gif" },
-  { label: "Background Remover", icon: FileScan, href: "/background_remover", gif: "/Gifs/portfolio.gif" },
+  { label: "Background Remover", icon: FileScan, href: "../background_remover", gif: "/Gifs/portfolio.gif" },
   { label: "Pixelate", icon: LoaderPinwheel, href: "../coolstuff/pixelate", gif: "/Gifs/final.gif" },
 ];
 
