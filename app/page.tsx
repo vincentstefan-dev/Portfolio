@@ -310,7 +310,7 @@ export default function HomepageVideoIconMenu() {
                   onClick={() => setIsThemeMenuOpen(true)}
                   aria-label="Open theme selector"
                   aria-expanded={isThemeMenuOpen}
-                  className="relative z-40 flex h-14 w-14 items-center justify-center rounded-xl backdrop-blur-md transition duration-300 active:scale-95 md:hover:-translate-y-1"
+                  className="relative z-40 flex h-14 w-14 items-center justify-center rounded-xl  transition duration-300 active:scale-95 md:hover:-translate-y-1"
                 >
                   <img
                     src={themeButtonGif}
