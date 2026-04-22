@@ -315,7 +315,7 @@ export default function HomepageVideoIconMenu() {
                   <img
                     src={themeButtonGif}
                     alt="Themes"
-                    className="pointer-events-none h-14 w-14 object-contain transition duration-300 md:group-hover:scale-110"
+                    className="pointer-events-none h-50 w-50 object-contain transition duration-300 md:group-hover:scale-500"
                   />
                 </button>
 

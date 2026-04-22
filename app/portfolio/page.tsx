@@ -30,6 +30,7 @@ type MenuItem = {
   href: string;
   icon?: React.ComponentType<{ className?: string; strokeWidth?: number }>;
   image?: string;
+  gif?: string;
 };
 
 type GlowStyle = {
@@ -261,7 +262,6 @@ export default function PortfolioPage() {
     <main className="relative min-h-screen overflow-hidden bg-[#032b9b] text-white">
       <ThemedBackground onReady={handlePlayerReady} />
 
-      {/* ATOMIC PLAYER */}
       <div className="group absolute bottom-0 right-0 z-20 p-8">
         <div className="pointer-events-none w-[320px] translate-y-4 rounded-2xl border border-[#c084fc]/25 bg-[#3b1363]/45 p-4 text-white opacity-0 shadow-[0_0_30px_rgba(168,85,247,0.12)] backdrop-blur-md transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
           <div className="mb-3 flex items-center justify-between">
@@ -368,23 +368,29 @@ export default function PortfolioPage() {
                     >
                       <div className="flex w-24 flex-col items-center justify-center gap-3 rounded-2xl px-2 py-3 text-center transition duration-300 hover:-translate-y-1">
                         <div className="relative flex h-12 w-12 items-center justify-center">
-                          {item.icon ? (
-                            <item.icon
-                              strokeWidth={1.8}
-                              className={`h-12 w-12 text-white transition duration-300 group-hover:scale-110 ${glow.text} ${glow.shadow}`}
-                            />
-                          ) : item.image ? (
+                          {item.image ? (
                             <img
                               src={item.image}
                               alt={item.label}
                               className="h-14 w-14 object-contain transition duration-300 group-hover:scale-110"
                             />
-                          ) : null}
-
-                          {item.icon ? (
-                            <div
-                              className={`absolute inset-0 rounded-full bg-white/0 blur-xl transition duration-300 ${glow.bg}`}
+                          ) : item.icon && item.gif ? (
+                            <ThemedNavIcon
+                              label={item.label}
+                              icon={item.icon}
+                              gif={item.gif}
+                              glow={glow}
                             />
+                          ) : item.icon ? (
+                            <>
+                              <item.icon
+                                strokeWidth={1.8}
+                                className={`h-12 w-12 text-white transition duration-300 group-hover:scale-110 ${glow.text} ${glow.shadow}`}
+                              />
+                              <div
+                                className={`absolute inset-0 rounded-full bg-white/0 blur-xl transition duration-300 ${glow.bg}`}
+                              />
+                            </>
                           ) : null}
                         </div>
 
