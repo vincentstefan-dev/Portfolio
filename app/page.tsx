@@ -38,7 +38,7 @@ type GlowStyle = {
 };
 
 const menuItems: MenuItem[] = [
-  { label: "Home", icon: House, href: "/", gif: "/Gifs/home.gif" },
+  { label: "Home", icon: House, href: "/", gif: "/Gifs/Home.gif" },
   { label: "Portfolio", icon: Dna, href: "/portfolio", gif: "/Gifs/portfolio.gif" },
   { label: "About me", icon: Bug, href: "/aboutme", gif: "/Gifs/eyes.gif" },
   { label: "Apps", icon: Cpu, href: "/coolstuff", gif: "/Gifs/MUSIC.gif" },
