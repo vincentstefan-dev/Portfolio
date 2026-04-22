@@ -2,6 +2,7 @@
 
 import { useThemeMode } from "@/app/template/theme/ThemeProvider";
 import ThemedBackground from "@/app/template/theme/ThemedBackground";
+import ThemedNavIcon from "@/app/template/theme/ThemedNavIcon";
 
 import React, {
   useCallback,
