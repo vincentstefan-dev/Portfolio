@@ -228,7 +228,6 @@ export default function HomepageVideoIconMenu() {
     <main className="relative min-h-screen overflow-hidden text-white">
       <ThemedBackground onReady={handlePlayerReady} />
 
-      {/* ATOMIC PLAYER */}
       <div className="group absolute bottom-0 right-0 z-20 p-8">
         <div className="pointer-events-none w-[320px] translate-y-4 rounded-2xl border border-[#c084fc]/25 bg-[#3b1363]/45 p-4 text-white opacity-0 shadow-[0_0_30px_rgba(168,85,247,0.12)] backdrop-blur-md transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
           <div className="mb-3 flex items-center justify-between">
@@ -236,8 +235,7 @@ export default function HomepageVideoIconMenu() {
               Atomic Player
             </span>
             <span className="text-xs text-[#e9d5ff]/70">
-              {isPlaying ? "Playing" : "Paused"} •{" "}
-              {isMuted ? "Muted" : `${volume}%`}
+              {isPlaying ? "Playing" : "Paused"} • {isMuted ? "Muted" : `${volume}%`}
             </span>
           </div>
 
@@ -248,11 +246,7 @@ export default function HomepageVideoIconMenu() {
               className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c084fc]/20 bg-[#6d28d9]/18 transition hover:bg-[#8b5cf6]/28"
               aria-label={isPlaying ? "Pause video" : "Play video"}
             >
-              {isPlaying ? (
-                <Pause className="h-5 w-5" />
-              ) : (
-                <Play className="h-5 w-5" />
-              )}
+              {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
             </button>
 
             <button
@@ -282,14 +276,12 @@ export default function HomepageVideoIconMenu() {
             </div>
           </div>
 
-          <p className="mt-3 text-xs text-[#e9d5ff]/70">
-            Hover here for controls.
-          </p>
+          <p className="mt-3 text-xs text-[#e9d5ff]/70">Hover here for controls.</p>
         </div>
       </div>
 
       <div
-        className={`relative z-10 min-h-screen transition-all duration-[400ms] ease-out ${
+        className={`relative z-30 min-h-screen transition-all duration-[400ms] ease-out ${
           isInitialBlur ? "scale-[1.01] blur-sm" : "scale-100 blur-0"
         }`}
       >
@@ -300,31 +292,30 @@ export default function HomepageVideoIconMenu() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group flex flex-col items-center gap- text-center transition duration-300 hover:-translate-y-1 focus:outline-none"                >
+                  className="group flex flex-col items-center text-center transition duration-300 hover:-translate-y-1 focus:outline-none"
+                >
                   <ThemedNavIcon
                     label={item.label}
                     icon={item.icon}
                     gif={item.gif}
                     glow={glow}
                   />
-
                   <span className="mt-2 text-sm text-white/70">{item.label}</span>
                 </Link>
               ))}
 
-              {/* THEME TRIGGER */}
-              <div className="group flex flex-col items-center gap-2">
+              <div className="group relative z-40 flex flex-col items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setIsThemeMenuOpen(true)}
                   aria-label="Open theme selector"
                   aria-expanded={isThemeMenuOpen}
-                  className="relative flex h-14 w-14 items-center justify-center rounded-xl backdrop-blur-md transition duration-300 hover:-translate-y-1"
+                  className="relative z-40 flex h-14 w-14 items-center justify-center rounded-xl backdrop-blur-md transition duration-300 active:scale-95 md:hover:-translate-y-1"
                 >
                   <img
                     src={themeButtonGif}
                     alt="Themes"
-                    className="h-50 w-50 object-contain transition duration-300 group-hover:scale-500"
+                    className="pointer-events-none h-14 w-14 object-contain transition duration-300 md:group-hover:scale-110"
                   />
                 </button>
 
