@@ -131,13 +131,13 @@ export default function TechBlueBlogEntry() {
               <button
                 type="button"
                 onClick={() =>
-                  openExpandedImage("/Images/gifs/babyfinal.gif", "Decorative object")
+                  openExpandedImage("/Gifs/babyfinal.gif", "Decorative object")
                 }
                 className="relative rounded-[2rem] border border-white/20 bg-white/10 p-4 backdrop-blur-sm transition duration-300 hover:scale-[1.03] hover:bg-white/15"
                 aria-label="Expand top image"
               >
                 <Image
-                  src="/Images/gifs/babyfinal.gif"
+                  src="/Gifs/babyfinal.gif"
                   alt="Decorative object"
                   width={130}
                   height={130}
@@ -166,13 +166,13 @@ export default function TechBlueBlogEntry() {
               <button
                 type="button"
                 onClick={() =>
-                  openExpandedImage("/Images/gifs/final.gif", "Tech object")
+                  openExpandedImage("/Gifs/final.gif", "Tech object")
                 }
                 className="relative rounded-[2rem] border border-white/20 bg-white/10 p-4 backdrop-blur-sm transition duration-300 hover:scale-[1.03] hover:bg-white/15"
                 aria-label="Expand bottom image"
               >
                 <Image
-                  src="/Images/gifs/final.gif"
+                  src="/Gifs/final.gif"
                   alt="Tech object"
                   width={220}
                   height={220}
@@ -319,7 +319,7 @@ export default function TechBlueBlogEntry() {
                   width={1400}
                   height={1400}
                   className={`h-auto max-h-[78vh] w-full object-contain ${
-                    expandedImage.src === "/Images/gifs/babyfinal.gif"
+                    expandedImage.src === "/Gifs/babyfinal.gif"
                       ? "grayscale contrast-125"
                       : ""
                   }`}
