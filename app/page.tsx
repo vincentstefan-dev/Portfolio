@@ -8,6 +8,7 @@ import ThemedBackground from "@/app/template/theme/ThemedBackground";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import {
   House,
   AtSign,
@@ -21,6 +22,7 @@ import {
   VolumeX,
 } from "lucide-react";
 import { Space_Mono } from "next/font/google";
+import { getCTA } from "@/app/template/theme/CTA_WORD_BANK";
 
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
 
@@ -97,6 +99,8 @@ export default function HomepageVideoIconMenu() {
   const [isMuted, setIsMuted] = useState(true);
   const [volume, setVolume] = useState(20);
 
+  const [phrase, setPhrase] = useState("");
+
   const playBlurIntro = useCallback(() => {
     setIsInitialBlur(true);
 
@@ -160,6 +164,18 @@ export default function HomepageVideoIconMenu() {
       document.removeEventListener("keydown", handleEscape);
     };
   }, [isThemeMenuOpen]);
+
+  useEffect(() => {
+    setPhrase(getCTA());
+  }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setPhrase(getCTA());
+    }, 10000);
+
+    return () => window.clearInterval(interval);
+  }, []);
 
   const handlePlayerReady = useCallback((player: any) => {
     playerRef.current = player;
@@ -286,6 +302,23 @@ export default function HomepageVideoIconMenu() {
           isInitialBlur ? "scale-[1.01] blur-sm" : "scale-100 blur-0"
         }`}
       >
+        <div className="pointer-events-none absolute inset-x-0 top-[15%] z-20 flex justify-center px-6">
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, ease: "easeOut" }}
+          >
+            <span
+              className={`${spaceMono.className} select-none whitespace-nowrap text-[15px] uppercase tracking-[0.8em] text-white/28 sm:text-[11px] md:text-[20px]`}
+              style={{
+                textShadow: "0 0 15px rgba(57, 107, 163, 0.1)",
+              }}
+            >
+              K O Y O T E │ S T U D I O
+            </span>
+          </motion.div>
+        </div>
+
         <div className="flex min-h-screen items-center justify-center px-6">
           <nav aria-label="Main navigation" className="w-full max-w-7xl">
             <div className="flex flex-wrap items-center justify-center gap-30">
@@ -312,7 +345,7 @@ export default function HomepageVideoIconMenu() {
                   onClick={() => setIsThemeMenuOpen(true)}
                   aria-label="Open theme selector"
                   aria-expanded={isThemeMenuOpen}
-                  className="relative z-40 flex h-14 w-14 items-center justify-center rounded-xl  transition duration-300 active:scale-95 md:hover:-translate-y-1"
+                  className="relative z-40 flex h-14 w-14 items-center justify-center rounded-xl transition duration-300 active:scale-95 md:hover:-translate-y-1"
                 >
                   <img
                     src={themeButtonGif}
@@ -325,6 +358,31 @@ export default function HomepageVideoIconMenu() {
               </div>
             </div>
           </nav>
+        </div>
+
+        <div className="pointer-events-none absolute bottom-[30%] left-1/2 z-20 -translate-x-1/2">
+          <div className="flex min-h-[52px] flex-col items-center justify-center">
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: [0.8, 0.7, 0.6],
+                y: [-1.2, 1.4, -0.8],
+                x: [-0.5, 0.5, -0.3],
+              }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`${spaceMono.className} select-none whitespace-nowrap text-center text-[11px] tracking-[0.24em] text-white/65 sm:text-[12px] md:text-[13px]`}
+              style={{
+                textShadow:
+                  "0 0 10px rgba(190,220,255,0.18), 0 0 24px rgba(190,220,255,0.08)",
+              }}
+            >
+              {phrase}
+            </motion.span>
+          </div>
         </div>
 
         <ThemeModal
