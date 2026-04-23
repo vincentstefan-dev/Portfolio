@@ -27,7 +27,8 @@ const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
 type MenuItem = {
   label: string;
   href: string;
-  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  img?: string;
+  icon?: string | React.ComponentType<{ className?: string; strokeWidth?: number }>;
   gif: string;
 };
 
@@ -297,6 +298,7 @@ export default function HomepageVideoIconMenu() {
                   <ThemedNavIcon
                     label={item.label}
                     icon={item.icon}
+                    img={item.img}
                     gif={item.gif}
                     glow={glow}
                   />
