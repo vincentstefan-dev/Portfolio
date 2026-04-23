@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { Space_Mono } from "next/font/google";
 import { getCTA } from "@/app/template/theme/CTA_WORD_BANK";
+import { LOGO_BANK } from "@/app/template/theme/LOGO_BANK";
 
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
 
@@ -105,6 +106,10 @@ export default function HomepageVideoIconMenu() {
   const [volume, setVolume] = useState(20);
 
   const [phrase, setPhrase] = useState("");
+
+  const [activeLogo] = useState(
+    () => LOGO_BANK[Math.floor(Math.random() * LOGO_BANK.length)]
+  );
 
   const playBlurIntro = useCallback(() => {
     setIsInitialBlur(true);
@@ -256,9 +261,7 @@ export default function HomepageVideoIconMenu() {
             <span className="text-sm font-medium tracking-wide text-[#e9d5ff]/70">
               Atomic Player
             </span>
-            <span className="text-xs text-[#e9d5ff]/70">
-              {isPlaying ? "Playing" : "Paused"} • {isMuted ? "Muted" : `${volume}%`}
-            </span>
+            <span className="text-xs text-[#e9d5ff]/70"></span>
           </div>
 
           <div className="flex items-center gap-3">
@@ -307,20 +310,21 @@ export default function HomepageVideoIconMenu() {
           isInitialBlur ? "scale-[1.01] blur-sm" : "scale-100 blur-0"
         }`}
       >
-        <div className="pointer-events-none absolute inset-x-0 top-[15%] z-20 flex justify-center px-6">
+        <div className="pointer-events-none absolute inset-x-0 top-[2%] z-20 flex justify-center px-6">
           <motion.div
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, ease: "easeOut" }}
           >
-            <span
-              className={`${spaceMono.className} select-none whitespace-nowrap text-[15px] uppercase tracking-[0.8em] text-white/28 sm:text-[11px] md:text-[20px]`}
-              style={{
-                textShadow: "0 0 15px rgba(57, 107, 163, 0.1)",
-              }}
-            >
-              K O Y O T E │ S T U D I O
-            </span>
+          <img
+            src={activeLogo.src}
+            alt={activeLogo.alt}
+            className={`${activeLogo.className ?? ""} translate-x-[-10px]`}
+            style={{
+              filter: activeLogo.glow,
+              opacity: activeLogo.opacity ?? 1,
+            }}
+          />
           </motion.div>
         </div>
 

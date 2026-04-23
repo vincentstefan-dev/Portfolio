@@ -17,7 +17,7 @@ export const CTA_BANKS = {
   experiential: [
     "Step in", "Move forward", "Explore",
     "Follow the Node", "Go deeper", "Portfolio",
-    "Lets go", "Wander",
+    "Lets go", "Wander", "Treatment for your company!"
   ],
 
   playful: [
@@ -25,7 +25,8 @@ export const CTA_BANKS = {
     "Made in Germany!" ,"Mobile compatible!", "v1nc3n7",
     "90% bug free!", "Legal in Guatemala!", "Wolfram cellular automata!",
     "Web 2.0 was better.", "Frutiger Aereo", "Cats love it!", "My mom loves it!",
-    "MISHI FOREVER🐈",
+    "MISHI FOREVER🐈", "Buttermilch", "(≽^•˕•^≼)", "I am a potato 🥔", "Former Nigerian Prince",
+    "Thyplosion", "Vegan", "Gluten-free", "Keto-friendly", "Paleo-approved", "Low-carb", "High-protein",
     
 
   ],
