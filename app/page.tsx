@@ -26,11 +26,16 @@ import { getCTA } from "@/app/template/theme/CTA_WORD_BANK";
 
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
 
+type NavIcon = React.ComponentType<{
+  className?: string;
+  strokeWidth?: number;
+}>;
+
 type MenuItem = {
   label: string;
   href: string;
   img?: string;
-  icon?: string | React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  icon?: NavIcon;
   gif: string;
 };
 

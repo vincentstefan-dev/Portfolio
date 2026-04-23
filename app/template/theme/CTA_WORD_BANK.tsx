@@ -5,7 +5,7 @@ export const CTA_BANKS = {
   clean: [
     "Explore", "Begin", "Enter", "Continue", "Start here",
     "Discover", "Open", "Proceed", "View", "Access",
-    "Take a look", "Step inside",
+    "Take a look", "Step inside", "Nice to meet you!",
   ],
 
   system: [
@@ -25,6 +25,7 @@ export const CTA_BANKS = {
     "Made in Germany!" ,"Mobile compatible!", "v1nc3n7",
     "90% bug free!", "Legal in Guatemala!", "Wolfram cellular automata!",
     "Web 2.0 was better.", "Frutiger Aereo", "Cats love it!", "My mom loves it!",
+    "MISHI FOREVER🐈",
     
 
   ],
