@@ -26,7 +26,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.9,
+    weight: 0.01,
   },
     {
     id: "8Bits", //FIX LOGO
@@ -34,7 +34,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -43,7 +43,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.99,
   },
    {
     id: "16Bits",
@@ -51,7 +51,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -68,7 +68,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -85,7 +85,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -102,7 +102,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -120,7 +120,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -137,7 +137,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -154,7 +154,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -171,7 +171,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -188,7 +188,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -205,7 +205,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -222,7 +222,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -239,7 +239,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -256,7 +256,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -273,7 +273,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -290,7 +290,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -307,7 +307,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -324,7 +324,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -341,7 +341,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -358,7 +358,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[360px] object-contain",
+    className: "w-[200px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
