@@ -7,6 +7,7 @@ export type LogoVariant = {
   className?: string;
   glow?: string;
   opacity?: number;
+  weight?: number;
 };
 
 export const LOGO_BANK: LogoVariant[] = [
