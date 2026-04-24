@@ -8,6 +8,7 @@ export type LogoVariant = {
   glow?: string;
   opacity?: number;
   weight?: number;
+  scale?: number;
 };
 
 export const LOGO_BANK: LogoVariant[] = [
@@ -17,7 +18,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[320px] md:w-[520px] object-contain",
+    className: "w-[320px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -26,7 +27,10 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.5,
+    
+    //scale
+    scale: 1.1,
   },
     {
     id: "8Bits", //FIX LOGO
@@ -34,7 +38,7 @@ export const LOGO_BANK: LogoVariant[] = [
     alt: "Koyote logo default",
 
     //size only here
-    className: "w-[200px] md:w-[450px] object-contain",
+    className: "w-[320px] md:w-[450px] object-contain",
 
     //glow stays here
     glow: "drop-shadow(0 0 40px rgba(56, 205, 255, 0.79)) drop-shadow(0 0 80px rgb(35, 88, 152))",
@@ -43,7 +47,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.99,
+    weight: 0.5,
   },
    {
     id: "16Bits",
@@ -59,7 +63,7 @@ export const LOGO_BANK: LogoVariant[] = [
     //opacity control
     opacity: 0.5,
     //Weights
-    weight: 0.9,
+    weight: 0.5,
 
   },
    {
@@ -77,7 +81,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.3,
   },
    {
     id: "bluecrt",
@@ -94,7 +98,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.2,
   },
      {
     id: "frutigerclean",
@@ -111,7 +115,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.02,
 
   },
    {
@@ -129,7 +133,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.1,
   },
    {
     id: "IOS", //weird lining 
@@ -146,7 +150,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.3,
   },
    {
     id: "LINES",
@@ -163,7 +167,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.2,
   },
    {
     id: "liquidmetal",
@@ -180,7 +184,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.5,
   },
    {
     id: "microsoft",
@@ -197,7 +201,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.2,
   },
    {
     id: "minecraft",
@@ -214,7 +218,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.1,
   },
    {
     id: "n64",
@@ -231,7 +235,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.1,
   },
    {
     id: "PLASMA",
@@ -248,7 +252,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.2,
   },
    {
     id: "polygon",
@@ -265,7 +269,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.1,
   },
    {
     id: "purpleplasma",
@@ -282,7 +286,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.2,
   },
    {
     id: "shineblue",
@@ -299,7 +303,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.3,
   },
    {
     id: "sleekps2",
@@ -316,7 +320,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.2,
   },
    {
     id: "voxel",
@@ -333,7 +337,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.3,
   },
    {
     id: "web2.0",
@@ -350,7 +354,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.2,
   },
    {
     id: "whitelines",
@@ -367,7 +371,7 @@ export const LOGO_BANK: LogoVariant[] = [
     opacity: 0.5,
 
     //Weights
-    weight: 0.01,
+    weight: 0.1,
   },
 ];
 

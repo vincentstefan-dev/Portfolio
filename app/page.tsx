@@ -347,6 +347,7 @@ useEffect(() => {
             style={{
               filter: activeLogo.glow,
               opacity: activeLogo.opacity ?? 1,
+              transform: `scale(${activeLogo.scale ?? 1})`,
             }}
           />
           </motion.div>
