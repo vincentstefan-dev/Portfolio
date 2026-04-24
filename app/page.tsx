@@ -400,7 +400,7 @@ useEffect(() => {
           </nav>
         </div>
 
-        <div className="pointer-events-none absolute bottom-[30%] left-1/2 z-20 -translate-x-1/2">
+        <div className="pointer-events-none absolute top-[13%] left-1/2 z-20 -translate-x-1/2">
           <div className="flex min-h-[52px] flex-col items-center justify-center">
             <motion.span
               initial={{ opacity: 0 }}
