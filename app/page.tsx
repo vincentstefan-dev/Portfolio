@@ -5,6 +5,7 @@ import ThemeModal from "@/app/template/theme/ThemeModal";
 import ThemedNavIcon from "@/app/template/theme/ThemedNavIcon";
 import ThemedBackground from "@/app/template/theme/ThemedBackground";
 
+
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -24,6 +25,23 @@ import {
 import { Space_Mono } from "next/font/google";
 import { getCTA } from "@/app/template/theme/CTA_WORD_BANK";
 import { LOGO_BANK } from "@/app/template/theme/LOGO_BANK";
+
+
+const pickWeightedLogo = () => {
+  const total = LOGO_BANK.reduce(
+    (sum, logo) => sum + (logo.weight ?? 1),
+    0
+  );
+
+  let random = Math.random() * total;
+
+  for (const logo of LOGO_BANK) {
+    random -= logo.weight ?? 1;
+    if (random <= 0) return logo;
+  }
+
+  return LOGO_BANK[0];
+};
 
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
 
@@ -107,9 +125,15 @@ export default function HomepageVideoIconMenu() {
 
   const [phrase, setPhrase] = useState("");
 
-  const [activeLogo] = useState(
-    () => LOGO_BANK[Math.floor(Math.random() * LOGO_BANK.length)]
-  );
+  const [activeLogo, setActiveLogo] = useState(LOGO_BANK[0]);
+
+useEffect(() => {
+  setActiveLogo(pickWeightedLogo());
+}, []);
+
+useEffect(() => {
+  setActiveLogo(pickWeightedLogo());
+}, []);
 
   const playBlurIntro = useCallback(() => {
     setIsInitialBlur(true);
