@@ -334,24 +334,30 @@ useEffect(() => {
           isInitialBlur ? "scale-[1.01] blur-sm" : "scale-100 blur-0"
         }`}
       >
-        <div className="pointer-events-none absolute inset-x-0 top-[2%] z-20 flex justify-center px-6">
-          <motion.div
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, ease: "easeOut" }}
-          >
-          <img
-            src={activeLogo.src}
-            alt={activeLogo.alt}
-            className={`${activeLogo.className ?? ""} translate-x-[-10px]`}
-            style={{
-              filter: activeLogo.glow,
-              opacity: activeLogo.opacity ?? 1,
-              transform: `scale(${activeLogo.scale ?? 1})`,
-            }}
-          />
-          </motion.div>
-        </div>
+        <div className="flex min-h-screen flex-col items-center justify-start px-6 pt-10 md:pt-16">
+          {/* LOGO */}
+          <div className="pointer-events-none z-20 -mt-2 mb-2 flex justify-center md:-mt-6 md:mb-4">
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.1, ease: "easeOut" }}
+            >
+              <img
+                src={activeLogo.src}
+                alt={activeLogo.alt}
+                className={activeLogo.className ?? ""}
+                style={{
+                  filter: activeLogo.glow,
+                  opacity: activeLogo.opacity ?? 1,
+                  transform: `scale(${activeLogo.scale ?? 1})`,
+                }}
+              />
+            </motion.div>
+          </div>
+
+  {/* NAV ICONS */}
+  <nav aria-label="Main navigation" className="w-full max-w-7xl">
+    <div className="flex flex-wrap items-center justify-center gap-10 md:gap-24">
 
         <div className="flex min-h-screen items-center justify-center px-6">
           <nav aria-label="Main navigation" className="w-full max-w-7xl">
@@ -426,21 +432,24 @@ useEffect(() => {
           siteMode={siteMode}
         />
 
-        <div className="pointer-events-none absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
-          <div className="flex items-center gap-2">
-            <img
-              src="/Gifs/mystar.gif"
-              alt="Vincent Lambour logo"
-              className="h-5 w-5 object-contain opacity-90"
-            />
-            <span
-              className={`${spaceMono.className} select-none whitespace-nowrap text-[9px] leading-none tracking-[0.12em] text-white/30`}
-            >
-              Designed by Vincent Lambour
-            </span>
+            <div className="pointer-events-none absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
+              <div className="flex items-center gap-2">
+                <img
+                  src="/Gifs/mystar.gif"
+                  alt="Vincent Lambour logo"
+                  className="h-5 w-5 object-contain opacity-90"
+                />
+                <span
+                  className={`${spaceMono.className} select-none whitespace-nowrap text-[9px] leading-none tracking-[0.12em] text-white/30`}
+                >
+                  Designed by Vincent Lambour
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
+        </nav>
       </div>
-    </main>
+    </div>
+        </main>
   );
 }

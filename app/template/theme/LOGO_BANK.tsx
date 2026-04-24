@@ -11,7 +11,7 @@ export type LogoVariant = {
   scale?: number;
 };
 
-// ✅ RESPONSIVE SIZE SYSTEM (FIXED)
+//RESPONSIVE SIZE SYSTEM (FIXED)
 const LOGO_SIZE = `
   w-[42vw] 
   max-w-[160px] 
