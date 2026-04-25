@@ -1,4 +1,4 @@
-//reacts to mode
+// reacts to mode
 "use client";
 
 import React, { useEffect, useMemo, useRef } from "react";
@@ -121,7 +121,6 @@ const backgroundThemes: BackgroundTheme[] = [
 const basicTheme = backgroundThemes[2];
 const basicVideos = ["z6_Qju7FJEA"];
 
-// Change these later to your actual funky/random video IDs
 const randomVideos = [
   "z6_Qju7FJEA",
   "_asoMC8oURI",
@@ -133,22 +132,18 @@ function pickRandom<T>(items: T[]): T {
   return items[Math.floor(Math.random() * items.length)];
 }
 
-export default function ThemedBackground({
-  onReady,
-}: ThemedBackgroundProps) {
+export default function ThemedBackground({ onReady }: ThemedBackgroundProps) {
   const { siteMode } = useThemeMode();
+
   const playerContainerRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<any>(null);
 
-  // Stable visual pack per mounted page view / mode change
   const activeTheme = useMemo(() => {
     return siteMode === "random" ? pickRandom(backgroundThemes) : basicTheme;
   }, [siteMode]);
 
   const activeVideoId = useMemo(() => {
-    return siteMode === "random"
-      ? pickRandom(randomVideos)
-      : pickRandom(basicVideos);
+    return siteMode === "random" ? pickRandom(randomVideos) : pickRandom(basicVideos);
   }, [siteMode]);
 
   useEffect(() => {
@@ -177,6 +172,7 @@ export default function ThemedBackground({
         events: {
           onReady: (event: any) => {
             const ytPlayer = event.target;
+
             ytPlayer.mute();
             ytPlayer.setVolume(20);
             ytPlayer.playVideo();
@@ -219,6 +215,7 @@ export default function ThemedBackground({
 
     return () => {
       cancelled = true;
+
       if (playerRef.current?.destroy) {
         playerRef.current.destroy();
         playerRef.current = null;
@@ -227,17 +224,19 @@ export default function ThemedBackground({
   }, [activeVideoId, onReady]);
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 scale-125 md:scale-110">
+    <div className="fixed inset-0 z-0 overflow-hidden">
+      {/* YOUTUBE VIDEO LAYER */}
+      <div className="absolute left-1/2 top-1/2 h-[120vh] w-[120vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden">
         <div
           ref={playerContainerRef}
-          className="absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2"
+          className="absolute left-1/2 top-1/2 aspect-video h-auto min-h-[120vh] w-[213.34vh] min-w-[120vw] -translate-x-1/2 -translate-y-1/2"
         />
       </div>
 
       <div
         className={`pointer-events-none absolute inset-0 transition-all duration-700 ${activeTheme.base}`}
       />
+
       <div
         className={`pointer-events-none absolute inset-0 transition-all duration-700 ${activeTheme.mainGradient}`}
       />
@@ -246,12 +245,15 @@ export default function ThemedBackground({
         <div
           className={`absolute left-0 top-0 h-40 w-full transition-all duration-700 ${activeTheme.topGlow}`}
         />
+
         <div
           className={`absolute left-0 top-[23%] h-20 w-full blur-2xl transition-all duration-700 ${activeTheme.midBand}`}
         />
+
         <div
           className={`absolute left-[-10%] top-[34%] h-32 w-[130%] rotate-[-3deg] blur-3xl transition-all duration-700 ${activeTheme.streakOne}`}
         />
+
         <div
           className={`absolute left-[-10%] top-[55%] h-36 w-[130%] rotate-[1deg] blur-3xl transition-all duration-700 ${activeTheme.streakTwo}`}
         />
