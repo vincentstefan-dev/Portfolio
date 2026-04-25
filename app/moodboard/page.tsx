@@ -25,7 +25,7 @@ export default function Page() {
   {/* CENTER 404 VISUAL */}
   <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
     <img
-      src="/icons/404.png" // <- your transparent PNG
+      src="/Icons/404.png" // <- your transparent PNG
       alt="404 liquid"
       className="w-[280px] md:w-[420px] opacity-90 object-contain"
     />
