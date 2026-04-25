@@ -18,14 +18,29 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="relative min-h-screen bg-black text-white">
-      <NeonStarIntro />
+<main className="relative min-h-screen bg-black text-white overflow-hidden">
+  {/* Background / atmosphere */}
+  <NeonStarIntro />
 
-      <div className="relative z-10 flex min-h-screen items-center justify-center">
-        <h1 className="text-4xl font-bold text-center">
-          {phrase || "We are working on it!"}
-        </h1>
-      </div>
-    </main>
+  {/* CENTER 404 VISUAL */}
+  <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+    <img
+      src="/icons/404.png" // <- your transparent PNG
+      alt="404 liquid"
+      className="w-[280px] md:w-[420px] opacity-90 object-contain"
+    />
+  </div>
+
+  {/* TEXT BELOW IMAGE */}
+  <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center">
+    
+    <div className="mt-[220px] md:mt-[300px] text-center">
+      <p className="mt-3 text-sm md:text-base text-white/60 tracking-[0.2em]">
+        {phrase || "This page drifted away"}
+      </p>
+    </div>
+
+  </div>
+  </main>
   );
 }
