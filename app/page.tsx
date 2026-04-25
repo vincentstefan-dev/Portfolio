@@ -5,7 +5,6 @@ import ThemeModal from "@/app/template/theme/ThemeModal";
 import ThemedNavIcon from "@/app/template/theme/ThemedNavIcon";
 import ThemedBackground from "@/app/template/theme/ThemedBackground";
 
-
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -26,13 +25,10 @@ import { Space_Mono } from "next/font/google";
 import { getCTA } from "@/app/template/theme/CTA_WORD_BANK";
 import { LOGO_BANK } from "@/app/template/theme/LOGO_BANK";
 
+const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
 
 const pickWeightedLogo = () => {
-  const total = LOGO_BANK.reduce(
-    (sum, logo) => sum + (logo.weight ?? 1),
-    0
-  );
-
+  const total = LOGO_BANK.reduce((sum, logo) => sum + (logo.weight ?? 1), 0);
   let random = Math.random() * total;
 
   for (const logo of LOGO_BANK) {
@@ -42,8 +38,6 @@ const pickWeightedLogo = () => {
 
   return LOGO_BANK[0];
 };
-
-const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
 
 type NavIcon = React.ComponentType<{
   className?: string;
@@ -124,16 +118,11 @@ export default function HomepageVideoIconMenu() {
   const [volume, setVolume] = useState(20);
 
   const [phrase, setPhrase] = useState("");
-
   const [activeLogo, setActiveLogo] = useState(LOGO_BANK[0]);
 
-useEffect(() => {
-  setActiveLogo(pickWeightedLogo());
-}, []);
-
-useEffect(() => {
-  setActiveLogo(pickWeightedLogo());
-}, []);
+  useEffect(() => {
+    setActiveLogo(pickWeightedLogo());
+  }, []);
 
   const playBlurIntro = useCallback(() => {
     setIsInitialBlur(true);
@@ -150,22 +139,13 @@ useEffect(() => {
   const applyMode = useCallback(
     (mode: SiteMode) => {
       setSiteMode(mode);
-
-      if (mode === "basic") {
-        setGlow(basicGlow);
-      } else {
-        setGlow(pickRandomGlow());
-      }
+      setGlow(mode === "basic" ? basicGlow : pickRandomGlow());
     },
     [setSiteMode]
   );
 
   useEffect(() => {
-    if (siteMode === "random") {
-      setGlow(pickRandomGlow());
-    } else {
-      setGlow(basicGlow);
-    }
+    setGlow(siteMode === "random" ? pickRandomGlow() : basicGlow);
   }, [siteMode]);
 
   useEffect(() => {
@@ -174,9 +154,7 @@ useEffect(() => {
 
   useEffect(() => {
     const handlePageShow = (event: PageTransitionEvent) => {
-      if (event.persisted) {
-        playBlurIntro();
-      }
+      if (event.persisted) playBlurIntro();
     };
 
     window.addEventListener("pageshow", handlePageShow);
@@ -185,14 +163,10 @@ useEffect(() => {
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsThemeMenuOpen(false);
-      }
+      if (event.key === "Escape") setIsThemeMenuOpen(false);
     };
 
-    if (isThemeMenuOpen) {
-      document.addEventListener("keydown", handleEscape);
-    }
+    if (isThemeMenuOpen) document.addEventListener("keydown", handleEscape);
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
@@ -201,9 +175,7 @@ useEffect(() => {
 
   useEffect(() => {
     setPhrase(getCTA());
-  }, []);
 
-  useEffect(() => {
     const interval = window.setInterval(() => {
       setPhrase(getCTA());
     }, 10000);
@@ -279,13 +251,13 @@ useEffect(() => {
     <main className="relative min-h-screen overflow-hidden text-white">
       <ThemedBackground onReady={handlePlayerReady} />
 
+      {/* ATOMIC PLAYER */}
       <div className="group absolute bottom-0 right-0 z-20 p-8">
         <div className="pointer-events-none w-[320px] translate-y-4 rounded-2xl border border-[#c084fc]/25 bg-[#3b1363]/45 p-4 text-white opacity-0 shadow-[0_0_30px_rgba(168,85,247,0.12)] backdrop-blur-md transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
           <div className="mb-3 flex items-center justify-between">
             <span className="text-sm font-medium tracking-wide text-[#e9d5ff]/70">
               Atomic Player
             </span>
-            <span className="text-xs text-[#e9d5ff]/70"></span>
           </div>
 
           <div className="flex items-center gap-3">
@@ -325,18 +297,21 @@ useEffect(() => {
             </div>
           </div>
 
-          <p className="mt-3 text-xs text-[#e9d5ff]/70">Hover here for controls.</p>
+          <p className="mt-3 text-xs text-[#e9d5ff]/70">
+            Hover here for controls.
+          </p>
         </div>
       </div>
 
+      {/* CONTENT */}
       <div
         className={`relative z-30 min-h-screen transition-all duration-[400ms] ease-out ${
           isInitialBlur ? "scale-[1.01] blur-sm" : "scale-100 blur-0"
         }`}
       >
-        <div className="flex min-h-screen flex-col items-center justify-start px-6 pt-10 md:pt-16">
+        <div className="flex min-h-screen flex-col items-center px-6 pt-8 pb-24 md:pt-10 md:pb-20">
           {/* LOGO */}
-          <div className="pointer-events-none z-20 -mt-2 mb-2 flex justify-center md:-mt-6 md:mb-4">
+          <div className="pointer-events-none z-20 flex justify-center">
             <motion.div
               initial={{ opacity: 0, y: -6 }}
               animate={{ opacity: 1, y: 0 }}
@@ -355,18 +330,56 @@ useEffect(() => {
             </motion.div>
           </div>
 
-  {/* NAV ICONS */}
-  <nav aria-label="Main navigation" className="w-full max-w-7xl">
-    <div className="flex flex-wrap items-center justify-center gap-10 md:gap-24">
+          {/* CTA */}
+          <div className="pointer-events-none z-20 -mt-8 mb-8 md:-mt-14 md:mb-10">
+            <div className="flex min-h-[40px] flex-col items-center justify-center">
+              <motion.span
+                key={phrase}
+                initial={{ opacity: 0.35, y: 3 }}
+                animate={{
+                  opacity: [0.45, 0.78, 0.55],
+                  y: [-1.4, 1.4, -1],
+                  x: [-0.6, 0.5, -0.3],
+                }}
+                transition={{
+                  duration: 3.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className={`${spaceMono.className} select-none whitespace-nowrap text-center text-[11px] tracking-[0.24em] text-white/65 sm:text-[12px] md:text-[13px]`}
+                style={{
+                  textShadow:
+                    "0 0 10px rgba(190,220,255,0.18), 0 0 24px rgba(190,220,255,0.08)",
+                }}
+              >
+                {phrase}
+              </motion.span>
+            </div>
+          </div>
 
-        <div className="flex min-h-screen items-center justify-center px-6">
-          <nav aria-label="Main navigation" className="w-full max-w-7xl">
-            <div className="flex flex-wrap items-center justify-center gap-30">
+          {/* NAV ICONS */}
+          <nav aria-label="Main navigation" className="w-full flex justify-center">
+          <div
+            className="
+              grid w-full max-w-[420px] grid-cols-2 place-items-center gap-x-10 gap-y-12
+
+              sm:max-w-[520px] sm:grid-cols-2 sm:gap-x-12 sm:gap-y-14
+
+              md:max-w-[760px] md:grid-cols-3 md:gap-x-14 md:gap-y-14
+
+              lg:max-w-[980px] lg:grid-cols-4 lg:gap-x-16 lg:gap-y-16
+
+              xl:max-w-[1200px] xl:grid-cols-7 xl:gap-x-18 xl:gap-y-16
+
+              2xl:max-w-7xl 2xl:grid-cols-7 2xl:gap-x-20 2xl:gap-y-0
+            "
+
+            >
               {menuItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group flex flex-col items-center text-center transition duration-300 hover:-translate-y-1 focus:outline-none"
+                  className="group flex h-[82px] w-[90px] flex-col items-center justify-start text-center transition duration-300 hover:-translate-y-1 focus:outline-none"
                 >
                   <ThemedNavIcon
                     label={item.label}
@@ -375,81 +388,72 @@ useEffect(() => {
                     gif={item.gif}
                     glow={glow}
                   />
-                  <span className="mt-2 text-sm text-white/70">{item.label}</span>
+
+                  <span className="mt-2 text-sm text-white/70">
+                    {item.label}
+                  </span>
                 </Link>
               ))}
 
-              <div className="group relative z-40 flex flex-col items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setIsThemeMenuOpen(true)}
-                  aria-label="Open theme selector"
-                  aria-expanded={isThemeMenuOpen}
-                  className="relative z-40 flex h-14 w-14 items-center justify-center rounded-xl transition duration-300 active:scale-95 md:hover:-translate-y-1"
-                >
+              {/* THEMES BUTTON */}
+              <button
+                type="button"
+                onClick={() => setIsThemeMenuOpen(true)}
+                aria-label="Open theme selector"
+                aria-expanded={isThemeMenuOpen}
+                className="
+                  group flex h-[82px] w-[90px] flex-col items-center justify-start text-center
+                  transition duration-300 hover:-translate-y-1 focus:outline-none active:scale-95
+
+                  col-span-2 justify-self-center   /* mobile */
+
+                  md:col-span-1 md:col-start-2     /* <-- THIS is the fix */
+
+                  lg:col-span-1
+                  xl:col-span-1
+                  2xl:col-span-1
+                "
+              >
+                <span className="flex h-14 w-14 items-center justify-center rounded-xl">
                   <img
                     src={themeButtonGif}
-                    alt="Themes"
-                    className="pointer-events-none h-50 w-50 object-contain transition duration-300 md:group-hover:scale-500"
+                    alt=""
+                    className="pointer-events-none h-[50px] w-[50px] object-contain transition duration-300 md:group-hover:scale-[1.35]"
                   />
-                </button>
+                </span>
 
-                <span className="mt-2 text-sm text-white/70">Themes</span>
-              </div>
+                <span className="mt-2 text-sm text-white/70">
+                  Themes
+                </span>
+              </button>
             </div>
           </nav>
         </div>
 
-        <div className="pointer-events-none absolute top-[13%] left-1/2 z-20 -translate-x-1/2">
-          <div className="flex min-h-[52px] flex-col items-center justify-center">
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: [0.8, 0.7, 0.6],
-                y: [-1.2, 1.4, -0.8],
-                x: [-0.5, 0.5, -0.3],
-              }}
-              transition={{
-                duration: 1,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className={`${spaceMono.className} select-none whitespace-nowrap text-center text-[11px] tracking-[0.24em] text-white/65 sm:text-[12px] md:text-[13px]`}
-              style={{
-                textShadow:
-                  "0 0 10px rgba(190,220,255,0.18), 0 0 24px rgba(190,220,255,0.08)",
-              }}
+        {/* SIGNATURE */}
+        <div className="pointer-events-none absolute bottom-2 left-1/2 z-20 -translate-x-1/2 md:bottom-4">
+          <div className="flex items-center gap-2">
+            <img
+              src="/Gifs/mystar.gif"
+              alt="Vincent Lambour logo"
+              className="h-5 w-5 object-contain opacity-90"
+            />
+
+            <span
+              className={`${spaceMono.className} select-none whitespace-nowrap text-[9px] leading-none tracking-[0.12em] text-white/30`}
             >
-              {phrase}
-            </motion.span>
+              Designed by Vincent Lambour
+            </span>
           </div>
         </div>
-
-        <ThemeModal
-          isOpen={isThemeMenuOpen}
-          onClose={() => setIsThemeMenuOpen(false)}
-          onApplyMode={applyMode}
-          siteMode={siteMode}
-        />
-
-            <div className="pointer-events-none absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
-              <div className="flex items-center gap-2">
-                <img
-                  src="/Gifs/mystar.gif"
-                  alt="Vincent Lambour logo"
-                  className="h-5 w-5 object-contain opacity-90"
-                />
-                <span
-                  className={`${spaceMono.className} select-none whitespace-nowrap text-[9px] leading-none tracking-[0.12em] text-white/30`}
-                >
-                  Designed by Vincent Lambour
-                </span>
-              </div>
-            </div>
-          </div>
-        </nav>
       </div>
-    </div>
-        </main>
+
+      <ThemeModal
+        isOpen={isThemeMenuOpen}
+        onClose={() => setIsThemeMenuOpen(false)}
+        onApplyMode={applyMode}
+        siteMode={siteMode}
+      />
+    </main>
   );
 }
