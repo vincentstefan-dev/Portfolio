@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
+import { LOGO_BANK } from "@/app/template/theme/LOGO_BANK";
+import { motion } from "framer-motion";
 type Star = {
   x: number;
   y: number;
@@ -29,6 +30,22 @@ const STAR_COLORS = [
 
 function random(min: number, max: number) {
   return Math.random() * (max - min) + min;
+}
+
+function pickWeightedLogo() {
+  const total = LOGO_BANK.reduce(
+    (sum, logo) => sum + (logo.weight ?? 1),
+    0
+  );
+
+  let randomValue = Math.random() * total;
+
+  for (const logo of LOGO_BANK) {
+    randomValue -= logo.weight ?? 1;
+    if (randomValue <= 0) return logo;
+  }
+
+  return LOGO_BANK[0];
 }
 
 function drawStarShape(
@@ -100,8 +117,44 @@ function drawStarLayer(
 
 export default function CRTStarIntro() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [visible, setVisible] = useState(true);
 
+  // SOUND REF
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const [visible, setVisible] = useState(true);
+  const [activeLogo, setActiveLogo] = useState(LOGO_BANK[0]);
+
+  // PICK LOGO ON FIRST LOAD
+  useEffect(() => {
+    setActiveLogo(pickWeightedLogo());
+  }, []);
+
+  // INTRO SOUND EFFECT
+  // Plays after the user's first click/tap.
+  // This avoids browser autoplay blocking.
+    useEffect(() => {
+      const playIntroSound = () => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        audio.volume = 0.35;
+        audio.currentTime = 0;
+
+        audio.play().catch((error) => {
+          console.log("Audio play blocked:", error);
+        });
+
+        window.removeEventListener("pointerdown", playIntroSound);
+      };
+
+      window.addEventListener("pointerdown", playIntroSound);
+
+      return () => {
+        window.removeEventListener("pointerdown", playIntroSound);
+      };
+    }, []);
+
+  // CANVAS ANIMATION EFFECT
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -110,17 +163,20 @@ export default function CRTStarIntro() {
     if (!ctx) return;
 
     let animationFrame = 0;
-    let startTime = performance.now();
+    const startTime = performance.now();
+
     let width = window.innerWidth;
     let height = window.innerHeight;
 
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
+
       width = window.innerWidth;
       height = window.innerHeight;
 
       canvas.width = width * dpr;
       canvas.height = height * dpr;
+
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
 
@@ -134,6 +190,7 @@ export default function CRTStarIntro() {
 
     const stars: Star[] = Array.from({ length: starCount }, () => {
       const size = random(3, 18);
+
       return {
         x: random(0, width),
         y: random(0, height),
@@ -159,7 +216,9 @@ export default function CRTStarIntro() {
         const y = Math.random() * height;
         const size = Math.random() * 1.5 + 0.3;
 
-        ctx.fillStyle = Math.random() > 0.5 ? "white" : "rgba(180,220,255,0.9)";
+        ctx.fillStyle =
+          Math.random() > 0.5 ? "white" : "rgba(180,220,255,0.9)";
+
         ctx.fillRect(x, y, size, size);
       }
 
@@ -187,6 +246,7 @@ export default function CRTStarIntro() {
         height / 2,
         Math.max(width, height) * 0.72
       );
+
       gradient.addColorStop(0, "rgba(0,0,0,0)");
       gradient.addColorStop(0.65, "rgba(0,0,0,0.08)");
       gradient.addColorStop(1, "rgba(0,0,0,0.42)");
@@ -224,6 +284,7 @@ export default function CRTStarIntro() {
     const drawRollingBand = (time: number) => {
       const bandY = ((time * 0.08) % (height + 140)) - 140;
       const grad = ctx.createLinearGradient(0, bandY, 0, bandY + 140);
+
       grad.addColorStop(0, "rgba(255,255,255,0)");
       grad.addColorStop(0.5, "rgba(255,255,255,0.055)");
       grad.addColorStop(1, "rgba(255,255,255,0)");
@@ -237,6 +298,8 @@ export default function CRTStarIntro() {
     const animate = (time: number) => {
       const elapsed = time - startTime;
 
+      // INTRO DURATION
+      // 5000 = 5 seconds
       if (elapsed >= 5000) {
         setVisible(false);
         cancelAnimationFrame(animationFrame);
@@ -247,7 +310,9 @@ export default function CRTStarIntro() {
       const fadeOut = Math.max(0, 1 - Math.max(0, elapsed - 4200) / 800);
       const masterAlpha = fadeIn * fadeOut;
 
-      const flicker = 0.96 + Math.sin(time * 0.08) * 0.015 + Math.random() * 0.03;
+      const flicker =
+        0.96 + Math.sin(time * 0.08) * 0.015 + Math.random() * 0.03;
+
       const jitterX = random(-0.35, 0.35);
       const jitterY = random(-0.25, 0.25);
 
@@ -262,6 +327,7 @@ export default function CRTStarIntro() {
 
       const curveScaleX = 0.985;
       const curveScaleY = 0.992;
+
       ctx.translate(width / 2, height / 2);
       ctx.scale(curveScaleX, curveScaleY);
       ctx.translate(-width / 2, -height / 2);
@@ -284,6 +350,7 @@ export default function CRTStarIntro() {
 
         ctx.save();
         ctx.globalAlpha = 0.18 * masterAlpha;
+
         drawStarShape(
           ctx,
           star.x + jitterX,
@@ -293,6 +360,7 @@ export default function CRTStarIntro() {
           star.size * 0.68,
           star.rotation
         );
+
         ctx.strokeStyle = star.color;
         ctx.lineWidth = 1;
         ctx.stroke();
@@ -322,11 +390,65 @@ export default function CRTStarIntro() {
 
   return (
     <div className="fixed inset-0 z-[9999] overflow-hidden bg-black">
+      {/* INTRO SOUND */}
+      <audio ref={audioRef} src="../Audio/logoaudio.mp3" preload="auto" />
+
+      {/* CANVAS BACKGROUND */}
       <canvas ref={canvasRef} className="h-full w-full" />
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_45%,rgba(0,0,0,0.18)_100%)]" />
+      {/* CENTERED LOGO BANK */}
+      <div className="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center">
+        <img
+          src={activeLogo.src}
+          alt={activeLogo.alt}
+          className={`object-contain transition-all duration-700 ease-out ${
+            activeLogo.className ?? "w-[240px] md:w-[360px]"
+          }`}
+          style={{
+            filter: activeLogo.glow,
+            opacity: activeLogo.opacity ?? 0.85,
+            transform: "scale(1)",
+          }}
+        />
+      {/* TEXT BELOW LOGO */}
+<motion.span
+  initial={{
+    opacity: 0,
+    y: 6,
+    letterSpacing: "0.7em",
+  }}
+  animate={{
+    opacity: [
+      0,
+      1,
+      0.2,
+      1,
+      0.4,
+      1,
+      0.6,
+      1,
+      0.8,
+      1,
+    ],
+    y: [6, 0, 1, 0],
+    letterSpacing: ["0.7em", "0.55em", "0.52em", "0.5em"],
+  }}
+  transition={{
+    duration: 3,
+    delay: 0.5,
+    ease: "easeOut",
+  }}
+        >
 
-      <div className="pointer-events-none absolute inset-0 opacity-20 mix-blend-screen">
+          K O Y O T E ║ S T U D I O S
+        </motion.span>
+      </div>
+
+      {/* RADIAL DARKENING OVERLAY */}
+      <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,transparent_45%,rgba(0,0,0,0.18)_100%)]" />
+
+      {/* CRT GLASS LAYER */}
+      <div className="pointer-events-none absolute inset-0 z-10 opacity-20 mix-blend-screen">
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.04),transparent_12%,transparent_88%,rgba(255,255,255,0.03))]" />
       </div>
     </div>

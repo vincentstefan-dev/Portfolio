@@ -1,5 +1,6 @@
 "use client";
 
+import NeonStarIntro from "../components/NeonStarIntro";
 import { useThemeMode } from "@/app/template/theme/ThemeProvider";
 import ThemedBackground from "@/app/template/theme/ThemedBackground";
 import ThemedNavIcon from "@/app/template/theme/ThemedNavIcon";
@@ -192,6 +193,7 @@ export default function CleanPage() {
 
   return (
     <main className="relative min-h-screen overflow-hidden text-white">
+      <NeonStarIntro />
       <ThemedBackground onReady={handlePlayerReady} />
 
       {/* ATOMIC PLAYER */}
