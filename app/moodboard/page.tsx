@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import NeonStarIntro from "../components/NeonStarIntro";
-import { NOT_FOUND_BANK } from "@/app/template/theme/notfoundwordbank.tsx";
+import { NOT_FOUND_BANK } from "@/app/template/theme/notfoundwordbank";
 
 export default function Page() {
   const [phrase, setPhrase] = useState("");
