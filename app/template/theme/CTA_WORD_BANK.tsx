@@ -48,7 +48,12 @@ export const CTA_BANKS = {
   superrare:
   [
   "§1C§2o§3l§4o§5r§6m§7a§8t§9i§ac",
-  ]
+  ],
+
+  images: [
+  "imag"
+  ],
+
 };
 
 export type CtaBankKey = keyof typeof CTA_BANKS;
@@ -60,6 +65,7 @@ const WEIGHTS: Record<CtaBankKey, number> = {
   playful: 0.60,
   emojis: 0.30,
   superrare: 0.10,
+  images: 0.10,
 };
 
 function pickWeightedBank(): CtaBankKey {
@@ -80,9 +86,14 @@ function pickRandomWord(words: readonly string[]) {
   return words[Math.floor(Math.random() * words.length)];
 }
 
-export function getCTA(): string {
+export function getCTA() {
   const bank = pickWeightedBank();
-  return pickRandomWord(CTA_BANKS[bank]);
+  const value = pickRandomWord(CTA_BANKS[bank]);
+
+  return {
+    value,
+    type: bank === "images" ? "image" : "text",
+  };
 }
 
 // default export (what homepage uses)

@@ -117,7 +117,11 @@ export default function HomepageVideoIconMenu() {
   const [isMuted, setIsMuted] = useState(true);
   const [volume, setVolume] = useState(20);
 
-  const [phrase, setPhrase] = useState("");
+  const [cta, setCta] = useState<{ value: string; type: "text" | "image" }>({
+  value: "",
+  type: "text",
+  });
+
   const [activeLogo, setActiveLogo] = useState(LOGO_BANK[0]);
 
   useEffect(() => {
@@ -173,15 +177,15 @@ export default function HomepageVideoIconMenu() {
     };
   }, [isThemeMenuOpen]);
 
-  useEffect(() => {
-    setPhrase(getCTA());
+useEffect(() => {
+  setCta(getCTA());
 
-    const interval = window.setInterval(() => {
-      setPhrase(getCTA());
-    }, 10000);
+  const interval = window.setInterval(() => {
+    setCta(getCTA());
+  }, 10000);
 
-    return () => window.clearInterval(interval);
-  }, []);
+  return () => window.clearInterval(interval);
+}, []);
 
   const handlePlayerReady = useCallback((player: any) => {
     playerRef.current = player;
@@ -333,27 +337,39 @@ export default function HomepageVideoIconMenu() {
           {/* CTA */}
           <div className="pointer-events-none z-20 -mt-8 mb-8 md:-mt-14 md:mb-10">
             <div className="flex min-h-[40px] flex-col items-center justify-center">
-              <motion.span
-                key={phrase}
-                initial={{ opacity: 0.35, y: 3 }}
-                animate={{
-                  opacity: [0.45, 0.78, 0.55],
-                  y: [-1.4, 1.4, -1],
-                  x: [-0.6, 0.5, -0.3],
-                }}
-                transition={{
-                  duration: 3.8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className={`${spaceMono.className} select-none whitespace-nowrap text-center text-[11px] tracking-[0.24em] text-white/65 sm:text-[12px] md:text-[13px]`}
-                style={{
-                  textShadow:
-                    "0 0 10px rgba(190,220,255,0.18), 0 0 24px rgba(190,220,255,0.08)",
-                }}
-              >
-                {phrase}
-              </motion.span>
+            <motion.div
+              key={cta.value}
+              initial={{ opacity: 0.35, y: 3 }}
+              animate={{
+                opacity: [0.45, 0.78, 0.55],
+                y: [-1.4, 1.4, -1],
+                x: [-0.6, 0.5, -0.3],
+              }}
+              transition={{
+                duration: 3.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="flex items-center justify-center"
+            >
+                 {cta.type === "image" ? (
+                <img
+                  src={cta.value}
+                  alt="cta"
+                  className="h-6 w-6 md:h-7 md:w-7 object-contain pixelated opacity-80"
+                />
+              ) : (
+                <span
+                  className={`${spaceMono.className} select-none whitespace-nowrap text-center text-[11px] tracking-[0.24em] text-white/65 sm:text-[12px] md:text-[13px]`}
+                  style={{
+                    textShadow:
+                      "0 0 10px rgba(190,220,255,0.18), 0 0 24px rgba(190,220,255,0.08)",
+                  }}
+                >
+                  {cta.value}
+                </span>
+                  )}
+                  </motion.div>
             </div>
           </div>
 
