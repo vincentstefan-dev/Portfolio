@@ -356,7 +356,7 @@ useEffect(() => {
                 <img
                   src={cta.value}
                   alt="cta"
-                  className="h-6 w-6 md:h-7 md:w-7 object-contain pixelated opacity-80"
+                  className="h-25 w-25 md:h-25 md:w- object-contain pixelated opacity-80"
                 />
               ) : (
                 <span
