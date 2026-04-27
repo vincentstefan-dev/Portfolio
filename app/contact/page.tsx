@@ -5,7 +5,6 @@ import ThemedBackground from "../template/theme/ThemedBackground";
 import { House } from "lucide-react";
 import Link from "next/link";
 
-const touchStartX = useRef(0);
 const CONTACT_CARTRIDGES = [
   {
     id: "call",
@@ -36,6 +35,7 @@ const CONTACT_CARTRIDGES = [
 
 export default function ContactPage() {
   const playerRef = useRef<any>(null);
+  const touchStartX = useRef(0);
   const [isInitialBlur, setIsInitialBlur] = useState(true);
   const [activeIndex, setActiveIndex] = useState(1);
   const [sendStatus, setSendStatus] = useState<
@@ -47,6 +47,8 @@ export default function ContactPage() {
     email: "",
     message: "",
   });
+
+  const [isMobile, setIsMobile] = useState(false);
 
   const playBlurIntro = useCallback(() => {
     setIsInitialBlur(true);
@@ -63,6 +65,13 @@ export default function ContactPage() {
   useEffect(() => {
     playBlurIntro();
   }, [playBlurIntro]);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handlePlayerReady = useCallback((player: any) => {
     playerRef.current = player;
@@ -189,7 +198,7 @@ export default function ContactPage() {
                       : "z-10 opacity-55 hover:opacity-80"
                   }`}
                     style={{
-                      transform: `translateX(${offset * 75}vw) scale(${
+                      transform: `translateX(${offset * (isMobile ? 260 : 270)}px) scale(${
                         isActive ? 1 : 0.72
                       })`,
                       touchAction: "pan-y",
