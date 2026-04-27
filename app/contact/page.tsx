@@ -69,14 +69,14 @@ export default function ContactPage() {
   }, []);
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+    <main className="relative h-screen overflow-hidden bg-black text-white">
       <NeonStarIntro />
       <ThemedBackground onReady={handlePlayerReady} />
 
         {/* BACK BUTTON */}
-        <div className="absolute bottom-20 right-6 z-30">
+        <div className="fixed bottom-6 right-6 z-50">
           <Link
-            href="/portfolio"
+            href="/"
             aria-label="Return to portfolio"
             className="group flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md transition hover:bg-white/50"
           >
