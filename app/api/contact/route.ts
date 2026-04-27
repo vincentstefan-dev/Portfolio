@@ -1,15 +1,32 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const contactEmail = process.env.CONTACT_EMAIL;
 
+    if (!resendApiKey) {
+      console.error("Missing RESEND_API_KEY env variable");
+
+      return NextResponse.json(
+        { error: "Server misconfiguration: missing email API key" },
+        { status: 500 }
+      );
+    }
+
+    if (!contactEmail) {
+      console.error("Missing CONTACT_EMAIL env variable");
+
+      return NextResponse.json(
+        { error: "Server misconfiguration: missing contact email" },
+        { status: 500 }
+      );
+    }
+
+    const body = await req.json();
     const { name, email, message, type } = body;
 
-    // Basic validation
     if (!email || !message) {
       return NextResponse.json(
         { error: "Email and message are required." },
@@ -17,21 +34,13 @@ export async function POST(req: Request) {
       );
     }
 
-    // Ensure CONTACT_EMAIL exists
-    if (!process.env.CONTACT_EMAIL) {
-      console.error("Missing CONTACT_EMAIL env variable");
-      return NextResponse.json(
-        { error: "Server misconfiguration" },
-        { status: 500 }
-      );
-    }
+    const resend = new Resend(resendApiKey);
 
     const data = await resend.emails.send({
-      from: "Koyote Contact <onboarding@resend.dev>", // update after domain verification
-      to: process.env.CONTACT_EMAIL,
+      from: "Koyote Contact <onboarding@resend.dev>",
+      to: contactEmail,
       subject: `New ${type || "contact"} inquiry`,
       replyTo: email,
-
       text: `
 Name: ${name || "Not provided"}
 Email: ${email}
@@ -43,7 +52,6 @@ ${message}
     });
 
     return NextResponse.json({ success: true, data });
-
   } catch (error) {
     console.error("EMAIL ERROR:", error);
 
