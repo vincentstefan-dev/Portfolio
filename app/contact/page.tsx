@@ -36,8 +36,11 @@ const CONTACT_CARTRIDGES = [
 export default function ContactPage() {
   const playerRef = useRef<any>(null);
   const touchStartX = useRef(0);
+
   const [isInitialBlur, setIsInitialBlur] = useState(true);
   const [activeIndex, setActiveIndex] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+
   const [sendStatus, setSendStatus] = useState<
     "idle" | "sending" | "sent" | "error"
   >("idle");
@@ -48,7 +51,16 @@ export default function ContactPage() {
     message: "",
   });
 
-  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const playBlurIntro = useCallback(() => {
     setIsInitialBlur(true);
@@ -66,13 +78,6 @@ export default function ContactPage() {
     playBlurIntro();
   }, [playBlurIntro]);
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
   const handlePlayerReady = useCallback((player: any) => {
     playerRef.current = player;
   }, []);
@@ -81,19 +86,18 @@ export default function ContactPage() {
     <main className="relative h-screen overflow-hidden bg-black text-white">
       <ThemedBackground onReady={handlePlayerReady} />
 
-        {/* BACK BUTTON */}
-        <div className="fixed bottom-6 right-6 z-50">
-          <Link
-            href="/"
-            aria-label="Return to portfolio"
-            className="group flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md transition hover:bg-white/50"
-          >
-            <House
-              className="h-5 w-5 text-white transition-transform duration-100 group-hover:scale-110"
-              strokeWidth={1.5}
-            />
-          </Link>
-        </div>
+      <div className="fixed bottom-6 right-6 z-50">
+        <Link
+          href="/"
+          aria-label="Return to portfolio"
+          className="group flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md transition hover:bg-white/50"
+        >
+          <House
+            className="h-5 w-5 text-white transition-transform duration-100 group-hover:scale-110"
+            strokeWidth={1.5}
+          />
+        </Link>
+      </div>
 
       <div className="pointer-events-none absolute inset-0 z-[1]">
         <div className="absolute left-1/2 top-[48%] h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/20 blur-[180px]" />
@@ -110,48 +114,50 @@ export default function ContactPage() {
       <div className="pointer-events-none absolute inset-0 z-[4] bg-blue-900/10 mix-blend-color" />
 
       <div
-      className={`relative z-10 h-screen transition-all duration-[400ms] ease-out ${
+        className={`relative z-10 h-screen transition-all duration-[400ms] ease-out ${
           isInitialBlur ? "scale-[1.01] blur-sm" : "scale-100 blur-0"
         }`}
       >
-        <section className="relative flex h-screen flex-col items-center justify-center px-6 py-10">
-        <div className="mb-10 flex flex-col items-center text-center">
-          <p className="mb-3 text-xs uppercase tracking-[0.45em] text-white/50">
-            Hey! Let's Build It
-          </p>
+        <section className="relative flex h-screen flex-col items-center px-6 pt-12 pb-6 md:justify-center md:py-10">
+          <div className="mb-4 flex flex-col items-center text-center md:mb-10">
+            <p className="mb-3 text-xs uppercase tracking-[0.45em] text-white/50">
+              Hey! Let&apos;s Build It
+            </p>
 
-          <h1 className="text-3xl font-semibold tracking-[0.12em] text-white md:text-5xl">
-            How should we talk?
-          </h1>
+            <h1 className="text-3xl font-semibold tracking-[0.12em] text-white md:text-5xl">
+              How should we talk?
+            </h1>
 
-          <p className="mt-4 max-w-xl leading-6 text-white/55 md:text-base">
-            I would love to know about your project!
-          </p>
-        </div>
+            <p className="mt-4 max-w-xl leading-6 text-white/55 md:text-base">
+              I would love to know about your project!
+            </p>
+          </div>
 
           <div
-              className="relative flex h-[620px] w-full max-w-6xl touch-pan-y items-center justify-center overflow-visible"
-              onTouchStart={(e) => {
-                touchStartX.current = e.touches[0].clientX;
-              }}
-              onTouchEnd={(e) => {
-                const endX = e.changedTouches[0].clientX;
-                const diff = touchStartX.current - endX;
+            className="relative flex h-[520px] w-full max-w-6xl touch-pan-y items-start justify-center overflow-visible md:h-[620px] md:items-center"
+            onTouchStart={(e) => {
+              touchStartX.current = e.touches[0].clientX;
+            }}
+            onTouchEnd={(e) => {
+              const endX = e.changedTouches[0].clientX;
+              const diff = touchStartX.current - endX;
 
-                if (Math.abs(diff) < 40) return;
+              if (Math.abs(diff) < 40) return;
 
-                if (diff > 0) {
-                  setActiveIndex((prev) =>
-                    Math.min(prev + 1, CONTACT_CARTRIDGES.length - 1)
-                  );
-                } else {
-                  setActiveIndex((prev) => Math.max(prev - 1, 0));
-                }
-              }}
-            >
+              if (diff > 0) {
+                setActiveIndex((prev) =>
+                  Math.min(prev + 1, CONTACT_CARTRIDGES.length - 1)
+                );
+              } else {
+                setActiveIndex((prev) => Math.max(prev - 1, 0));
+              }
+            }}
+          >
             {CONTACT_CARTRIDGES.map((item, index) => {
               const isActive = index === activeIndex;
               const offset = index - activeIndex;
+
+              const isInquiryActive = item.id === "inquiry" && isActive;
 
               const titleGlow =
                 item.id === "call"
@@ -197,14 +203,14 @@ export default function ContactPage() {
                       ? "z-30 opacity-100"
                       : "z-10 opacity-55 hover:opacity-80"
                   }`}
-                    style={{
-                      transform: `translateX(${offset * (isMobile ? 260 : 270)}px) scale(${
-                        isActive ? 1 : 0.72
-                      })`,
-                      touchAction: "pan-y",
-                    }}
+                  style={{
+                    transform: `translateX(${offset * (isMobile ? 260 : 270)}px) scale(${
+                      isActive ? 1 : 0.72
+                    })`,
+                    touchAction: "pan-y",
+                  }}
                 >
-                  <div className="relative w-[500px] max-w-[85vw]">
+                  <div className="relative w-[390px] max-w-[86vw] md:w-[500px]">
                     <img
                       src={item.image}
                       alt={item.title}
@@ -212,18 +218,22 @@ export default function ContactPage() {
                     />
 
                     <div
-                      className={`pointer-events-none absolute left-1/2 top-[12%] z-20 flex h-20 w-20 -translate-x-1/2 items-center justify-center rounded-full border bg-black/20 text-4xl backdrop-blur-md ${iconGlow}`}
+                      className={`pointer-events-none absolute left-[40%] top-[10%] z-20 flex h-14 w-14 items-center justify-center rounded-full border bg-black/20 text-2xl backdrop-blur-md 
+                      md:left-1/2 md:-translate-x-1/2 md:top-[12%] md:h-20 md:w-20 md:text-4xl ${iconGlow}`}
                     >
+                  
                       <span className="drop-shadow-[0_0_12px_currentColor]">
                         {item.icon}
                       </span>
                     </div>
 
-                    <div className="absolute left-[17%] top-[34%] z-10 flex w-[60%] flex-col gap-3">
+                    <div className="absolute left-[17%] top-[34%] z-10 flex w-[60%] flex-col gap-2 md:left-[17%] md:top-[36%] md:w-[60%] md:gap-2.5">
                       <h2
-                        className={`w-full text-center text-2xl font-semibold uppercase tracking-[0.18em] ${
-                          isActive ? titleGlow : "text-white/70"
-                        }`}
+                      className={`w-full text-center font-semibold uppercase
+                        text-[16px] tracking-[0.14em]
+                        md:text-2xl md:tracking-[0.18em]
+                        ${isActive ? titleGlow : "text-white/70"}
+                      `}
                       >
                         {item.title}
                       </h2>
@@ -242,7 +252,7 @@ export default function ContactPage() {
                               }))
                             }
                             placeholder="Your name"
-                            className="w-full border border-white/30 bg-white/10 px-3 py-2 text-xs text-white outline-none backdrop-blur-md placeholder:text-white/45 focus:border-cyan-200 focus:shadow-[0_0_12px_rgba(120,180,255,0.4)]"
+                            className="w-full border border-white/30 bg-white/10 px-3 py-2 text-xs tracking-[0.08em] text-white outline-none backdrop-blur-md placeholder:text-white/45 focus:border-cyan-200 focus:shadow-[0_0_12px_rgba(120,180,255,0.4)]"
                           />
 
                           <input
@@ -254,7 +264,7 @@ export default function ContactPage() {
                               }))
                             }
                             placeholder="Your email"
-                            className="w-full border border-white/30 bg-white/10 px-3 py-2 text-xs text-white outline-none backdrop-blur-md placeholder:text-white/45 focus:border-cyan-200 focus:shadow-[0_0_12px_rgba(120,180,255,0.4)]"
+                            className="w-full border border-white/30 bg-white/10 px-3 py-2 text-xs tracking-[0.08em] text-white outline-none backdrop-blur-md placeholder:text-white/45 focus:border-cyan-200 focus:shadow-[0_0_12px_rgba(120,180,255,0.4)]"
                           />
 
                           <textarea
@@ -266,8 +276,8 @@ export default function ContactPage() {
                               }))
                             }
                             placeholder="What are we building?"
-                            rows={3}
-                            className="w-full resize-none border border-white/30 bg-white/10 px-3 py-2 text-xs text-white outline-none backdrop-blur-md placeholder:text-white/45 focus:border-cyan-200 focus:shadow-[0_0_12px_rgba(120,180,255,0.4)]"
+                            rows={2}
+                            className="w-full resize-none border border-white/30 bg-white/10 px-3 py-2 text-xs tracking-[0.08em] text-white outline-none backdrop-blur-md placeholder:text-white/45 focus:border-cyan-200 focus:shadow-[0_0_12px_rgba(120,180,255,0.4)]"
                           />
                         </div>
                       ) : (
@@ -296,7 +306,8 @@ export default function ContactPage() {
                           }
 
                           if (item.id === "message") {
-                            window.location.href = "https://api.whatsapp.com/send?phone=4915778786924";
+                            window.location.href =
+                              "https://api.whatsapp.com/send?phone=4915778786924";
                             return;
                           }
 
@@ -338,8 +349,15 @@ export default function ContactPage() {
                             }
                           }
                         }}
-                        className={`relative mt-2 flex w-full items-center justify-between px-5 py-3 text-xs uppercase tracking-[0.25em] text-black transition backdrop-blur-sm hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 ${buttonSpectrum}`}
-                      >
+                          className={`relative flex w-full items-center justify-between 
+                            px-4 py-2 text-[10px] tracking-[0.18em]
+                            md:px-5 md:py-3 md:text-xs md:tracking-[0.25em]
+                            uppercase text-black transition backdrop-blur-sm 
+                            hover:scale-[1.02] active:scale-[0.98] 
+                            disabled:cursor-not-allowed disabled:opacity-50 
+                            ${buttonSpectrum}
+                            ${isInquiryActive ? "mt-2 md:mt-2 w-[95%] mx-auto" : "mt-2"}
+                          `}                      >
                         <span
                           className={`pointer-events-none absolute inset-0 opacity-30 ${innerGlow}`}
                         />
@@ -359,16 +377,12 @@ export default function ContactPage() {
                           {sendStatus === "error" && "Add email + message."}
                         </p>
                       )}
-                      
                     </div>
-                    
                   </div>
                 </div>
-                
               );
             })}
           </div>
-          
         </section>
       </div>
     </main>
