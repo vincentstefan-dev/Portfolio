@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import NeonStarIntro from "../components/NeonStarIntro";
 import ThemedBackground from "../template/theme/ThemedBackground";
-import { House } from "lucide-react";
+import { House, MessageCircle, CalendarDays, Mail } from "lucide-react";
 import Link from "next/link";
 
 const CONTACT_CARTRIDGES = [
@@ -27,7 +27,7 @@ const CONTACT_CARTRIDGES = [
   {
     id: "message",
     image: "/catridges/green.png",
-    icon: "📱",
+    icon: "💬",
     title: "Whatsapp",
     description: "Send a short message if you already know what you need.",
     button: "Message Me",
