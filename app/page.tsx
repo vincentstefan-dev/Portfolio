@@ -346,7 +346,7 @@ useEffect(() => {
                 x: [-0.6, 0.5, -0.3],
               }}
               transition={{
-                duration: 3.8,
+                duration: 1,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}

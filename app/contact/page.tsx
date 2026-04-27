@@ -1,11 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import NeonStarIntro from "../components/NeonStarIntro";
 import ThemedBackground from "../template/theme/ThemedBackground";
 import { House } from "lucide-react";
 import Link from "next/link";
 
+const touchStartX = useRef(0);
 const CONTACT_CARTRIDGES = [
   {
     id: "call",
@@ -13,7 +13,7 @@ const CONTACT_CARTRIDGES = [
     icon: "📅",
     title: "Bookings",
     description: "Schedule a short call to discuss the project direction.",
-    button: "Book Slot",
+    button: "Check Bookings",
   },
   {
     id: "inquiry",
@@ -22,15 +22,15 @@ const CONTACT_CARTRIDGES = [
     title: "Send Inquiry",
     description:
       "For projects, collaborations, websites, brand systems, or strategy work.",
-    button: "Send Signal",
+    button: "Send Email",
   },
   {
     id: "message",
     image: "/catridges/Green.png",
     icon: "📱",
     title: "Whatsapp",
-    description: "Send a short message if you already know what you need.",
-    button: "Message Me",
+    description: "Send a Whatsapp message if you already know what you need.",
+    button: "Whatsapp me",
   },
 ];
 
@@ -70,7 +70,6 @@ export default function ContactPage() {
 
   return (
     <main className="relative h-screen overflow-hidden bg-black text-white">
-      <NeonStarIntro />
       <ThemedBackground onReady={handlePlayerReady} />
 
         {/* BACK BUTTON */}
@@ -107,21 +106,40 @@ export default function ContactPage() {
         }`}
       >
         <section className="relative flex h-screen flex-col items-center justify-center px-6 py-10">
-          <div className="mb-10 text-center">
-            <p className="mb-3 text-xs uppercase tracking-[0.45em] text-white/50">
-              Contact Node
-            </p>
+        <div className="mb-10 flex flex-col items-center text-center">
+          <p className="mb-3 text-xs uppercase tracking-[0.45em] text-white/50">
+            Hey! Let's Build It
+          </p>
 
-            <h1 className="text-3xl font-semibold tracking-[0.12em] text-white md:text-5xl">
-              Choose a Signal
-            </h1>
+          <h1 className="text-3xl font-semibold tracking-[0.12em] text-white md:text-5xl">
+            How should we talk?
+          </h1>
 
-            <p className="mt-4 max-w-xl text-sm leading-6 text-white/55 md:text-base">
-              Select the best way to start the conversation.
-            </p>
-          </div>
+          <p className="mt-4 max-w-xl leading-6 text-white/55 md:text-base">
+            I would love to know about your project!
+          </p>
+        </div>
 
-          <div className="relative flex h-[620px] w-full max-w-6xl items-center justify-center overflow-visible">
+          <div
+              className="relative flex h-[620px] w-full max-w-6xl touch-pan-y items-center justify-center overflow-visible"
+              onTouchStart={(e) => {
+                touchStartX.current = e.touches[0].clientX;
+              }}
+              onTouchEnd={(e) => {
+                const endX = e.changedTouches[0].clientX;
+                const diff = touchStartX.current - endX;
+
+                if (Math.abs(diff) < 40) return;
+
+                if (diff > 0) {
+                  setActiveIndex((prev) =>
+                    Math.min(prev + 1, CONTACT_CARTRIDGES.length - 1)
+                  );
+                } else {
+                  setActiveIndex((prev) => Math.max(prev - 1, 0));
+                }
+              }}
+            >
             {CONTACT_CARTRIDGES.map((item, index) => {
               const isActive = index === activeIndex;
               const offset = index - activeIndex;
@@ -170,11 +188,12 @@ export default function ContactPage() {
                       ? "z-30 opacity-100"
                       : "z-10 opacity-55 hover:opacity-80"
                   }`}
-                  style={{
-                    transform: `translateX(${offset * 270}px) scale(${
-                      isActive ? 1 : 0.72
-                    })`,
-                  }}
+                    style={{
+                      transform: `translateX(${offset * 75}vw) scale(${
+                        isActive ? 1 : 0.72
+                      })`,
+                      touchAction: "pan-y",
+                    }}
                 >
                   <div className="relative w-[500px] max-w-[85vw]">
                     <img
@@ -268,7 +287,7 @@ export default function ContactPage() {
                           }
 
                           if (item.id === "message") {
-                            window.location.href = "https://wa.me/YOURNUMBER";
+                            window.location.href = "https://api.whatsapp.com/send?phone=4915778786924";
                             return;
                           }
 

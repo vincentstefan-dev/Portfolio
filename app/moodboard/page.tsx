@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import NeonStarIntro from "../components/NeonStarIntro";
 import { NOT_FOUND_BANK } from "@/app/template/theme/notfoundwordbank";
+import { House} from "lucide-react";
+import Link from "next/link";
 
 export default function Page() {
   const [phrase, setPhrase] = useState("");
@@ -21,6 +23,21 @@ export default function Page() {
 <main className="relative min-h-screen bg-black text-white overflow-hidden">
   {/* Background / atmosphere */}
   <NeonStarIntro />
+
+          {/* BACK BUTTON */}
+        <div className="fixed bottom-6 right-6 z-50">
+          <Link
+            href="/"
+            aria-label="Return to portfolio"
+            className="group flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md transition hover:bg-white/50"
+          >
+            <House
+              className="h-5 w-5 text-white transition-transform duration-100 group-hover:scale-110"
+              strokeWidth={1.5}
+            />
+          </Link>
+        </div>
+        
 
   {/* CENTER 404 VISUAL */}
   <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
