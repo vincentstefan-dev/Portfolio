@@ -102,11 +102,11 @@ export default function ContactPage() {
       <div className="pointer-events-none absolute inset-0 z-[4] bg-blue-900/10 mix-blend-color" />
 
       <div
-        className={`relative z-10 min-h-screen transition-all duration-[400ms] ease-out ${
+      className={`relative z-10 h-screen transition-all duration-[400ms] ease-out ${
           isInitialBlur ? "scale-[1.01] blur-sm" : "scale-100 blur-0"
         }`}
       >
-        <section className="relative flex min-h-screen flex-col items-center justify-center px-6 py-20">
+        <section className="relative flex h-screen flex-col items-center justify-center px-6 py-10">
           <div className="mb-10 text-center">
             <p className="mb-3 text-xs uppercase tracking-[0.45em] text-white/50">
               Contact Node
