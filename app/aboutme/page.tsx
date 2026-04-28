@@ -550,15 +550,13 @@ export default function CleanPage() {
 
   {/* SECOND ITEM BELOW */}
 {/* FULL IMAGE BLOCK */}
-<div className="mt-6 relative w-full overflow-hidden border border-green-400/30">
+<div className="mt-6 relative w-full overflow-hidden">
   <img
-    src="/Gifs/plant1.gif"
+    src="/Gifs/sillyhorse.gif"
     alt="Creative work"
-    className="w-full h-[360px] object-cover opacity-90"
+    className="w-full h-[360px] object-cover opacity-100"
   />
 
-  {/* overlay tint */}
-  <div className="absolute inset-0 bg-cyan-400/10" />
 </div>
 </div>
     </aside>
