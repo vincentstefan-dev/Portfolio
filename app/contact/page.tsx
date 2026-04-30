@@ -1,10 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ThemedBackground from "../template/theme/ThemedBackground";
 import { House } from "lucide-react";
 import Link from "next/link";
 import AtomicPlayer from "@/app/components/media/atomicplayer";
+import PageTransitionWrapper from "@/app/components/layout/PageTransitionWrapper";
+
+import { useAtomicPlayerControls } from "@/app/components/layout/useAtomicPlayerControls";
+import { usePageTransition } from "@/app/components/layout/usePageTransition";
 
 const CONTACT_CARTRIDGES = [
   {
@@ -35,16 +39,22 @@ const CONTACT_CARTRIDGES = [
 ];
 
 export default function ContactPage() {
-  const playerRef = useRef<any>(null);
   const touchStartX = useRef(0);
 
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const [volume, setVolume] = useState(20);
+  const {
+    playerRef,
+    isPlaying,
+    setIsPlaying,
+    isMuted,
+    setIsMuted,
+    volume,
+    setVolume,
+    handlePlayerReady,
+  } = useAtomicPlayerControls();
 
-  const [isInitialBlur, setIsInitialBlur] = useState(true);
+  const isInitialBlur = usePageTransition(0);
+
   const [activeIndex, setActiveIndex] = useState(1);
-  const [isMobile, setIsMobile] = useState(false);
 
   const [sendStatus, setSendStatus] = useState<
     "idle" | "sending" | "sent" | "error"
@@ -55,40 +65,6 @@ export default function ContactPage() {
     email: "",
     message: "",
   });
-
-  const handlePlayerReady = useCallback((player: any) => {
-    playerRef.current = player;
-    setIsPlaying(true);
-    setIsMuted(true);
-    setVolume(20);
-  }, []);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const playBlurIntro = useCallback(() => {
-    setIsInitialBlur(true);
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        window.setTimeout(() => {
-          setIsInitialBlur(false);
-        }, 50);
-      });
-    });
-  }, []);
-
-  useEffect(() => {
-    playBlurIntro();
-  }, [playBlurIntro]);
 
   return (
     <main className="relative h-screen overflow-hidden bg-black text-white">
@@ -107,7 +83,7 @@ export default function ContactPage() {
       <div className="fixed bottom-6 right-6 z-50">
         <Link
           href="/"
-          aria-label="Return to portfolio"
+          aria-label="Return home"
           className="group flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md transition hover:bg-white/50"
         >
           <House
@@ -131,11 +107,7 @@ export default function ContactPage() {
 
       <div className="pointer-events-none absolute inset-0 z-[4] bg-blue-900/10 mix-blend-color" />
 
-      <div
-        className={`relative z-10 h-screen transition-all duration-[400ms] ease-out ${
-          isInitialBlur ? "scale-[1.01] blur-sm" : "scale-100 blur-0"
-        }`}
-      >
+      <PageTransitionWrapper isBlurred={isInitialBlur}>
         <section className="relative flex h-screen flex-col items-center px-6 pb-6 pt-12 md:justify-center md:py-10">
           <div className="mb-4 flex flex-col items-center text-center md:mb-10">
             <p className="mb-3 text-xs uppercase tracking-[0.45em] text-white/50">
@@ -222,7 +194,7 @@ export default function ContactPage() {
                       : "z-10 opacity-55 hover:opacity-80"
                   }`}
                   style={{
-                    transform: `translateX(${offset * (isMobile ? 260 : 270)}px) scale(${
+                    transform: `translateX(${offset * 270}px) scale(${
                       isActive ? 1 : 0.72
                     })`,
                     touchAction: "pan-y",
@@ -395,7 +367,7 @@ export default function ContactPage() {
             })}
           </div>
         </section>
-      </div>
+      </PageTransitionWrapper>
     </main>
   );
 }

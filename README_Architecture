@@ -1,0 +1,107 @@
+KOYOTE SITE SYSTEM
+│
+├── app/page.tsx  [Homepage]
+│   │
+│   ├── Theme System
+│   │   ├── ThemeProvider.tsx
+│   │   │   └── useThemeMode()
+│   │   │       ├── siteMode
+│   │   │       └── setSiteMode()
+│   │   │
+│   │   ├── ThemeModal.tsx
+│   │   │   └── receives: isOpen, onClose, onApplyMode, siteMode
+│   │   │
+│   │   └── homepageConfig.ts
+│   │       ├── menuItems
+│   │       ├── glowStyles
+│   │       ├── basicGlow
+│   │       └── pickRandomGlow()
+│   │
+│   ├── Modal Interaction System
+│   │   └── useEscapeClose.ts
+│   │       └── closes ThemeModal when Escape key is pressed
+│   │
+│   ├── Background + Player System
+│   │   ├── useAtomicPlayerControls.ts
+│   │   │   ├── playerRef
+│   │   │   ├── isPlaying / setIsPlaying
+│   │   │   ├── isMuted / setIsMuted
+│   │   │   ├── volume / setVolume
+│   │   │   └── handlePlayerReady()
+│   │   │
+│   │   ├── ThemedBackground.tsx
+│   │   │   └── receives: handlePlayerReady
+│   │   │
+│   │   └── AtomicPlayer.tsx
+│   │       └── receives: playerRef + player state
+│   │
+│   ├── Page Transition System
+│   │   ├── usePageTransition.ts
+│   │   │   └── returns: isInitialBlur
+│   │   │
+│   │   └── PageTransitionWrapper.tsx
+│   │       └── receives: isBlurred={isInitialBlur}
+│   │
+│   ├── Logo System
+│   │   ├── LOGO_BANK.ts
+│   │   │   └── stores logo options
+│   │   │
+│   │   ├── logoUtils.ts
+│   │   │   └── pickWeightedLogo()
+│   │   │
+│   │   └── HeroLogo.tsx
+│   │       └── receives: activeLogo
+│   │
+│   ├── CTA System
+│   │   ├── CTA_WORD_BANK.ts
+│   │   │   └── getCTA()
+│   │   │
+│   │   ├── useRotatingCTA.ts
+│   │   │   └── returns: cta
+│   │   │
+│   │   └── HeroCTA.tsx
+│   │       └── receives: cta + fontClass
+│   │
+│   ├── Navigation System
+│   │   ├── homepageConfig.ts
+│   │   │   └── menuItems + glow
+│   │   │
+│   │   ├── NavGrid.tsx
+│   │   │   └── receives: items, glow, onOpenTheme
+│   │   │
+│   │   └── ThemedNavIcon.tsx
+│   │       └── receives: icon/img/gif + glow
+│   │
+│   └── Signature
+│       └── SiteSignature.tsx
+│           └── receives: fontClass
+│
+│
+└── app/portfolio/page.tsx  [Portfolio]
+    │
+    ├── Reuses Theme System
+    │   ├── useThemeMode()
+    │   └── homepageConfig.ts
+    │       └── basicGlow + pickRandomGlow()
+    │
+    ├── Reuses Modal Interaction System
+    │   └── useEscapeClose.ts
+    │       └── can close future portfolio overlays/modals with Escape
+    │
+    ├── Reuses Background + Player System
+    │   ├── useAtomicPlayerControls.ts
+    │   ├── ThemedBackground.tsx
+    │   └── AtomicPlayer.tsx
+    │
+    ├── Reuses Page Transition System
+    │   ├── usePageTransition.ts
+    │   └── PageTransitionWrapper.tsx
+    │
+    ├── Portfolio Navigation
+    │   ├── local menuItems
+    │   ├── local icon intro animation
+    │   ├── local offset measuring logic
+    │   └── ThemedNavIcon.tsx
+    │
+    └── Reuses Signature
+        └── SiteSignature.tsx

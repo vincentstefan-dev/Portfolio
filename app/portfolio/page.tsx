@@ -4,6 +4,12 @@ import { useThemeMode } from "@/app/template/theme/ThemeProvider";
 import ThemedBackground from "@/app/template/theme/ThemedBackground";
 import ThemedNavIcon from "@/app/template/theme/ThemedNavIcon";
 import AtomicPlayer from "@/app/components/media/atomicplayer";
+import PageTransitionWrapper from "@/app/components/layout/PageTransitionWrapper";
+import SiteSignature from "@/app/components/hero/SiteSignature";
+
+import { useAtomicPlayerControls } from "@/app/components/layout/useAtomicPlayerControls";
+import { usePageTransition } from "@/app/components/layout/usePageTransition";
+import { useThemeGlow } from "@/app/components/layout/useThemeGlow";
 
 import React, {
   useCallback,
@@ -12,6 +18,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { House, TreeDeciduous } from "lucide-react";
@@ -27,12 +34,6 @@ type MenuItem = {
   gif?: string;
 };
 
-type GlowStyle = {
-  text: string;
-  shadow: string;
-  bg: string;
-};
-
 type IconOffset = {
   x: number;
   y: number;
@@ -44,61 +45,34 @@ const menuItems: MenuItem[] = [
   { label: "Antonia Website", icon: TreeDeciduous, href: "/portfolio/antonia" },
 ];
 
-const glowStyles: GlowStyle[] = [
-  {
-    text: "group-hover:text-[#93c5fd]",
-    shadow: "group-hover:drop-shadow-[0_0_12px_#3b82f6]",
-    bg: "group-hover:bg-[#93c5fd]/20",
-  },
-  {
-    text: "group-hover:text-[#67e8f9]",
-    shadow: "group-hover:drop-shadow-[0_0_12px_#22d3ee]",
-    bg: "group-hover:bg-[#67e8f9]/20",
-  },
-  {
-    text: "group-hover:text-[#c4b5fd]",
-    shadow: "group-hover:drop-shadow-[0_0_12px_#8b5cf6]",
-    bg: "group-hover:bg-[#c4b5fd]/20",
-  },
-  {
-    text: "group-hover:text-[#f0abfc]",
-    shadow: "group-hover:drop-shadow-[0_0_12px_#e879f9]",
-    bg: "group-hover:bg-[#f0abfc]/20",
-  },
-  {
-    text: "group-hover:text-[#86efac]",
-    shadow: "group-hover:drop-shadow-[0_0_12px_#22c55e]",
-    bg: "group-hover:bg-[#86efac]/20",
-  },
-];
-
-const basicGlow = glowStyles[0];
-
-function pickRandomGlow() {
-  return glowStyles[Math.floor(Math.random() * glowStyles.length)];
-}
-
 export default function PortfolioPage() {
   const { siteMode } = useThemeMode();
-
-  const playerRef = useRef<any>(null);
   const pathname = usePathname();
+
+  const {
+    playerRef,
+    isPlaying,
+    setIsPlaying,
+    isMuted,
+    setIsMuted,
+    volume,
+    setVolume,
+    handlePlayerReady,
+  } = useAtomicPlayerControls();
+
+  const glow = useThemeGlow(siteMode);
 
   const navClusterRef = useRef<HTMLDivElement | null>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const [glow, setGlow] = useState<GlowStyle>(basicGlow);
-  const [isInitialBlur, setIsInitialBlur] = useState(true);
+  const isInitialBlur = usePageTransition(0);
 
   const [iconOffsets, setIconOffsets] = useState<IconOffset[]>(
     menuItems.map(() => ({ x: 0, y: 0 }))
   );
+
   const [isIconIntroActive, setIsIconIntroActive] = useState(false);
   const [areIconOffsetsReady, setAreIconOffsetsReady] = useState(false);
-
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const [volume, setVolume] = useState(20);
 
   const measureIconOffsets = useCallback(() => {
     const navEl = navClusterRef.current;
@@ -126,18 +100,6 @@ export default function PortfolioPage() {
     setAreIconOffsetsReady(true);
   }, []);
 
-  const playBlurIntro = useCallback(() => {
-    setIsInitialBlur(true);
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        window.setTimeout(() => {
-          setIsInitialBlur(false);
-        }, 50);
-      });
-    });
-  }, []);
-
   const playIconIntro = useCallback(() => {
     setIsIconIntroActive(false);
 
@@ -150,46 +112,29 @@ export default function PortfolioPage() {
     });
   }, [measureIconOffsets]);
 
-  useEffect(() => {
-    setGlow(siteMode === "random" ? pickRandomGlow() : basicGlow);
-  }, [siteMode]);
-
   useLayoutEffect(() => {
     measureIconOffsets();
   }, [measureIconOffsets]);
 
   useEffect(() => {
-    const handleResize = () => {
-      measureIconOffsets();
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("resize", measureIconOffsets);
+    return () => window.removeEventListener("resize", measureIconOffsets);
   }, [measureIconOffsets]);
 
   useEffect(() => {
-    playBlurIntro();
     playIconIntro();
-  }, [pathname, playBlurIntro, playIconIntro]);
+  }, [pathname, playIconIntro]);
 
   useEffect(() => {
     const handlePageShow = (event: PageTransitionEvent) => {
       if (event.persisted) {
-        playBlurIntro();
         playIconIntro();
       }
     };
 
     window.addEventListener("pageshow", handlePageShow);
     return () => window.removeEventListener("pageshow", handlePageShow);
-  }, [playBlurIntro, playIconIntro]);
-
-  const handlePlayerReady = useCallback((player: any) => {
-    playerRef.current = player;
-    setIsPlaying(true);
-    setIsMuted(true);
-    setVolume(20);
-  }, []);
+  }, [playIconIntro]);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#032b9b] text-white">
@@ -205,11 +150,7 @@ export default function PortfolioPage() {
         setVolume={setVolume}
       />
 
-      <div
-        className={`relative z-10 min-h-screen transition-all duration-[400ms] ease-out ${
-          isInitialBlur ? "scale-[1.01] blur-sm" : "scale-100 blur-0"
-        }`}
-      >
+      <PageTransitionWrapper isBlurred={isInitialBlur}>
         <div className="flex min-h-screen items-center justify-center px-6">
           <nav aria-label="Portfolio navigation" className="w-full max-w-7xl">
             <div
@@ -289,21 +230,8 @@ export default function PortfolioPage() {
           </nav>
         </div>
 
-        <div className="pointer-events-none absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
-          <div className="flex items-center gap-2">
-            <img
-              src="/Gifs/mystar.gif"
-              alt="Vincent Lambour logo"
-              className="h-5 w-5 object-contain opacity-90"
-            />
-            <span
-              className={`${spaceMono.className} select-none whitespace-nowrap text-[9px] leading-none tracking-[0.12em] text-white/30`}
-            >
-              Designed by Vincent Lambour
-            </span>
-          </div>
-        </div>
-      </div>
+        <SiteSignature fontClass={spaceMono.className} />
+      </PageTransitionWrapper>
     </main>
   );
 }
