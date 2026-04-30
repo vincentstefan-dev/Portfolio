@@ -3,16 +3,13 @@
 import { useThemeMode } from "@/app/template/theme/ThemeProvider";
 import ThemedBackground from "@/app/template/theme/ThemedBackground";
 import ThemedNavIcon from "@/app/template/theme/ThemedNavIcon";
+import AtomicPlayer from "@/app/components/media/atomicplayer";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   House,
-  Play,
-  Pause,
-  Volume2,
-  VolumeX,
   FileScan,
   Code2,
   Rocket,
@@ -49,7 +46,7 @@ type Particle = OrbitItem & {
 };
 
 const menuItems: MenuItem[] = [
-  { label: "Home", icon: House, href: "/", gif: "/Gifs/Home.gif" },
+  { label: "Home", icon: House, href: "/", gif: "/Gifs/mystar.gif" },
   { label: "Blog", icon: FileScan, href: "/blog", gif: "/Gifs/portfolio.gif" },
 ];
 
@@ -334,54 +331,16 @@ export default function CleanPage() {
     <main className="relative text-white">
       <ThemedBackground onReady={handlePlayerReady} />
 
-      {/* ATOMIC PLAYER */}
-      <div className="group absolute bottom-0 right-0 z-50 p-8">
-        <div className="pointer-events-none w-[320px] translate-y-4 rounded-2xl border border-[#c084fc]/25 bg-[#3b1363]/45 p-4 text-white opacity-0 shadow-[0_0_30px_rgba(168,85,247,0.12)] backdrop-blur-md transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
-          <div className="mb-3 flex items-center justify-between">
-            <span className="text-sm font-medium tracking-wide text-[#e9d5ff]/70">
-              Atomic Player
-            </span>
-            <span className="text-xs text-[#e9d5ff]/70">
-              {isPlaying ? "Playing" : "Paused"} •{" "}
-              {isMuted ? "Muted" : `${volume}%`}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={togglePlay}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c084fc]/20 bg-[#6d28d9]/18"
-            >
-              {isPlaying ? (
-                <Pause className="h-5 w-5" />
-              ) : (
-                <Play className="h-5 w-5" />
-              )}
-            </button>
-
-            <button
-              onClick={toggleMute}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c084fc]/20 bg-[#6d28d9]/18"
-            >
-              {isMuted || volume === 0 ? (
-                <VolumeX className="h-5 w-5" />
-              ) : (
-                <Volume2 className="h-5 w-5" />
-              )}
-            </button>
-
-            <input
-              type="range"
-              min="0"
-              max="100"
-              step="1"
-              value={isMuted ? 0 : volume}
-              onChange={handleVolumeChange}
-              className="w-full accent-[#c084fc]"
-            />
-          </div>
-        </div>
-      </div>
+    {/* ATOMIC PLAYER */}
+      <AtomicPlayer
+    playerRef={playerRef}
+    isPlaying={isPlaying}
+    setIsPlaying={setIsPlaying}
+    isMuted={isMuted}
+    setIsMuted={setIsMuted}
+    volume={volume}
+    setVolume={setVolume}
+                        />
 
       {/* PAGE CONTENT */}
       <div
@@ -536,7 +495,7 @@ export default function CleanPage() {
   <div className="flex items-center gap-4">
     <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-cyan-400/30">
       <img
-        src="/aboutme/about-profile.png"
+        src="/aboutme/about-me3.png"
         alt="Vincent"
         className="h-full w-full object-cover opacity-90"
       />
@@ -666,11 +625,11 @@ export default function CleanPage() {
               </div>
             </div>
           </aside>
-  </div>
-</section>
-<section> 
-  {/* layer 3 */}
-</section>
+          </div>
+        </section>
+            <section className="relative min-h-screen w-full border border-cyan-400/20">
+              {/* layer 3 */}
+            </section>
         {/* SIGNATURE */}
         <div className="pointer-events-none absolute bottom-4 left-1/2 z-50 -translate-x-1/2">
           <div className="flex items-center gap-2">

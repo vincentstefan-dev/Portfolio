@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import ThemedBackground from "../template/theme/ThemedBackground";
 import { House } from "lucide-react";
 import Link from "next/link";
+import AtomicPlayer from "@/app/components/media/atomicplayer";
 
 const CONTACT_CARTRIDGES = [
   {
@@ -37,6 +38,10 @@ export default function ContactPage() {
   const playerRef = useRef<any>(null);
   const touchStartX = useRef(0);
 
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [volume, setVolume] = useState(20);
+
   const [isInitialBlur, setIsInitialBlur] = useState(true);
   const [activeIndex, setActiveIndex] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
@@ -50,6 +55,13 @@ export default function ContactPage() {
     email: "",
     message: "",
   });
+
+  const handlePlayerReady = useCallback((player: any) => {
+    playerRef.current = player;
+    setIsPlaying(true);
+    setIsMuted(true);
+    setVolume(20);
+  }, []);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -78,13 +90,19 @@ export default function ContactPage() {
     playBlurIntro();
   }, [playBlurIntro]);
 
-  const handlePlayerReady = useCallback((player: any) => {
-    playerRef.current = player;
-  }, []);
-
   return (
     <main className="relative h-screen overflow-hidden bg-black text-white">
       <ThemedBackground onReady={handlePlayerReady} />
+
+      <AtomicPlayer
+        playerRef={playerRef}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        isMuted={isMuted}
+        setIsMuted={setIsMuted}
+        volume={volume}
+        setVolume={setVolume}
+      />
 
       <div className="fixed bottom-6 right-6 z-50">
         <Link
@@ -118,7 +136,7 @@ export default function ContactPage() {
           isInitialBlur ? "scale-[1.01] blur-sm" : "scale-100 blur-0"
         }`}
       >
-        <section className="relative flex h-screen flex-col items-center px-6 pt-12 pb-6 md:justify-center md:py-10">
+        <section className="relative flex h-screen flex-col items-center px-6 pb-6 pt-12 md:justify-center md:py-10">
           <div className="mb-4 flex flex-col items-center text-center md:mb-10">
             <p className="mb-3 text-xs uppercase tracking-[0.45em] text-white/50">
               Hey! Let&apos;s Build It
@@ -218,10 +236,8 @@ export default function ContactPage() {
                     />
 
                     <div
-                      className={`pointer-events-none absolute left-[40%] top-[10%] z-20 flex h-14 w-14 items-center justify-center rounded-full border bg-black/20 text-2xl backdrop-blur-md 
-                      md:left-1/2 md:-translate-x-1/2 md:top-[12%] md:h-20 md:w-20 md:text-4xl ${iconGlow}`}
+                      className={`pointer-events-none absolute left-[40%] top-[10%] z-20 flex h-14 w-14 items-center justify-center rounded-full border bg-black/20 text-2xl backdrop-blur-md md:left-1/2 md:top-[12%] md:h-20 md:w-20 md:-translate-x-1/2 md:text-4xl ${iconGlow}`}
                     >
-                  
                       <span className="drop-shadow-[0_0_12px_currentColor]">
                         {item.icon}
                       </span>
@@ -229,11 +245,9 @@ export default function ContactPage() {
 
                     <div className="absolute left-[17%] top-[34%] z-10 flex w-[60%] flex-col gap-2 md:left-[17%] md:top-[36%] md:w-[60%] md:gap-2.5">
                       <h2
-                      className={`w-full text-center font-semibold uppercase
-                        text-[16px] tracking-[0.14em]
-                        md:text-2xl md:tracking-[0.18em]
-                        ${isActive ? titleGlow : "text-white/70"}
-                      `}
+                        className={`w-full text-center text-[16px] font-semibold uppercase tracking-[0.14em] md:text-2xl md:tracking-[0.18em] ${
+                          isActive ? titleGlow : "text-white/70"
+                        }`}
                       >
                         {item.title}
                       </h2>
@@ -349,15 +363,12 @@ export default function ContactPage() {
                             }
                           }
                         }}
-                          className={`relative flex w-full items-center justify-between 
-                            px-4 py-2 text-[10px] tracking-[0.18em]
-                            md:px-5 md:py-3 md:text-xs md:tracking-[0.25em]
-                            uppercase text-black transition backdrop-blur-sm 
-                            hover:scale-[1.02] active:scale-[0.98] 
-                            disabled:cursor-not-allowed disabled:opacity-50 
-                            ${buttonSpectrum}
-                            ${isInquiryActive ? "mt-2 md:mt-2 w-[95%] mx-auto" : "mt-2"}
-                          `}                      >
+                        className={`relative flex w-full items-center justify-between px-4 py-2 text-[10px] uppercase tracking-[0.18em] text-black backdrop-blur-sm transition hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 md:px-5 md:py-3 md:text-xs md:tracking-[0.25em] ${buttonSpectrum} ${
+                          isInquiryActive
+                            ? "mx-auto mt-2 w-[95%] md:mt-2"
+                            : "mt-2"
+                        }`}
+                      >
                         <span
                           className={`pointer-events-none absolute inset-0 opacity-30 ${innerGlow}`}
                         />

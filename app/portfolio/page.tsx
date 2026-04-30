@@ -3,6 +3,7 @@
 import { useThemeMode } from "@/app/template/theme/ThemeProvider";
 import ThemedBackground from "@/app/template/theme/ThemedBackground";
 import ThemedNavIcon from "@/app/template/theme/ThemedNavIcon";
+import AtomicPlayer from "@/app/components/media/atomicplayer";
 
 import React, {
   useCallback,
@@ -13,14 +14,7 @@ import React, {
 } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  House,
-  Play,
-  Pause,
-  Volume2,
-  VolumeX,
-  TreeDeciduous,
-} from "lucide-react";
+import { House, TreeDeciduous } from "lucide-react";
 import { Space_Mono } from "next/font/google";
 
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
@@ -45,7 +39,7 @@ type IconOffset = {
 };
 
 const menuItems: MenuItem[] = [
-  { label: "Home", icon: House, href: "/", gif: "/Gifs/Home.gif" },
+  { label: "Home", icon: House, href: "/", gif: "/Gifs/mystar.gif" },
   { label: "SHE", image: "/Icons/SHE.png", href: "/portfolio/SHE" },
   { label: "Antonia Website", icon: TreeDeciduous, href: "/portfolio/antonia" },
 ];
@@ -157,11 +151,7 @@ export default function PortfolioPage() {
   }, [measureIconOffsets]);
 
   useEffect(() => {
-    if (siteMode === "random") {
-      setGlow(pickRandomGlow());
-    } else {
-      setGlow(basicGlow);
-    }
+    setGlow(siteMode === "random" ? pickRandomGlow() : basicGlow);
   }, [siteMode]);
 
   useLayoutEffect(() => {
@@ -201,126 +191,19 @@ export default function PortfolioPage() {
     setVolume(20);
   }, []);
 
-  const togglePlay = () => {
-    const player = playerRef.current;
-    if (!player || !window.YT) return;
-
-    const state = player.getPlayerState?.();
-
-    if (state === window.YT.PlayerState.PLAYING) {
-      player.pauseVideo();
-      setIsPlaying(false);
-      return;
-    }
-
-    if (player.isMuted?.()) {
-      player.unMute();
-      player.setVolume(volume);
-      setIsMuted(false);
-    }
-
-    player.playVideo();
-    setIsPlaying(true);
-  };
-
-  const toggleMute = () => {
-    const player = playerRef.current;
-    if (!player) return;
-
-    if (player.isMuted?.()) {
-      player.unMute();
-      player.setVolume(volume || 20);
-      setIsMuted(false);
-    } else {
-      player.mute();
-      setIsMuted(true);
-    }
-  };
-
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const player = playerRef.current;
-    if (!player) return;
-
-    const newVolume = Number(e.target.value);
-    setVolume(newVolume);
-
-    if (newVolume === 0) {
-      player.mute();
-      setIsMuted(true);
-      return;
-    }
-
-    if (player.isMuted?.()) {
-      player.unMute();
-      setIsMuted(false);
-    }
-
-    player.setVolume(newVolume);
-  };
-
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#032b9b] text-white">
       <ThemedBackground onReady={handlePlayerReady} />
 
-      <div className="group absolute bottom-0 right-0 z-20 p-8">
-        <div className="pointer-events-none w-[320px] translate-y-4 rounded-2xl border border-[#c084fc]/25 bg-[#3b1363]/45 p-4 text-white opacity-0 shadow-[0_0_30px_rgba(168,85,247,0.12)] backdrop-blur-md transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
-          <div className="mb-3 flex items-center justify-between">
-            <span className="text-sm font-medium tracking-wide text-[#e9d5ff]/70">
-              Atomic Player
-            </span>
-            <span className="text-xs text-[#e9d5ff]/70">
-              {isPlaying ? "Playing" : "Paused"} •{" "}
-              {isMuted ? "Muted" : `${volume}%`}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={togglePlay}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c084fc]/20 bg-[#6d28d9]/18 transition hover:bg-[#8b5cf6]/28"
-              aria-label={isPlaying ? "Pause video" : "Play video"}
-            >
-              {isPlaying ? (
-                <Pause className="h-5 w-5" />
-              ) : (
-                <Play className="h-5 w-5" />
-              )}
-            </button>
-
-            <button
-              type="button"
-              onClick={toggleMute}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c084fc]/20 bg-[#6d28d9]/18 transition hover:bg-[#8b5cf6]/28"
-              aria-label={isMuted ? "Unmute video" : "Mute video"}
-            >
-              {isMuted || volume === 0 ? (
-                <VolumeX className="h-5 w-5" />
-              ) : (
-                <Volume2 className="h-5 w-5" />
-              )}
-            </button>
-
-            <div className="flex-1">
-              <input
-                type="range"
-                min="0"
-                max="100"
-                step="1"
-                value={isMuted ? 0 : volume}
-                onChange={handleVolumeChange}
-                className="w-full accent-[#c084fc]"
-                aria-label="Volume"
-              />
-            </div>
-          </div>
-
-          <p className="mt-3 text-xs text-[#e9d5ff]/70">
-            Hover here for controls. The video starts at a random point each
-            load.
-          </p>
-        </div>
-      </div>
+      <AtomicPlayer
+        playerRef={playerRef}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        isMuted={isMuted}
+        setIsMuted={setIsMuted}
+        volume={volume}
+        setVolume={setVolume}
+      />
 
       <div
         className={`relative z-10 min-h-screen transition-all duration-[400ms] ease-out ${
