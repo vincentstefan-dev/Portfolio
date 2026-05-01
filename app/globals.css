@@ -406,3 +406,30 @@ body {
     background-position: 400% 50%;
   }
 }
+
+.image-3d {
+  transform-style: preserve-3d;
+  transition:
+    transform 250ms ease,
+    filter 250ms ease;
+  will-change: transform, filter;
+}
+
+.group:hover .image-3d {
+  transform: rotateX(6deg) rotateY(-6deg) scale(1.05);
+  filter: drop-shadow(0 0 24px rgba(34, 211, 238, 0.28));
+}
+
+.image-3d {
+  transform: perspective(900px) rotateX(0deg) rotateY(0deg) scale(1);
+  transform-style: preserve-3d;
+  transition:
+    transform 250ms ease,
+    filter 250ms ease;
+  will-change: transform, filter;
+}
+
+.group:hover .image-3d {
+  transform: perspective(900px) rotateX(12deg) rotateY(-12deg) scale(1.12);
+  filter: drop-shadow(0 0 30px rgba(34, 211, 238, 0.45));
+}
