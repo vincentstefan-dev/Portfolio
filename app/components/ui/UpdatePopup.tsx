@@ -24,6 +24,20 @@ export default function UpdatePopup({
     setVisible(false);
   };
 
+  const playOkSound = () => {
+    const audio = new Audio("/Audio/logoaudio.mp3");
+    audio.volume = 0.5;
+
+    audio.play().catch(() => {
+      // Audio playback may fail if the browser blocks it.
+    });
+  };
+
+  const handleOkClick = () => {
+    playOkSound();
+    handleClose();
+  };
+
   useEffect(() => {
     const dismissed = sessionStorage.getItem(`popup-${id}`);
 
@@ -74,7 +88,6 @@ export default function UpdatePopup({
 
               {/* POPUP CARD */}
               <div className="relative border-2 border-t-white border-l-white border-r-black border-b-black bg-[#c0c0c0] p-1 shadow-[3px_3px_0_rgba(0,0,0,0.65)]">
-                
                 {/* TITLE BAR */}
                 <div className="flex h-8 items-center justify-between bg-[#000080] px-3">
                   <p className="font-mono text-sm font-bold tracking-wide text-white">
@@ -100,7 +113,7 @@ export default function UpdatePopup({
                 {/* BUTTONS */}
                 <div className="flex justify-center gap-4 pb-6">
                   <button
-                    onClick={handleClose}
+                    onClick={handleOkClick}
                     className="min-w-[96px] border-2 border-t-white border-l-white border-r-black border-b-black bg-[#c0c0c0] px-5 py-1 font-mono text-sm text-black active:border-t-black active:border-l-black active:border-r-white active:border-b-white"
                   >
                     Ok
@@ -113,7 +126,6 @@ export default function UpdatePopup({
                     Cancel
                   </button>
                 </div>
-
               </div>
             </div>
           </div>
