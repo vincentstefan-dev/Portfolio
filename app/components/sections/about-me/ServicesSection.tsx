@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 const serviceCards = [
   {
     n: "01",
@@ -33,30 +35,77 @@ const serviceCards = [
   },
 ];
 
+const sidePanels = [
+  {
+    title: "CURRENT FOCUS",
+    items: [
+      "> Portfolio systems",
+      "> Brand identity work",
+      "> Web interfaces",
+      "> Experimental UI",
+    ],
+  },
+  {
+    title: "BEST FIT",
+    items: [
+      "> Small brands and startups",
+      "> Founders and solo builders",
+      "> Creative projects",
+      "> Digital products",
+    ],
+  },
+  {
+    title: "WHAT I VALUE",
+    items: [
+      "◎ CLARITY — clear outcomes",
+      "▣ SYSTEMS — structured thinking",
+      "ϟ IMPACT — useful work",
+      "☻ CURIOSITY — experiment often",
+    ],
+  },
+];
+
 export default function ServicesSection() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden px-4 py-10 text-cyan-300">
+    <section className="relative min-h-screen w-full overflow-hidden px-5 py-16 text-cyan-300 sm:px-8 lg:px-4 lg:py-10">
+      {/* Background */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(0,220,255,0.16),transparent_45%)]" />
-
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(0,220,255,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(0,220,255,0.16)_1px,transparent_1px)] bg-[size:42px_42px] opacity-40" />
 
-      <div className="relative z-10 mx-auto grid min-h-[88vh] max-w-[1600px] grid-cols-[260px_1fr_360px] gap-3 border border-cyan-400/35 p-8 shadow-[0_0_45px_rgba(0,220,255,0.16)]">
-        <aside className="border border-cyan-400/30 p-8 font-mono text-sm">
-          <p className="mb-6 text-cyan-200">02 &gt; WHAT I DO</p>
+      <div className="relative z-10 mx-auto max-w-[1600px]">
+        {/* MOBILE / TABLET VERSION */}
+        <div className="block space-y-5 lg:hidden">
+          {/* PART 1 — Intro */}
+          <div className="rounded-[28px] border border-cyan-400/30 bg-cyan-950/20 p-5 font-mono shadow-[0_0_35px_rgba(0,220,255,0.12)] backdrop-blur-xl">
+            <p className="text-xs uppercase tracking-[0.22em] text-cyan-200">
+              02 &gt; What I do
+            </p>
 
-          <div className="space-y-4 text-cyan-300/80">
-            <p>
+            <h2 className="mt-6 text-2xl leading-snug text-cyan-300">
               From strategy to interface, I help brands and products become
               clear, functional and impactful.
-            </p>
+            </h2>
 
-            <p className="border border-cyan-400/40 px-8 py-2 text-cyan-200">
+            <Link
+              href="/contact"
+              className="mt-6 inline-flex items-center justify-center border border-cyan-400/40 bg-cyan-300/10 px-5 py-3 text-sm text-cyan-100 transition hover:bg-cyan-300/20"
+            >
               ● Work with me :)
-            </p>
+            </Link>
           </div>
 
-          <div className="mt-10 border-t border-cyan-400/25 pt-8">
-            <p className="mb-4 text-cyan-200">ABOUT ME</p>
+          {/* PART 2 — Service cards */}
+          <div className="grid grid-cols-1 gap-4">
+            {serviceCards.map((item) => (
+              <MobileServiceCard key={item.n} item={item} />
+            ))}
+          </div>
+
+          {/* PART 3 — About */}
+          <div className="rounded-[28px] border border-cyan-400/30 bg-cyan-950/20 p-5 font-mono shadow-[0_0_35px_rgba(0,220,255,0.12)] backdrop-blur-xl">
+            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-cyan-200">
+              About me
+            </p>
 
             <div className="flex items-center gap-4">
               <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-cyan-400/30">
@@ -69,93 +118,182 @@ export default function ServicesSection() {
                 <div className="absolute inset-0 bg-cyan-400/10" />
               </div>
 
-              <p className="leading-6 text-cyan-300/70">
+              <p className="text-sm leading-6 text-cyan-300/70">
                 I build, design and shape systems.
               </p>
             </div>
 
-            <div className="relative mt-6 w-full overflow-hidden">
+            <div className="relative mt-6 max-h-[260px] w-full overflow-hidden rounded-2xl border border-cyan-400/20">
               <img
                 src="/Gifs/sillyhorse.gif"
                 alt="Creative work"
-                className="h-[360px] w-full object-cover opacity-100"
+                className="h-full w-full object-cover opacity-90"
               />
             </div>
           </div>
-        </aside>
 
-        <main className="relative overflow-hidden border border-cyan-400/30 p-[60px] font-mono">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.08),transparent_55%)]" />
-
-          <div className="relative z-10">
-            <h1 className="max-w-lg text-xl leading-relaxed text-cyan-300/70 md:text-2xl">
-              From strategy to interface, I help brands and products become
-              clear, functional and impactful.
-            </h1>
-          </div>
-
-          <div className="relative z-10 mt-8 h-[560px]">
-            {serviceCards.map((item) => (
-              <div
-                key={item.n}
-                className={`absolute ${item.pos} w-[260px] border border-cyan-300/35 bg-cyan-950/20 p-6 text-cyan-200 backdrop-blur-xl shadow-[inset_0_0_30px_rgba(34,211,238,0.06),0_0_24px_rgba(34,211,238,0.10)] transition duration-300 hover:-translate-y-1 hover:border-cyan-200/70 hover:bg-cyan-900/25 hover:shadow-[inset_0_0_35px_rgba(34,211,238,0.10),0_0_40px_rgba(34,211,238,0.22)]`}
-              >
-                <span className="absolute left-[-1px] top-[-1px] h-4 w-4 border-l border-t border-cyan-200/80" />
-                <span className="absolute right-[-1px] top-[-1px] h-4 w-4 border-r border-t border-cyan-200/80" />
-                <span className="absolute bottom-[-1px] left-[-1px] h-4 w-4 border-b border-l border-cyan-200/80" />
-                <span className="absolute bottom-[-1px] right-[-1px] h-4 w-4 border-b border-r border-cyan-200/80" />
-
-                <p className="text-xs tracking-[0.25em] text-cyan-400/80">
-                  [{item.n}]
-                </p>
-
-                <h3 className="mt-5 text-xl font-bold text-cyan-100">
-                  {item.title}
-                </h3>
-
-                <p className="mt-5 text-sm leading-6 text-cyan-300/70">
-                  {item.text}
-                </p>
-              </div>
+          {/* PART 4 — Side panels */}
+          <div className="grid grid-cols-1 gap-4">
+            {sidePanels.map((panel) => (
+              <SidePanel key={panel.title} panel={panel} />
             ))}
           </div>
-        </main>
+        </div>
 
-        <aside className="grid h-full grid-rows-3 gap-3 font-mono">
-          <div className="h-full border border-cyan-400/30 p-6">
-            <p className="mb-5 text-cyan-200">CURRENT FOCUS</p>
+        {/* DESKTOP VERSION — original layout preserved */}
+        <div className="hidden min-h-[88vh] grid-cols-[260px_1fr_360px] gap-3 border border-cyan-400/35 p-8 shadow-[0_0_45px_rgba(0,220,255,0.16)] lg:grid">
+          <aside className="border border-cyan-400/30 p-8 font-mono text-sm">
+            <p className="mb-6 text-cyan-200">02 &gt; WHAT I DO</p>
 
-            <div className="space-y-4 text-sm text-cyan-300/75">
-              <p>&gt; Portfolio systems</p>
-              <p>&gt; Brand identity work</p>
-              <p>&gt; Web interfaces</p>
-              <p>&gt; Experimental UI</p>
+            <div className="space-y-4 text-cyan-300/80">
+              <p>
+                From strategy to interface, I help brands and products become
+                clear, functional and impactful.
+              </p>
+
+              <Link
+                href="/contact"
+                className="block border border-cyan-400/40 px-8 py-2 text-cyan-200 transition hover:bg-cyan-300/10"
+              >
+                ● Work with me :)
+              </Link>
             </div>
-          </div>
 
-          <div className="h-full border border-cyan-400/30 p-6">
-            <p className="mb-5 text-cyan-200">BEST FIT</p>
+            <div className="mt-10 border-t border-cyan-400/25 pt-8">
+              <p className="mb-4 text-cyan-200">ABOUT ME</p>
 
-            <div className="space-y-4 text-sm text-cyan-300/75">
-              <p>&gt; Small brands and startups</p>
-              <p>&gt; Founders and solo builders</p>
-              <p>&gt; Creative projects</p>
-              <p>&gt; Digital products</p>
+              <div className="flex items-center gap-4">
+                <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-cyan-400/30">
+                  <img
+                    src="/aboutme/about-me3.png"
+                    alt="Vincent"
+                    className="h-full w-full object-cover opacity-90"
+                  />
+
+                  <div className="absolute inset-0 bg-cyan-400/10" />
+                </div>
+
+                <p className="leading-6 text-cyan-300/70">
+                  I build, design and shape systems.
+                </p>
+              </div>
+
+              <div className="relative mt-6 w-full overflow-hidden">
+                <img
+                  src="/Gifs/sillyhorse.gif"
+                  alt="Creative work"
+                  className="h-[360px] w-full object-cover opacity-100"
+                />
+              </div>
             </div>
-          </div>
+          </aside>
 
-          <div className="h-full border border-cyan-400/30 p-6">
-            <p className="mb-5 text-cyan-200">WHAT I VALUE</p>
+          <main className="relative overflow-hidden border border-cyan-400/30 p-[60px] font-mono">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.08),transparent_55%)]" />
 
-            <div className="space-y-4 text-sm text-cyan-300/75">
-              <p>◎ CLARITY — clear outcomes</p>
-              <p>▣ SYSTEMS — structured thinking</p>
-              <p>ϟ IMPACT — useful work</p>
-              <p>☻ CURIOSITY — experiment often</p>
+            <div className="relative z-10">
+              <h1 className="max-w-lg text-xl leading-relaxed text-cyan-300/70 md:text-2xl">
+                From strategy to interface, I help brands and products become
+                clear, functional and impactful.
+              </h1>
             </div>
-          </div>
-        </aside>
+
+            <div className="relative z-10 mt-8 h-[560px]">
+              {serviceCards.map((item) => (
+                <DesktopServiceCard key={item.n} item={item} />
+              ))}
+            </div>
+          </main>
+
+          <aside className="grid h-full grid-rows-3 gap-3 font-mono">
+            {sidePanels.map((panel) => (
+              <SidePanel key={panel.title} panel={panel} desktop />
+            ))}
+          </aside>
+        </div>
       </div>
     </section>
+  );
+}
+
+type ServiceCardItem = {
+  n: string;
+  title: string;
+  text: string;
+  pos: string;
+};
+
+function DesktopServiceCard({ item }: { item: ServiceCardItem }) {
+  return (
+    <div
+      className={`absolute ${item.pos} w-[260px] border border-cyan-300/35 bg-cyan-950/20 p-6 text-cyan-200 backdrop-blur-xl shadow-[inset_0_0_30px_rgba(34,211,238,0.06),0_0_24px_rgba(34,211,238,0.10)] transition duration-300 hover:-translate-y-1 hover:border-cyan-200/70 hover:bg-cyan-900/25 hover:shadow-[inset_0_0_35px_rgba(34,211,238,0.10),0_0_40px_rgba(34,211,238,0.22)]`}
+    >
+      <CardCorners />
+
+      <p className="text-xs tracking-[0.25em] text-cyan-400/80">
+        [{item.n}]
+      </p>
+
+      <h3 className="mt-5 text-xl font-bold text-cyan-100">{item.title}</h3>
+
+      <p className="mt-5 text-sm leading-6 text-cyan-300/70">{item.text}</p>
+    </div>
+  );
+}
+
+function MobileServiceCard({ item }: { item: ServiceCardItem }) {
+  return (
+    <div className="relative rounded-2xl border border-cyan-300/35 bg-cyan-950/20 p-6 font-mono text-cyan-200 backdrop-blur-xl shadow-[inset_0_0_30px_rgba(34,211,238,0.06),0_0_24px_rgba(34,211,238,0.10)] transition duration-300 hover:-translate-y-1 hover:border-cyan-200/70 hover:bg-cyan-900/25 hover:shadow-[inset_0_0_35px_rgba(34,211,238,0.10),0_0_40px_rgba(34,211,238,0.22)]">
+      <CardCorners />
+
+      <p className="text-xs tracking-[0.25em] text-cyan-400/80">
+        [{item.n}]
+      </p>
+
+      <h3 className="mt-5 text-xl font-bold text-cyan-100">{item.title}</h3>
+
+      <p className="mt-5 text-sm leading-6 text-cyan-300/70">{item.text}</p>
+    </div>
+  );
+}
+
+function CardCorners() {
+  return (
+    <>
+      <span className="absolute left-[-1px] top-[-1px] h-4 w-4 border-l border-t border-cyan-200/80" />
+      <span className="absolute right-[-1px] top-[-1px] h-4 w-4 border-r border-t border-cyan-200/80" />
+      <span className="absolute bottom-[-1px] left-[-1px] h-4 w-4 border-b border-l border-cyan-200/80" />
+      <span className="absolute bottom-[-1px] right-[-1px] h-4 w-4 border-b border-r border-cyan-200/80" />
+    </>
+  );
+}
+
+type SidePanelProps = {
+  panel: {
+    title: string;
+    items: string[];
+  };
+  desktop?: boolean;
+};
+
+function SidePanel({ panel, desktop = false }: SidePanelProps) {
+  return (
+    <div
+      className={`border border-cyan-400/30 font-mono ${
+        desktop
+          ? "h-full p-6"
+          : "rounded-2xl bg-cyan-950/20 p-5 backdrop-blur-md"
+      }`}
+    >
+      <p className="mb-5 text-xs uppercase tracking-[0.22em] text-cyan-200 lg:text-base lg:tracking-normal">
+        {panel.title}
+      </p>
+
+      <div className="space-y-4 text-sm text-cyan-300/75">
+        {panel.items.map((item) => (
+          <p key={item}>{item}</p>
+        ))}
+      </div>
+    </div>
   );
 }

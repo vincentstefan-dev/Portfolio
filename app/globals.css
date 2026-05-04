@@ -433,3 +433,15 @@ body {
   transform: perspective(900px) rotateX(12deg) rotateY(-12deg) scale(1.12);
   filter: drop-shadow(0 0 30px rgba(34, 211, 238, 0.45));
 }
+
+@keyframes floatGlow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: translate3d(-24px, 18px, 0) scale(1.15);
+    opacity: 0.75;
+  }
+}

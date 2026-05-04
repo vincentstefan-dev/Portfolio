@@ -19,6 +19,7 @@ import AboutSection from "@/app/components/sections/about-me/AboutSection";
 import ServicesSection from "@/app/components/sections/about-me/ServicesSection";
 import ProcessSection from "@/app/components/sections/about-me/ProcessSection";
 import ProjectsSection from "@/app/components/sections/about-me/ProjectsSection";
+import GoodbyeSection from "@/app/components/sections/about-me/GoodbyeSection";
 
 type MenuItem = {
   label: string;
@@ -91,9 +92,23 @@ export default function CleanPage() {
         <ServicesSection />
         <ProcessSection />
         <ProjectsSection />
-
+        <GoodbyeSection />
         <SiteSignature fontClass="" />
       </PageTransitionWrapper>
+                {/* BACK BUTTON */}
+        <div className="fixed bottom-6 right-6 z-50">
+          <Link
+            href="/"
+            aria-label="Return to portfolio"
+            className="group flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md transition hover:bg-white/50"
+          >
+            <House
+              className="h-5 w-5 text-white transition-transform duration-100 group-hover:scale-110"
+              strokeWidth={1.5}
+            />
+          </Link>
+        </div>
+        
     </main>
   );
 }

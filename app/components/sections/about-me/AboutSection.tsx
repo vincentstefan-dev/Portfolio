@@ -170,7 +170,7 @@ function FloatingIconField({
   return (
     <div
       ref={containerRef}
-      className={`pointer-events-auto absolute z-[30] overflow-hidden ${
+      className={`pointer-events-none absolute z-[30] hidden overflow-visible md:block ${
         className ?? ""
       }`}
     >
@@ -181,7 +181,7 @@ function FloatingIconField({
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
-          className="absolute flex cursor-grab touch-none select-none flex-col items-center gap-1 active:cursor-grabbing"
+          className="pointer-events-auto absolute flex cursor-grab touch-none select-none flex-col items-center gap-1 active:cursor-grabbing"
           style={{
             width: item.size,
             transform: `translate3d(${item.x}px, ${item.y}px, 0)`,
@@ -213,13 +213,49 @@ function FloatingIconField({
 
 export default function AboutSection() {
   return (
-    <section className="relative h-screen max-h-screen w-full overflow-hidden px-6 py-0">
-      <div className="absolute left-[5%] top-[7%] z-40 w-full max-w-[390px]">
-        <p className="mb-4 text-sm uppercase tracking-[0.42em] text-blue-200/60">
+    <section className="relative min-h-screen w-full overflow-hidden px-5 pb-16 pt-40 text-white sm:px-8 md:h-screen md:max-h-screen md:px-6 md:py-0">
+      {/* Background grid */}
+      <div className="pointer-events-none absolute inset-0 opacity-40">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.08)_1px,transparent_1px)] bg-[size:42px_42px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(45,212,191,0.18),transparent_30%),radial-gradient(circle_at_75%_45%,rgba(34,211,238,0.12),transparent_35%),radial-gradient(circle_at_50%_100%,rgba(20,184,166,0.2),transparent_40%)]" />
+      </div>
+
+      {/* Right index rail - desktop only */}
+      <div className="pointer-events-none absolute right-8 top-1/2 z-[35] hidden -translate-y-1/2 flex-col items-center gap-4 xl:flex">
+        <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(34,211,238,0.9)]" />
+        <span className="h-20 w-px bg-gradient-to-b from-cyan-300/60 to-transparent" />
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-blue-100/40 [writing-mode:vertical-rl]">
+          about index
+        </span>
+        <span className="h-20 w-px bg-gradient-to-b from-transparent to-cyan-300/60" />
+        <span className="h-2 w-2 rounded-full border border-cyan-300/60" />
+      </div>
+
+      {/* Right-side decorative image - desktop only */}
+      <div className="pointer-events-none absolute right-[-25%] top-0 z-[12] hidden lg:block">
+        <img
+          src="/aboutme/about-me2.png"
+          alt=""
+          className="h-[860px] w-auto object-contain opacity-60 mix-blend-luminosity drop-shadow-[0_0_30px_rgba(96,165,250,0.22)]"
+        />
+      </div>
+
+      {/* Middle-side decorative image - desktop only */}
+      <div className="pointer-events-none absolute right-[-10%] top-[18%] z-[12] hidden lg:block">
+        <img
+          src="/aboutme/about-me.png"
+          alt=""
+          className="h-[860px] w-auto object-contain opacity-60 mix-blend-luminosity drop-shadow-[0_0_45px_rgba(59,130,246,0.25)]"
+        />
+      </div>
+
+      {/* Left text content */}
+      <div className="relative z-40 w-full max-w-[370px] sm:max-w-[390px] md:absolute md:left-[5%] md:top-[7%]">
+        <p className="mb-5 text-sm uppercase tracking-[0.42em] text-blue-200/60">
           About me
         </p>
 
-        <h1 className="text-[64px] font-semibold leading-[0.95] tracking-[-0.04em] text-white">
+        <h1 className="text-[40px] font-semibold leading-[0.95] tracking-[-0.04em] text-white min-[390px]:text-[44px] sm:text-[56px] md:text-[64px]">
           Strategy,
           <br />
           code,
@@ -252,6 +288,7 @@ export default function AboutSection() {
         </Link>
       </div>
 
+      {/* Floating draggable icon fields - desktop/tablet only */}
       <FloatingIconField
         items={orbitItems.slice(0, 8)}
         seedOffset={0}
@@ -264,6 +301,16 @@ export default function AboutSection() {
         className="right-[0%] top-[8%] h-[90%] w-[80%]"
       />
 
+      {/* Mobile profile image */}
+      <div className="pointer-events-none relative z-10 mt-10 flex justify-center md:hidden">
+        <img
+          src="/aboutme/about-profile.png"
+          alt="Vincent profile"
+          className="h-[320px] object-contain opacity-75 drop-shadow-[0_0_45px_rgba(59,130,246,0.35)]"
+        />
+      </div>
+
+      {/* Main center profile image - desktop */}
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[76%] items-center justify-center md:flex">
         <div className="relative h-[600px] w-[900px] translate-y-[-18px]">
           <div className="absolute inset-0 rounded-full bg-blue-500/10 blur-[80px]" />
@@ -271,13 +318,14 @@ export default function AboutSection() {
           <img
             src="/aboutme/about-profile.png"
             alt="Vincent profile"
-            className="absolute bottom-[-80px] left-1/2 z-20 h-[560px] -translate-x-1/2 object-contain opacity-90 drop-shadow-[0_0_60px_rgba(59,130,246,0.35)]"
+            className="absolute bottom-[-80px] left-1/2 z-20 h-[560px] -translate-x-1/2 object-contain opacity-70 drop-shadow-[0_0_60px_rgba(59,130,246,0.35)]"
           />
         </div>
       </div>
 
-      <div className="absolute bottom-[0px] left-[36%] right-6 z-50 grid grid-cols-3 gap-4">
-        <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-5 backdrop-blur-md">
+      {/* Bottom info cards */}
+      <div className="relative z-50 mt-10 grid grid-cols-1 gap-4 md:absolute md:bottom-0 md:left-[36%] md:right-6 md:mt-0 md:grid-cols-3">
+        <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-4 backdrop-blur-md md:p-5">
           <Code2 className="mb-3 h-7 w-7 text-blue-300" />
 
           <h3 className="text-xl font-semibold">Skills</h3>
@@ -288,7 +336,7 @@ export default function AboutSection() {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-5 backdrop-blur-md">
+        <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-4 backdrop-blur-md md:p-5">
           <Rocket className="mb-3 h-7 w-7 text-blue-300" />
 
           <h3 className="text-xl font-semibold">Currently working on</h3>
@@ -299,7 +347,7 @@ export default function AboutSection() {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-5 backdrop-blur-md">
+        <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-4 backdrop-blur-md md:p-5">
           <UserRound className="mb-3 h-7 w-7 text-blue-300" />
 
           <h3 className="text-xl font-semibold">Find me online</h3>
