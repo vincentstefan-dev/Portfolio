@@ -179,7 +179,7 @@ function TiltImage({
     const rotateX = -((y - centerY) / centerY) * 14;
 
     setTransform(
-      `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.12)`
+      `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.08)`
     );
   };
 
@@ -191,8 +191,8 @@ function TiltImage({
     <div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`flex items-center justify-center overflow-visible rounded-xl transition-[filter] duration-300 ease-out hover:drop-shadow-[0_0_30px_rgba(34,211,238,0.45)] ${
-        isFeatured ? "h-[200px]" : "h-[150px]"
+      className={`flex items-center justify-center overflow-visible rounded-xl transition-[filter] duration-300 ease-out hover:drop-shadow-[0_0_24px_rgba(34,211,238,0.45)] ${
+        isFeatured ? "h-[160px]" : "h-[120px]"
       }`}
     >
       <img
@@ -224,16 +224,16 @@ function DesktopProjectNode({
     <button
       type="button"
       onClick={onSelect}
-      className={`group relative z-10 block rounded-[28px] border bg-white/5 text-left backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_60px_rgba(34,211,238,0.25)] ${
-        project.size === "featured" ? "w-[260px] p-8" : "w-[190px] p-6"
+      className={`group relative z-10 block rounded-[24px] border bg-white/5 text-left backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(34,211,238,0.25)] ${
+        project.size === "featured" ? "w-[208px] p-6" : "w-[152px] p-5"
       } ${
         isSelected
           ? colors.selected
-          : "border-white/10 shadow-[0_0_28px_rgba(59,130,246,0.16)]"
+          : "border-white/10 shadow-[0_0_22px_rgba(59,130,246,0.16)]"
       }`}
     >
       <span
-        className={`absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 transition group-hover:scale-110 ${colors.badge}`}
+        className={`absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-sm transition group-hover:scale-110 ${colors.badge}`}
       >
         ↗
       </span>
@@ -245,20 +245,20 @@ function DesktopProjectNode({
       />
 
       <p
-        className={`mt-6 text-xs font-bold uppercase tracking-[0.08em] ${colors.label}`}
+        className={`mt-5 text-[10px] font-bold uppercase tracking-[0.08em] ${colors.label}`}
       >
         {project.type}
       </p>
 
       <h3
-        className={`mt-3 font-semibold text-white ${
-          project.size === "featured" ? "text-2xl" : "text-lg"
+        className={`mt-2 font-semibold text-white ${
+          project.size === "featured" ? "text-xl" : "text-base"
         }`}
       >
         {project.title}
       </h3>
 
-      <p className="mt-4 text-sm leading-6 text-white/55">{project.text}</p>
+      <p className="mt-3 text-xs leading-5 text-white/55">{project.text}</p>
     </button>
   );
 }
@@ -336,22 +336,24 @@ function SelectedProjectPanel({
 
   return (
     <aside
-      className={`z-30 rounded-[30px] border border-blue-300/25 bg-blue-950/30 shadow-[0_0_55px_rgba(59,130,246,0.22),inset_0_0_40px_rgba(59,130,246,0.08)] backdrop-blur-2xl ${
-        mobile ? "relative mt-6 p-5" : "absolute right-0 top-16 w-[340px] p-7"
+      className={`z-30 rounded-[24px] border border-blue-300/25 bg-blue-950/30 shadow-[0_0_44px_rgba(59,130,246,0.22),inset_0_0_32px_rgba(59,130,246,0.08)] backdrop-blur-2xl ${
+        mobile
+          ? "relative mt-6 p-5"
+          : "absolute right-0 top-[15px] w-[272px] p-5"
       }`}
     >
       <div className="flex items-center justify-between">
-        <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-violet-300">
+        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-violet-300">
           Selected node
         </p>
 
-        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/50">
+        <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sm text-white/50">
           ×
         </span>
       </div>
 
-      <div className="mt-8 flex items-start gap-5">
-        <div className="flex h-[104px] w-[104px] shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-3 shadow-[0_0_30px_rgba(34,211,238,0.18)] sm:h-[118px] sm:w-[118px]">
+      <div className="mt-6 flex items-start gap-4">
+        <div className="flex h-[84px] w-[84px] shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-2 shadow-[0_0_24px_rgba(34,211,238,0.18)] sm:h-[94px] sm:w-[94px]">
           <img
             src={selectedProject.img}
             alt={selectedProject.title}
@@ -359,28 +361,28 @@ function SelectedProjectPanel({
           />
         </div>
 
-        <div className="flex flex-wrap gap-2 pt-2">
-          <span className="rounded-full border border-emerald-300/20 bg-emerald-400/10 px-3 py-1 text-xs text-emerald-200">
+        <div className="flex flex-wrap gap-2 pt-1">
+          <span className="rounded-full border border-emerald-300/20 bg-emerald-400/10 px-2.5 py-1 text-[10px] text-emerald-200">
             ● Active
           </span>
 
           <span
-            className={`rounded-full border px-3 py-1 text-xs ${colors.pill}`}
+            className={`rounded-full border px-2.5 py-1 text-[10px] ${colors.pill}`}
           >
             {selectedProject.status}
           </span>
         </div>
       </div>
 
-      <h3 className="mt-7 text-2xl font-semibold leading-tight tracking-[-0.04em] text-white sm:text-3xl">
+      <h3 className="mt-5 text-xl font-semibold leading-tight tracking-[-0.04em] text-white sm:text-2xl">
         {selectedProject.title}
       </h3>
 
-      <p className="mt-5 text-base leading-7 text-white/60">
+      <p className="mt-4 text-sm leading-6 text-white/60">
         {selectedProject.text}
       </p>
 
-      <div className="mt-7 overflow-hidden rounded-2xl border border-blue-300/15 bg-blue-950/25">
+      <div className="mt-5 overflow-hidden rounded-2xl border border-blue-300/15 bg-blue-950/25">
         {[
           {
             label: "Role",
@@ -400,28 +402,28 @@ function SelectedProjectPanel({
         ].map((row) => (
           <div
             key={row.label}
-            className="grid grid-cols-[36px_64px_1fr] items-start gap-3 border-b border-blue-300/10 px-4 py-5 last:border-b-0 sm:grid-cols-[42px_78px_1fr]"
+            className="grid grid-cols-[30px_54px_1fr] items-start gap-2 border-b border-blue-300/10 px-3 py-4 last:border-b-0 sm:grid-cols-[34px_62px_1fr]"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-blue-400/10 font-mono text-xs text-blue-300">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-400/10 font-mono text-[10px] text-blue-300">
               {row.icon}
             </span>
 
-            <p className="text-sm text-white/75">{row.label}</p>
+            <p className="text-xs text-white/75">{row.label}</p>
 
-            <p className="text-sm leading-6 text-white/55">{row.value}</p>
+            <p className="text-xs leading-5 text-white/55">{row.value}</p>
           </div>
         ))}
       </div>
 
       <Link
         href="/portfolio"
-        className="mt-7 flex items-center justify-center gap-3 rounded-2xl border border-violet-300/35 bg-gradient-to-r from-blue-500/30 to-violet-500/40 px-6 py-4 text-white shadow-[0_0_30px_rgba(168,85,247,0.25)] transition hover:-translate-y-1 hover:shadow-[0_0_40px_rgba(168,85,247,0.45)]"
+        className="mt-5 flex items-center justify-center gap-2 rounded-2xl border border-violet-300/35 bg-gradient-to-r from-blue-500/30 to-violet-500/40 px-5 py-3 text-sm text-white shadow-[0_0_24px_rgba(168,85,247,0.25)] transition hover:-translate-y-1 hover:shadow-[0_0_32px_rgba(168,85,247,0.45)]"
       >
         View case study <span>↗</span>
       </Link>
 
-      <div className="mt-7 flex items-center justify-between">
-        <p className="text-sm text-white/40">
+      <div className="mt-5 flex items-center justify-between">
+        <p className="text-xs text-white/40">
           {selectedIndex + 1} of {projects.length} nodes
         </p>
 
@@ -429,7 +431,7 @@ function SelectedProjectPanel({
           <button
             type="button"
             onClick={onPrevious}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 transition hover:bg-white/10"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 transition hover:bg-white/10"
           >
             ‹
           </button>
@@ -437,7 +439,7 @@ function SelectedProjectPanel({
           <button
             type="button"
             onClick={onNext}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 transition hover:bg-white/10"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 transition hover:bg-white/10"
           >
             ›
           </button>
@@ -615,12 +617,6 @@ export default function ProjectsSection() {
             <span className="text-3xl">✶</span>
             <div className="h-px flex-1 bg-blue-400/20" />
           </div>
-
-          <p className="mt-6 text-center text-lg text-white/40">
-            More projects, experiments and ideas
-            <br />
-            are always in the works.
-          </p>
         </div>
       </div>
     </section>
