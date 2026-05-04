@@ -434,14 +434,61 @@ body {
   filter: drop-shadow(0 0 30px rgba(34, 211, 238, 0.45));
 }
 
-@keyframes floatGlow {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.45;
+@keyframes rainbow-coming-soon {
+  0% {
+    background-position: 0% 50%;
   }
 
   50% {
-    transform: translate3d(-24px, 18px, 0) scale(1.15);
-    opacity: 0.75;
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*Rainbow on text */
+@keyframes rainbowTextMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-rainbow-text {
+  display: inline-block;
+  background-image: linear-gradient(
+    90deg,
+    #ff4fd8,
+    #38bdf8,
+    #facc15,
+    #22c55e,
+    #a855f7,
+    #ff4fd8
+  );
+  background-size: 300% 300%;
+  background-position: 0% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowTextMove 3s linear infinite;
+}
+
+@keyframes koyoteDiscountRainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 400% 50%;
   }
 }

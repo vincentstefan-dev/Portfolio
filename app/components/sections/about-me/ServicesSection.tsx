@@ -12,7 +12,7 @@ const serviceCards = [
   {
     n: "02",
     title: "DESIGN",
-    text: "Visual systems, UI design and brand direction that communicate clearly.",
+    text: "Visual systems, UI design and brand marketing that communicate clearly.",
     pos: "right-[5%] top-[3px]",
   },
   {
@@ -24,29 +24,30 @@ const serviceCards = [
   {
     n: "04",
     title: "BRAND LOGIC",
-    text: "Building brands with soul, structure and a story that sticks.",
+    text: "Brand systems, positioning and structure that give ideas clarity and consistency.",
     pos: "left-[2%] top-[400px]",
   },
   {
     n: "05",
-    title: "EXPERIMENTS",
-    text: "Creative development, weird UI and prototypes that explore new ideas.",
+    title: "EXPERIMENT",
+    text: "Creative prototypes, testing and iteration that turn rough ideas into usable direction.",
     pos: "right-[3%] top-[400px]",
   },
 ];
 
 const sidePanels = [
   {
-    title: "CURRENT FOCUS",
+    title: "CURRENT WORKSTREAMS 🍃",
     items: [
-      "> Portfolio systems",
-      "> Brand identity work",
-      "> Web interfaces",
-      "> Experimental UI",
+              "BUILD        → Interface design and web builds",
+              "DESIGN       → Brand logic and identity",
+              "STRATEGY     → Structured Game Theory",
+              "BRAND LOGIC  → Brand logic and identity",
+              "EXPERIMENTS  → Experimental digital prototypes",
     ],
   },
   {
-    title: "BEST FIT",
+    title: "BEST FIT FOR PROJECTS 🌳:",
     items: [
       "> Small brands and startups",
       "> Founders and solo builders",
@@ -55,12 +56,12 @@ const sidePanels = [
     ],
   },
   {
-    title: "WHAT I VALUE",
+    title: "WORKING PRINCIPLES 🫸",
     items: [
-      "◎ CLARITY — clear outcomes",
-      "▣ SYSTEMS — structured thinking",
-      "ϟ IMPACT — useful work",
-      "☻ CURIOSITY — experiment often",
+    "◎ CLARITY — make ideas legible",
+    "▣ SYSTEMS — structure before scale",
+    "ϟ IMPACT — build what is useful",
+    "☻ CURIOSITY — test what feels alive",
     ],
   },
 ];
@@ -82,15 +83,15 @@ export default function ServicesSection() {
             </p>
 
             <h2 className="mt-6 text-2xl leading-snug text-cyan-300">
-              From strategy to interface, I help brands and products become
-              clear, functional and impactful.
+              From strategy to interface, I help brands shape digital concepts
+              that are clear, functional, and ready to grow.
             </h2>
 
             <Link
               href="/contact"
               className="mt-6 inline-flex items-center justify-center border border-cyan-400/40 bg-cyan-300/10 px-5 py-3 text-sm text-cyan-100 transition hover:bg-cyan-300/20"
             >
-              ● Work with me :)
+              ● Start a project
             </Link>
           </div>
 
@@ -103,31 +104,33 @@ export default function ServicesSection() {
 
           {/* PART 3 — About */}
           <div className="rounded-[28px] border border-cyan-400/30 bg-cyan-950/20 p-5 font-mono shadow-[0_0_35px_rgba(0,220,255,0.12)] backdrop-blur-xl">
-            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-cyan-200">
-              About me
-            </p>
-
-            <div className="flex items-center gap-4">
-              <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-cyan-400/30">
+            <div className="mb-6 flex items-center justify-between gap-6">
+              <div className="relative h-24 w-32 shrink-0 overflow-hidden border border-cyan-400/40 bg-cyan-950/30 shadow-[0_0_24px_rgba(34,211,238,0.15)]">
                 <img
                   src="/aboutme/about-me3.png"
                   alt="Vincent"
-                  className="h-full w-full object-cover opacity-90"
+                  className="h-full w-full object-cover object-center opacity-90"
                 />
 
                 <div className="absolute inset-0 bg-cyan-400/10" />
               </div>
 
-              <p className="text-sm leading-6 text-cyan-300/70">
-                I build, design and shape systems.
+              <p className="shrink-0 text-right text-sm uppercase tracking-[0.28em] text-cyan-200 drop-shadow-[0_0_10px_rgba(103,232,249,0.55)]">
+                About me
               </p>
             </div>
 
+            <p className="max-w-full text-sm leading-7 text-cyan-300/75">
+              I am 28 years old, with a Guatemalan and German background. I grew
+              up in the forests of Guatemala with a beautiful Siamese cat named
+              Mishi.
+            </p>
+
             <div className="relative mt-6 max-h-[260px] w-full overflow-hidden rounded-2xl border border-cyan-400/20">
               <img
-                src="/Gifs/sillyhorse.gif"
+                src="/Gifs/MISHI.gif"
                 alt="Creative work"
-                className="h-full w-full object-cover opacity-90"
+                className="h-full w-full object-cover opacity-50"
               />
             </div>
           </div>
@@ -140,49 +143,52 @@ export default function ServicesSection() {
           </div>
         </div>
 
-        {/* DESKTOP VERSION — original layout preserved */}
+        {/* DESKTOP VERSION */}
         <div className="hidden min-h-[88vh] grid-cols-[260px_1fr_360px] gap-3 border border-cyan-400/35 p-8 shadow-[0_0_45px_rgba(0,220,255,0.16)] lg:grid">
           <aside className="border border-cyan-400/30 p-8 font-mono text-sm">
             <p className="mb-6 text-cyan-200">02 &gt; WHAT I DO</p>
 
             <div className="space-y-4 text-cyan-300/80">
               <p>
-                From strategy to interface, I help brands and products become
-                clear, functional and impactful.
+                From strategy to interface, I help brands shape digital concepts
+                that are clear, functional, and ready to grow.
               </p>
 
               <Link
                 href="/contact"
-                className="block border border-cyan-400/40 px-8 py-2 text-cyan-200 transition hover:bg-cyan-300/10"
+                className="block border border-cyan-400/40 px-5 py-2 text-cyan-200 transition hover:bg-cyan-300/10"
               >
-                ● Work with me :)
+                <span>● Start a project</span>
               </Link>
             </div>
 
             <div className="mt-10 border-t border-cyan-400/25 pt-8">
-              <p className="mb-4 text-cyan-200">ABOUT ME</p>
-
-              <div className="flex items-center gap-4">
-                <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-cyan-400/30">
+              <div className="mb-6 flex items-center justify-between gap-5">
+                <div className="relative h-20 w-24 shrink-0 overflow-hidden border border-cyan-400/40 bg-cyan-950/30 shadow-[0_0_24px_rgba(34,211,238,0.15)]">
                   <img
                     src="/aboutme/about-me3.png"
                     alt="Vincent"
-                    className="h-full w-full object-cover opacity-90"
+                    className="h-full w-full object-cover object-center opacity-90"
                   />
 
                   <div className="absolute inset-0 bg-cyan-400/10" />
                 </div>
 
-                <p className="leading-6 text-cyan-300/70">
-                  I build, design and shape systems.
+                <p className="shrink-0 text-right text-cyan-200 drop-shadow-[0_0_10px_rgba(103,232,249,0.55)]">
+                  ABOUT ME
                 </p>
               </div>
 
+              <p className="leading-6 text-cyan-300/70">
+                  I’m 28 years old and come from a Guatemalan and German background. 
+                  I grew up in the forests of Guatemala with a beautiful Siamese cat named Mishi.
+              </p>
+
               <div className="relative mt-6 w-full overflow-hidden">
                 <img
-                  src="/Gifs/sillyhorse.gif"
+                  src="/Gifs/MISHI.gif"
                   alt="Creative work"
-                  className="h-[360px] w-full object-cover opacity-100"
+                  className="h-[300px] w-full object-cover opacity-50"
                 />
               </div>
             </div>
@@ -191,12 +197,12 @@ export default function ServicesSection() {
           <main className="relative overflow-hidden border border-cyan-400/30 p-[60px] font-mono">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.08),transparent_55%)]" />
 
-            <div className="relative z-10">
-              <h1 className="max-w-lg text-xl leading-relaxed text-cyan-300/70 md:text-2xl">
-                From strategy to interface, I help brands and products become
-                clear, functional and impactful.
-              </h1>
-            </div>
+          <div className="relative z-10">
+            <h1 className="mx-auto max-w-3xl text-center text-xl leading-[1.6] tracking-[-0.02em] text-cyan-300/70 md:text-2xl">
+              A five-part system for shaping ideas into clear, functional, and ready to launch
+               digital work.
+            </h1>
+          </div>
 
             <div className="relative z-10 mt-8 h-[560px]">
               {serviceCards.map((item) => (
@@ -226,7 +232,7 @@ type ServiceCardItem = {
 function DesktopServiceCard({ item }: { item: ServiceCardItem }) {
   return (
     <div
-      className={`absolute ${item.pos} w-[260px] border border-cyan-300/35 bg-cyan-950/20 p-6 text-cyan-200 backdrop-blur-xl shadow-[inset_0_0_30px_rgba(34,211,238,0.06),0_0_24px_rgba(34,211,238,0.10)] transition duration-300 hover:-translate-y-1 hover:border-cyan-200/70 hover:bg-cyan-900/25 hover:shadow-[inset_0_0_35px_rgba(34,211,238,0.10),0_0_40px_rgba(34,211,238,0.22)]`}
+      className={`absolute ${item.pos} w-[260px] border border-cyan-300/35 bg-cyan-950/20 p-6 text-cyan-200 shadow-[inset_0_0_30px_rgba(34,211,238,0.06),0_0_24px_rgba(34,211,238,0.10)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-200/70 hover:bg-cyan-900/25 hover:shadow-[inset_0_0_35px_rgba(34,211,238,0.10),0_0_40px_rgba(34,211,238,0.22)]`}
     >
       <CardCorners />
 
@@ -243,7 +249,7 @@ function DesktopServiceCard({ item }: { item: ServiceCardItem }) {
 
 function MobileServiceCard({ item }: { item: ServiceCardItem }) {
   return (
-    <div className="relative rounded-2xl border border-cyan-300/35 bg-cyan-950/20 p-6 font-mono text-cyan-200 backdrop-blur-xl shadow-[inset_0_0_30px_rgba(34,211,238,0.06),0_0_24px_rgba(34,211,238,0.10)] transition duration-300 hover:-translate-y-1 hover:border-cyan-200/70 hover:bg-cyan-900/25 hover:shadow-[inset_0_0_35px_rgba(34,211,238,0.10),0_0_40px_rgba(34,211,238,0.22)]">
+    <div className="relative rounded-2xl border border-cyan-300/35 bg-cyan-950/20 p-6 font-mono text-cyan-200 shadow-[inset_0_0_30px_rgba(34,211,238,0.06),0_0_24px_rgba(34,211,238,0.10)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-200/70 hover:bg-cyan-900/25 hover:shadow-[inset_0_0_35px_rgba(34,211,238,0.10),0_0_40px_rgba(34,211,238,0.22)]">
       <CardCorners />
 
       <p className="text-xs tracking-[0.25em] text-cyan-400/80">

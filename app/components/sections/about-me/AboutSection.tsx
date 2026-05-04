@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Code2, Rocket, UserRound } from "lucide-react";
+import OnlineFlowerFab from "@/app/components/ui/OnlineFlowerFab";
 
 type OrbitItem = {
   label: string;
@@ -225,7 +226,7 @@ export default function AboutSection() {
         <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(34,211,238,0.9)]" />
         <span className="h-20 w-px bg-gradient-to-b from-cyan-300/60 to-transparent" />
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-blue-100/40 [writing-mode:vertical-rl]">
-          about index
+          Im Vincent :) 
         </span>
         <span className="h-20 w-px bg-gradient-to-b from-transparent to-cyan-300/60" />
         <span className="h-2 w-2 rounded-full border border-cyan-300/60" />
@@ -250,42 +251,65 @@ export default function AboutSection() {
       </div>
 
       {/* Left text content */}
-      <div className="relative z-40 w-full max-w-[370px] sm:max-w-[390px] md:absolute md:left-[5%] md:top-[7%]">
+      <div className="relative z-40 w-full max-w-[370px] sm:max-w-[500px] md:absolute md:left-[5%] md:top-[7%]">
         <p className="mb-5 text-sm uppercase tracking-[0.42em] text-blue-200/60">
-          About me
+          This is me:
         </p>
-
         <h1 className="text-[40px] font-semibold leading-[0.95] tracking-[-0.04em] text-white min-[390px]:text-[44px] sm:text-[56px] md:text-[64px]">
-          Strategy,
-          <br />
-          code,
-          <br />
-          weird taste.
-        </h1>
+          <span className="whitespace-nowrap">M.Sc. in Business,</span>{" "}
+          <span>Marketing &</span>{" "}
+          <span>Game Theory.</span>{" "}
+
+          <br></br>
+                  I love to code &
+                  <br />
+                  to create 🤖
+                </h1>
 
         <div className="mt-7 h-[3px] w-28 rounded-full bg-blue-400 shadow-[0_0_18px_rgba(96,165,250,0.9)]" />
 
         <h2 className="mt-9 text-2xl font-semibold text-white">
-          Hi, I&apos;m Vincent.
+          Hi, I&apos;m Vincent [Koyote]
         </h2>
 
         <p className="mt-5 text-base leading-8 text-white/70">
-          I build digital spaces where strategy, visuals, interaction, and weird
-          little ideas become something usable. This site is part portfolio,
-          part archive, part experiment.
+          I help people and projects turn rough ideas into digital concepts that are
+          clear, intentional, and ready to launch.
+          <br />
+          <br />
+          My work combines marketing, business strategy, game theory, statistics, web
+          design, and code to create websites
+          <br />
+          <span className="animate-rainbow-text font-semibold">
+            [apps coming soon!]
+          </span>
+          , prototypes, brand experiences, and proof-of-concepts that make ideas easier
+          to understand, test, deploy, and sell.
+          <br />
+          <br />
         </p>
 
-        <p className="mt-5 text-base leading-8 text-white/60">
-          My work moves between brand systems, web interfaces, content
-          structures, and tools that help ideas feel more alive online.
-        </p>
+          <div className="mt-8 flex flex-wrap items-center gap-5">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-3 rounded-xl border border-blue-400/35 bg-blue-500/10 px-7 py-3 text-sm text-white/85 backdrop-blur-md transition hover:-translate-y-1 hover:bg-blue-400/20 hover:shadow-[0_0_25px_rgba(59,130,246,0.35)]"
+            >
+              Let&apos;s talk! <span>↗</span>
+            </Link>
 
-        <Link
-          href="/contact"
-          className="mt-8 inline-flex items-center gap-3 rounded-xl border border-blue-400/35 bg-blue-500/10 px-7 py-3 text-sm text-white/85 backdrop-blur-md transition hover:-translate-y-1 hover:bg-blue-400/20 hover:shadow-[0_0_25px_rgba(59,130,246,0.35)]"
-        >
-          Let&apos;s connect <span>↗</span>
-        </Link>
+            <button
+              type="button"
+              onClick={() => {
+                window.scrollBy({
+                  top: window.innerHeight,
+                  behavior: "smooth",
+                });
+              }}
+              className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-7 py-3 text-sm text-white/60 backdrop-blur-md transition hover:-translate-y-1 hover:border-blue-300/35 hover:bg-blue-300/10 hover:text-white hover:shadow-[0_0_22px_rgba(96,165,250,0.22)]"
+            >
+              See how I think <span>↓</span>
+            </button>
+          </div>
       </div>
 
       {/* Floating draggable icon fields - desktop/tablet only */}
@@ -324,15 +348,15 @@ export default function AboutSection() {
       </div>
 
       {/* Bottom info cards */}
-      <div className="relative z-50 mt-10 grid grid-cols-1 gap-4 md:absolute md:bottom-0 md:left-[36%] md:right-6 md:mt-0 md:grid-cols-3">
+      <div className="relative z-50 mt-10 grid grid-cols-1 gap-4 md:absolute md:bottom-3 md:left-[36%] md:right-6 md:mt-0 md:grid-cols-3">
         <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-4 backdrop-blur-md md:p-5">
           <Code2 className="mb-3 h-7 w-7 text-blue-300" />
 
           <h3 className="text-xl font-semibold">Skills</h3>
 
           <p className="mt-3 text-[15px] leading-6 text-white/60">
-            React, Next.js, Tailwind, brand systems, visual direction, and
-            experimental UI.
+            Marketing strategy, business analysis, statistics, React, Python, R, Tailwind,
+            brand systems
           </p>
         </div>
 
@@ -342,22 +366,25 @@ export default function AboutSection() {
           <h3 className="text-xl font-semibold">Currently working on</h3>
 
           <p className="mt-3 text-[15px] leading-6 text-white/60">
-            Koyote, portfolio systems, client pages, creative tools, and digital
-            brand ideas.
+            Koyote, Python based apps, statistical data projects,
+            client-facing design systems, brand concepts, C++ console modding,
+        
           </p>
         </div>
+          <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-4 text-center backdrop-blur-md md:p-5">
+            <UserRound className="mx-auto mb-3 h-7 w-7 text-blue-300" />
 
-        <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-4 backdrop-blur-md md:p-5">
-          <UserRound className="mb-3 h-7 w-7 text-blue-300" />
+            <h3 className="text-xl font-semibold">Find me online</h3>
 
-          <h3 className="text-xl font-semibold">Find me online</h3>
+            <p className="mt-3 text-[14.6px] leading-6 text-white/60">
+              Projects, code, experiments, and ways to reach me.
+            </p>
 
-          <p className="mt-3 text-[15px] leading-6 text-white/60">
-            A small portal into projects, thoughts, experiments, and ways to
-            connect.
-          </p>
+            <div className="mt-4 flex justify-center">
+              <OnlineFlowerFab />
+            </div>
+          </div>
         </div>
-      </div>
     </section>
   );
 }
