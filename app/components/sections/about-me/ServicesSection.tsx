@@ -89,7 +89,7 @@ export default function ServicesSection() {
 
             <Link
               href="/contact"
-              className="mt-6 inline-flex items-center justify-center border border-cyan-400/40 bg-cyan-300/10 px-5 py-3 text-sm text-cyan-100 transition hover:bg-cyan-300/20"
+              className="rainbow-link-glow mt-6 inline-flex items-center justify-center border border-cyan-400/40 bg-cyan-300/10 px-5 py-3 text-sm text-cyan-100 transition hover:bg-cyan-300/20"
             >
               ● Start a project
             </Link>
@@ -154,12 +154,13 @@ export default function ServicesSection() {
                 that are clear, functional, and ready to grow.
               </p>
 
-              <Link
-                href="/contact"
-                className="block border border-cyan-400/40 px-5 py-2 text-cyan-200 transition hover:bg-cyan-300/10"
-              >
-                <span>● Start a project</span>
-              </Link>
+
+            <Link
+              href="/contact"
+              className="rainbow-link-glow mt-6 inline-flex items-center justify-center border border-cyan-400/40 bg-cyan-300/10 px-5 py-3 text-sm text-cyan-100 transition hover:bg-cyan-300/20"
+            >
+              ● Start a project
+            </Link>
             </div>
 
             <div className="mt-10 border-t border-cyan-400/25 pt-8">
