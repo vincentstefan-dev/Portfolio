@@ -10,105 +10,113 @@ type ProjectItem = {
   img: string;
   pos: string;
   size: "featured" | "normal";
-  color: "violet" | "pink" | "orange" | "blue" | "slate";
+  color: "violet" | "pink" | "green" | "blue" | "slate";
   role: string;
   scope: string;
   stack: string;
   status: string;
+  href: string;
 };
 
 const projects: ProjectItem[] = [
   {
-    title: "Pierwszy Swag w Polsce",
+    title: "KOYOTE",
     type: "PROJECT 1",
-    text: "E-commerce website for the first streetwear brand in Poland. Design, development and e-commerce integration.",
-    img: "/catridges/frutiger.png",
+    text: "Experimental portfolio and digital identity system for Koyote. UI design, brand logic, content architecture, and front-end development built to translate strategy, process, and creative work into an interactive web experience.",    
+    img: "/logos/16bit.png",
     pos: "left-[50%] top-[20px]",
     size: "featured",
     color: "violet",
     role: "Design + Development",
-    scope: "E-commerce / Visual System / Integration",
-    stack: "Web design / Front-end / Commerce",
+    scope: "Portfolio system / Digital identity / Interactive UI",    
+    stack: "Python / Tailwind / Interactive UI",   
     status: "Featured",
+    href: "/portfolio"
   },
   {
-    title: "Stage Visuals",
+    title: "Sacred Human Experience",
     type: "PROJECT 2",
-    text: "Visual identity and art direction for live events and shows.",
-    img: "/catridges/silver.png",
+    text: "Website redesign and marketing strategy for Sacred Human Experience, an intimacy and embodiment coaching brand. Brand cohesion, visual direction, and content structure.",
+    img: "/Icons/SHE.png",
     pos: "left-[30%] top-[45px]",
     size: "normal",
     color: "slate",
-    role: "Visual Direction",
-    scope: "Live visuals / Art direction / Event systems",
-    stack: "Creative direction / Motion / Identity",
+    role: "Website Redesign + Marketing Strategy",
+    scope: "Brand cohesion / Content structure / Web experience",
+    stack: "Squarespace / Visual direction / Marketing strategy",
     status: "Selected",
+    href: "/portfolio"
   },
   {
-    title: "Trasa Konca Świata",
+    title: "CPU Visual Tools",
     type: "PROJECT 3",
-    text: "Promotional website and merch store for the tour.",
-    img: "/catridges/prisma.png",
+    text: "Visual application concept for modifying images through CPU-based processing. Local image workflows, resource-aware tooling, and experimental creative utilities.",
+    img: "/Icons/angel.png",
     pos: "right-[5%] top-[-20px]",
     size: "normal",
-    color: "orange",
-    role: "Web + Commerce",
-    scope: "Promo site / Merch store / Tour system",
-    stack: "Web design / Commerce / Content",
-    status: "Live",
+    color: "green",
+    role: "App Concept + Image Processing",
+    scope: "Local image processing / Visual tools / Resource logic",
+    stack: "Python / Image processing / CPU workflows",
+    status: "Prototype",
+    href: "/coolstuff"
   },
-  {
-    title: "Huta",
-    type: "PROJECT 4",
-    text: "Modern website for a creative collective and studio.",
-    img: "/catridges/gold.png",
-    pos: "left-[5%] top-[430px]",
-    size: "normal",
-    color: "blue",
-    role: "Website Design",
-    scope: "Studio site / Identity / Web presence",
-    stack: "Next.js / Tailwind / Visual system",
-    status: "Studio",
-  },
-  {
-    title: "Wine Bottle Label",
-    type: "PROJECT 5",
-    text: "Concept label design for a limited edition.",
-    img: "/catridges/Green.png",
-    pos: "left-[31%] top-[570px]",
-    size: "normal",
-    color: "pink",
-    role: "Concept Design",
-    scope: "Packaging / Label system / Art direction",
-    stack: "Brand design / Print / Concept",
-    status: "Concept",
-  },
-  {
-    title: "Fantasmagorie",
-    type: "PROJECT 6",
-    text: "Experimental website exploring storytelling and animations.",
-    img: "/catridges/bronce.png",
-    pos: "right-[28%] top-[575px]",
-    size: "normal",
-    color: "slate",
-    role: "Creative Development",
-    scope: "Storytelling / Motion / Interaction",
-    stack: "Front-end / Animation / Experimental UI",
-    status: "Experiment",
-  },
-  {
-    title: "Solar · Białas",
-    type: "PROJECT 7",
-    text: "Branding and visual identity for the album and merchandise.",
-    img: "/catridges/red.png",
-    pos: "right-[8%] top-[415px]",
-    size: "normal",
-    color: "blue",
-    role: "Brand Identity",
-    scope: "Album system / Merchandise / Visual identity",
-    stack: "Branding / Art direction / Print",
-    status: "Music",
-  },
+{
+  title: "Brand System Lab",
+  type: "PROJECT 4",
+  text: "Experimental visual system exploring logos, identity fragments, color logic, and modular brand assets for future client work.",
+  img: "/catridges/gold.png",
+  pos: "left-[5%] top-[430px]",
+  size: "normal",
+  color: "blue",
+  role: "Brand Exploration",
+  scope: "Identity systems / Visual direction / Asset logic",
+  stack: "Photoshop / UI design / Brand systems",
+  status: "Concept",
+  href: "/portfolio"
+},
+{
+  title: "AI Research Workflow",
+  type: "PROJECT 5",
+  text: "Structured workflow for reviewing academic papers, extracting variables, and organizing research insights into usable decision frameworks.",
+  img: "/catridges/Green.png",
+  pos: "left-[31%] top-[510px]",
+  size: "normal",
+  color: "pink",
+  role: "Research System Design",
+  scope: "Paper review / Variable extraction / Insight mapping",
+  stack: "AI tools / Research methods / Data structure",
+  status: "Research Tool",
+  href: "/portfolio"
+},
+{
+  title: "Interface Experiments",
+  type: "PROJECT 6",
+  text: "A collection of interface studies using motion, grid systems, retro UI, visual effects, and interactive front-end components.",
+  img: "/catridges/bronce.png",
+  pos: "right-[28%] top-[510px]",
+  size: "normal",
+  color: "slate",
+  role: "Creative Development",
+  scope: "Motion UI / Visual effects / Interaction studies",
+  stack: "React / Tailwind / Framer Motion",
+  status: "Experiment",
+  href: "/portfolio"
+},
+{
+  title: "This could be you",
+  type: "PROJECT 7",
+  text: "Available project slot for a brand, website, prototype, or digital system built with strategy, visual direction, and front-end implementation.",
+  img: "/catridges/red.png",
+  pos: "right-[8%] top-[415px]",
+  size: "normal",
+  color: "blue",
+  role: "Open Collaboration",
+  scope: "Brand / Website / Prototype",
+  stack: "Strategy / Design / Development",
+  status: "Open Slot",
+  href: "/portfolio"
+},
 ];
 
 function getColorClasses(color: ProjectItem["color"]) {
@@ -127,13 +135,13 @@ function getColorClasses(color: ProjectItem["color"]) {
         "border-pink-400/70 shadow-[0_0_55px_rgba(236,72,153,0.35)]",
       pill: "border-pink-300/20 bg-pink-400/10 text-pink-200",
     },
-    orange: {
-      label: "text-orange-400",
-      badge: "bg-orange-500/40 shadow-[0_0_18px_rgba(249,115,22,0.7)]",
-      selected:
-        "border-orange-400/70 shadow-[0_0_55px_rgba(249,115,22,0.35)]",
-      pill: "border-orange-300/20 bg-orange-400/10 text-orange-200",
-    },
+      green: {
+        label: "text-[#9bbc0f]",
+        badge: "bg-[#8bac0f]/35 shadow-[0_0_18px_rgba(155,188,15,0.6)]",
+        selected:
+          "border-[#9bbc0f]/70 shadow-[0_0_55px_rgba(155,188,15,0.35)]",
+        pill: "border-[#9bbc0f]/25 bg-[#8bac0f]/10 text-[#c4df2f]",
+      },
     blue: {
       label: "text-blue-400",
       badge: "bg-blue-500/35 shadow-[0_0_18px_rgba(59,130,246,0.7)]",
@@ -192,7 +200,7 @@ function TiltImage({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={`flex items-center justify-center overflow-visible rounded-xl transition-[filter] duration-300 ease-out hover:drop-shadow-[0_0_24px_rgba(34,211,238,0.45)] ${
-        isFeatured ? "h-[160px]" : "h-[120px]"
+        isFeatured ? "h-[120px]" : "h-[100px]"
       }`}
     >
       <img
@@ -225,8 +233,7 @@ function DesktopProjectNode({
       type="button"
       onClick={onSelect}
       className={`group relative z-10 block rounded-[24px] border bg-white/5 text-left backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(34,211,238,0.25)] ${
-        project.size === "featured" ? "w-[208px] p-6" : "w-[152px] p-5"
-      } ${
+      project.size === "featured" ? "w-[250px] min-h-[410px] p-7" : "w-[185px] min-h-[390px] p-5"      } ${
         isSelected
           ? colors.selected
           : "border-white/10 shadow-[0_0_22px_rgba(59,130,246,0.16)]"
@@ -245,7 +252,7 @@ function DesktopProjectNode({
       />
 
       <p
-        className={`mt-5 text-[10px] font-bold uppercase tracking-[0.08em] ${colors.label}`}
+        className={`mt-2 text-[10px] font-bold uppercase tracking-[0.08em] ${colors.label}`}
       >
         {project.type}
       </p>
@@ -339,7 +346,7 @@ function SelectedProjectPanel({
       className={`z-30 rounded-[24px] border border-blue-300/25 bg-blue-950/30 shadow-[0_0_44px_rgba(59,130,246,0.22),inset_0_0_32px_rgba(59,130,246,0.08)] backdrop-blur-2xl ${
         mobile
           ? "relative mt-6 p-5"
-          : "absolute right-0 top-[15px] w-[272px] p-5"
+          : "absolute right-10 top-[25px] w-[320px] p-5"
       }`}
     >
       <div className="flex items-center justify-between">
@@ -416,7 +423,7 @@ function SelectedProjectPanel({
       </div>
 
       <Link
-        href="/portfolio"
+        href={selectedProject.href}
         className="mt-5 flex items-center justify-center gap-2 rounded-2xl border border-violet-300/35 bg-gradient-to-r from-blue-500/30 to-violet-500/40 px-5 py-3 text-sm text-white shadow-[0_0_24px_rgba(168,85,247,0.25)] transition hover:-translate-y-1 hover:shadow-[0_0_32px_rgba(168,85,247,0.45)]"
       >
         View case study <span>↗</span>
@@ -481,14 +488,14 @@ export default function ProjectsSection() {
             <p className="font-mono text-xs text-blue-400">/ selected work</p>
 
             <h2 className="mt-5 text-[42px] font-semibold leading-[0.95] tracking-[-0.04em] text-white">
-              Projects as nodes
+              Current Projects
             </h2>
 
             <div className="mt-5 h-[3px] w-20 rounded-full bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.9)]" />
 
             <p className="mt-7 text-base leading-7 text-white/55">
-              A selection of projects I&apos;ve worked on. Each one is a node —
-              connected by curiosity, creativity and code.
+              A selection of projects I&apos;ve worked on.
+              Connected by curiosity, creativity and code.
             </p>
 
             <Link
@@ -535,14 +542,14 @@ export default function ProjectsSection() {
             <p className="font-mono text-sm text-blue-400">/ selected work</p>
 
             <h2 className="mt-5 text-5xl font-semibold tracking-[-0.04em] text-white">
-              Projects as nodes
+              Current Projects
             </h2>
 
             <div className="mt-5 h-[3px] w-20 rounded-full bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.9)]" />
 
             <p className="mt-8 text-lg leading-8 text-white/55">
-              A selection of projects I&apos;ve worked on. Each one is a node —
-              connected by curiosity, creativity and code.
+              A selection of projects I&apos;ve worked on.
+              Connected by curiosity, creativity and code.
             </p>
 
             <Link
@@ -612,11 +619,15 @@ export default function ProjectsSection() {
             onNext={goToNextProject}
           />
 
-          <div className="mx-auto mt-[80px] flex max-w-3xl items-center gap-8 text-blue-500/50">
-            <div className="h-px flex-1 bg-blue-400/20" />
-            <span className="text-3xl">✶</span>
-            <div className="h-px flex-1 bg-blue-400/20" />
-          </div>
+            <div className="mx-auto mt-[80px] flex max-w-3xl items-center gap-8">
+              <div className="h-px flex-1 bg-blue-400/20" />
+              <img
+                src="/Gifs/mystar.gif"
+                alt="divider gif"
+                className="h-10 w-10 object-contain opacity-80"
+              />
+              <div className="h-px flex-1 bg-blue-400/20" />
+            </div>
         </div>
       </div>
     </section>
