@@ -283,7 +283,7 @@ export default function AboutSection() {
             This is me:
           </p>
 
-          <h1 className="text-[60px] font-semibold leading-[0.86] tracking-[-0.06em] text-white min-[390px]:text-[60px] sm:text-[60px] lg:text-[58px] xl:text-[64px]">
+          <h1 className="text-[44px] font-semibold leading-[0.95] tracking-[-0.04em] text-white min-[390px]:text-[48px] sm:text-[56px] lg:text-[58px] xl:text-[64px]">
             <span className="whitespace-nowrap">M.Sc. in Business,</span>{" "}
             <span>Marketing &</span> <span>Game Theory.</span>
             <br />
