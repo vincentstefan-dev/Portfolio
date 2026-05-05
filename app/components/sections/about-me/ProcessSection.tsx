@@ -146,7 +146,7 @@ export default function ProcessSection() {
             / my process
           </p>
 
-          <h2 className="mt-5 text-[42px] font-semibold leading-[0.95] tracking-[-0.04em] text-white sm:text-5xl md:text-6xl">
+          <h2 className="mt-5 text-[50px] font-semibold leading-[0.95] tracking-[-0.04em] text-white sm:text-[60px] md:text-[72px]">
             How I think &amp; build
           </h2>
 
@@ -189,10 +189,10 @@ export default function ProcessSection() {
           <div className="h-px flex-1 bg-blue-400/20" />
         </div>
 
-          <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-7 text-white/35 sm:text-base md:text-lg">
-            A practical operating system for translating ideas into structure,
-            and prototypes.
-          </p>
+        <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-7 text-white/35 sm:text-base md:text-lg">
+          A practical operating system for translating ideas into structure,
+          and prototypes.
+        </p>
       </div>
     </section>
   );
@@ -248,8 +248,7 @@ function DiscountEgg({ className = "" }: { className?: string }) {
               <p>&gt; on the contact email :)</p>
               <p>&gt; 30% off</p>
               <p>
-                code:{" "}
-                <span className="font-bold tracking-wide">MISHI30</span>
+                code: <span className="font-bold tracking-wide">MISHI30</span>
               </p>
             </div>
           </div>
@@ -290,9 +289,11 @@ function MobileProcessCard({ step }: { step: ProcessStep }) {
       </div>
 
       <div className="relative mt-6 rounded-2xl border border-blue-400/20 bg-blue-950/20 p-4 backdrop-blur-md">
-        <div className="space-y-3 text-sm text-white/65">
+        <div className="space-y-3 text-center text-sm text-white/65">
           {step.items.map((item) => (
-            <p key={item}>↗ {item}</p>
+            <p key={item} className="flex justify-center">
+              <span>↗ {item}</span>
+            </p>
           ))}
         </div>
       </div>
