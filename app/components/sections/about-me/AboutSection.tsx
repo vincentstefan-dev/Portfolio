@@ -233,7 +233,7 @@ export default function AboutSection() {
       </div>
 
       {/* Decorative image layer */}
-      <div className="pointer-events-none absolute right-[-25%] top--20 z-[12] hidden lg:block">
+      <div className="pointer-events-none absolute right-[-25%] top-[-20px] z-[12] hidden lg:block">
         <img
           src="/aboutme/about-me2.png"
           alt=""
@@ -241,25 +241,26 @@ export default function AboutSection() {
         />
       </div>
 
-      <div className="pointer-events-none absolute right-[-20%] top--20 z-[12] hidden lg:block">
+      <div className="pointer-events-none absolute right-[-20%] top-[-20px] z-[12] hidden lg:block">
         <img
           src="/aboutme/about-me.png"
           alt=""
-        className="h-[1000px] w-auto object-contain opacity-55 mix-blend-luminosity drop-shadow-[0_0_45px_rgba(59,130,246,0.25)] xl:h-[1050px]"        />
+          className="h-[1000px] w-auto object-contain opacity-55 mix-blend-luminosity drop-shadow-[0_0_45px_rgba(59,130,246,0.25)] xl:h-[1050px]"
+        />
       </div>
 
-          {/* Desktop profile image */}
-          <div className="pointer-events-none absolute bottom-0 right-[-50] z-10 hidden w-[76%] justify-center lg:flex">
-            <div className="relative h-[1100px] w-[1100px]">
-              <div className="absolute inset-0 rounded-full bg-blue-500/10 blur-[80px]" />
+      {/* Desktop profile image */}
+      <div className="pointer-events-none absolute bottom-0 right-[-50px] z-10 hidden w-[76%] justify-center lg:flex">
+        <div className="relative h-[1100px] w-[1100px]">
+          <div className="absolute inset-0 rounded-full bg-blue-500/10 blur-[80px]" />
 
-              <img
-                src="/aboutme/about-profile.png"
-                alt="Vincent profile"
-                className="absolute bottom-[-20] left-1/2 z-20 h-[720px] -translate-x-1/2 object-contain opacity-65 drop-shadow-[0_0_60px_rgba(59,130,246,0.35)]"
-              />
-            </div>
-          </div>
+          <img
+            src="/aboutme/about-profile.png"
+            alt="Vincent profile"
+            className="absolute bottom-[-20px] left-1/2 z-20 h-[720px] -translate-x-1/2 object-contain opacity-65 drop-shadow-[0_0_60px_rgba(59,130,246,0.35)]"
+          />
+        </div>
+      </div>
 
       {/* Floating draggable icon fields */}
       <FloatingIconField
@@ -282,7 +283,7 @@ export default function AboutSection() {
             This is me:
           </p>
 
-          <h1 className="text-[40px] font-semibold leading-[0.95] tracking-[-0.04em] text-white min-[390px]:text-[44px] sm:text-[56px] lg:text-[58px] xl:text-[64px]">
+          <h1 className="text-[60px] font-semibold leading-[0.86] tracking-[-0.06em] text-white min-[390px]:text-[60px] sm:text-[60px] lg:text-[58px] xl:text-[64px]">
             <span className="whitespace-nowrap">M.Sc. in Business,</span>{" "}
             <span>Marketing &</span> <span>Game Theory.</span>
             <br />
@@ -343,9 +344,10 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Right area: keeps cards in normal flow instead of absolute positioning */}
+        {/* Right area */}
         <div className="relative z-50 flex min-h-[520px] flex-col justify-end lg:pl-8 xl:pl-14">
-        <div className="grid translate-y-12 grid-cols-1 gap-4 md:grid-cols-3">            <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-4 backdrop-blur-md xl:p-5">
+          <div className="grid translate-y-12 grid-cols-1 gap-4 md:grid-cols-3">
+            <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-4 backdrop-blur-md xl:p-5">
               <Code2 className="mb-3 h-7 w-7 text-blue-300" />
 
               <h3 className="text-xl font-semibold">Skills</h3>
@@ -359,9 +361,7 @@ export default function AboutSection() {
             <div className="rounded-2xl border border-blue-300/20 bg-blue-950/30 p-4 backdrop-blur-md xl:p-5">
               <Rocket className="mb-3 h-7 w-7 text-blue-300" />
 
-              <h3 className="text-xl font-semibold">
-                Currently working on
-              </h3>
+              <h3 className="text-xl font-semibold">Currently working on</h3>
 
               <p className="mt-3 text-[15px] leading-6 text-white/60">
                 Koyote, Python-based apps, statistical data projects,
