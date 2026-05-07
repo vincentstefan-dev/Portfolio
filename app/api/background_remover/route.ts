@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import path from "path";
+import os from "os";
 import fs from "fs/promises";
 import fsSync from "fs";
 import { spawn } from "child_process";
@@ -17,6 +18,66 @@ const ALLOWED_MIME_TYPES = new Set([
   "image/jpeg",
   "image/webp",
 ]);
+
+function getSafeBaseName(fileName: string) {
+  return fileName
+    .replace(/\.[^/.]+$/, "")
+    .replace(/[^\w-]/g, "_")
+    .slice(0, 80);
+}
+
+function getSafeExtension(fileName: string, mimeType: string) {
+  const ext = path.extname(fileName).toLowerCase();
+
+  if (ext === ".png" || ext === ".jpg" || ext === ".jpeg" || ext === ".webp") {
+    return ext;
+  }
+
+  if (mimeType === "image/png") return ".png";
+  if (mimeType === "image/jpeg") return ".jpg";
+  if (mimeType === "image/webp") return ".webp";
+
+  return ".png";
+}
+
+function runPythonScript(
+  scriptPath: string,
+  inputPath: string,
+  outputPath: string,
+  originalFileName: string
+) {
+  return new Promise<void>((resolve, reject) => {
+    const pythonProcess = spawn("python", [scriptPath, inputPath, outputPath]);
+
+    let stdout = "";
+    let stderr = "";
+
+    pythonProcess.stdout.on("data", (data) => {
+      stdout += data.toString();
+    });
+
+    pythonProcess.stderr.on("data", (data) => {
+      stderr += data.toString();
+    });
+
+    pythonProcess.on("close", (code) => {
+      if (code === 0) {
+        resolve();
+        return;
+      }
+
+      reject(
+        new Error(
+          `Python failed for ${originalFileName} with code ${code}\nSTDOUT:\n${stdout}\nSTDERR:\n${stderr}`
+        )
+      );
+    });
+
+    pythonProcess.on("error", (error) => {
+      reject(error);
+    });
+  });
+}
 
 export async function POST(request: Request) {
   const tempFiles: string[] = [];
@@ -85,8 +146,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const tempDir = path.join(process.cwd(), "temp");
-    await fs.mkdir(tempDir, { recursive: true });
+    /*
+      Vercel production filesystem rule:
+      - process.cwd() points to the deployed app directory, usually /var/task
+      - /var/task is read-only
+      - /tmp is writable, temporary, and safe for short-lived processing
+    */
+    const tempDir = os.tmpdir();
 
     const scriptPath = path.join(
       process.cwd(),
@@ -97,6 +163,7 @@ export async function POST(request: Request) {
 
     console.log("Resolved script path:", scriptPath);
     console.log("Script exists:", fsSync.existsSync(scriptPath));
+    console.log("Temp directory:", tempDir);
 
     if (!fsSync.existsSync(scriptPath)) {
       return NextResponse.json(
@@ -115,12 +182,14 @@ export async function POST(request: Request) {
         .toString(36)
         .slice(2, 8)}`;
 
-      const safeBaseName = image.name
-        .replace(/\.[^/.]+$/, "")
-        .replace(/[^\w-]/g, "_")
-        .slice(0, 80);
+      const safeBaseName = getSafeBaseName(image.name);
+      const safeExtension = getSafeExtension(image.name, image.type);
 
-      const inputPath = path.join(tempDir, `${safeBaseName}-${timestamp}.png`);
+      const inputPath = path.join(
+        tempDir,
+        `${safeBaseName}-${timestamp}${safeExtension}`
+      );
+
       const outputPath = path.join(
         tempDir,
         `${safeBaseName}-${timestamp}-removed.png`
@@ -130,42 +199,10 @@ export async function POST(request: Request) {
 
       await fs.writeFile(inputPath, buffer);
 
-      await new Promise<void>((resolve, reject) => {
-        const pythonProcess = spawn("python", [
-          scriptPath,
-          inputPath,
-          outputPath,
-        ]);
-
-        let stdout = "";
-        let stderr = "";
-
-        pythonProcess.stdout.on("data", (data) => {
-          stdout += data.toString();
-        });
-
-        pythonProcess.stderr.on("data", (data) => {
-          stderr += data.toString();
-        });
-
-        pythonProcess.on("close", (code) => {
-          if (code === 0) {
-            resolve();
-          } else {
-            reject(
-              new Error(
-                `Python failed for ${image.name} with code ${code}\nSTDOUT:\n${stdout}\nSTDERR:\n${stderr}`
-              )
-            );
-          }
-        });
-
-        pythonProcess.on("error", (error) => {
-          reject(error);
-        });
-      });
+      await runPythonScript(scriptPath, inputPath, outputPath, image.name);
 
       const outputExists = fsSync.existsSync(outputPath);
+
       if (!outputExists) {
         throw new Error(`Processed output was not created for "${image.name}".`);
       }
