@@ -140,7 +140,7 @@ function IntroContent() {
 
         <div className="inline-flex max-w-full items-center gap-3 rounded-full border border-cyan-300/20 bg-cyan-950/20 px-4 py-3 text-xs text-white/65 backdrop-blur-md sm:gap-4 sm:px-6 sm:text-sm">
           <Globe className="h-4 w-4 shrink-0 text-cyan-300" />
-          <span className="truncate">Based in Berlin / working globally</span>
+          <span className="truncate">Built from Berlin · Working globally</span>
           <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.9)]" />
         </div>
       </div>
