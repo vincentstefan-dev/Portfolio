@@ -49,7 +49,7 @@ export const aboutMeRc = {
 // Main profile image setup, separated between desktop and mobile.
     profile: {
       desktopWrapper:
-        "hidden",
+        "pointer-events-none absolute bottom-0 right-[6%] z-10 hidden lg:block",
       desktopInner: "relative h-[1100px] w-[1100px]",
       desktopGlow: "absolute inset-0 rounded-full bg-blue-500/10 blur-[80px]",
       desktopImage:
