@@ -2,6 +2,7 @@
 
 import { Rocket, type LucideIcon } from "lucide-react";
 import DiscountEgg from "@/app/components/Discounts/DiscountEggSection";
+import { processRc as rc } from "./aboutMeResponsiveConfig";
 
 type ProcessColor = "blue" | "violet" | "cyan";
 
@@ -98,66 +99,56 @@ function ProcessIcon({
 
 export default function ProcessSection() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden border border-cyan-400/20 text-white">
-      {/* Background layers */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(0,220,255,0.16),transparent_42%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(0,220,255,0.16),transparent_25%),radial-gradient(circle_at_85%_35%,rgba(0,220,255,0.16),transparent_24%)]" />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(rgba(34,211,238,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.08)_1px,transparent_1px)] bg-[size:42px_42px] opacity-70" />
+    <section className={rc.section}>
+      <div className={rc.background.mainGlow} />
+      <div className={rc.background.sideGlow} />
+      <div className={rc.background.grid} />
 
-      {/* Only the Windows popup, injected inside this section */}
-      <DiscountEgg className="absolute left-4 top-4 z-30 hidden font-mono lg:block" />
+      <DiscountEgg className={rc.discount.desktop} />
 
-      <div className="relative z-10 mx-auto max-w-[1450px] px-5 py-16 sm:px-8 md:px-10 md:py-24 lg:px-6">
-        {/* Header */}
-        <div className="text-center">
-          <p className="font-mono text-xs text-blue-400 sm:text-sm">
-            / my process
-          </p>
+      <div className={rc.shell}>
+        <div className={rc.header.wrapper}>
+          <p className={rc.header.eyebrow}>/ my process</p>
 
-          <h2 className="mt-5 text-[50px] font-semibold leading-[0.95] tracking-[-0.04em] text-white sm:text-[60px] md:text-[72px]">
-            How I think &amp; build
-          </h2>
+          <h2 className={rc.header.title}>How I think &amp; build</h2>
 
-          <div className="mx-auto mt-5 h-[3px] w-20 rounded-full bg-blue-400 shadow-[0_0_22px_rgba(96,165,250,0.9)]" />
+          <div className={rc.header.divider} />
 
-          <p className="mx-auto mt-7 max-w-xl text-base leading-7 text-white/55 sm:text-lg sm:leading-8">
+          <p className={rc.header.text}>
             A practical operating system for moving from abstract problems to
             structured, testable digital solutions.
           </p>
         </div>
 
-        {/* Mobile popup placement */}
-        <div className="mx-auto mt-10 flex justify-center lg:hidden">
+        <div className={rc.discount.mobile}>
           <DiscountEgg />
         </div>
 
-        {/* MOBILE VERSION */}
-        <div className="mt-12 grid grid-cols-1 gap-5 md:hidden">
+        <div className={rc.mobile.grid}>
           {processSteps.map((step) => (
             <MobileProcessCard key={step.n} step={step} />
           ))}
         </div>
 
-        {/* DESKTOP VERSION */}
-        <div className="relative mt-24 hidden md:block">
-          <div className="absolute left-[7%] right-[7%] top-[90px] h-[2px] bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-300 shadow-[0_0_18px_rgba(59,130,246,0.7)]" />
+        <div className={rc.desktop.wrapper}>
+          <div className={rc.desktop.line} />
 
-          <div className="grid grid-cols-4 gap-8 xl:gap-12">
+          <div className={rc.desktop.grid}>
             {processSteps.map((step) => (
               <DesktopProcessCard key={step.n} step={step} />
             ))}
           </div>
         </div>
 
-        <div className="mx-auto mt-14 flex max-w-3xl items-center gap-6 text-blue-500/50 md:mt-10 md:gap-8">
-          <div className="h-px flex-1 bg-blue-400/20" />
-          <span className="text-2xl md:text-3xl">✶</span>
-          <div className="h-px flex-1 bg-blue-400/20" />
+        <div className={rc.footer.divider}>
+          <div className={rc.footer.line} />
+          <span className={rc.footer.star}>✶</span>
+          <div className={rc.footer.line} />
         </div>
 
-        <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-7 text-white/35 sm:text-base md:text-lg">
-          A practical operating system for translating ideas into structure,
-          and prototypes.
+        <p className={rc.footer.text}>
+          A practical operating system for translating ideas into structure, and
+          prototypes.
         </p>
       </div>
     </section>
@@ -168,39 +159,27 @@ function MobileProcessCard({ step }: { step: ProcessStep }) {
   const colors = getColorClasses(step.color);
 
   return (
-    <article
-      className={`relative overflow-hidden rounded-3xl border ${colors.card} p-5 shadow-[inset_0_0_28px_rgba(59,130,246,0.06)] backdrop-blur-md`}
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(34,211,238,0.16),transparent_38%)]" />
+    <article className={`${rc.mobile.card} ${colors.card}`}>
+      <div className={rc.mobile.cardGlow} />
 
-      <div className="relative flex items-start gap-4">
-        <div
-          className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border bg-white/5 text-2xl backdrop-blur-xl ${colors.icon}`}
-        >
-          <ProcessIcon
-            icon={step.icon}
-            className="h-8 w-8 translate-x-[1px] -translate-y-[1px]"
-          />
+      <div className={rc.mobile.contentRow}>
+        <div className={`${rc.mobile.iconBox} ${colors.icon}`}>
+          <ProcessIcon icon={step.icon} className={rc.mobile.iconSvg} />
         </div>
 
-        <div className="min-w-0">
-          <p className={`font-mono text-sm ${colors.number}`}>[{step.n}]</p>
+        <div className={rc.mobile.content}>
+          <p className={`${rc.mobile.number} ${colors.number}`}>[{step.n}]</p>
 
-          <h3 className="mt-2 text-2xl font-semibold text-white">
-            {step.title}
-          </h3>
+          <h3 className={rc.mobile.title}>{step.title}</h3>
 
-          <p className="mt-3 text-sm leading-7 text-white/60">{step.text}</p>
+          <p className={rc.mobile.text}>{step.text}</p>
         </div>
       </div>
 
-      <div className="relative mt-5 rounded-2xl border border-white/10 bg-black/10 p-3 backdrop-blur-md">
-        <div className="flex flex-wrap justify-center gap-2">
+      <div className={rc.mobile.chipBox}>
+        <div className={rc.mobile.chipGrid}>
           {step.items.map((item) => (
-            <span
-              key={item}
-              className={`rounded-full border px-3 py-1.5 text-[11px] font-medium leading-none tracking-wide ${colors.chip}`}
-            >
+            <span key={item} className={`${rc.mobile.chip} ${colors.chip}`}>
               {item}
             </span>
           ))}
@@ -214,32 +193,23 @@ function DesktopProcessCard({ step }: { step: ProcessStep }) {
   const colors = getColorClasses(step.color);
 
   return (
-    <article className="relative">
-      <div className="mb-8 flex items-center gap-7">
-        <p className={`font-mono text-2xl ${colors.number}`}>{step.n}</p>
+    <article className={rc.desktop.card}>
+      <div className={rc.desktop.topRow}>
+        <p className={`${rc.desktop.number} ${colors.number}`}>{step.n}</p>
 
-        <div
-          className={`relative flex h-24 w-24 items-center justify-center rounded-[28px] border bg-white/5 text-4xl backdrop-blur-xl ${colors.icon}`}
-        >
-          <ProcessIcon
-            icon={step.icon}
-            className="h-10 w-10 translate-x-[1px] -translate-y-[2px]"
-          />
+        <div className={`${rc.desktop.iconBox} ${colors.icon}`}>
+          <ProcessIcon icon={step.icon} className={rc.desktop.iconSvg} />
 
-          <span
-            className={`absolute bottom-[-10px] left-1/2 h-5 w-5 -translate-x-1/2 rounded-full ${colors.dot}`}
-          />
+          <span className={`${rc.desktop.dot} ${colors.dot}`} />
         </div>
       </div>
 
-      <h3 className="text-2xl font-semibold text-white">{step.title}</h3>
+      <h3 className={rc.desktop.title}>{step.title}</h3>
 
-      <p className="mt-4 max-w-[260px] text-base leading-7 text-white/60">
-        {step.text}
-      </p>
+      <p className={rc.desktop.text}>{step.text}</p>
 
-      <div className="mt-8 w-full max-w-[260px] rounded-xl border border-blue-400/20 bg-blue-950/20 p-5 shadow-[inset_0_0_28px_rgba(59,130,246,0.06)] backdrop-blur-md">
-        <div className="space-y-3 text-sm text-white/65">
+      <div className={rc.desktop.itemBox}>
+        <div className={rc.desktop.itemStack}>
           {step.items.map((item) => (
             <p key={item}>↗ {item}</p>
           ))}

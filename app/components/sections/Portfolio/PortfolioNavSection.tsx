@@ -12,9 +12,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { House, TreeDeciduous } from "lucide-react";
 
-import ThemedNavIcon from "@/app/template/theme/ThemedNavIcon";
-import { useThemeGlow } from "@/app/components/layout/useThemeGlow";
-import type { SiteMode } from "@/app/template/theme/ThemeProvider";
+import ThemedNavIcon from "@/app/components/template/theme/ThemedNavIcon";
+import { useThemeGlow } from "@/app/components/template/layout/useThemeGlow";
+import type { SiteMode } from "@/app/components/template/theme/ThemeProvider";
 
 type MenuItem = {
   label: string;

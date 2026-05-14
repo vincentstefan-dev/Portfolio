@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import ThemedNavIcon from "@/app/template/theme/ThemedNavIcon";
+import ThemedNavIcon from "@/app/components/template/theme/ThemedNavIcon";
 
 type NavIcon = React.ComponentType<{
   className?: string;

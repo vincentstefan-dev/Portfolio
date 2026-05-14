@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef } from "react";
-import { useThemeMode } from "@/app/template/theme/ThemeProvider";
+import { useThemeMode } from "@/app/components/template/theme/ThemeProvider";
 
 import {
   backgroundThemes,
@@ -10,7 +10,7 @@ import {
   basicVideos,
   randomVideos,
   pickRandom,
-} from "@/app/template/theme/backgroundThemes";
+} from "@/app/components/template/theme/backgroundThemes";
 
 declare global {
   interface Window {

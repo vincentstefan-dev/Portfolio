@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useThemeMode } from "@/app/template/theme/ThemeProvider";
+import { useThemeMode } from "@/app/components/template/theme/ThemeProvider";
 
 type GlowStyle = {
   text: string;

@@ -1,20 +1,22 @@
 "use client";
 
-import { useThemeMode } from "@/app/template/theme/ThemeProvider";
-import ThemedBackground from "@/app/template/theme/ThemedBackground";
-import ThemedNavIcon from "@/app/template/theme/ThemedNavIcon";
-import AtomicPlayer from "@/app/components/media/atomicplayer";
-import PageTransitionWrapper from "@/app/components/layout/PageTransitionWrapper";
-import SiteSignature from "@/app/components/hero/SiteSignature";
-
-import { useAtomicPlayerControls } from "@/app/components/layout/useAtomicPlayerControls";
-import { usePageTransition } from "@/app/components/layout/usePageTransition";
-import { useThemeGlow } from "@/app/components/layout/useThemeGlow";
-
 import React from "react";
 import Link from "next/link";
 import { House, LoaderPinwheel, FileScan, Eye } from "lucide-react";
 import { Space_Mono } from "next/font/google";
+
+import { useThemeMode } from "@/app/components/template/theme/ThemeProvider";
+import ThemedBackground from "@/app/components/template/theme/ThemedBackground";
+import ThemedNavIcon from "@/app/components/template/theme/ThemedNavIcon";
+import AtomicPlayer from "@/app/components/media/atomicplayer";
+import PageTransitionWrapper from "@/app/components/template/layout/PageTransitionWrapper";
+import SiteSignature from "@/app/components/hero/SiteSignature";
+
+import { useAtomicPlayerControls } from "@/app/components/template/layout/useAtomicPlayerControls";
+import { usePageTransition } from "@/app/components/template/layout/usePageTransition";
+import { useThemeGlow } from "@/app/components/template/layout/useThemeGlow";
+
+import { coolstuffRc as rc } from "./coolstuffResponsiveConfig";
 
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
 
@@ -26,7 +28,12 @@ type MenuItem = {
 };
 
 const menuItems: MenuItem[] = [
-  { label: "Home", icon: House, href: "/", gif: "/Gifs/mystar.gif" },
+  {
+    label: "Home",
+    icon: House,
+    href: "/",
+    gif: "/Gifs/mystar.gif",
+  },
   {
     label: "Background Remover",
     icon: FileScan,
@@ -39,11 +46,11 @@ const menuItems: MenuItem[] = [
     href: "/coolstuff/pixelate",
     gif: "/Gifs/final.gif",
   },
-   {
+  {
     label: "Theme viewer",
     icon: Eye,
     href: "/coolstuff/theme-lab",
-    gif: "/Gifs/final.gif",
+    gif: "/Gifs/themeviewer.gif",
   },
 ];
 
@@ -65,7 +72,7 @@ export default function CleanPage() {
   const isInitialBlur = usePageTransition(0);
 
   return (
-    <main className="relative min-h-screen overflow-hidden text-white">
+    <main className={rc.main}>
       <ThemedBackground onReady={handlePlayerReady} />
 
       <AtomicPlayer
@@ -79,15 +86,11 @@ export default function CleanPage() {
       />
 
       <PageTransitionWrapper isBlurred={isInitialBlur}>
-        <div className="flex min-h-screen items-center justify-center px-6">
-          <nav aria-label="Page navigation" className="w-full max-w-7xl">
-            <div className="flex flex-wrap items-center justify-center gap-16">
+        <div className={rc.centerWrap}>
+          <nav aria-label="Page navigation" className={rc.nav}>
+            <div className={rc.grid}>
               {menuItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="group flex flex-col items-center gap-2 rounded-2xl px-2 py-3 text-center transition duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white/60"
-                >
+                <Link key={item.href} href={item.href} className={rc.link}>
                   <ThemedNavIcon
                     label={item.label}
                     icon={item.icon}
@@ -95,9 +98,7 @@ export default function CleanPage() {
                     glow={glow}
                   />
 
-                  <span className="mt-2 text-sm text-white/70">
-                    {item.label}
-                  </span>
+                  <span className={rc.label}>{item.label}</span>
                 </Link>
               ))}
             </div>

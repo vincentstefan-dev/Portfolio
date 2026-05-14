@@ -1,14 +1,17 @@
 "use client";
 
 import { useRef, useState } from "react";
-import ThemedBackground from "../template/theme/ThemedBackground";
-import { House } from "lucide-react";
 import Link from "next/link";
-import AtomicPlayer from "@/app/components/media/atomicplayer";
-import PageTransitionWrapper from "@/app/components/layout/PageTransitionWrapper";
+import { House } from "lucide-react";
 
-import { useAtomicPlayerControls } from "@/app/components/layout/useAtomicPlayerControls";
-import { usePageTransition } from "@/app/components/layout/usePageTransition";
+import ThemedBackground from "../components/template/theme/ThemedBackground";
+import AtomicPlayer from "@/app/components/media/atomicplayer";
+import PageTransitionWrapper from "@/app/components/template/layout/PageTransitionWrapper";
+
+import { useAtomicPlayerControls } from "@/app/components/template/layout/useAtomicPlayerControls";
+import { usePageTransition } from "@/app/components/template/layout/usePageTransition";
+
+import { contactRc as rc } from "./contactResponsiveConfig";
 
 const CONTACT_CARTRIDGES = [
   {
@@ -53,7 +56,6 @@ export default function ContactPage() {
   } = useAtomicPlayerControls();
 
   const isInitialBlur = usePageTransition(0);
-
   const [activeIndex, setActiveIndex] = useState(1);
 
   const [sendStatus, setSendStatus] = useState<
@@ -67,7 +69,7 @@ export default function ContactPage() {
   });
 
   return (
-    <main className="relative h-screen overflow-hidden bg-black text-white">
+    <main className={rc.main}>
       <ThemedBackground onReady={handlePlayerReady} />
 
       <AtomicPlayer
@@ -80,51 +82,39 @@ export default function ContactPage() {
         setVolume={setVolume}
       />
 
-      <div className="fixed bottom-6 right-6 z-50">
-        <Link
-          href="/"
-          aria-label="Return home"
-          className="group flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md transition hover:bg-white/50"
-        >
-          <House
-            className="h-5 w-5 text-white transition-transform duration-100 group-hover:scale-110"
-            strokeWidth={1.5}
-          />
+      <div className={rc.backButtonWrap}>
+        <Link href="/" aria-label="Return home" className={rc.backButton}>
+          <House className={rc.backIcon} strokeWidth={1.5} />
         </Link>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-[1]">
-        <div className="absolute left-1/2 top-[48%] h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/20 blur-[180px]" />
+      <div className={rc.blueGlowWrap}>
+        <div className={rc.blueGlow} />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-[2] overflow-hidden">
+      <div className={rc.starsWrap}>
         <div className="stars stars-far" />
         <div className="stars stars-mid" />
         <div className="stars stars-near" />
       </div>
 
-      <div className="noise pointer-events-none fixed inset-0 z-[3] opacity-25 mix-blend-overlay" />
-
-      <div className="pointer-events-none absolute inset-0 z-[4] bg-blue-900/10 mix-blend-color" />
+      <div className={rc.noise} />
+      <div className={rc.colorWash} />
 
       <PageTransitionWrapper isBlurred={isInitialBlur}>
-        <section className="relative flex h-screen flex-col items-center px-6 pb-6 pt-12 md:justify-center md:py-10">
-          <div className="mb-4 flex flex-col items-center text-center md:mb-10">
-            <p className="mb-3 text-xs uppercase tracking-[0.45em] text-white/50">
-              Hey! Let&apos;s Build It
-            </p>
+        <section className={rc.section}>
+          <div className={rc.header}>
+            <p className={rc.eyebrow}>Hey! Let&apos;s Build It</p>
 
-            <h1 className="text-3xl font-semibold tracking-[0.12em] text-white md:text-5xl">
-              How should we talk?
-            </h1>
+            <h1 className={rc.title}>How should we talk?</h1>
 
-            <p className="mt-4 max-w-xl leading-6 text-white/55 md:text-base">
+            <p className={rc.subtitle}>
               I would love to know about your project!
             </p>
           </div>
 
           <div
-            className="relative flex h-[520px] w-full max-w-6xl touch-pan-y items-start justify-center overflow-visible md:h-[620px] md:items-center"
+            className={rc.carousel}
             onTouchStart={(e) => {
               touchStartX.current = e.touches[0].clientX;
             }}
@@ -146,7 +136,6 @@ export default function ContactPage() {
             {CONTACT_CARTRIDGES.map((item, index) => {
               const isActive = index === activeIndex;
               const offset = index - activeIndex;
-
               const isInquiryActive = item.id === "inquiry" && isActive;
 
               const titleGlow =
@@ -188,10 +177,8 @@ export default function ContactPage() {
                       setActiveIndex(index);
                     }
                   }}
-                  className={`absolute cursor-pointer transition-all duration-500 ease-out ${
-                    isActive
-                      ? "z-30 opacity-100"
-                      : "z-10 opacity-55 hover:opacity-80"
+                  className={`${rc.cartridgeOuter} ${
+                    isActive ? rc.cartridgeActive : rc.cartridgeInactive
                   }`}
                   style={{
                     transform: `translateX(${offset * 270}px) scale(${
@@ -200,24 +187,20 @@ export default function ContactPage() {
                     touchAction: "pan-y",
                   }}
                 >
-                  <div className="relative w-[390px] max-w-[86vw] md:w-[500px]">
+                  <div className={rc.cartridgeBody}>
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="block w-full select-none object-contain filter drop-shadow-[0_30px_50px_rgba(0,0,0,0.65)] drop-shadow-[0_0_45px_rgba(120,180,255,0.25)]"
+                      className={rc.cartridgeImage}
                     />
 
-                    <div
-                      className={`pointer-events-none absolute left-[40%] top-[10%] z-20 flex h-14 w-14 items-center justify-center rounded-full border bg-black/20 text-2xl backdrop-blur-md md:left-1/2 md:top-[12%] md:h-20 md:w-20 md:-translate-x-1/2 md:text-4xl ${iconGlow}`}
-                    >
-                      <span className="drop-shadow-[0_0_12px_currentColor]">
-                        {item.icon}
-                      </span>
+                    <div className={`${rc.icon} ${iconGlow}`}>
+                      <span className={rc.iconInner}>{item.icon}</span>
                     </div>
 
-                    <div className="absolute left-[17%] top-[34%] z-10 flex w-[60%] flex-col gap-2 md:left-[17%] md:top-[36%] md:w-[60%] md:gap-2.5">
+                    <div className={rc.content}>
                       <h2
-                        className={`w-full text-center text-[16px] font-semibold uppercase tracking-[0.14em] md:text-2xl md:tracking-[0.18em] ${
+                        className={`${rc.cardTitle} ${
                           isActive ? titleGlow : "text-white/70"
                         }`}
                       >
@@ -226,7 +209,7 @@ export default function ContactPage() {
 
                       {item.id === "inquiry" && isActive ? (
                         <div
-                          className="space-y-2"
+                          className={rc.formStack}
                           onClick={(e) => e.stopPropagation()}
                         >
                           <input
@@ -238,7 +221,7 @@ export default function ContactPage() {
                               }))
                             }
                             placeholder="Your name"
-                            className="w-full border border-white/30 bg-white/10 px-3 py-2 text-xs tracking-[0.08em] text-white outline-none backdrop-blur-md placeholder:text-white/45 focus:border-cyan-200 focus:shadow-[0_0_12px_rgba(120,180,255,0.4)]"
+                            className={rc.input}
                           />
 
                           <input
@@ -250,7 +233,7 @@ export default function ContactPage() {
                               }))
                             }
                             placeholder="Your email"
-                            className="w-full border border-white/30 bg-white/10 px-3 py-2 text-xs tracking-[0.08em] text-white outline-none backdrop-blur-md placeholder:text-white/45 focus:border-cyan-200 focus:shadow-[0_0_12px_rgba(120,180,255,0.4)]"
+                            className={rc.input}
                           />
 
                           <textarea
@@ -263,13 +246,11 @@ export default function ContactPage() {
                             }
                             placeholder="What are we building?"
                             rows={2}
-                            className="w-full resize-none border border-white/30 bg-white/10 px-3 py-2 text-xs tracking-[0.08em] text-white outline-none backdrop-blur-md placeholder:text-white/45 focus:border-cyan-200 focus:shadow-[0_0_12px_rgba(120,180,255,0.4)]"
+                            className={rc.textarea}
                           />
                         </div>
                       ) : (
-                        <p className="mt-2 text-sm leading-6 text-white/60">
-                          {item.description}
-                        </p>
+                        <p className={rc.description}>{item.description}</p>
                       )}
 
                       <button
@@ -335,17 +316,15 @@ export default function ContactPage() {
                             }
                           }
                         }}
-                        className={`relative flex w-full items-center justify-between px-4 py-2 text-[10px] uppercase tracking-[0.18em] text-black backdrop-blur-sm transition hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 md:px-5 md:py-3 md:text-xs md:tracking-[0.25em] ${buttonSpectrum} ${
-                          isInquiryActive
-                            ? "mx-auto mt-2 w-[95%] md:mt-2"
-                            : "mt-2"
+                        className={`${rc.button} ${buttonSpectrum} ${
+                          isInquiryActive ? rc.inquiryButton : rc.normalButton
                         }`}
                       >
                         <span
-                          className={`pointer-events-none absolute inset-0 opacity-30 ${innerGlow}`}
+                          className={`${rc.buttonGlowLayer} ${innerGlow}`}
                         />
 
-                        <span className="relative z-10 flex w-full items-center justify-between">
+                        <span className={rc.buttonText}>
                           {sendStatus === "sending" && item.id === "inquiry"
                             ? "Sending..."
                             : item.button}
@@ -354,7 +333,7 @@ export default function ContactPage() {
                       </button>
 
                       {item.id === "inquiry" && sendStatus !== "idle" && (
-                        <p className="text-center text-xs uppercase tracking-[0.2em] text-cyan-100/70">
+                        <p className={rc.status}>
                           {sendStatus === "sending" && "Sending signal..."}
                           {sendStatus === "sent" && "Signal sent."}
                           {sendStatus === "error" && "Add email + message."}

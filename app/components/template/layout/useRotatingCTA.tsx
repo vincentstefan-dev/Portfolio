@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getCTA } from "@/app/template/theme/CTA_WORD_BANK";
+import { getCTA } from "@/app/components/template/theme/CTA_WORD_BANK";
 
 type CTA = {
   value: string;

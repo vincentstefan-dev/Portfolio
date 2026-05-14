@@ -1,19 +1,19 @@
 "use client";
 
 // --- THEME SYSTEM ---
-import { useThemeMode, type SiteMode } from "@/app/template/theme/ThemeProvider";
-import ThemeModal from "@/app/template/theme/ThemeModal";
+import { useThemeMode, type SiteMode } from "@/app/components/template/theme/ThemeProvider";
+import ThemeModal from "@/app/components/template/theme/ThemeModal";
 
 // --- BACKGROUND + MEDIA ---
-import ThemedBackground from "@/app/template/theme/ThemedBackground";
+import ThemedBackground from "@/app/components/template/theme/ThemedBackground";
 import AtomicPlayer from "@/app/components/media/atomicplayer";
 
 // --- TYPOGRAPHY ---
 import { Space_Mono } from "next/font/google";
 
 // --- LOGO SYSTEM ---
-import { LOGO_BANK } from "@/app/template/theme/LOGO_BANK";
-import { pickWeightedLogo } from "@/app/template/theme/logoUtils";
+import { LOGO_BANK } from "@/app/components/template/theme/LOGO_BANK";
+import { pickWeightedLogo } from "@/app/components/template/theme/logoUtils";
 import HeroLogo from "@/app/components/hero/HeroLogo";
 
 // --- UI COMPONENTS ---
@@ -23,20 +23,20 @@ import NavGrid from "@/app/components/hero/NavGrid";
 import SiteSignature from "@/app/components/hero/SiteSignature";
 
 // --- LAYOUT + TRANSITIONS ---
-import PageTransitionWrapper from "@/app/components/layout/PageTransitionWrapper";
-import { usePageTransition } from "@/app/components/layout/usePageTransition";
+import PageTransitionWrapper from "@/app/components/template/layout/PageTransitionWrapper";
+import { usePageTransition } from "@/app/components/template/layout/usePageTransition";
 
 // --- HOOKS ---
-import { useRotatingCTA } from "@/app/components/layout/useRotatingCTA";
-import { useAtomicPlayerControls } from "@/app/components/layout/useAtomicPlayerControls";
-import { useEscapeClose } from "@/app/components/layout/useEscapeClose";
-import { useThemeGlow } from "@/app/components/layout/useThemeGlow";
+import { useRotatingCTA } from "@/app/components/template/layout/useRotatingCTA";
+import { useAtomicPlayerControls } from "@/app/components/template/layout/useAtomicPlayerControls";
+import { useEscapeClose } from "@/app/components/template/layout/useEscapeClose";
+import { useThemeGlow } from "@/app/components/template/layout/useThemeGlow";
 
 // --- REACT ---
 import { useCallback, useEffect, useState } from "react";
 
 // --- CONFIG (DATA LAYER) ---
-import { menuItems } from "@/app/template/theme/homepageConfig";
+import { menuItems } from "@/app/components/template/theme/homepageConfig";
 
 // --- FONT INSTANCE ---
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });

@@ -5,7 +5,7 @@ import {
   basicGlow,
   pickRandomGlow,
   type GlowStyle,
-} from "../../template/theme/homepageConfig";
+} from "../theme/homepageConfig";
 
 export function useThemeGlow(siteMode: string) {
   const [glow, setGlow] = useState<GlowStyle>(basicGlow);

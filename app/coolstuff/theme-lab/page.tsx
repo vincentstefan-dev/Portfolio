@@ -5,20 +5,20 @@ import Link from "next/link";
 import { ArrowLeft, Eye, Sparkles, Zap, House } from "lucide-react";
 import { Space_Mono } from "next/font/google";
 
-import { useThemeMode } from "@/app/template/theme/ThemeProvider";
-import ThemedBackground from "@/app/template/theme/ThemedBackground";
+import { useThemeMode } from "@/app/components/template/theme/ThemeProvider";
+import ThemedBackground from "@/app/components/template/theme/ThemedBackground";
 import AtomicPlayer from "@/app/components/media/atomicplayer";
-import PageTransitionWrapper from "@/app/components/layout/PageTransitionWrapper";
+import PageTransitionWrapper from "@/app/components/template/layout/PageTransitionWrapper";
 import SiteSignature from "@/app/components/hero/SiteSignature";
 
-import { useAtomicPlayerControls } from "@/app/components/layout/useAtomicPlayerControls";
-import { usePageTransition } from "@/app/components/layout/usePageTransition";
-import { useThemeGlow } from "@/app/components/layout/useThemeGlow";
+import { useAtomicPlayerControls } from "@/app/components/template/layout/useAtomicPlayerControls";
+import { usePageTransition } from "@/app/components/template/layout/usePageTransition";
+import { useThemeGlow } from "@/app/components/template/layout/useThemeGlow";
 
 import {
   backgroundThemes,
   type BackgroundTheme,
-} from "@/app/template/theme/backgroundThemes";
+} from "@/app/components/template/theme/backgroundThemes";
 
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
 

@@ -4,14 +4,14 @@ import React from "react";
 import Link from "next/link";
 import { House } from "lucide-react";
 
-import { useThemeMode } from "@/app/template/theme/ThemeProvider";
-import ThemedBackground from "@/app/template/theme/ThemedBackground";
+import { useThemeMode } from "@/app/components/template/theme/ThemeProvider";
+import ThemedBackground from "@/app/components/template/theme/ThemedBackground";
 import AtomicPlayer from "@/app/components/media/atomicplayer";
-import PageTransitionWrapper from "@/app/components/layout/PageTransitionWrapper";
+import PageTransitionWrapper from "@/app/components/template/layout/PageTransitionWrapper";
 import SiteSignature from "@/app/components/hero/SiteSignature";
 
-import { useAtomicPlayerControls } from "@/app/components/layout/useAtomicPlayerControls";
-import { usePageTransition } from "@/app/components/layout/usePageTransition";
+import { useAtomicPlayerControls } from "@/app/components/template/layout/useAtomicPlayerControls";
+import { usePageTransition } from "@/app/components/template/layout/usePageTransition";
 
 import AboutSection from "@/app/components/sections/about-me/AboutSection";
 import ServicesSection from "@/app/components/sections/about-me/ServicesSection";

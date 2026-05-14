@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Menu, UserRound } from "lucide-react";
 
-import { LOGO_BANK } from "@/app/template/theme/LOGO_BANK";
+import { LOGO_BANK } from "@/app/components/template/theme/LOGO_BANK";
 
 export default function NeonHero() {
   const [activeLogo, setActiveLogo] = useState(LOGO_BANK[0]);

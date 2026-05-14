@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { LOGO_BANK } from "@/app/template/theme/LOGO_BANK";
+import { LOGO_BANK } from "@/app/components/template/theme/LOGO_BANK";
 import { motion } from "framer-motion";
+
 type Star = {
   x: number;
   y: number;
@@ -33,10 +34,7 @@ function random(min: number, max: number) {
 }
 
 function pickWeightedLogo() {
-  const total = LOGO_BANK.reduce(
-    (sum, logo) => sum + (logo.weight ?? 1),
-    0
-  );
+  const total = LOGO_BANK.reduce((sum, logo) => sum + (logo.weight ?? 1), 0);
 
   let randomValue = Math.random() * total;
 
@@ -89,15 +87,7 @@ function drawStarLayer(
   ctx.globalAlpha = alpha;
   ctx.translate(offsetX, offsetY);
 
-  drawStarShape(
-    ctx,
-    star.x,
-    star.y,
-    star.points,
-    outer,
-    inner,
-    star.rotation
-  );
+  drawStarShape(ctx, star.x, star.y, star.points, outer, inner, star.rotation);
 
   if (star.hollow) {
     ctx.strokeStyle = star.color;
@@ -117,44 +107,37 @@ function drawStarLayer(
 
 export default function CRTStarIntro() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
-  // SOUND REF
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [visible, setVisible] = useState(true);
   const [activeLogo, setActiveLogo] = useState(LOGO_BANK[0]);
 
-  // PICK LOGO ON FIRST LOAD
   useEffect(() => {
     setActiveLogo(pickWeightedLogo());
   }, []);
 
-  // INTRO SOUND EFFECT
-  // Plays after the user's first click/tap.
-  // This avoids browser autoplay blocking.
-    useEffect(() => {
-      const playIntroSound = () => {
-        const audio = audioRef.current;
-        if (!audio) return;
+  useEffect(() => {
+    const playIntroSound = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
 
-        audio.volume = 0.35;
-        audio.currentTime = 0;
+      audio.volume = 0.35;
+      audio.currentTime = 0;
 
-        audio.play().catch((error) => {
-          console.log("Audio play blocked:", error);
-        });
+      audio.play().catch((error) => {
+        console.log("Audio play blocked:", error);
+      });
 
-        window.removeEventListener("pointerdown", playIntroSound);
-      };
+      window.removeEventListener("pointerdown", playIntroSound);
+    };
 
-      window.addEventListener("pointerdown", playIntroSound);
+    window.addEventListener("pointerdown", playIntroSound);
 
-      return () => {
-        window.removeEventListener("pointerdown", playIntroSound);
-      };
-    }, []);
+    return () => {
+      window.removeEventListener("pointerdown", playIntroSound);
+    };
+  }, []);
 
-  // CANVAS ANIMATION EFFECT
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -298,8 +281,6 @@ export default function CRTStarIntro() {
     const animate = (time: number) => {
       const elapsed = time - startTime;
 
-      // INTRO DURATION
-      // 5000 = 5 seconds
       if (elapsed >= 5000) {
         setVisible(false);
         cancelAnimationFrame(animationFrame);
@@ -397,7 +378,7 @@ export default function CRTStarIntro() {
       <canvas ref={canvasRef} className="h-full w-full" />
 
       {/* CENTERED LOGO BANK */}
-      <div className="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center">
+      <div className="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center text-center">
         <img
           src={activeLogo.src}
           alt={activeLogo.alt}
@@ -410,36 +391,26 @@ export default function CRTStarIntro() {
             transform: "scale(1)",
           }}
         />
-      {/* TEXT BELOW LOGO */}
-<motion.span
-  initial={{
-    opacity: 0,
-    y: 6,
-    letterSpacing: "0.7em",
-  }}
-  animate={{
-    opacity: [
-      0,
-      1,
-      0.2,
-      1,
-      0.4,
-      1,
-      0.6,
-      1,
-      0.8,
-      1,
-    ],
-    y: [6, 0, 1, 0],
-    letterSpacing: ["0.7em", "0.55em", "0.52em", "0.5em"],
-  }}
-  transition={{
-    duration: 3,
-    delay: 0.5,
-    ease: "easeOut",
-  }}
-        >
 
+        {/* TEXT BELOW LOGO */}
+        <motion.span
+          className="mt-4 block max-w-[90vw] text-center text-[clamp(0.65rem,1.8vw,1.15rem)] font-semibold uppercase text-white"
+          initial={{
+            opacity: 0,
+            y: 5,
+            letterSpacing: "0.5em",
+          }}
+          animate={{
+            opacity: [0, 1, 0.2, 1, 0.4, 1, 0.6, 1, 0.8, 1],
+            y: [6, 0, 1, 0],
+            letterSpacing: ["0.5em", "0.55em", "0.52em", "0.5em"],
+          }}
+          transition={{
+            duration: 3,
+            delay: 0.5,
+            ease: "easeOut",
+          }}
+        >
           K O Y O T E ║ S T U D I O S
         </motion.span>
       </div>

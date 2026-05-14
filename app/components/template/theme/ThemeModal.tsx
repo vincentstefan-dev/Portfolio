@@ -2,7 +2,7 @@
 "use client";
 
 import { X, Sparkles, Shuffle } from "lucide-react";
-import type { SiteMode } from "@/app/template/theme/ThemeProvider";
+import type { SiteMode } from "@/app/components/template/theme/ThemeProvider";
 
 type ThemeModalProps = {
   isOpen: boolean;

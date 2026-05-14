@@ -1,4 +1,4 @@
-import { LOGO_BANK } from "@/app/template/theme/LOGO_BANK";
+import { LOGO_BANK } from "@/app/components/template/theme/LOGO_BANK";
 
 export function pickWeightedLogo() {
   const total = LOGO_BANK.reduce((sum, logo) => sum + (logo.weight ?? 1), 0);
