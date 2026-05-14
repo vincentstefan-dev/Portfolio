@@ -296,9 +296,13 @@ function ContactPanel() {
 function BlobStatus() {
   return (
     <>
-      <div className={rc.blob.imageWrapper}>
-        <img src="/logos/8BIT.png" alt="" className={rc.blob.image} />
-      </div>
+        <div className={rc.blob.imageWrapper}>
+          <img
+            src="/logos/8BIT.png"
+            alt=""
+            className={`${rc.blob.image} scale-[1.2] object-contain`}
+          />
+        </div>
 
       <div className={rc.blob.status}>
         <span>Thanks for Watching</span>
