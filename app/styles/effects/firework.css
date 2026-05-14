@@ -1,0 +1,50 @@
+/* =========================
+   FIREWORK PARTICLES
+   Used by click-triggered particle explosions
+========================= */
+
+@keyframes fireworkParticleExplode {
+  0% {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(
+        calc(-50% + var(--tx)),
+        calc(-50% + var(--ty)),
+        0
+      )
+      scale(0.12);
+  }
+}
+
+.firework-particle {
+  position: fixed;
+  z-index: 2147483647;
+
+  display: block;
+  border-radius: 999px;
+
+  pointer-events: none;
+  will-change: transform, opacity;
+
+  animation: fireworkParticleExplode 950ms cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+.firework-trigger-debug {
+  outline: 1px solid rgba(103, 232, 249, 0.4);
+}
+
+.firework-trigger-debug:active {
+  background: rgba(250, 204, 21, 0.35);
+  box-shadow:
+    0 0 20px rgba(250, 204, 21, 0.8),
+    0 0 45px rgba(34, 211, 238, 0.6);
+}

@@ -1,0 +1,12 @@
+/* =========================
+   TYPOGRAPHY
+   Global font declarations for KOYOTE
+========================= */
+
+@font-face {
+  font-family: "Contour";
+  src: url("/fonts/ContourW00-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

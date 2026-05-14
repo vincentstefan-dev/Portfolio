@@ -1,0 +1,57 @@
+/* =========================
+   RAINBOW LINK GLOW
+   Used by: className="rainbow-link-glow"
+========================= */
+
+@keyframes rainbowLinkGlowFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+.rainbow-link-glow {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.rainbow-link-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+
+  opacity: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(34, 211, 238, 0.16),
+    rgba(168, 85, 247, 0.45),
+    rgba(236, 72, 153, 0.45),
+    rgba(250, 204, 21, 0.32),
+    rgba(34, 211, 238, 0.16)
+  );
+
+  background-size: 300% 100%;
+  filter: blur(14px);
+
+  transition: opacity 250ms ease;
+  animation: rainbowLinkGlowFlow 4s linear infinite;
+
+  pointer-events: none;
+}
+
+.rainbow-link-glow:hover::before {
+  opacity: 1;
+}
+
+.rainbow-link-glow:hover {
+  border-color: rgba(165, 243, 252, 0.75);
+  box-shadow:
+    0 0 18px rgba(34, 211, 238, 0.28),
+    0 0 34px rgba(168, 85, 247, 0.18);
+}

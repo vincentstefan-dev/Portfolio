@@ -1,0 +1,136 @@
+/* =========================
+   RAINBOW EFFECTS
+   Shared rainbow animation utilities for KOYOTE
+========================= */
+
+/* =========================
+   RAINBOW GLOW BOX-SHADOW
+========================= */
+
+@keyframes rainbowBoxGlow {
+  0% {
+    box-shadow:
+      0 0 20px rgba(255, 0, 128, 0.4),
+      0 0 40px rgba(0, 255, 255, 0.3);
+  }
+
+  25% {
+    box-shadow:
+      0 0 25px rgba(0, 255, 128, 0.4),
+      0 0 50px rgba(0, 128, 255, 0.3);
+  }
+
+  50% {
+    box-shadow:
+      0 0 30px rgba(128, 0, 255, 0.4),
+      0 0 60px rgba(255, 0, 255, 0.3);
+  }
+
+  75% {
+    box-shadow:
+      0 0 25px rgba(255, 128, 0, 0.4),
+      0 0 50px rgba(0, 255, 200, 0.3);
+  }
+
+  100% {
+    box-shadow:
+      0 0 20px rgba(255, 0, 128, 0.4),
+      0 0 40px rgba(0, 255, 255, 0.3);
+  }
+}
+
+.rainbow-glow {
+  animation: rainbowBoxGlow 6s linear infinite;
+}
+
+/* =========================
+   RAINBOW BACKGROUND FLOW
+========================= */
+
+@keyframes rainbowBackgroundFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 400% 50%;
+  }
+}
+
+.hover-rainbow-glow {
+  background: linear-gradient(
+    90deg,
+    #ff004c,
+    #ff9f00,
+    #fff200,
+    #00ff85,
+    #00c8ff,
+    #7a5cff,
+    #ff00f5,
+    #ff004c
+  );
+  background-size: 400% 400%;
+  animation: rainbowBackgroundFlow 10s linear infinite;
+}
+
+/* =========================
+   RAINBOW TEXT
+========================= */
+
+@keyframes rainbow-coming-soon {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes rainbowTextMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-rainbow-text {
+  display: inline-block;
+  background-image: linear-gradient(
+    90deg,
+    #ff4fd8,
+    #38bdf8,
+    #facc15,
+    #22c55e,
+    #a855f7,
+    #ff4fd8
+  );
+  background-size: 300% 300%;
+  background-position: 0% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowTextMove 3s linear infinite;
+}
+
+@keyframes koyoteDiscountRainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 400% 50%;
+  }
+}

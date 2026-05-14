@@ -900,8 +900,8 @@ export default function PixelLabV2() {
 
       <div className="absolute bottom-6 right-6 z-30">
         <Link
-          href="/portfolio"
-          aria-label="Return to portfolio"
+          href="/coolstuff"
+          aria-label="Return to apps"
           className="group flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-[linear-gradient(180deg,rgba(255,255,255,0.3),rgba(255,255,255,0.1))] shadow-[0_8px_28px_rgba(120,205,255,0.22),inset_0_1px_0_rgba(255,255,255,0.6)] backdrop-blur-xl transition duration-300 hover:scale-105 hover:bg-white/20"
         >
           <House

@@ -13,7 +13,7 @@ import { useThemeGlow } from "@/app/components/layout/useThemeGlow";
 
 import React from "react";
 import Link from "next/link";
-import { House, LoaderPinwheel, FileScan } from "lucide-react";
+import { House, LoaderPinwheel, FileScan, Eye } from "lucide-react";
 import { Space_Mono } from "next/font/google";
 
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
@@ -37,6 +37,12 @@ const menuItems: MenuItem[] = [
     label: "Pixelate",
     icon: LoaderPinwheel,
     href: "/coolstuff/pixelate",
+    gif: "/Gifs/final.gif",
+  },
+   {
+    label: "Theme viewer",
+    icon: Eye,
+    href: "/coolstuff/theme-lab",
     gif: "/Gifs/final.gif",
   },
 ];

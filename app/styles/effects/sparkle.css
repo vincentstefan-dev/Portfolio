@@ -1,0 +1,27 @@
+/* =========================
+   SPARKLE
+   Used for small sparkle particles / fade-out motion
+========================= */
+
+@keyframes sparkle-fade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.35) rotate(0deg);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(20deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-18px) scale(0.45) rotate(65deg);
+  }
+}
+
+.animate-sparkle-fade {
+  animation-name: sparkle-fade;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
