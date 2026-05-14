@@ -271,9 +271,9 @@ export default function AboutSection() {
 
           <div className={rc.text.divider} />
 
-          <h2 className={rc.text.subtitle}>Hi, I&apos;m Vincent creator of   
+          <h2 className={rc.text.subtitle}>Hi, I&apos;m Vincent creator of  
           <span className="animate-rainbow-text font-semibold">
-           ‎  Koyote
+            Koyote
           </span> </h2>
 
           <p className={rc.text.paragraph}>

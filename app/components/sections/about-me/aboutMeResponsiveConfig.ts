@@ -30,37 +30,36 @@ export const aboutMeRc = {
     dotInactive: "h-2 w-2 rounded-full border border-cyan-300/60",
   },
 
-  // Large decorative background images shown only on desktop.
-  decorativeImages: {
-    // Rear decorative image.
-    backWrapper:
-      "pointer-events-none absolute right-[-25%] top-[100px] z-[12]",
-    backImage:
-      "h-[720px] w-auto object-contain opacity-50 mix-blend-luminosity drop-shadow-[0_0_30px_rgba(96,165,250,0.22)] xl:h-[860px]",
+    // Large decorative background images shown only on desktop.
+    decorativeImages: {
+      // Rear decorative image.
+      backWrapper:
+        "pointer-events-none absolute right-[-25%] top-[100px] z-[12] hidden lg:block",
+      backImage:
+        "h-[720px] w-auto object-contain opacity-50 mix-blend-luminosity drop-shadow-[0_0_30px_rgba(96,165,250,0.22)] xl:h-[860px]",
 
-    // Front decorative image.
-    frontWrapper:
-      "pointer-events-none absolute right-[-20%] top-[-20px] z-[12] hidden lg:block",
-    frontImage:
-      "h-[1000px] w-auto object-contain opacity-55 mix-blend-luminosity drop-shadow-[0_0_45px_rgba(59,130,246,0.25)] xl:h-[1050px]",
-  },
+      // Front decorative image.
+      frontWrapper:
+        "pointer-events-none absolute right-[-20%] top-[-20px] z-[12] hidden lg:block",
+      frontImage:
+        "h-[1000px] w-auto object-contain opacity-55 mix-blend-luminosity drop-shadow-[0_0_45px_rgba(59,130,246,0.25)] xl:h-[1050px]",
+    },
 
   // Main profile image setup, separated between desktop and mobile.
-  profile: {
-    // Desktop profile layer.
-    desktopWrapper:
-      "pointer-events-none absolute bottom-0 right-[-50px] z-10 hidden w-[76%] justify-center lg:flex",
-    desktopInner: "relative h-[1100px] w-[1100px]",
-    desktopGlow: "absolute inset-0 rounded-full bg-blue-500/10 blur-[80px]",
-    desktopImage:
-      "absolute bottom-[-20px] left-1/2 z-20 h-[720px] -translate-x-1/2 object-contain opacity-65 drop-shadow-[0_0_60px_rgba(59,130,246,0.35)]",
+// Main profile image setup, separated between desktop and mobile.
+    profile: {
+      desktopWrapper:
+        "hidden",
+      desktopInner: "relative h-[1100px] w-[1100px]",
+      desktopGlow: "absolute inset-0 rounded-full bg-blue-500/10 blur-[80px]",
+      desktopImage:
+        "absolute bottom-[-20px] left-1/2 z-20 h-[720px] -translate-x-1/2 object-contain opacity-65 drop-shadow-[0_0_60px_rgba(59,130,246,0.35)]",
 
-    // Mobile profile image shown under the text column.
-    mobileWrapper:
-      "pointer-events-none relative z-10 mt-10 flex justify-center lg:hidden",
-    mobileImage:
-      "h-[320px] object-contain opacity-75 drop-shadow-[0_0_45px_rgba(59,130,246,0.35)]",
-  },
+      mobileWrapper:
+        "pointer-events-none relative z-10 -mt-2 flex justify-center lg:hidden",
+      mobileImage:
+        "h-[230px] object-contain opacity-75 drop-shadow-[0_0_45px_rgba(59,130,246,0.35)]",
+    },
 
   // Floating draggable GIF fields, desktop only.
   floatingFields: {
