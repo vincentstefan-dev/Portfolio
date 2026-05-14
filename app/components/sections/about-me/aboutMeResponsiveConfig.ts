@@ -34,7 +34,7 @@ export const aboutMeRc = {
   decorativeImages: {
     // Rear decorative image.
     backWrapper:
-      "pointer-events-none absolute right-[-25%] top-[-20px] z-[12] hidden lg:block",
+      "pointer-events-none absolute right-[-25%] top-[100px] z-[12]",
     backImage:
       "h-[720px] w-auto object-contain opacity-50 mix-blend-luminosity drop-shadow-[0_0_30px_rgba(96,165,250,0.22)] xl:h-[860px]",
 

@@ -297,7 +297,7 @@ function BlobStatus() {
   return (
     <>
       <div className={rc.blob.imageWrapper}>
-        <img src="/Icons/8BIT.png" alt="" className={rc.blob.image} />
+        <img src="/logos/8BIT.png" alt="" className={rc.blob.image} />
       </div>
 
       <div className={rc.blob.status}>
