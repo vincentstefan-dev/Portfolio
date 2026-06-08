@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Code2, Rocket, UserRound } from "lucide-react";
 import OnlineFlowerFab from "@/app/components/ui/OnlineFlowerFab";
@@ -18,25 +19,6 @@ type Particle = OrbitItem & {
   vy: number;
   size: number;
 };
-
-const orbitItems: OrbitItem[] = [
-  { label: "Brand systems", img: "/Gifs/purpleheart.gif" },
-  { label: "Web builds", img: "/Gifs/diamond.gif" },
-  { label: "Strategy", img: "/Gifs/btl.gif" },
-  { label: "Content", img: "/Gifs/prismastar.gif" },
-  { label: "UI direction", img: "/Gifs/cubeprisma.gif" },
-  { label: "Visual identity", img: "/Gifs/bloby.gif" },
-  { label: "Creative dev", img: "/Gifs/prismacurve.gif" },
-  { label: "Motion systems", img: "/Gifs/toast.gif" },
-  { label: "Concept design", img: "/Gifs/diamondshiny.gif" },
-  { label: "Digital products", img: "/Gifs/octagon.gif" },
-  { label: "Interaction", img: "/Gifs/fush.gif" },
-  { label: "Frontend", img: "/Gifs/gummybears.gif" },
-  { label: "Experiments", img: "/Gifs/hamburgesita.gif" },
-  { label: "Systems thinking", img: "/Gifs/prsimducky.gif" },
-  { label: "Narratives", img: "/Gifs/rainbowgummy.gif" },
-  { label: "Brand energy", img: "/Gifs/sdcard.gif" },
-];
 
 function FloatingIconField({
   items,
@@ -170,7 +152,10 @@ function FloatingIconField({
   };
 
   return (
-    <div ref={containerRef} className={`${rc.floatingFields.base} ${className ?? ""}`}>
+    <div
+      ref={containerRef}
+      className={`${rc.floatingFields.base} ${className ?? ""}`}
+    >
       {particles.map((item) => (
         <div
           key={item.label}
@@ -185,15 +170,17 @@ function FloatingIconField({
           }}
         >
           <div
-            className="rounded-xl border border-white/15 bg-white/10 p-2 shadow-[0_0_22px_rgba(96,165,250,0.25)] backdrop-blur-md transition hover:scale-110"
+            className="relative rounded-xl border border-white/15 bg-white/10 p-2 shadow-[0_0_22px_rgba(96,165,250,0.25)] backdrop-blur-md transition hover:scale-110"
             style={{
               width: item.size,
               height: item.size,
             }}
           >
-            <img
+            <Image
               src={item.img}
               alt={item.label}
+              width={item.size}
+              height={item.size}
               draggable={false}
               className="pointer-events-none h-full w-full object-contain"
             />
@@ -225,36 +212,44 @@ export default function AboutSection() {
       </div>
 
       <div className={rc.decorativeImages.backWrapper}>
-        <img src="/aboutme/about-me2.png" alt="" className={rc.decorativeImages.backImage} />
+        <Image
+          src="/aboutme/about-me2.png"
+          alt=""
+          width={900}
+          height={900}
+          className={rc.decorativeImages.backImage}
+          priority={false}
+          sizes="(min-width: 1024px) 900px, 0px"
+        />
       </div>
 
       <div className={rc.decorativeImages.frontWrapper}>
-        <img src="/aboutme/about-me.png" alt="" className={rc.decorativeImages.frontImage} />
+        <Image
+          src="/aboutme/about-me.png"
+          alt=""
+          width={900}
+          height={900}
+          className={rc.decorativeImages.frontImage}
+          priority={false}
+          sizes="(min-width: 1024px) 900px, 0px"
+        />
       </div>
 
       <div className={rc.profile.desktopWrapper}>
         <div className={rc.profile.desktopInner}>
           <div className={rc.profile.desktopGlow} />
 
-          <img
+          <Image
             src="/aboutme/about-profile.png"
             alt="Vincent profile"
+            width={900}
+            height={900}
             className={rc.profile.desktopImage}
+            priority
+            sizes="(min-width: 1024px) 720px, 0px"
           />
         </div>
       </div>
-
-      <FloatingIconField
-        items={orbitItems.slice(0, 8)}
-        seedOffset={0}
-        className={rc.floatingFields.left}
-      />
-
-      <FloatingIconField
-        items={orbitItems.slice(8)}
-        seedOffset={180}
-        className={rc.floatingFields.right}
-      />
 
       <div className={rc.layout.grid}>
         <div className={rc.layout.leftColumn}>
@@ -271,10 +266,10 @@ export default function AboutSection() {
 
           <div className={rc.text.divider} />
 
-          <h2 className={rc.text.subtitle}>Hi, I&apos;m Vincent creator of  
-          <span className="animate-rainbow-text font-semibold">
-            Koyote
-          </span> </h2>
+          <h2 className={rc.text.subtitle}>
+            Hi, I&apos;m Vincent creator of{" "}
+            <span className="animate-rainbow-text font-semibold">Koyote</span>
+          </h2>
 
           <p className={rc.text.paragraph}>
             I help people and projects turn rough ideas into digital concepts
@@ -310,10 +305,14 @@ export default function AboutSection() {
           </div>
 
           <div className={rc.profile.mobileWrapper}>
-            <img
+            <Image
               src="/aboutme/about-profile.png"
               alt="Vincent profile"
+              width={500}
+              height={500}
               className={rc.profile.mobileImage}
+              priority
+              sizes="(max-width: 1023px) 230px, 0px"
             />
           </div>
         </div>
