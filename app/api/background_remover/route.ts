@@ -40,6 +40,18 @@ function getSafeExtension(fileName: string, mimeType: string) {
   return ".png";
 }
 
+function getPythonExecutable() {
+  if (process.env.PYTHON_EXECUTABLE) {
+    return process.env.PYTHON_EXECUTABLE;
+  }
+
+  if (process.platform === "win32") {
+    return "py";
+  }
+
+  return "python3";
+}
+
 function runPythonScript(
   scriptPath: string,
   inputPath: string,
@@ -47,7 +59,15 @@ function runPythonScript(
   originalFileName: string
 ) {
   return new Promise<void>((resolve, reject) => {
-    const pythonProcess = spawn("python", [scriptPath, inputPath, outputPath]);
+    const pythonExecutable = getPythonExecutable();
+
+    console.log("Using Python executable:", pythonExecutable);
+
+    const pythonProcess = spawn(pythonExecutable, [
+      scriptPath,
+      inputPath,
+      outputPath,
+    ]);
 
     let stdout = "";
     let stderr = "";
@@ -74,7 +94,11 @@ function runPythonScript(
     });
 
     pythonProcess.on("error", (error) => {
-      reject(error);
+      reject(
+        new Error(
+          `Failed to start Python for ${originalFileName}.\nExecutable used: ${pythonExecutable}\nError: ${error.message}`
+        )
+      );
     });
   });
 }
@@ -146,12 +170,6 @@ export async function POST(request: Request) {
       );
     }
 
-    /*
-      Vercel production filesystem rule:
-      - process.cwd() points to the deployed app directory, usually /var/task
-      - /var/task is read-only
-      - /tmp is writable, temporary, and safe for short-lived processing
-    */
     const tempDir = os.tmpdir();
 
     const scriptPath = path.join(
@@ -164,6 +182,7 @@ export async function POST(request: Request) {
     console.log("Resolved script path:", scriptPath);
     console.log("Script exists:", fsSync.existsSync(scriptPath));
     console.log("Temp directory:", tempDir);
+    console.log("Platform:", process.platform);
 
     if (!fsSync.existsSync(scriptPath)) {
       return NextResponse.json(
