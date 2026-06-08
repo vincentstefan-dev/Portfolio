@@ -171,15 +171,6 @@ export default function RemoveBgPage() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
-
-          <UpdatePopup
-      id="background-remover-warning"
-      title="Background Remover"
-      message="This tool is currently unstable in production. The original version used a Python script to remove backgrounds,
-       but Vercel does not support running that local Python process inside this Next.js route. I am replacing it with an external API version so the tool can work reliably online."
-       
-              />
-
       <video
         autoPlay
         loop
