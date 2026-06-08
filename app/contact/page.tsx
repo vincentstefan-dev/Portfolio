@@ -12,6 +12,7 @@ import { useAtomicPlayerControls } from "@/app/components/template/layout/useAto
 import { usePageTransition } from "@/app/components/template/layout/usePageTransition";
 
 import { contactRc as rc } from "./contactResponsiveConfig";
+import Image from "next/image";
 
 const CONTACT_CARTRIDGES = [
   {
@@ -188,11 +189,14 @@ export default function ContactPage() {
                   }}
                 >
                   <div className={rc.cartridgeBody}>
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className={rc.cartridgeImage}
-                    />
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={420}
+                    height={420}
+                    className={rc.cartridgeImage}
+                    priority={index === activeIndex}
+                  />
 
                     <div className={`${rc.icon} ${iconGlow}`}>
                       <span className={rc.iconInner}>{item.icon}</span>
