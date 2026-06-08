@@ -52,6 +52,13 @@ const menuItems: MenuItem[] = [
     href: "/coolstuff/theme-lab",
     gif: "/Gifs/themeviewer.gif",
   },
+  {
+    label: "JSON Thesis Dataset",
+    icon: Eye,
+    href: "/coolstuff/thesis-paper-dataset",
+    gif: "/Gifs/sdcard.gif",
+  },
+
 ];
 
 export default function CleanPage() {
