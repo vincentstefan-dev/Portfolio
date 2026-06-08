@@ -17,7 +17,7 @@ import Image from "next/image";
 const CONTACT_CARTRIDGES = [
   {
     id: "call",
-    image: "/catridges/purple.png",
+    image: "/catridges/purple.webp",
     icon: "📅",
     title: "Bookings",
     description: "Schedule a short call to discuss the project direction.",
@@ -25,7 +25,7 @@ const CONTACT_CARTRIDGES = [
   },
   {
     id: "inquiry",
-    image: "/catridges/crystal.png",
+    image: "/catridges/crystal.webp",
     icon: "📧",
     title: "Send Inquiry",
     description:
@@ -34,7 +34,7 @@ const CONTACT_CARTRIDGES = [
   },
   {
     id: "message",
-    image: "/catridges/Green.png",
+    image: "/catridges/Green.webp",
     icon: "📱",
     title: "Whatsapp",
     description: "Send a Whatsapp message if you already know what you need.",
