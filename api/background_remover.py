@@ -7,8 +7,6 @@ import re
 import zipfile
 import traceback
 
-from rembg import remove
-
 
 MAX_FILES = 3
 MAX_FILE_SIZE_MB = 4
@@ -60,15 +58,8 @@ def parse_multipart_form(headers, body):
         if "form-data" not in content_disposition:
             continue
 
-        field_name = part.get_param(
-            "name",
-            header="content-disposition",
-        )
-
-        file_name = part.get_param(
-            "filename",
-            header="content-disposition",
-        )
+        field_name = part.get_param("name", header="content-disposition")
+        file_name = part.get_param("filename", header="content-disposition")
 
         if field_name != "images" or not file_name:
             continue
@@ -88,6 +79,15 @@ def parse_multipart_form(headers, body):
 
 
 class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_json(
+            {
+                "ok": True,
+                "message": "background_remover Python function is alive"
+            },
+            200,
+        )
+
     def do_POST(self):
         try:
             content_length = self.headers.get("Content-Length")
@@ -113,6 +113,16 @@ class handler(BaseHTTPRequestHandler):
             total_size = 0
             processed_files = []
 
+            # Import rembg INSIDE the request handler
+            try:
+                from rembg import remove
+            except Exception as import_error:
+                self.send_json_error(
+                    f"Failed to import rembg: {str(import_error)}",
+                    500,
+                )
+                return
+
             for image in image_files:
                 file_name = image["file_name"]
                 mime_type = image["mime_type"]
@@ -128,10 +138,7 @@ class handler(BaseHTTPRequestHandler):
                 file_size = len(input_bytes)
 
                 if file_size == 0:
-                    self.send_json_error(
-                        f'"{file_name}" is empty.',
-                        400,
-                    )
+                    self.send_json_error(f'"{file_name}" is empty.', 400)
                     return
 
                 if file_size > MAX_FILE_SIZE_BYTES:
@@ -150,7 +157,15 @@ class handler(BaseHTTPRequestHandler):
                     )
                     return
 
-                output_bytes = remove(input_bytes)
+                try:
+                    output_bytes = remove(input_bytes)
+                except Exception as processing_error:
+                    self.send_json_error(
+                        f'Background removal failed for "{file_name}": {str(processing_error)}',
+                        500,
+                    )
+                    return
+
                 safe_base_name = get_safe_base_name(file_name)
 
                 processed_files.append(
@@ -183,11 +198,14 @@ class handler(BaseHTTPRequestHandler):
             print(traceback.format_exc())
             self.send_json_error(str(error), 500)
 
-    def send_json_error(self, message, status_code):
-        payload = json.dumps({"error": message}).encode("utf-8")
+    def send_json(self, payload, status_code):
+        response = json.dumps(payload).encode("utf-8")
 
         self.send_response(status_code)
         self.send_header("Content-Type", "application/json")
-        self.send_header("Content-Length", str(len(payload)))
+        self.send_header("Content-Length", str(len(response)))
         self.end_headers()
-        self.wfile.write(payload)
+        self.wfile.write(response)
+
+    def send_json_error(self, message, status_code):
+        self.send_json({"error": message}, status_code)
