@@ -6,7 +6,14 @@ import json
 import re
 import zipfile
 import traceback
+import os
 
+# Force rembg / model cache to use writable temp storage on Vercel
+os.environ["HOME"] = "/tmp"
+os.environ["XDG_CACHE_HOME"] = "/tmp"
+os.environ["U2NET_HOME"] = "/tmp/.u2net"
+os.environ["REMBG_HOME"] = "/tmp/.u2net"
+os.makedirs("/tmp/.u2net", exist_ok=True)
 
 MAX_FILES = 3
 MAX_FILE_SIZE_MB = 4
@@ -113,7 +120,7 @@ class handler(BaseHTTPRequestHandler):
             total_size = 0
             processed_files = []
 
-            # Import rembg INSIDE the request handler
+            # Import rembg inside request handler
             try:
                 from rembg import remove
             except Exception as import_error:
