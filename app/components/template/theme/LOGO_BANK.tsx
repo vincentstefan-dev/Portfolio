@@ -31,7 +31,7 @@ const LOGO_SIZE = `
 export const LOGO_BANK: LogoVariant[] = [
   {
     id: "default",
-    src: "/logos/default.png",
+    src: "/logos/default.webp",
     alt: "Koyote logo default",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -39,7 +39,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "8Bits",
-    src: "/logos/8BIT.png",
+    src: "/logos/8BIT.webp",
     alt: "Koyote logo 8-bit",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -47,7 +47,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "16Bits",
-    src: "/logos/16bit.png",
+    src: "/logos/16bit.webp",
     alt: "Koyote logo 16-bit",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -55,7 +55,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "alien",
-    src: "/logos/alien.png",
+    src: "/logos/alien.webp",
     alt: "Koyote logo alien",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -63,7 +63,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "bluecrt",
-    src: "/logos/bluecrt.png",
+    src: "/logos/bluecrt.webp",
     alt: "Koyote logo blue CRT",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -71,7 +71,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "frutigerclean",
-    src: "/logos/frutigerclean.png",
+    src: "/logos/frutigerclean.webp",
     alt: "Koyote logo Frutiger clean",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -79,7 +79,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "gamecube",
-    src: "/logos/gamecube.png",
+    src: "/logos/gamecube.webp",
     alt: "Koyote logo GameCube",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -87,7 +87,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "IOS",
-    src: "/logos/IOS.png",
+    src: "/logos/IOS.webp",
     alt: "Koyote logo iOS",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -95,7 +95,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "LINES",
-    src: "/logos/LINES.png",
+    src: "/logos/LINES.webp",
     alt: "Koyote logo lines",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -103,7 +103,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "liquidmetal",
-    src: "/logos/liquidmetal.png",
+    src: "/logos/liquidmetal.webp",
     alt: "Koyote logo liquid metal",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -111,7 +111,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "microsoft",
-    src: "/logos/microsoft.png",
+    src: "/logos/microsoft.webp",
     alt: "Koyote logo Microsoft style",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -119,7 +119,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "minecraft",
-    src: "/logos/minecraft.png",
+    src: "/logos/minecraft.webp",
     alt: "Koyote logo Minecraft",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -127,7 +127,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "n64",
-    src: "/logos/N64.png",
+    src: "/logos/N64.webp",
     alt: "Koyote logo N64",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -135,7 +135,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "PLASMA",
-    src: "/logos/plasma.png",
+    src: "/logos/plasma.webp",
     alt: "Koyote logo plasma",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -143,7 +143,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "polygon",
-    src: "/logos/polygon.png",
+    src: "/logos/polygon.webp",
     alt: "Koyote logo polygon",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -151,7 +151,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "purpleplasma",
-    src: "/logos/purpleplasma.png",
+    src: "/logos/purpleplasma.webp",
     alt: "Koyote logo purple plasma",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -159,7 +159,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "shineblue",
-    src: "/logos/shineblue.png",
+    src: "/logos/shineblue.webp",
     alt: "Koyote logo shine blue",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -167,7 +167,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "sleekps2",
-    src: "/logos/sleekps2.png",
+    src: "/logos/sleekps2.webp",
     alt: "Koyote logo sleek PS2",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -175,7 +175,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "voxel",
-    src: "/logos/voxel.png",
+    src: "/logos/voxel.webp",
     alt: "Koyote logo voxel",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -183,7 +183,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "web2.0",
-    src: "/logos/web2.0.png",
+    src: "/logos/web2.0.webp",
     alt: "Koyote logo web 2.0",
     className: LOGO_SIZE,
     opacity: 0.5,
@@ -191,7 +191,7 @@ export const LOGO_BANK: LogoVariant[] = [
   },
   {
     id: "whitelines",
-    src: "/logos/whitelines.png",
+    src: "/logos/whitelines.webp",
     alt: "Koyote logo white lines",
     className: LOGO_SIZE,
     opacity: 0.5,

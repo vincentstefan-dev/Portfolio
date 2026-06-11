@@ -1,15 +1,17 @@
 // reacts to mode
 "use client";
 
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useThemeMode } from "@/app/components/template/theme/ThemeProvider";
 
 import {
   backgroundThemes,
   basicTheme,
+  basicThemePool,
   basicVideos,
   randomVideos,
   pickRandom,
+  type BackgroundTheme,
 } from "@/app/components/template/theme/backgroundThemes";
 
 declare global {
@@ -23,19 +25,80 @@ type ThemedBackgroundProps = {
   onReady?: (player: any) => void;
 };
 
+const BASIC_THEME_SESSION_KEY = "koyote-basic-theme-name";
+
+function findThemeByName(
+  themes: BackgroundTheme[],
+  themeName: string | null,
+): BackgroundTheme | null {
+  if (!themeName) return null;
+
+  return themes.find((theme) => theme.name === themeName) ?? null;
+}
+
+function getOrCreateSessionTheme(
+  key: string,
+  pool: BackgroundTheme[],
+): BackgroundTheme {
+  const savedThemeName = window.sessionStorage.getItem(key);
+  const savedTheme = findThemeByName(pool, savedThemeName);
+
+  if (savedTheme) {
+    return savedTheme;
+  }
+
+  const nextTheme = pickRandom(pool);
+  window.sessionStorage.setItem(key, nextTheme.name);
+
+  return nextTheme;
+}
+
+function getOrCreateSessionVideo(key: string, videos: string[]): string {
+  const savedVideoId = window.sessionStorage.getItem(key);
+
+  if (savedVideoId && videos.includes(savedVideoId)) {
+    return savedVideoId;
+  }
+
+  const nextVideoId = pickRandom(videos);
+  window.sessionStorage.setItem(key, nextVideoId);
+
+  return nextVideoId;
+}
+
 export default function ThemedBackground({ onReady }: ThemedBackgroundProps) {
   const { siteMode } = useThemeMode();
 
   const playerContainerRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<any>(null);
 
-  const activeTheme = useMemo(() => {
-    return siteMode === "random" ? pickRandom(backgroundThemes) : basicTheme;
-  }, [siteMode]);
+  /*
+    Stable hydration-safe fallback.
+    Do not use pickRandom() here.
+  */
+  const [activeTheme, setActiveTheme] = useState<BackgroundTheme>(basicTheme);
+  const [activeVideoId, setActiveVideoId] = useState<string>(basicVideos[0]);
 
-  const activeVideoId = useMemo(() => {
-    return siteMode === "random" ? pickRandom(randomVideos) : basicVideos[0];
-  }, [siteMode]);
+  /*
+    Theme selection happens only after hydration.
+    Basic mode gets one selected random theme per browser session.
+    Random mode also gets one selected random theme per browser session.
+  */
+    useEffect(() => {
+      if (siteMode === "random") {
+        setActiveTheme(pickRandom(backgroundThemes));
+        setActiveVideoId(pickRandom(randomVideos));
+        return;
+      }
+
+      const sessionTheme = getOrCreateSessionTheme(
+        BASIC_THEME_SESSION_KEY,
+        basicThemePool,
+      );
+
+      setActiveTheme(sessionTheme);
+      setActiveVideoId(basicVideos[0]);
+    }, [siteMode]);
 
   useEffect(() => {
     let cancelled = false;
@@ -126,14 +189,17 @@ export default function ThemedBackground({ onReady }: ThemedBackgroundProps) {
         />
       </div>
 
+      {/* BASE COLOR LAYER */}
       <div
         className={`pointer-events-none absolute inset-0 transition-all duration-700 ${activeTheme.base}`}
       />
 
+      {/* MAIN GRADIENT LAYER */}
       <div
         className={`pointer-events-none absolute inset-0 transition-all duration-700 ${activeTheme.mainGradient}`}
       />
 
+      {/* EXTRA GLOW / STREAK LAYERS */}
       <div className="pointer-events-none absolute inset-0">
         <div
           className={`absolute left-0 top-0 h-40 w-full transition-all duration-700 ${activeTheme.topGlow}`}

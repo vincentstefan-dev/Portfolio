@@ -146,7 +146,6 @@ export const backgroundThemes: BackgroundTheme[] = [
     streakOne: "bg-[#38bdf8]/10",
     streakTwo: "bg-[#22d3ee]/10",
   },
-
   {
     name: "midnight-violet",
     family: "purple-violet",
@@ -231,7 +230,6 @@ export const backgroundThemes: BackgroundTheme[] = [
     streakOne: "bg-[#818cf8]/10",
     streakTwo: "bg-[#e0e7ff]/8",
   },
-
   {
     name: "toxic-lime-terminal",
     family: "green-terminal",
@@ -292,7 +290,6 @@ export const backgroundThemes: BackgroundTheme[] = [
     streakOne: "bg-[#34d399]/10",
     streakTwo: "bg-[#d1fae5]/8",
   },
-
   {
     name: "dawn",
     family: "red-magenta",
@@ -305,104 +302,6 @@ export const backgroundThemes: BackgroundTheme[] = [
     streakOne: "bg-[#33065c]/10",
     streakTwo: "bg-[#77009e]/10",
   },
-  {
-    name: "cyber-noir-red",
-    family: "red-magenta",
-    mood: "noir / red / sharp",
-    base: "bg-[#7f1d1d]/12",
-    mainGradient:
-      "bg-gradient-to-b from-[#030712]/97 via-[#450a0a]/60 to-[#ef4444]/16",
-    topGlow: "bg-gradient-to-b from-[#f87171]/24 to-transparent",
-    midBand: "bg-white/4",
-    streakOne: "bg-[#ef4444]/10",
-    streakTwo: "bg-[#fb7185]/8",
-  },
-  {
-    name: "rose-gold-noir",
-    family: "red-magenta",
-    mood: "luxury / rose / warm",
-    base: "bg-[#9f1239]/10",
-    mainGradient:
-      "bg-gradient-to-b from-[#12040b]/97 via-[#881337]/58 to-[#fda4af]/16",
-    topGlow: "bg-gradient-to-b from-[#fb7185]/24 to-transparent",
-    midBand: "bg-white/5",
-    streakOne: "bg-[#fda4af]/9",
-    streakTwo: "bg-[#f43f5e]/8",
-  },
-  {
-    name: "velvet-rose",
-    family: "red-magenta",
-    mood: "velvet / romantic / soft",
-    base: "bg-[#881337]/12",
-    mainGradient:
-      "bg-gradient-to-b from-[#15050b]/97 via-[#be123c]/55 to-[#fda4af]/16",
-    topGlow: "bg-gradient-to-b from-[#fda4af]/22 to-transparent",
-    midBand: "bg-white/5",
-    streakOne: "bg-[#fb7185]/10",
-    streakTwo: "bg-[#ffe4e6]/8",
-  },
-  {
-    name: "crimson-night",
-    family: "red-magenta",
-    mood: "dark / crimson / cinematic",
-    base: "bg-[#450a0a]/16",
-    mainGradient:
-      "bg-gradient-to-b from-[#090202]/97 via-[#991b1b]/56 to-[#fca5a5]/14",
-    topGlow: "bg-gradient-to-b from-[#f87171]/22 to-transparent",
-    midBand: "bg-white/5",
-    streakOne: "bg-[#ef4444]/10",
-    streakTwo: "bg-[#fecaca]/8",
-  },
-
-  {
-    name: "amber-crt",
-    family: "amber-orange",
-    mood: "crt / amber / retro",
-    base: "bg-[#451a03]/18",
-    mainGradient:
-      "bg-gradient-to-b from-[#120a02]/96 via-[#78350f]/60 to-[#f59e0b]/18",
-    topGlow: "bg-gradient-to-b from-[#fbbf24]/28 to-transparent",
-    midBand: "bg-white/5",
-    streakOne: "bg-[#fcd34d]/10",
-    streakTwo: "bg-[#fb923c]/10",
-  },
-  {
-    name: "plasma-orange",
-    family: "amber-orange",
-    mood: "orange / plasma / energetic",
-    base: "bg-[#7c2d12]/14",
-    mainGradient:
-      "bg-gradient-to-b from-[#140a04]/97 via-[#c2410c]/58 to-[#fb923c]/16",
-    topGlow: "bg-gradient-to-b from-[#fdba74]/24 to-transparent",
-    midBand: "bg-white/5",
-    streakOne: "bg-[#fb923c]/10",
-    streakTwo: "bg-[#fed7aa]/8",
-  },
-  {
-    name: "solar-flare",
-    family: "amber-orange",
-    mood: "solar / bright / intense",
-    base: "bg-[#f97316]/10",
-    mainGradient:
-      "bg-gradient-to-b from-[#140902]/97 via-[#ea580c]/55 to-[#fde047]/16",
-    topGlow: "bg-gradient-to-b from-[#fde68a]/22 to-transparent",
-    midBand: "bg-white/6",
-    streakOne: "bg-[#fb923c]/10",
-    streakTwo: "bg-[#fde047]/10",
-  },
-  {
-    name: "digital-sand",
-    family: "amber-orange",
-    mood: "sand / editorial / warm",
-    base: "bg-[#78350f]/12",
-    mainGradient:
-      "bg-gradient-to-b from-[#120b04]/97 via-[#a16207]/54 to-[#fde68a]/16",
-    topGlow: "bg-gradient-to-b from-[#fcd34d]/22 to-transparent",
-    midBand: "bg-white/6",
-    streakOne: "bg-[#f59e0b]/10",
-    streakTwo: "bg-[#fef3c7]/8",
-  },
-
   {
     name: "monochrome-graphite",
     family: "radical-neutral",
@@ -495,19 +394,6 @@ export const backgroundThemes: BackgroundTheme[] = [
     streakTwo: "bg-slate-200/6",
   },
   {
-    name: "infrared-thermal",
-    family: "radical-experimental",
-    mood: "hot / synthetic / alien",
-    radical: true,
-    base: "bg-[#3b0a0a]/18",
-    mainGradient:
-      "bg-gradient-to-b from-[#100404]/98 via-[#7c2d12]/65 to-[#fde047]/20",
-    topGlow: "bg-gradient-to-b from-[#fb7185]/18 to-transparent",
-    midBand: "bg-white/6",
-    streakOne: "bg-[#f97316]/12",
-    streakTwo: "bg-[#fde047]/10",
-  },
-  {
     name: "cloud-fog",
     family: "radical-soft",
     mood: "misty / atmospheric / airy",
@@ -520,22 +406,29 @@ export const backgroundThemes: BackgroundTheme[] = [
     streakOne: "bg-slate-100/12",
     streakTwo: "bg-zinc-200/10",
   },
-  {
-    name: "desert-copper",
-    family: "radical-warm",
-    mood: "earthy / dry / cinematic",
-    radical: true,
-    base: "bg-[#7c4a2d]/14",
-    mainGradient:
-      "bg-gradient-to-b from-[#18100b]/97 via-[#7c4a2d]/48 to-[#d4a373]/24",
-    topGlow: "bg-gradient-to-b from-[#e9c46a]/14 to-transparent",
-    midBand: "bg-white/7",
-    streakOne: "bg-[#d4a373]/10",
-    streakTwo: "bg-[#f4e1c1]/8",
-  },
 ];
 
-export const basicTheme = backgroundThemes[0];
+const basicThemeNames = new Set([
+  "indigo-blue-gameboy",
+  "dark-minimal",
+  "soft-aero-silver",
+  "emerald-depth",
+  "monochrome-graphite",
+  "white-glass",
+  "brutalist-black-white",
+  "muted-corporate-slate",
+  "cloud-fog",
+]);
+
+export const basicThemePool: BackgroundTheme[] = backgroundThemes.filter((theme) =>
+  basicThemeNames.has(theme.name)
+);
+
+// Stable fallback only.
+// Do not use pickRandom() here.
+export const basicTheme = backgroundThemes.find(
+  (theme) => theme.name === "indigo-blue-gameboy"
+) ?? backgroundThemes[0];
 
 export const basicVideos = ["z6_Qju7FJEA"];
 
