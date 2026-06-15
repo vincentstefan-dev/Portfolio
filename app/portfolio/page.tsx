@@ -4,6 +4,8 @@ import PortfolioHeroSection from "@/app/components/sections/Portfolio/PortfolioH
 import PortfolioProjectsSection from "@/app/components/sections/Portfolio/PortfolioProjectsSection";
 import PortfolioNavSection from "@/app/components/sections/Portfolio/PortfolioNavSection";
 import PortfolioSideNav from "@/app/components/sections/Portfolio/PortfolioSideNav";
+import PortfolioExplanation from "@/app/components/sections/Portfolio/PortfolioExplanation";
+import PortfolioPaletteSection from "@/app/components/sections/Portfolio/PortfolioPaletteSection";
 
 const portfolioItems = [
   {
@@ -44,7 +46,12 @@ export default function PortfolioPage() {
 
         <PortfolioProjectsSection />
 
+        <PortfolioExplanation />
+
+        <PortfolioPaletteSection />
+
         <PortfolioNavSection siteMode="basic" items={portfolioItems} />
+
       </div>
     </main>
   );
