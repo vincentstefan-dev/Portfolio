@@ -22,7 +22,7 @@ export default function JunixIdentitySection() {
           {/* Title */}
           <div>
             <p className="mb-8 text-xs uppercase tracking-[0.55em] text-cyan-100/45">
-              Project Identity
+              Project 001
             </p>
 
             <h1 className="max-w-[760px] overflow-visible text-left text-[clamp(2.7rem,4.25vw,5rem)] font-black leading-[1.03] tracking-[-0.055em]">

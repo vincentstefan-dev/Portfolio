@@ -3,6 +3,7 @@
 const palette = [
   {
     name: "Black",
+    displayName: "Black",
     hex: "#05070A",
     role: "Base background",
     className: "bg-[#05070A]",
@@ -10,6 +11,7 @@ const palette = [
   },
   {
     name: "Charcoal",
+    displayName: "Charcoal",
     hex: "#070A0D",
     role: "Depth layer",
     className: "bg-[#070A0D]",
@@ -17,6 +19,7 @@ const palette = [
   },
   {
     name: "Ice White",
+    displayName: "Ice White",
     hex: "#F3F8FF",
     role: "Main text",
     className: "bg-[#F3F8FF]",
@@ -24,6 +27,7 @@ const palette = [
   },
   {
     name: "Cyan",
+    displayName: "Cyan",
     hex: "#67E8F9",
     role: "Primary accent",
     className: "bg-[#67E8F9]",
@@ -31,6 +35,7 @@ const palette = [
   },
   {
     name: "Cyan Glow",
+    displayName: "Cyan Glow",
     hex: "#22D3EE",
     role: "Glow / active state",
     className: "bg-[#22D3EE]",
@@ -38,6 +43,13 @@ const palette = [
   },
   {
     name: "Electric Blue",
+    displayName: (
+      <>
+        Electric
+        <br />
+        Blue
+      </>
+    ),
     hex: "#2563EB",
     role: "Orbit shadow",
     className: "bg-[#2563EB]",
@@ -75,15 +87,8 @@ export default function PortfolioPaletteSection() {
 
           <h2 className="max-w-4xl text-[clamp(3rem,8vw,7.4rem)] font-black uppercase leading-[0.86] tracking-[-0.08em] text-[#F3F8FF] drop-shadow-[0_0_26px_rgba(34,211,238,0.36)]">
             Color
-            <br />
             Palette.
           </h2>
-
-          <p className="mt-7 max-w-xl text-base leading-7 text-white/70 sm:text-lg">
-            A reduced blue and white identity system for the portfolio interface:
-            dark base, ice-white typography, cyan interaction states, and blue
-            atmospheric depth.
-          </p>
         </div>
 
         {/* PALETTE SHELF */}
@@ -100,7 +105,7 @@ export default function PortfolioPaletteSection() {
                 }}
               >
                 <div
-                  className={`relative flex h-[360px] w-full origin-bottom flex-col justify-between overflow-hidden border border-white/10 px-5 py-6 shadow-[0_18px_60px_rgba(0,0,0,0.42)] transition duration-500 ease-out group-hover:z-30 group-hover:-translate-y-10 group-hover:scale-[1.045] group-hover:rotate-[-1.5deg] group-hover:shadow-[0_0_34px_rgba(34,211,238,0.4),0_30px_80px_rgba(0,0,0,0.65)] sm:h-[390px] lg:h-[430px] ${color.className} ${color.textClass}`}
+                  className={`relative flex h-[360px] w-full origin-bottom flex-col justify-between overflow-hidden border border-white/10 px-4 py-6 shadow-[0_18px_60px_rgba(0,0,0,0.42)] transition duration-500 ease-out group-hover:z-30 group-hover:-translate-y-10 group-hover:scale-[1.045] group-hover:rotate-[-1.5deg] group-hover:shadow-[0_0_34px_rgba(34,211,238,0.4),0_30px_80px_rgba(0,0,0,0.65)] sm:h-[390px] sm:px-5 lg:h-[430px] lg:px-5 ${color.className} ${color.textClass}`}
                 >
                   {/* BOOK SPINE GLOW */}
                   <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
@@ -115,18 +120,18 @@ export default function PortfolioPaletteSection() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
-                    <span className="origin-top-right rotate-90 font-mono text-[10px] uppercase tracking-[0.28em] opacity-70">
+                    <span className="origin-top-right rotate-90 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.22em] opacity-70">
                       {color.hex}
                     </span>
                   </div>
 
                   {/* LARGE TYPE */}
-                  <div className="relative z-10">
-                    <h3 className="max-w-[8rem] text-4xl font-black uppercase leading-[0.85] tracking-[-0.08em] sm:text-5xl">
-                      {color.name}
+                  <div className="relative z-10 min-w-0 overflow-hidden">
+                    <h3 className="max-w-full text-[clamp(1rem,1.45vw,1.75rem)] font-black uppercase leading-[0.9] tracking-[-0.055em]">
+                      {color.displayName}
                     </h3>
 
-                    <p className="mt-5 max-w-[11rem] font-mono text-[10px] uppercase tracking-[0.24em] opacity-70">
+                    <p className="mt-5 max-w-full whitespace-nowrap font-mono text-[9px] uppercase leading-relaxed tracking-[0.2em] opacity-70">
                       {color.role}
                     </p>
                   </div>
