@@ -69,10 +69,21 @@ export default function PortfolioPaletteSection() {
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-12rem)] max-w-7xl flex-col justify-center">
         {/* HEADER */}
         <div className="mb-16 max-w-3xl">
+          <p className="mb-5 font-mono text-xs uppercase tracking-[0.42em] text-cyan-200/80">
+            Visual System
+          </p>
 
-          <h1 className="max-w-4xl text-[clamp(3rem,8vw,7.4rem)] font-black uppercase leading-[0.86] tracking-[-0.08em] text-[#F3F8FF] drop-shadow-[0_0_26px_rgba(34,211,238,0.36)]">
-            Color Palette.
-          </h1>
+          <h2 className="max-w-4xl text-[clamp(3rem,8vw,7.4rem)] font-black uppercase leading-[0.86] tracking-[-0.08em] text-[#F3F8FF] drop-shadow-[0_0_26px_rgba(34,211,238,0.36)]">
+            Color
+            <br />
+            Palette.
+          </h2>
+
+          <p className="mt-7 max-w-xl text-base leading-7 text-white/70 sm:text-lg">
+            A reduced blue and white identity system for the portfolio interface:
+            dark base, ice-white typography, cyan interaction states, and blue
+            atmospheric depth.
+          </p>
         </div>
 
         {/* PALETTE SHELF */}
