@@ -35,11 +35,6 @@ export default function NeonHero() {
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.05)_1px,transparent_1px)] bg-[size:44px_44px] opacity-[0.18]" />
 
-        {/* ORBIT LINES */}
-        <div className="absolute left-[27%] top-[18%] h-[48rem] w-[58rem] rotate-[-13deg] rounded-[50%] border border-cyan-400/20 shadow-[0_0_60px_rgba(37,99,235,0.15)]" />
-        <div className="absolute left-[24%] top-[35%] h-[34rem] w-[58rem] rotate-[-9deg] rounded-[50%] border border-blue-500/20" />
-        <div className="absolute left-[34%] top-[45%] h-[36rem] w-[55rem] rotate-[18deg] rounded-[50%] border border-cyan-500/10" />
-
         {/* GLOW POINTS */}
         <GlowDot className="left-[34%] top-[23%]" />
         <GlowDot className="left-[28%] top-[64%]" />
@@ -64,10 +59,10 @@ export default function NeonHero() {
           {/* LEFT TEXT BLOCK */}
           <div className="w-full max-w-[760px] text-left">
             <h1 className="neon-sign font-mono text-[72px] font-medium uppercase leading-[0.88] tracking-[-0.08em] text-cyan-300 sm:text-[100px] md:text-[118px] lg:text-[136px]">
-              <span className="neon-word neon-word-1 block">Strategy</span>
-              <span className="neon-word neon-word-2 block">Code</span>
-              <span className="neon-word neon-word-3 block">Brand</span>
-              <span className="neon-word neon-word-4 block">Systems</span>
+              <span className="neon-word neon-word-1 block">Portfolio:</span>
+              <span className="neon-word neon-word-2 block">Projects</span>
+              <span className="neon-word neon-word-3 block">Brands</span>
+              <span className="neon-word neon-word-4 block">Codes</span>
             </h1>
 
             <div className="mt-8 flex items-start gap-6">
@@ -78,8 +73,8 @@ export default function NeonHero() {
               </div>
 
               <p className="max-w-md text-base leading-7 text-white/85 sm:text-lg">
-                Creative developer and strategist building digital experiences,
-                brand systems, and expressive interfaces.
+              Dive into my professional projects, see how they are built, exectured and updated. 
+              Hopefully they can give you a good idea of what i´m capable of and the kind of work i do!
               </p>
             </div>
 
@@ -88,7 +83,7 @@ export default function NeonHero() {
                 href="#portfolio-index"
                 className="inline-flex h-14 items-center justify-center gap-5 rounded-full border border-cyan-300 bg-cyan-300/5 px-9 text-sm font-bold uppercase tracking-[0.22em] text-cyan-200 shadow-[0_0_16px_rgba(34,211,238,0.85),inset_0_0_18px_rgba(34,211,238,0.12)] transition hover:bg-cyan-300/15"
               >
-                View Work
+                View all projects
                 <ArrowUpRight className="h-5 w-5" />
               </Link>
 

@@ -3,7 +3,6 @@ import ThemedBackground from "@/app/components/template/theme/ThemedBackground";
 import PortfolioHeroSection from "@/app/components/sections/Portfolio/PortfolioHeroSection";
 import PortfolioProjectsSection from "@/app/components/sections/Portfolio/PortfolioProjectsSection";
 import PortfolioNavSection from "@/app/components/sections/Portfolio/PortfolioNavSection";
-import PortfolioSideNav from "@/app/components/sections/Portfolio/PortfolioSideNav";
 import PortfolioExplanation from "@/app/components/sections/Portfolio/PortfolioExplanation";
 import PortfolioPaletteSection from "@/app/components/sections/Portfolio/PortfolioPaletteSection";
 import PortfolioProjectDescription from "@/app/components/sections/Portfolio/PortfolioProjectDescription";
@@ -49,8 +48,6 @@ export default function PortfolioPage() {
         
 
         <PortfolioHeroSection />
-
-        <PortfolioProjectsSection />
 
         <PortfolioSelectedProjectsSection />
     

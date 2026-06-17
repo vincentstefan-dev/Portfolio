@@ -20,39 +20,39 @@ const projects: ProjectCard[] = [
     title: "Koyote",
     category: "Brand Identity • Web Experience",
     href: "/portfolio",
-    image: "/logos/8BIT.webp",
+    image: "/3TO6/KOYOTEFINAL.png",
     imagePosition: "center",
   },
   {
     number: "02",
-    title: "Sacred Human Experience",
+    title: "SHE",
     category: "Brand Identity • Web Experience",
     href: "/portfolio/SHE",
-    image: "/Gifs/babyfinal.gif",
+    image:  "/3TO6/SHE.png",
     imagePosition: "center",
   },
   {
     number: "03",
-    title: "Antonia Schindler",
+    title: "Pixelate",
     category: "Client Website • Film Portfolio",
     href: "/portfolio/antonia",
-    image: "/Icons/angel.png",
+    image: "/3TO6/PIXEL.png",
     imagePosition: "center",
   },
   {
     number: "04",
-    title: "Junix",
-    category: "Interface Design • Web System",
+    title: "Astronaut",
+    category: "Comic",
     href: "/portfolio/junix",
-    image: "/catridges/bronce.png",
+    image: "/3TO6/astronaut.png",
     imagePosition: "center",
   },
   {
     number: "05",
-    title: "Theme Lab",
-    category: "Experimental UI • Visual System",
+    title: "The concept of I",
+    category: "Vlog",
     href: "/theme-lab",
-    image: "/catridges/bronce.png",
+    image: "/3TO6/babyfinal.gif",
     imagePosition: "center",
   },
 ];
@@ -81,26 +81,11 @@ export default function PortfolioSelectedProjectsSection() {
     <section className="relative min-h-screen overflow-hidden px-6 py-24 text-white sm:px-10 lg:px-16">
       {/* Background atmosphere */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-px bg-cyan-100/10" />
-
         <div className="absolute left-1/2 top-[45%] h-[760px] w-[1050px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[150px]" />
-
-        <div className="absolute left-1/2 top-[48%] h-[520px] w-[850px] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-cyan-300/10" />
-        <div className="absolute left-1/2 top-[48%] h-[480px] w-[880px] -translate-x-1/2 -translate-y-1/2 rotate-[13deg] rounded-[50%] border border-cyan-300/10" />
-        <div className="absolute left-1/2 top-[48%] h-[420px] w-[760px] -translate-x-1/2 -translate-y-1/2 rotate-[-17deg] rounded-[50%] border border-cyan-300/10" />
 
         <div className="absolute left-[15%] top-[42%] h-1 w-1 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(103,232,249,1)]" />
         <div className="absolute right-[20%] top-[31%] h-1 w-1 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(103,232,249,1)]" />
         <div className="absolute left-[52%] bottom-[23%] h-1.5 w-1.5 rounded-full bg-cyan-200 shadow-[0_0_22px_rgba(103,232,249,1)]" />
-      </div>
-
-      {/* Left rail */}
-      <div className="pointer-events-none absolute left-4 top-0 hidden h-full w-px bg-cyan-200/10 md:block">
-        <div className="absolute left-[-3px] top-[22%] h-1.5 w-1.5 rounded-full bg-cyan-200 shadow-[0_0_16px_rgba(103,232,249,0.9)]" />
-
-        <div className="absolute left-[-11px] top-[26%] flex h-6 w-6 items-center justify-center rounded-full border border-cyan-100/10 bg-black/50 text-[10px] font-bold text-white/70">
-          N
-        </div>
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-12rem)] max-w-7xl flex-col justify-center">
@@ -177,17 +162,19 @@ export default function PortfolioSelectedProjectsSection() {
                   index === 2 ? "lg:rotate-[2.5deg]" : "",
                 ].join(" ")}
               >
-                <Image
-                  src={project.image}
-                  alt={`${project.title} project preview`}
-                  fill
-                  priority={index === 1}
-                  className="object-cover opacity-95 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
-                  style={{
-                    objectPosition: project.imagePosition,
-                  }}
-                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 33vw"
-                />
+                <div className="absolute inset-0 flex items-center justify-center p-8">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} project preview`}
+                    fill
+                    priority={index === 1}
+                    className="object-contain opacity-95 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                    style={{
+                      objectPosition: project.imagePosition,
+                    }}
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 33vw"
+                  />
+                </div>
 
                 {/* Dark readability overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/35 to-transparent" />

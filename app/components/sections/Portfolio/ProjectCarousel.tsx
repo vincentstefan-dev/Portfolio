@@ -15,27 +15,27 @@ type CarouselItem = {
 
 const carouselItems: CarouselItem[] = [
   {
-    title: "Project 1",
-    subtitle: "Placeholder 1",
-    tag: "Performance",
-    value: "92%",
-    image: "Gifs//3e7693980ef17ca039af9a94e64cab69.gif", 
+    title: "Koyote",
+    subtitle: "Personal brand project",
+    tag: "Completion:",
+    value: "75%",
+    image: "/logos/16bit.webp",
     href: "#portfolio-index",
   },
   {
-    title: "Project 2",
-    subtitle: "Place holder 2",
-    tag: "Visual System",
-    value: "01",
-    image: "Gifs/9f2f9432520dfa29ce6dade01547608e.gif", 
+    title: "Sacred Human Experience",
+    subtitle: "Health and wellness brand",
+    tag: "Visual System and marketing strategy",
+    value: "Executed",
+    image: "/Icons/SHE.png",
     href: "#portfolio-index",
   },
   {
-    title: "Project 3",
-    subtitle: "Placeholder 3",
-    tag: "Interface",
-    value: "04",
-    image: "Gifs/7b784b2461882806df54b8c800f40438.gif",
+    title: "Pixelate",
+    subtitle: "Image modifcator app",
+    tag: "Application",
+    value: "Completed",
+    image: "/Icons/frog.png",
     href: "#portfolio-index",
   },
 ];
@@ -174,7 +174,7 @@ function CarouselCard({
           <img
             src={item.image}
             alt={item.title}
-            className="h-full w-full object-cover opacity-90 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
+            className="h-full w-full object-contain p-4 opacity-90 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
           />
 
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(34,211,238,0.18),transparent_48%),linear-gradient(to_bottom,transparent,rgba(4,23,47,0.42))]" />
