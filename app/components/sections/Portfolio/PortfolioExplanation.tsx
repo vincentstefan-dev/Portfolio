@@ -25,17 +25,26 @@ export default function JunixIdentitySection() {
               Project 001
             </p>
 
-            <h1 className="max-w-[760px] overflow-visible text-left text-[clamp(2.7rem,4.25vw,5rem)] font-black leading-[1.03] tracking-[-0.055em]">
-              <span className="block overflow-visible pb-[0.12em] bg-gradient-to-r from-white via-blue-100 to-violet-300 bg-clip-text text-transparent drop-shadow-[0_0_24px_rgba(140,180,255,0.35)]">
-                The making of {" "}
-            <span className="animate-rainbow-text font-semibold">Koyote</span>,
+            <h1 className="max-w-[860px] overflow-visible text-left text-[clamp(2.575rem,calc(4.25vw-2px),4.875rem)] font-black leading-[1.22] tracking-[-0.055em]">
+              <span className="block overflow-visible py-[0.08em] drop-shadow-[0_0_24px_rgba(140,180,255,0.35)]">
+                <span className="bg-gradient-to-r from-white via-blue-100 to-violet-300 bg-clip-text text-transparent">
+                  The making of{" "}
+                </span>
+
+                <span className="inline-block overflow-visible animate-rainbow-text pb-[0.14em] font-semibold leading-[1.2]">
+                  Koyote
+                </span>
+
+                <span className="bg-gradient-to-r from-white via-blue-100 to-violet-300 bg-clip-text text-transparent">
+                  ,
+                </span>
               </span>
 
-              <span className="block overflow-visible pb-[0.12em] bg-gradient-to-r from-white via-blue-100 to-slate-200 bg-clip-text text-transparent drop-shadow-[0_0_24px_rgba(140,180,255,0.28)]">
+              <span className="block overflow-visible bg-gradient-to-r from-white via-blue-100 to-slate-200 bg-clip-text py-[0.08em] text-transparent drop-shadow-[0_0_24px_rgba(140,180,255,0.28)]">
                 From Concept to
               </span>
 
-              <span className="block overflow-visible pb-[0.12em] bg-gradient-to-r from-blue-200 via-white to-violet-300 bg-clip-text text-transparent drop-shadow-[0_0_28px_rgba(150,180,255,0.45)]">
+              <span className="block overflow-visible bg-gradient-to-r from-blue-200 via-white to-violet-300 bg-clip-text py-[0.08em] text-transparent drop-shadow-[0_0_28px_rgba(150,180,255,0.45)]">
                 Identity.
               </span>
             </h1>

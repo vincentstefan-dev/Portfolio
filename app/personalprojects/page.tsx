@@ -1,51 +1,105 @@
 "use client";
 
-/* layout for 404*/
-import { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { House } from "lucide-react";
+import { House, LoaderPinwheel, FileScan, Eye } from "lucide-react";
+import { Space_Mono } from "next/font/google";
 
-import NeonStarIntro from "../components/NeonStarIntro";
-import { NOT_FOUND_BANK } from "@/app/components/template/theme/notfoundwordbank";
+import { useThemeMode } from "@/app/components/template/theme/ThemeProvider";
+import ThemedBackground from "@/app/components/template/theme/ThemedBackground";
+import ThemedNavIcon from "@/app/components/template/theme/ThemedNavIcon";
+import AtomicPlayer from "@/app/components/media/atomicplayer";
+import SiteSignature from "@/app/components/hero/SiteSignature";
+
+import { useAtomicPlayerControls } from "@/app/components/template/layout/useAtomicPlayerControls";
+import { useThemeGlow } from "@/app/components/template/layout/useThemeGlow";
+
+import KoyotePageTransition from "@/app/components/Animations/Koyotestars/page";
+
 import { personalProjectsRc as rc } from "./personalProjectsResponsiveConfig";
 
-export default function Page() {
-  const [phrase, setPhrase] = useState("");
+const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
 
-  useEffect(() => {
-    setPhrase(NOT_FOUND_BANK[0]);
+type MenuItem = {
+  label: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  gif: string;
+};
 
-    const interval = window.setInterval(() => {
-      setPhrase(
-        NOT_FOUND_BANK[Math.floor(Math.random() * NOT_FOUND_BANK.length)]
-      );
-    }, 5000);
+const menuItems: MenuItem[] = [
+  {
+    label: "Home",
+    icon: House,
+    href: "/",
+    gif: "/Gifs/mystar.gif",
+  },
+      {
+    label: "The Concept of I",
+    icon: Eye,
+    href: "/personalprojects/blog",
+    gif: "/Gifs/babyfinal.gif",
+  },
+  {
+    label: "Astronaut",
+    icon: Eye,
+    href: "/coolstuff/Astronaut",
+    gif: "/Images/Astronaut/main.png",
+  },
+];
 
-    return () => clearInterval(interval);
-  }, []);
+export default function PersonalProjectsPage() {
+  const { siteMode } = useThemeMode();
+
+  const {
+    playerRef,
+    isPlaying,
+    setIsPlaying,
+    isMuted,
+    setIsMuted,
+    volume,
+    setVolume,
+    handlePlayerReady,
+  } = useAtomicPlayerControls();
+
+  const glow = useThemeGlow(siteMode);
 
   return (
     <main className={rc.main}>
-      <NeonStarIntro />
+      <ThemedBackground onReady={handlePlayerReady} />
 
-      {/* BACK BUTTON */}
-      <div className={rc.backButtonWrap}>
-        <Link href="/" aria-label="Return to portfolio" className={rc.backButton}>
-          <House className={rc.backIcon} strokeWidth={1.5} />
-        </Link>
-      </div>
+      <AtomicPlayer
+        playerRef={playerRef}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        isMuted={isMuted}
+        setIsMuted={setIsMuted}
+        volume={volume}
+        setVolume={setVolume}
+      />
 
-      {/* CENTER 404 VISUAL */}
-      <div className={rc.imageWrap}>
-        <img src="/Icons/404.png" alt="404" className={rc.image} />
-      </div>
+      <KoyotePageTransition>
+        <div className={rc.centerWrap}>
+          <nav aria-label="Page navigation" className={rc.nav}>
+            <div className={rc.grid}>
+              {menuItems.map((item) => (
+                <Link key={item.href} href={item.href} className={rc.link}>
+                  <ThemedNavIcon
+                    label={item.label}
+                    icon={item.icon}
+                    gif={item.gif}
+                    glow={glow}
+                  />
 
-      {/* TEXT BELOW IMAGE */}
-      <div className={rc.textWrap}>
-        <div className={rc.textBlock}>
-          <p className={rc.phrase}>{phrase || "This page drifted away"}</p>
+                  <span className={rc.label}>{item.label}</span>
+                </Link>
+              ))}
+            </div>
+          </nav>
         </div>
-      </div>
+
+        <SiteSignature fontClass={spaceMono.className} />
+      </KoyotePageTransition>
     </main>
   );
 }

@@ -58,6 +58,12 @@ const menuItems: MenuItem[] = [
     href: "/coolstuff/thesis-paper-dataset",
     gif: "/Gifs/sdcard.gif",
   },
+    {
+    label: "Astronaut",
+    icon: Eye,
+    href: "/coolstuff/Astronaut",
+    gif: "/catridges/bronce.png",
+  },
 
 ];
 

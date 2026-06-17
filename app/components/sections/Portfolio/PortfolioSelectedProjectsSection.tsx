@@ -11,6 +11,7 @@ type ProjectCard = {
   category: string;
   href: string;
   image: string;
+  imagePosition: string;
 };
 
 const projects: ProjectCard[] = [
@@ -19,21 +20,24 @@ const projects: ProjectCard[] = [
     title: "Koyote",
     category: "Brand Identity • Web Experience",
     href: "/portfolio",
-    image: "/catridges/bronce.png",
+    image: "/logos/8BIT.webp",
+    imagePosition: "center",
   },
   {
     number: "02",
     title: "Sacred Human Experience",
     category: "Brand Identity • Web Experience",
     href: "/portfolio/SHE",
-    image: "/catridges/bronce.png",
+    image: "/Gifs/babyfinal.gif",
+    imagePosition: "center",
   },
   {
     number: "03",
     title: "Antonia Schindler",
     category: "Client Website • Film Portfolio",
     href: "/portfolio/antonia",
-    image: "/catridges/bronce.png",
+    image: "/Icons/angel.png",
+    imagePosition: "center",
   },
   {
     number: "04",
@@ -41,6 +45,7 @@ const projects: ProjectCard[] = [
     category: "Interface Design • Web System",
     href: "/portfolio/junix",
     image: "/catridges/bronce.png",
+    imagePosition: "center",
   },
   {
     number: "05",
@@ -48,6 +53,7 @@ const projects: ProjectCard[] = [
     category: "Experimental UI • Visual System",
     href: "/theme-lab",
     image: "/catridges/bronce.png",
+    imagePosition: "center",
   },
 ];
 
@@ -91,6 +97,7 @@ export default function PortfolioSelectedProjectsSection() {
       {/* Left rail */}
       <div className="pointer-events-none absolute left-4 top-0 hidden h-full w-px bg-cyan-200/10 md:block">
         <div className="absolute left-[-3px] top-[22%] h-1.5 w-1.5 rounded-full bg-cyan-200 shadow-[0_0_16px_rgba(103,232,249,0.9)]" />
+
         <div className="absolute left-[-11px] top-[26%] flex h-6 w-6 items-center justify-center rounded-full border border-cyan-100/10 bg-black/50 text-[10px] font-bold text-white/70">
           N
         </div>
@@ -108,13 +115,13 @@ export default function PortfolioSelectedProjectsSection() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm font-medium leading-relaxed text-slate-100/80 sm:text-base">
-            Dive into case studies that blend strategy, code, and brand.
+            Check some of the coolest projects i´ve worked!
           </p>
         </div>
 
         {/* Cards area */}
         <div className="relative mx-auto w-full max-w-6xl">
-          {/* Side arrows */}
+          {/* Desktop arrows */}
           <button
             type="button"
             aria-label="Previous project"
@@ -139,7 +146,7 @@ export default function PortfolioSelectedProjectsSection() {
               type="button"
               aria-label="Previous project"
               onClick={goToPreviousProject}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/40 bg-[#07111f]/60 text-cyan-200 shadow-[0_0_25px_rgba(34,211,238,0.2)] backdrop-blur-md"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/40 bg-[#07111f]/60 text-cyan-200 shadow-[0_0_25px_rgba(34,211,238,0.2)] backdrop-blur-md transition hover:border-cyan-200 hover:bg-cyan-300/10"
             >
               <ArrowLeft className="h-5 w-5" />
             </button>
@@ -148,21 +155,23 @@ export default function PortfolioSelectedProjectsSection() {
               type="button"
               aria-label="Next project"
               onClick={goToNextProject}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/40 bg-[#07111f]/60 text-cyan-200 shadow-[0_0_25px_rgba(34,211,238,0.2)] backdrop-blur-md"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/40 bg-[#07111f]/60 text-cyan-200 shadow-[0_0_25px_rgba(34,211,238,0.2)] backdrop-blur-md transition hover:border-cyan-200 hover:bg-cyan-300/10"
             >
               <ArrowRight className="h-5 w-5" />
             </button>
           </div>
 
+          {/* Project cards */}
           <div className="grid gap-7 lg:grid-cols-3">
             {visibleProjects.map((project, index) => (
               <Link
                 key={`${project.number}-${project.title}`}
                 href={project.href}
                 className={[
-                  "group relative block h-[480px] overflow-hidden rounded-[1.65rem]",
+                  "group relative block h-[460px] overflow-hidden rounded-[1.65rem]",
                   "border border-cyan-300/30 bg-[#07111f] shadow-[0_0_42px_rgba(34,211,238,0.18)]",
                   "transition duration-300 hover:-translate-y-2 hover:border-cyan-200/70 hover:shadow-[0_0_70px_rgba(34,211,238,0.35)]",
+                  "sm:h-[500px] lg:h-[480px]",
                   index === 0 ? "lg:rotate-[-2.5deg]" : "",
                   index === 1 ? "lg:-translate-y-3" : "",
                   index === 2 ? "lg:rotate-[2.5deg]" : "",
@@ -173,26 +182,33 @@ export default function PortfolioSelectedProjectsSection() {
                   alt={`${project.title} project preview`}
                   fill
                   priority={index === 1}
-                  className="object-cover opacity-90 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
-                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className="object-cover opacity-95 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                  style={{
+                    objectPosition: project.imagePosition,
+                  }}
+                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 33vw"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/70" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(103,232,249,0.18),transparent_45%)]" />
+                {/* Dark readability overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/35 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/80" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(103,232,249,0.16),transparent_45%)]" />
 
+                {/* Cyan border */}
                 <div className="pointer-events-none absolute inset-0 rounded-[1.65rem] border border-cyan-200/20" />
 
-                <div className="absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-cyan-100/25 bg-black/55 text-[0.65rem] font-black text-cyan-100 shadow-[0_0_20px_rgba(34,211,238,0.55)]">
+                {/* Project number */}
+                <div className="absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-cyan-100/25 bg-black/60 text-[0.65rem] font-black text-cyan-100 shadow-[0_0_20px_rgba(34,211,238,0.55)]">
                   {project.number}
                 </div>
 
+                {/* Text content */}
                 <div className="absolute bottom-0 left-0 right-0 p-7">
                   <h3 className="max-w-[16rem] text-3xl font-black leading-[0.92] tracking-[-0.06em] text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.4)] sm:text-4xl">
                     {project.title}
                   </h3>
 
-                  <p className="mt-4 text-xs font-medium text-slate-200/80">
+                  <p className="mt-4 text-xs font-medium text-slate-200/85">
                     {project.category}
                   </p>
 

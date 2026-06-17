@@ -53,7 +53,7 @@ export default function PortfolioPage() {
         <PortfolioProjectsSection />
 
         <PortfolioSelectedProjectsSection />
-
+    
         <PortfolioExplanation />
 
         <PortfolioProjectDescription /> 
