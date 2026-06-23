@@ -172,19 +172,30 @@ export default function RotatingLogoShowcase() {
 
         {/* RIGHT ROTATING LOGO */}
         <div className="relative z-10 flex w-full flex-col items-center justify-center text-center">
-          <img
-            key={activeLogo.src}
-            src={activeLogo.src}
-            alt={activeLogo.alt}
-            className="relative z-10 max-h-[48rem] max-w-[48rem] object-contain drop-shadow-[0_0_42px_rgba(34,211,238,0.75)]"
-            onError={() => {
-              console.error("Logo failed to load:", activeLogo.src);
-            }}
-          />
+          {/* FIXED ROTATING LOGO FRAME */}
+          <div className="relative flex h-[34rem] w-full max-w-[48rem] shrink-0 items-center justify-center overflow-visible">
+            <img
+              key={activeLogo.src}
+              src={activeLogo.src}
+              alt={activeLogo.alt}
+              className="block h-full w-full object-contain drop-shadow-[0_0_42px_rgba(34,211,238,0.75)]"
+              onError={() => {
+                console.error("Logo failed to load:", activeLogo.src);
+              }}
+            />
+          </div>
 
-          <p className="neon-sign neon-word neon-word-4 mt-8 text-center font-mono text-[86px] font-medium uppercase leading-none tracking-[-0.08em] text-cyan-300 sm:text-[116px] md:text-[140px] lg:text-[170px]">
-            KOYOTE
-          </p>
+          {/* FIXED WORDMARK FRAME - BIGGER */}
+          <div className="mt-2 flex h-[20rem] w-full max-w-[72rem] shrink-0 items-center justify-center overflow-visible">
+            <img
+              src="/OSnames/16bit.webp"
+              alt="Koyote 16-bit wordmark"
+              className="block h-full w-full scale-125 object-contain drop-shadow-[0_0_42px_rgba(34,211,238,0.75)]"
+              onError={() => {
+                console.error("Wordmark failed to load: /OSnames/16bit.webp");
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -193,7 +204,7 @@ export default function RotatingLogoShowcase() {
 
 function MiniTag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="rounded-full border border-[#67E8F9]/25 bg-[#67E8F9]/5 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-[#67E8F9]/85 shadow-[0_0_14px_rgba(34,211,238,0.12)]">
+    <span className="rounded-full border border-[#FFFFFF]/25 bg-[#FFFFFF]/5 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-[#FFFFFF]/85 shadow-[0_0_14px_rgba(34,211,238,0.12)]">
       {children}
     </span>
   );

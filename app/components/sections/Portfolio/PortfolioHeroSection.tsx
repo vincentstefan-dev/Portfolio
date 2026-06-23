@@ -73,8 +73,10 @@ export default function NeonHero() {
               </div>
 
               <p className="max-w-md text-base leading-7 text-white/85 sm:text-lg">
-              Dive into my professional projects, see how they are built, exectured and updated. 
-              Hopefully they can give you a good idea of what i´m capable of and the kind of work i do!
+              HI 🥳! Here you can explore my professional projects: highlights, client work, 
+              and deeper looks into the research, building, and production behind each piece. 
+              I hope it gives you a clear sense of what we can create together.
+
               </p>
             </div>
 

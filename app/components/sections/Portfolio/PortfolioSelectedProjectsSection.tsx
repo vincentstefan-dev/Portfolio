@@ -18,23 +18,23 @@ const projects: ProjectCard[] = [
   {
     number: "01",
     title: "Koyote",
-    category: "Brand Identity • Web Experience",
+    category: "Brand Identity • Small business Project",
     href: "/portfolio",
     image: "/3TO6/KOYOTEFINAL.png",
     imagePosition: "center",
   },
   {
     number: "02",
-    title: "SHE",
-    category: "Brand Identity • Web Experience",
+    title: "SHE", 
+    category: "Brand Identity • Small business project",
     href: "/portfolio/SHE",
-    image:  "/3TO6/SHE.png",
+    image: "/3TO6/SHE.png",
     imagePosition: "center",
   },
   {
     number: "03",
     title: "Pixelate",
-    category: "Client Website • Film Portfolio",
+    category: "Webbased app • Image maniuplation",
     href: "/portfolio/antonia",
     image: "/3TO6/PIXEL.png",
     imagePosition: "center",
@@ -42,7 +42,7 @@ const projects: ProjectCard[] = [
   {
     number: "04",
     title: "Astronaut",
-    category: "Comic",
+    category: "Small click based story • Built with pixelate ",
     href: "/portfolio/junix",
     image: "/3TO6/astronaut.png",
     imagePosition: "center",
@@ -50,7 +50,7 @@ const projects: ProjectCard[] = [
   {
     number: "05",
     title: "The concept of I",
-    category: "Vlog",
+    category: "Personal Blog",
     href: "/theme-lab",
     image: "/3TO6/babyfinal.gif",
     imagePosition: "center",
@@ -88,19 +88,15 @@ export default function PortfolioSelectedProjectsSection() {
         <div className="absolute left-[52%] bottom-[23%] h-1.5 w-1.5 rounded-full bg-cyan-200 shadow-[0_0_22px_rgba(103,232,249,1)]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-12rem)] max-w-7xl flex-col justify-center">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-12rem)] max-w-7xl -translate-y-[10px] flex-col justify-center">
         {/* Header */}
         <div className="mx-auto mb-14 max-w-5xl text-center">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.65em] text-cyan-300/80">
-            Explore Work
-          </p>
-
           <h2 className="text-5xl font-black uppercase leading-[0.9] tracking-[-0.08em] text-cyan-100 drop-shadow-[0_0_30px_rgba(103,232,249,0.95)] sm:text-7xl lg:text-8xl">
-            Select a Project
+            Check out this cool projects!
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm font-medium leading-relaxed text-slate-100/80 sm:text-base">
-            Check some of the coolest projects i´ve worked!
+            You could be here too! and for a GOOD price!
           </p>
         </div>
 

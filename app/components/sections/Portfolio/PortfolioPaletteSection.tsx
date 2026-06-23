@@ -81,7 +81,7 @@ export default function PortfolioPaletteSection() {
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-12rem)] max-w-7xl flex-col justify-center">
         {/* HEADER */}
         <div className="mb-16 max-w-3xl">
-          <p className="mb-5 font-mono text-xs uppercase tracking-[0.42em] text-cyan-200/80">
+          <p className="mb-5 font-mono text-xs uppercase tracking-[0.42em] text-white-200/80">
             Visual System
           </p>
 
