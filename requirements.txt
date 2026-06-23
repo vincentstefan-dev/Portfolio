@@ -1,4 +1,0 @@
-rembg
-onnxruntime
-Pillow
-numpy
