@@ -27,7 +27,7 @@ import Link from "next/link";
   // SECOND ROW
   {
     title: "Dominique Designer",
-    src: "/potraits/Dominique.png",
+    src: "/potraits/dominique.png",
     alt: "Koyote portrait image 4",
     className: "lg:left-[61%] lg:top-[50%] rotate-[4deg] z-20",
   },
