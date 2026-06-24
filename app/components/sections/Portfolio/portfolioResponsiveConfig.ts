@@ -337,85 +337,85 @@ identity: {
   listDot:
     "h-2.5 w-2.5 shrink-0 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(125,220,255,0.95)]",
 },
-  rotatingLogo: {
+    rotatingLogo: {
     section:
-      "relative flex min-h-[80vh] w-full items-center justify-center overflow-visible px-6 py-20 text-[#F3F8FF] sm:px-10 lg:px-14",
+        "relative flex w-full items-center justify-center overflow-hidden px-6 py-16 text-[#F3F8FF] sm:px-10 sm:py-20 lg:min-h-[80vh] lg:overflow-visible lg:px-14",
 
     grid:
-      "relative grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]",
+        "relative grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12",
 
     textColumn:
-      "relative z-10 max-w-xl text-left",
+        "relative z-10 max-w-xl text-left",
 
     leftDecorLine:
-      "pointer-events-none absolute -left-8 top-0 hidden h-full w-px bg-[#67E8F9]/20 shadow-[0_0_18px_rgba(34,211,238,0.35)] md:block",
+        "pointer-events-none absolute -left-8 top-0 hidden h-full w-px bg-[#67E8F9]/20 shadow-[0_0_18px_rgba(34,211,238,0.35)] md:block",
 
     leftDecorDotTop:
-      "pointer-events-none absolute -left-[2.15rem] top-0 hidden h-2 w-2 rounded-full bg-[#67E8F9] shadow-[0_0_14px_rgba(34,211,238,0.85)] md:block",
+        "pointer-events-none absolute -left-[2.15rem] top-0 hidden h-2 w-2 rounded-full bg-[#67E8F9] shadow-[0_0_14px_rgba(34,211,238,0.85)] md:block",
 
     leftDecorDotMiddle:
-      "pointer-events-none absolute -left-[2.15rem] top-[36%] hidden h-2 w-2 rounded-full bg-[#67E8F9]/70 shadow-[0_0_12px_rgba(34,211,238,0.65)] md:block",
+        "pointer-events-none absolute -left-[2.15rem] top-[36%] hidden h-2 w-2 rounded-full bg-[#67E8F9]/70 shadow-[0_0_12px_rgba(34,211,238,0.65)] md:block",
 
     leftDecorDotBottom:
-      "pointer-events-none absolute -left-[2.15rem] bottom-0 hidden h-2 w-2 rounded-full bg-[#67E8F9]/40 md:block",
+        "pointer-events-none absolute -left-[2.15rem] bottom-0 hidden h-2 w-2 rounded-full bg-[#67E8F9]/40 md:block",
 
     kickerRow:
-      "mb-5 flex items-center gap-4",
+        "mb-4 flex items-center gap-4 lg:mb-5",
 
     kicker:
-      "font-mono text-xs font-bold uppercase tracking-[0.42em] text-[#67E8F9] drop-shadow-[0_0_14px_rgba(34,211,238,0.55)]",
+        "font-mono text-xs font-bold uppercase tracking-[0.42em] text-[#67E8F9] drop-shadow-[0_0_14px_rgba(34,211,238,0.55)]",
 
     kickerLine:
-      "hidden h-px w-20 bg-[#67E8F9]/35 shadow-[0_0_12px_rgba(34,211,238,0.35)] sm:block",
+        "hidden h-px w-20 bg-[#67E8F9]/35 shadow-[0_0_12px_rgba(34,211,238,0.35)] sm:block",
 
     title:
-      "neon-sign neon-word neon-word-1 font-mono text-[64px] font-medium uppercase leading-none tracking-[-0.08em] text-cyan-300 sm:text-[82px] md:text-[96px] lg:text-[112px]",
+        "neon-sign neon-word neon-word-1 font-mono text-[58px] font-medium uppercase leading-none tracking-[-0.08em] text-cyan-300 sm:text-[82px] md:text-[96px] lg:text-[112px]",
 
     titleDivider:
-      "mt-8 flex items-center gap-4",
+        "mt-6 flex items-center gap-4 lg:mt-8",
 
     titleDividerLine:
-      "h-px w-40 bg-[#67E8F9]/50 shadow-[0_0_18px_rgba(34,211,238,0.6)]",
+        "h-px w-32 bg-[#67E8F9]/50 shadow-[0_0_18px_rgba(34,211,238,0.6)] sm:w-40",
 
     titleDividerDot:
-      "h-1.5 w-1.5 rounded-full bg-[#67E8F9] shadow-[0_0_12px_rgba(34,211,238,0.85)]",
+        "h-1.5 w-1.5 rounded-full bg-[#67E8F9] shadow-[0_0_12px_rgba(34,211,238,0.85)]",
 
     tags:
-      "mt-8 flex flex-wrap gap-2",
+        "mt-6 flex flex-wrap gap-2 lg:mt-8",
 
     miniTag:
-      "rounded-full border border-[#FFFFFF]/25 bg-[#FFFFFF]/5 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-[#FFFFFF]/85 shadow-[0_0_14px_rgba(34,211,238,0.12)]",
+        "rounded-full border border-[#FFFFFF]/25 bg-[#FFFFFF]/5 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-[#FFFFFF]/85 shadow-[0_0_14px_rgba(34,211,238,0.12)]",
 
     paragraph:
-      "mt-8 text-base font-medium leading-7 text-[#F3F8FF]/80 sm:text-lg",
+        "mt-6 text-base font-medium leading-7 text-[#F3F8FF]/80 sm:text-lg lg:mt-8",
 
     paragraphSecond:
-      "mt-5 text-base font-medium leading-7 text-[#F3F8FF]/80 sm:text-lg",
+        "mt-5 text-base font-medium leading-7 text-[#F3F8FF]/80 sm:text-lg",
 
     coreBox:
-      "mt-8 rounded-2xl border border-[#67E8F9]/20 bg-[#05070A]/35 p-5 shadow-[0_0_26px_rgba(34,211,238,0.12),inset_0_0_18px_rgba(103,232,249,0.04)] backdrop-blur-md",
+        "mt-7 rounded-2xl border border-[#67E8F9]/20 bg-[#05070A]/35 p-5 shadow-[0_0_26px_rgba(34,211,238,0.12),inset_0_0_18px_rgba(103,232,249,0.04)] backdrop-blur-md lg:mt-8",
 
     coreKicker:
-      "mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-[#67E8F9] drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]",
+        "mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-[#67E8F9] drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]",
 
     coreText:
-      "text-base font-medium leading-7 text-[#F3F8FF]/80 sm:text-lg",
+        "text-base font-medium leading-7 text-[#F3F8FF]/80 sm:text-lg",
 
     logoColumn:
-      "relative z-10 flex w-full flex-col items-center justify-center text-center",
+        "relative z-10 flex w-full flex-col items-center justify-center text-center",
 
     logoFrame:
-      "relative flex h-[34rem] w-full max-w-[48rem] shrink-0 items-center justify-center overflow-visible",
+        "relative flex h-[15rem] w-full max-w-[21rem] shrink-0 items-center justify-center overflow-visible sm:h-[22rem] sm:max-w-[32rem] lg:h-[34rem] lg:max-w-[48rem]",
 
     logoImage:
-      "block h-full w-full object-contain drop-shadow-[0_0_42px_rgba(34,211,238,0.75)]",
+        "block h-full w-full object-contain drop-shadow-[0_0_32px_rgba(34,211,238,0.65)] lg:drop-shadow-[0_0_42px_rgba(34,211,238,0.75)]",
 
     wordmarkFrame:
-      "mt-2 flex h-[20rem] w-full max-w-[72rem] shrink-0 items-center justify-center overflow-visible",
+        "mt-0 flex h-[7rem] w-full max-w-[23rem] shrink-0 items-center justify-center overflow-visible sm:h-[10rem] sm:max-w-[36rem] lg:mt-2 lg:h-[20rem] lg:max-w-[72rem]",
 
     wordmarkImage:
-      "block h-full w-full scale-125 object-contain drop-shadow-[0_0_42px_rgba(34,211,238,0.75)]",
-  },
+        "block h-full w-full scale-100 object-contain drop-shadow-[0_0_28px_rgba(34,211,238,0.65)] sm:scale-110 lg:scale-125 lg:drop-shadow-[0_0_42px_rgba(34,211,238,0.75)]",
+    },
 
   palette: {
     section:
