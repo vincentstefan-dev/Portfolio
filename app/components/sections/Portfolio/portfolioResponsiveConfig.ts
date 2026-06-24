@@ -18,76 +18,76 @@ export const portfolioRc = {
       "h-5 w-5 text-white transition-transform duration-100 group-hover:scale-110",
   },
 
-  neonHero: {
-    section:
-      "relative min-h-[120vh] overflow-hidden px-6 py-8 text-white sm:px-10 lg:px-14",
+neonHero: {
+  section:
+    "relative min-h-screen overflow-hidden px-6 py-6 text-white sm:px-10 sm:py-8 lg:min-h-[120vh] lg:px-14",
 
-    background:
-      "pointer-events-none absolute inset-0",
+  background:
+    "pointer-events-none absolute inset-0",
 
-    grid:
-      "absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.05)_1px,transparent_1px)] bg-[size:44px_44px] opacity-[0.18]",
+  grid:
+    "absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.05)_1px,transparent_1px)] bg-[size:44px_44px] opacity-[0.18]",
 
-    glowDot:
-      "absolute h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,1),0_0_34px_rgba(37,99,235,0.95),0_0_70px_rgba(14,165,233,0.7)]",
+  glowDot:
+    "absolute h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,1),0_0_34px_rgba(37,99,235,0.95),0_0_70px_rgba(14,165,233,0.7)]",
 
-    logoLink:
-      "relative z-20 inline-block",
+  logoLink:
+    "relative z-20 inline-block",
 
-    logoImage:
-      "h-22 w-auto object-contain",
+  logoImage:
+    "h-16 w-auto object-contain sm:h-20 lg:h-22",
 
-    main:
-      "relative z-10 mx-auto flex min-h-[calc(100vh-8rem)] max-w-7xl items-center justify-center pt-20 md:pt-0",
+  main:
+    "relative z-10 mx-auto flex min-h-[calc(100vh-6rem)] max-w-7xl items-start justify-center pt-10 sm:pt-16 md:items-center md:pt-0 lg:min-h-[calc(100vh-8rem)]",
 
-    layout:
-      "grid w-full items-center gap-16 lg:grid-cols-[0.95fr_1.05fr]",
+  layout:
+    "grid w-full items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16",
 
-    textBlock:
-      "w-full max-w-[760px] text-left",
+  textBlock:
+    "w-full max-w-[760px] text-left",
 
-    title:
-      "neon-sign font-mono text-[72px] font-medium uppercase leading-[0.88] tracking-[-0.08em] text-cyan-300 sm:text-[100px] md:text-[118px] lg:text-[136px]",
+  title:
+    "neon-sign font-mono text-[58px] font-medium uppercase leading-[0.88] tracking-[-0.08em] text-cyan-300 sm:text-[100px] md:text-[118px] lg:text-[136px]",
 
-    titleWordOne:
-      "neon-word neon-word-1 block",
+  titleWordOne:
+    "neon-word neon-word-1 block",
 
-    titleWordTwo:
-      "neon-word neon-word-2 block",
+  titleWordTwo:
+    "neon-word neon-word-2 block",
 
-    titleWordThree:
-      "neon-word neon-word-3 block",
+  titleWordThree:
+    "neon-word neon-word-3 block",
 
-    titleWordFour:
-      "neon-word neon-word-4 block",
+  titleWordFour:
+    "neon-word neon-word-4 block",
 
-    introWrap:
-      "mt-8 flex items-start gap-6",
+  introWrap:
+    "mt-6 flex items-start gap-4 sm:mt-8 sm:gap-6",
 
-    introLine:
-      "relative mt-1 h-20 w-px bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,1)]",
+  introLine:
+    "relative mt-1 h-16 w-px bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,1)] sm:h-20",
 
-    introStar:
-      "absolute -left-2.5 -top-7 text-2xl text-cyan-200 drop-shadow-[0_0_12px_rgba(34,211,238,1)]",
+  introStar:
+    "absolute -left-2.5 -top-7 text-2xl text-cyan-200 drop-shadow-[0_0_12px_rgba(34,211,238,1)]",
 
-    introText:
-      "max-w-md text-base leading-7 text-white/85 sm:text-lg",
+  introText:
+    "max-w-md text-base leading-7 text-white/85 sm:text-lg",
 
-    ctaWrap:
-      "mt-9 flex flex-col justify-start gap-4 sm:flex-row",
+  ctaWrap:
+    "mt-8 flex flex-col justify-start gap-4 sm:mt-9 sm:flex-row",
 
-    primaryCta:
-      "inline-flex h-14 items-center justify-center gap-5 rounded-full border border-cyan-300 bg-cyan-300/5 px-9 text-sm font-bold uppercase tracking-[0.22em] text-cyan-200 shadow-[0_0_16px_rgba(34,211,238,0.85),inset_0_0_18px_rgba(34,211,238,0.12)] transition hover:bg-cyan-300/15",
+  primaryCta:
+    "inline-flex h-14 w-full items-center justify-center gap-5 rounded-full border border-cyan-300 bg-cyan-300/5 px-7 text-xs font-bold uppercase tracking-[0.22em] text-cyan-200 shadow-[0_0_16px_rgba(34,211,238,0.85),inset_0_0_18px_rgba(34,211,238,0.12)] transition hover:bg-cyan-300/15 sm:w-auto sm:px-9 sm:text-sm",
 
-    secondaryCta:
-      "inline-flex h-14 items-center justify-center gap-5 rounded-full border border-cyan-300/40 bg-cyan-300/0 px-9 text-sm font-bold uppercase tracking-[0.22em] text-white/90 shadow-[0_0_12px_rgba(34,211,238,0.18)] transition hover:border-cyan-300 hover:bg-cyan-300/10 hover:text-cyan-100",
+  secondaryCta:
+    "inline-flex h-14 w-full items-center justify-center gap-5 rounded-full border border-cyan-300/40 bg-cyan-300/0 px-7 text-xs font-bold uppercase tracking-[0.22em] text-white/90 shadow-[0_0_12px_rgba(34,211,238,0.18)] transition hover:border-cyan-300 hover:bg-cyan-300/10 hover:text-cyan-100 sm:w-auto sm:px-9 sm:text-sm",
 
-    ctaIcon:
-      "h-5 w-5",
+  ctaIcon:
+    "h-5 w-5",
 
-    aboutIcon:
-      "h-4 w-4 text-cyan-300",
-  },
+  aboutIcon:
+    "h-4 w-4 text-cyan-300",
+},
 
   carousel: {
     desktopWrap:
