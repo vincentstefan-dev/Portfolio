@@ -530,7 +530,7 @@ identity: {
       "h-px w-28 bg-white/20",
   },
 
- description: {
+description: {
   section:
     "relative overflow-hidden bg-transparent px-6 py-14 text-[#F3F8FF] sm:px-10 sm:py-20 lg:min-h-screen lg:px-16",
 
@@ -598,37 +598,37 @@ identity: {
     "pointer-events-none absolute inset-0 z-10 hidden lg:block",
 
   xpWindow:
-    "overflow-hidden rounded-[7px] border border-[#08348f] bg-[#ece9d8] shadow-[6px_8px_0_rgba(0,0,0,0.28),0_0_24px_rgba(103,232,249,0.18)] transition-transform duration-300 ease-out hover:scale-[1.03] lg:absolute lg:w-[250px] xl:w-[270px]",
+    "overflow-hidden rounded-[6px] border border-[#08348f] bg-[#ece9d8] shadow-[4px_6px_0_rgba(0,0,0,0.28),0_0_18px_rgba(103,232,249,0.16)] transition-transform duration-300 ease-out hover:scale-[1.04] lg:absolute lg:w-[125px] xl:w-[135px]",
 
   xpWindowMobile:
     "relative w-full max-w-[330px]",
 
   xpTitleBar:
-    "flex h-7 items-center justify-between bg-gradient-to-b from-[#3f8cff] via-[#1456d8] to-[#073b9f] px-2 text-white",
+    "flex h-5 items-center justify-between bg-gradient-to-b from-[#3f8cff] via-[#1456d8] to-[#073b9f] px-1.5 text-white lg:h-5 xl:h-6",
 
   xpTitleLeft:
-    "flex min-w-0 items-center gap-1.5",
+    "flex min-w-0 items-center gap-1",
 
   xpFolderIcon:
-    "h-3 w-3 shrink-0 rounded-sm bg-[#f7d24c] shadow-[inset_-1px_-1px_0_rgba(0,0,0,0.28)]",
+    "h-2.5 w-2.5 shrink-0 rounded-sm bg-[#f7d24c] shadow-[inset_-1px_-1px_0_rgba(0,0,0,0.28)]",
 
   xpTitleText:
-    "truncate text-[11px] font-bold leading-none drop-shadow",
+    "truncate text-[8px] font-bold leading-none drop-shadow xl:text-[9px]",
 
   xpControls:
-    "flex shrink-0 items-center gap-1",
+    "flex shrink-0 items-center gap-0.5",
 
   xpControlBlue:
-    "grid h-4 w-4 place-items-center rounded-sm bg-[#2f73e8] text-[10px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]",
+    "grid h-3 w-3 place-items-center rounded-sm bg-[#2f73e8] text-[7px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)] xl:h-3.5 xl:w-3.5 xl:text-[8px]",
 
   xpControlBlueSmall:
-    "grid h-4 w-4 place-items-center rounded-sm bg-[#2f73e8] text-[9px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]",
+    "grid h-3 w-3 place-items-center rounded-sm bg-[#2f73e8] text-[6px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)] xl:h-3.5 xl:w-3.5 xl:text-[7px]",
 
   xpControlRed:
-    "grid h-4 w-4 place-items-center rounded-sm bg-[#e54835] text-[10px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]",
+    "grid h-3 w-3 place-items-center rounded-sm bg-[#e54835] text-[7px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)] xl:h-3.5 xl:w-3.5 xl:text-[8px]",
 
   xpBody:
-    "border-x-2 border-b-2 border-[#1b55b9] bg-[#ece9d8] p-2",
+    "border-x-2 border-b-2 border-[#1b55b9] bg-[#ece9d8] p-1",
 
   xpImageFrame:
     "relative aspect-[3/4] overflow-hidden border border-[#8a867a] bg-white",
