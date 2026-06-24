@@ -605,140 +605,139 @@ neonHero: {
       "object-cover object-center",
   },
 
-  selectedProjects: {
-    section:
-      "relative min-h-screen overflow-hidden px-6 py-24 text-white sm:px-10 lg:px-16",
+selectedProjects: {
+  section:
+    "relative overflow-hidden px-6 pb-16 pt-8 text-white sm:px-10 sm:pt-12 lg:min-h-screen lg:px-16 lg:py-24",
 
-    background:
-      "pointer-events-none absolute inset-0",
+  background:
+    "pointer-events-none absolute inset-0",
 
-    glow:
-      "absolute left-1/2 top-[45%] h-[760px] w-[1050px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[150px]",
+  glow:
+    "absolute left-1/2 top-[35%] h-[520px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[120px] lg:top-[45%] lg:h-[760px] lg:w-[1050px] lg:blur-[150px]",
 
-    starOne:
-      "absolute left-[15%] top-[42%] h-1 w-1 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(103,232,249,1)]",
+  starOne:
+    "absolute left-[15%] top-[42%] h-1 w-1 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(103,232,249,1)]",
 
-    starTwo:
-      "absolute right-[20%] top-[31%] h-1 w-1 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(103,232,249,1)]",
+  starTwo:
+    "absolute right-[20%] top-[31%] h-1 w-1 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(103,232,249,1)]",
 
-    starThree:
-      "absolute left-[52%] bottom-[23%] h-1.5 w-1.5 rounded-full bg-cyan-200 shadow-[0_0_22px_rgba(103,232,249,1)]",
+  starThree:
+    "absolute left-[52%] bottom-[23%] h-1.5 w-1.5 rounded-full bg-cyan-200 shadow-[0_0_22px_rgba(103,232,249,1)]",
 
-    inner:
-      "relative z-10 mx-auto flex min-h-[calc(100vh-12rem)] max-w-7xl -translate-y-[10px] flex-col justify-center",
+  inner:
+    "relative z-10 mx-auto flex max-w-7xl flex-col justify-start lg:min-h-[calc(100vh-12rem)] lg:-translate-y-[10px] lg:justify-center",
 
-    header:
-      "mx-auto mb-14 max-w-5xl text-center",
+  header:
+    "mx-auto mb-8 max-w-5xl text-center lg:mb-14",
 
-    title:
-      "text-5xl font-black uppercase leading-[0.9] tracking-[-0.08em] text-cyan-100 drop-shadow-[0_0_30px_rgba(103,232,249,0.95)] sm:text-7xl lg:text-8xl",
+  title:
+    "text-4xl font-black uppercase leading-[0.9] tracking-[-0.08em] text-cyan-100 drop-shadow-[0_0_30px_rgba(103,232,249,0.95)] sm:text-6xl lg:text-8xl",
 
-    subtitle:
-      "mx-auto mt-5 max-w-2xl text-sm font-medium leading-relaxed text-slate-100/80 sm:text-base",
+  subtitle:
+    "mx-auto mt-4 max-w-2xl text-sm font-medium leading-relaxed text-slate-100/80 sm:text-base lg:mt-5",
 
-    cardsArea:
-      "relative mx-auto w-full max-w-6xl",
+  cardsArea:
+    "relative mx-auto w-full max-w-6xl",
 
-    desktopArrow:
-      "absolute top-1/2 z-20 hidden h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-300/40 bg-[#07111f]/50 text-cyan-200 shadow-[0_0_35px_rgba(34,211,238,0.2)] backdrop-blur-md transition hover:border-cyan-200 hover:bg-cyan-300/10 lg:flex",
+  desktopArrow:
+    "absolute top-1/2 z-20 hidden h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-300/40 bg-[#07111f]/50 text-cyan-200 shadow-[0_0_35px_rgba(34,211,238,0.2)] backdrop-blur-md transition hover:border-cyan-200 hover:bg-cyan-300/10 lg:flex",
 
-    desktopArrowLeft:
-      "left-[-4.5rem]",
+  desktopArrowLeft:
+    "left-[-4.5rem]",
 
-    desktopArrowRight:
-      "right-[-4.5rem]",
+  desktopArrowRight:
+    "right-[-4.5rem]",
 
-    desktopArrowIcon:
-      "h-6 w-6",
+  desktopArrowIcon:
+    "h-6 w-6",
 
-    mobileArrows:
-      "mb-6 flex justify-center gap-4 lg:hidden",
+  mobileArrows:
+    "mb-6 flex justify-center gap-4 lg:hidden",
 
-    mobileArrow:
-      "flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/40 bg-[#07111f]/60 text-cyan-200 shadow-[0_0_25px_rgba(34,211,238,0.2)] backdrop-blur-md transition hover:border-cyan-200 hover:bg-cyan-300/10",
+  mobileArrow:
+    "flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/40 bg-[#07111f]/60 text-cyan-200 shadow-[0_0_25px_rgba(34,211,238,0.2)] backdrop-blur-md transition hover:border-cyan-200 hover:bg-cyan-300/10",
 
-    mobileArrowIcon:
-      "h-5 w-5",
+  mobileArrowIcon:
+    "h-5 w-5",
 
-    mobileCarousel:
-      "lg:hidden",
+  mobileCarousel:
+    "lg:hidden",
 
-    mobileTrack:
-      "flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
+  mobileTrack:
+    "flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
 
-    mobileSlide:
-      "min-w-full snap-center px-1",
+  mobileSlide:
+    "min-w-full snap-center px-1",
 
-    grid:
-      "hidden gap-7 lg:grid lg:grid-cols-3",
+  grid:
+    "hidden gap-7 lg:grid lg:grid-cols-3",
 
-    cardBase:
-      "group relative block h-[460px] overflow-hidden rounded-[1.65rem] border border-cyan-300/30 bg-[#07111f] shadow-[0_0_42px_rgba(34,211,238,0.18)] transition duration-300 hover:-translate-y-2 hover:border-cyan-200/70 hover:shadow-[0_0_70px_rgba(34,211,238,0.35)] sm:h-[500px] lg:h-[480px]",
+  cardBase:
+    "group relative block h-[460px] overflow-hidden rounded-[1.65rem] border border-cyan-300/30 bg-[#07111f] shadow-[0_0_42px_rgba(34,211,238,0.18)] transition duration-300 hover:-translate-y-2 hover:border-cyan-200/70 hover:shadow-[0_0_70px_rgba(34,211,238,0.35)] sm:h-[500px] lg:h-[480px]",
 
-    cardLeft:
-      "lg:rotate-[-2.5deg]",
+  cardLeft:
+    "lg:rotate-[-2.5deg]",
 
-    cardCenter:
-      "lg:-translate-y-3",
+  cardCenter:
+    "lg:-translate-y-3",
 
-    cardRight:
-      "lg:rotate-[2.5deg]",
+  cardRight:
+    "lg:rotate-[2.5deg]",
 
-    imageWrap:
-      "absolute inset-0 flex items-center justify-center p-8",
+  imageWrap:
+    "absolute inset-0 flex items-center justify-center p-8",
 
-    image:
-      "object-contain opacity-95 transition duration-700 group-hover:scale-105 group-hover:opacity-100",
+  image:
+    "object-contain opacity-95 transition duration-700 group-hover:scale-105 group-hover:opacity-100",
 
-    overlayDarkTop:
-      "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/35 to-transparent",
+  overlayDarkTop:
+    "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/35 to-transparent",
 
-    overlayDarkBottom:
-      "absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/80",
+  overlayDarkBottom:
+    "absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/80",
 
-    overlayCyan:
-      "absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(103,232,249,0.16),transparent_45%)]",
+  overlayCyan:
+    "absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(103,232,249,0.16),transparent_45%)]",
 
-    cardBorder:
-      "pointer-events-none absolute inset-0 rounded-[1.65rem] border border-cyan-200/20",
+  cardBorder:
+    "pointer-events-none absolute inset-0 rounded-[1.65rem] border border-cyan-200/20",
 
-    number:
-      "absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-cyan-100/25 bg-black/60 text-[0.65rem] font-black text-cyan-100 shadow-[0_0_20px_rgba(34,211,238,0.55)]",
+  number:
+    "absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-cyan-100/25 bg-black/60 text-[0.65rem] font-black text-cyan-100 shadow-[0_0_20px_rgba(34,211,238,0.55)]",
 
-    content:
-      "absolute bottom-0 left-0 right-0 p-7",
+  content:
+    "absolute bottom-0 left-0 right-0 p-7",
 
-    cardTitle:
-      "max-w-[16rem] text-3xl font-black leading-[0.92] tracking-[-0.06em] text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.4)] sm:text-4xl",
+  cardTitle:
+    "max-w-[16rem] text-3xl font-black leading-[0.92] tracking-[-0.06em] text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.4)] sm:text-4xl",
 
-    category:
-      "mt-4 text-xs font-medium text-slate-200/85",
+  category:
+    "mt-4 text-xs font-medium text-slate-200/85",
 
-    divider:
-      "mt-7 h-px w-full bg-cyan-100/15",
+  divider:
+    "mt-7 h-px w-full bg-cyan-100/15",
 
-    caseStudyRow:
-      "mt-7 flex items-center justify-between",
+  caseStudyRow:
+    "mt-7 flex items-center justify-between",
 
-    caseStudyText:
-      "text-[0.68rem] font-black uppercase tracking-[0.42em] text-cyan-50",
+  caseStudyText:
+    "text-[0.68rem] font-black uppercase tracking-[0.42em] text-cyan-50",
 
-    caseStudyIcon:
-      "h-4 w-4 text-cyan-50 transition group-hover:translate-x-1",
+  caseStudyIcon:
+    "h-4 w-4 text-cyan-50 transition group-hover:translate-x-1",
 
-    dots:
-      "mt-10 flex justify-center gap-2",
+  dots:
+    "mt-8 flex justify-center gap-2 lg:mt-10",
 
-    dot:
-      "h-2 rounded-full transition",
+  dot:
+    "h-2 rounded-full transition",
 
-    dotActive:
-      "w-8 bg-cyan-200 shadow-[0_0_16px_rgba(103,232,249,0.9)]",
+  dotActive:
+    "w-8 bg-cyan-200 shadow-[0_0_16px_rgba(103,232,249,0.9)]",
 
-    dotInactive:
-      "w-2 bg-cyan-200/30 hover:bg-cyan-200/60",
-  },
-
+  dotInactive:
+    "w-2 bg-cyan-200/30 hover:bg-cyan-200/60",
+},
   iconNav: {
     nav:
       "relative flex min-h-[120vh] w-full items-center justify-center px-6 py-24 text-white",
