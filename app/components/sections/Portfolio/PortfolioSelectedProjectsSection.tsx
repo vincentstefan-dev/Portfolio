@@ -1,54 +1,74 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { portfolioRc as rc } from "./portfolioResponsiveConfig";
 
-const portraitWindows = [
+type ProjectCard = {
+  number: string;
+  title: string;
+  category: string;
+  href: string;
+  image: string;
+  imagePosition: string;
+};
+
+const projects: ProjectCard[] = [
   {
-    title: "Vini Creator of Koyote",
-    src: "/potraits/ChatGPT Image Jun 22, 2026, 04_36_11 PM.png",
-    alt: "Koyote portrait image 1",
-    className: "lg:left-[57%] lg:top-[4%] lg:rotate-[-3deg] lg:z-30",
+    number: "01",
+    title: "Koyote",
+    category: "Brand Identity • Small business Project",
+    href: "/portfolio",
+    image: "/3TO6/KOYOTEFINAL.png",
+    imagePosition: "center",
   },
   {
-    title: "Antonia Amazing Girlfriend",
-    src: "/potraits/antonia.png",
-    alt: "Koyote portrait image 2",
-    className: "lg:left-[73%] lg:top-[4%] lg:rotate-[2deg] lg:z-20",
+    number: "02",
+    title: "SHE",
+    category: "Brand Identity • Small business project",
+    href: "/portfolio/SHE",
+    image: "/3TO6/SHE.png",
+    imagePosition: "center",
   },
   {
-    title: "Daniela Designer",
-    src: "/potraits/danielabit.png",
-    alt: "Koyote portrait image 3",
-    className: "lg:left-[88%] lg:top-[6%] lg:rotate-[6deg] lg:z-30",
+    number: "03",
+    title: "Pixelate",
+    category: "Web-based app • Image manipulation",
+    href: "/portfolio/antonia",
+    image: "/3TO6/PIXEL.png",
+    imagePosition: "center",
   },
   {
-    title: "Dominique Designer",
-    src: "/potraits/dominique.png",
-    alt: "Koyote portrait image 4",
-    className: "lg:left-[56%] lg:top-[52%] lg:rotate-[4deg] lg:z-20",
+    number: "04",
+    title: "Astronaut",
+    category: "Small click-based story • Built with Pixelate",
+    href: "/portfolio/junix",
+    image: "/3TO6/astronaut.png",
+    imagePosition: "center",
   },
   {
-    title: "Alex Project Friend",
-    src: "/potraits/alex.png",
-    alt: "Koyote portrait image 5",
-    className: "lg:left-[72%] lg:top-[55%] lg:rotate-[-3deg] lg:z-30",
-  },
-  {
-    title: "Koyote Support",
-    src: "/potraits/mishi.png",
-    alt: "Koyote portrait image 6",
-    className: "lg:left-[88%] lg:top-[57%] lg:rotate-[5deg] lg:z-10",
+    number: "05",
+    title: "The concept of I",
+    category: "Personal Blog",
+    href: "/theme-lab",
+    image: "/3TO6/babyfinal.gif",
+    imagePosition: "center",
   },
 ];
 
-export default function ProjectDescriptionSection() {
+export default function PortfolioSelectedProjectsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const mobileTrackRef = useRef<HTMLDivElement | null>(null);
+
+  const visibleProjects = useMemo(() => {
+    return [0, 1, 2].map((offset) => {
+      const index = (activeIndex + offset) % projects.length;
+      return projects[index];
+    });
+  }, [activeIndex]);
 
   function scrollMobileTo(index: number) {
     const track = mobileTrackRef.current;
@@ -60,7 +80,7 @@ export default function ProjectDescriptionSection() {
     });
   }
 
-  function setWindowIndex(index: number) {
+  function setProjectIndex(index: number) {
     setActiveIndex(index);
 
     requestAnimationFrame(() => {
@@ -68,16 +88,16 @@ export default function ProjectDescriptionSection() {
     });
   }
 
-  function goToNextWindow() {
-    const nextIndex = (activeIndex + 1) % portraitWindows.length;
-    setWindowIndex(nextIndex);
+  function goToNextProject() {
+    const nextIndex = (activeIndex + 1) % projects.length;
+    setProjectIndex(nextIndex);
   }
 
-  function goToPreviousWindow() {
+  function goToPreviousProject() {
     const previousIndex =
-      activeIndex === 0 ? portraitWindows.length - 1 : activeIndex - 1;
+      activeIndex === 0 ? projects.length - 1 : activeIndex - 1;
 
-    setWindowIndex(previousIndex);
+    setProjectIndex(previousIndex);
   }
 
   function handleMobileScroll() {
@@ -86,229 +106,178 @@ export default function ProjectDescriptionSection() {
 
     const nextIndex = Math.round(track.scrollLeft / track.clientWidth);
 
-    if (portraitWindows[nextIndex] && nextIndex !== activeIndex) {
+    if (nextIndex !== activeIndex && projects[nextIndex]) {
       setActiveIndex(nextIndex);
     }
   }
 
+  function getCardTilt(index: number) {
+    if (index === 0) return rc.selectedProjects.cardLeft;
+    if (index === 1) return rc.selectedProjects.cardCenter;
+    return rc.selectedProjects.cardRight;
+  }
+
   return (
-    <section className={rc.description.section}>
-      <div className={rc.description.inner}>
-        <div className={rc.description.textContent}>
-          <InfoBlock title="Where does it start?">
-            <p>
-              Koyote is my personal creative project, where I combine what I
-              have learned throughout my university career in Business,
-              Marketing, and Game Theory with my deep personal passions for
-              coding, illustration, and, most importantly, creative flexibility.
-              <br />
-              <br />
-              I believe that, for both myself and Koyote, the essence of good
-              work comes from flexibility, growth, and the desire to change.
-              Being experimental and learning as a project is assembled is the
-              key to creating something functional, aligned, and sustainable.
-              <br />
-              <br />
-              I align deeply and personally with Koyote, and I hope that this
-              alignment can meet you.
-            </p>
-          </InfoBlock>
+    <section className={rc.selectedProjects.section}>
+      <div className={rc.selectedProjects.background}>
+        <div className={rc.selectedProjects.glow} />
+        <div className={rc.selectedProjects.starOne} />
+        <div className={rc.selectedProjects.starTwo} />
+        <div className={rc.selectedProjects.starThree} />
+      </div>
 
-          <InfoBlock title="The mentality">
-            <p>
-              My small team and I address project challenges by being boldly
-              experimental without being chaotic. We agreed to approach each
-              project the same way we explored and completed our favorite video
-              games: with curiosity, strategy, and a weirdly huge amount of
-              research.
-              <br />
-              <br />
-              Our team’s key pillars are:
-              <br />
-              • Creativity
-              <br />
-              • Game Theory, for strategic solutions
-              <br />
-              • Business acumen, after all, that is why we got these degrees
-              <br />
-              • Human interaction above all
-              <br />
-              <br />
-              Our goal is to create projects that are sustainable, and to ensure
-              that every handshake, virtual or in real life, leaves a lasting
-              impression of friendship.
-            </p>
-          </InfoBlock>
+      <div className={rc.selectedProjects.inner}>
+        <div className={rc.selectedProjects.header}>
+          <h2 className={rc.selectedProjects.title}>
+            Check out this cool projects!
+          </h2>
 
-          <InfoBlock title="Goal">
-            <p>
-              <strong>Our final Goal with you</strong> is to deliver a project
-              that meets the German standard of technical expertise, Strategy
-              and Implementation <strong> without </strong> losing our Latin
-              American roots deeply embedded in bold creative expression.
-            </p>
-
-            <div className={rc.description.tagWrap}>
-              <Tag>Strategy</Tag>
-              <Tag>Sustainability</Tag>
-              <Tag>Creativity</Tag>
-              <Tag>Technical expertise</Tag>
-            </div>
-
-            <p className={rc.description.blogParagraph}>
-              You should check the{" "}
-              <Link href="/blog" className={rc.description.blogLink}>
-                <span className={rc.description.blogLinkText}>Blog area</span>
-              </Link>{" "}
-              to see our creative expression at the fullest.
-            </p>
-          </InfoBlock>
+          <p className={rc.selectedProjects.subtitle}>
+            You could be here too! and for a GOOD price!
+          </p>
         </div>
 
-        <div className={rc.description.mobileWindowsArea}>
-          <div className={rc.description.mobileWindowButtons}>
+        <div className={rc.selectedProjects.cardsArea}>
+          <button
+            type="button"
+            aria-label="Previous project"
+            onClick={goToPreviousProject}
+            className={`${rc.selectedProjects.desktopArrow} ${rc.selectedProjects.desktopArrowLeft}`}
+          >
+            <ArrowLeft className={rc.selectedProjects.desktopArrowIcon} />
+          </button>
+
+          <button
+            type="button"
+            aria-label="Next project"
+            onClick={goToNextProject}
+            className={`${rc.selectedProjects.desktopArrow} ${rc.selectedProjects.desktopArrowRight}`}
+          >
+            <ArrowRight className={rc.selectedProjects.desktopArrowIcon} />
+          </button>
+
+          <div className={rc.selectedProjects.mobileArrows}>
             <button
               type="button"
-              aria-label="Previous portrait"
-              onClick={goToPreviousWindow}
-              className={rc.description.mobileWindowButton}
+              aria-label="Previous project"
+              onClick={goToPreviousProject}
+              className={rc.selectedProjects.mobileArrow}
             >
-              <ArrowLeft className={rc.description.mobileWindowButtonIcon} />
+              <ArrowLeft className={rc.selectedProjects.mobileArrowIcon} />
             </button>
 
             <button
               type="button"
-              aria-label="Next portrait"
-              onClick={goToNextWindow}
-              className={rc.description.mobileWindowButton}
+              aria-label="Next project"
+              onClick={goToNextProject}
+              className={rc.selectedProjects.mobileArrow}
             >
-              <ArrowRight className={rc.description.mobileWindowButtonIcon} />
+              <ArrowRight className={rc.selectedProjects.mobileArrowIcon} />
             </button>
           </div>
 
-          <div
-            ref={mobileTrackRef}
-            onScroll={handleMobileScroll}
-            className={rc.description.mobileWindowsTrack}
-          >
-            {portraitWindows.map((item) => (
-              <div
-                key={`${item.title}-mobile`}
-                className={rc.description.mobileWindowSlide}
-              >
-                <XpImageWindow
-                  title={item.title}
-                  src={item.src}
-                  alt={item.alt}
-                  className=""
-                  mobile
-                />
-              </div>
+          {/* MOBILE: one card per swipe */}
+          <div className={rc.selectedProjects.mobileCarousel}>
+            <div
+              ref={mobileTrackRef}
+              onScroll={handleMobileScroll}
+              className={rc.selectedProjects.mobileTrack}
+            >
+              {projects.map((project) => (
+                <div
+                  key={`${project.number}-${project.title}-mobile`}
+                  className={rc.selectedProjects.mobileSlide}
+                >
+                  <ProjectCardLink project={project} priority={false} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* DESKTOP: three cards visible */}
+          <div className={rc.selectedProjects.grid}>
+            {visibleProjects.map((project, index) => (
+              <ProjectCardLink
+                key={`${project.number}-${project.title}-desktop`}
+                project={project}
+                priority={index === 1}
+                className={getCardTilt(index)}
+              />
             ))}
           </div>
 
-          <div className={rc.description.mobileWindowDots}>
-            {portraitWindows.map((item, index) => (
+          <div className={rc.selectedProjects.dots}>
+            {projects.map((project, index) => (
               <button
-                key={`${item.title}-dot`}
+                key={project.number}
                 type="button"
-                aria-label={`Show ${item.title}`}
-                onClick={() => setWindowIndex(index)}
-                className={`${rc.description.mobileWindowDot} ${
+                aria-label={`Show project ${project.number}`}
+                onClick={() => setProjectIndex(index)}
+                className={`${rc.selectedProjects.dot} ${
                   activeIndex === index
-                    ? rc.description.mobileWindowDotActive
-                    : rc.description.mobileWindowDotInactive
+                    ? rc.selectedProjects.dotActive
+                    : rc.selectedProjects.dotInactive
                 }`}
               />
             ))}
           </div>
-        </div>
-
-        <div className={rc.description.windowsWrap}>
-          {portraitWindows.map((item) => (
-            <XpImageWindow
-              key={`${item.title}-desktop`}
-              title={item.title}
-              src={item.src}
-              alt={item.alt}
-              className={item.className}
-            />
-          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function InfoBlock({
-  title,
-  children,
+function ProjectCardLink({
+  project,
+  priority,
+  className = "",
 }: {
-  title: string;
-  children: React.ReactNode;
+  project: ProjectCard;
+  priority: boolean;
+  className?: string;
 }) {
   return (
-    <div className={rc.description.infoBlock}>
-      <h2 className={rc.description.infoTitle}>{title}</h2>
-
-      <div className={rc.description.infoBody}>{children}</div>
-    </div>
-  );
-}
-
-function Tag({ children }: { children: React.ReactNode }) {
-  return <span className={rc.description.tag}>{children}</span>;
-}
-
-function XpImageWindow({
-  title,
-  src,
-  alt,
-  className,
-  mobile = false,
-}: {
-  title: string;
-  src: string;
-  alt: string;
-  className: string;
-  mobile?: boolean;
-}) {
-  return (
-    <div
-      className={`${rc.description.xpWindow} ${
-        mobile ? rc.description.xpWindowMobile : ""
-      } ${className}`}
+    <Link
+      href={project.href}
+      className={`${rc.selectedProjects.cardBase} ${className}`}
     >
-      <div className={rc.description.xpTitleBar}>
-        <div className={rc.description.xpTitleLeft}>
-          <span className={rc.description.xpFolderIcon} />
-
-          <span className={rc.description.xpTitleText}>{title}</span>
-        </div>
-
-        <div className={rc.description.xpControls}>
-          <span className={rc.description.xpControlBlue}>_</span>
-          <span className={rc.description.xpControlBlueSmall}>□</span>
-          <span className={rc.description.xpControlRed}>×</span>
-        </div>
+      <div className={rc.selectedProjects.imageWrap}>
+        <Image
+          src={project.image}
+          alt={`${project.title} project preview`}
+          fill
+          priority={priority}
+          className={rc.selectedProjects.image}
+          style={{
+            objectPosition: project.imagePosition,
+          }}
+          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 33vw"
+        />
       </div>
 
-      <div className={rc.description.xpBody}>
-        <div className={rc.description.xpImageFrame}>
-          <Image
-            src={src}
-            alt={alt}
-            fill
-            sizes={
-              mobile
-                ? "90vw"
-                : "(min-width: 1280px) 260px, (min-width: 1024px) 220px, 90vw"
-            }
-            className={rc.description.xpImage}
-            priority={false}
-          />
+      <div className={rc.selectedProjects.overlayDarkTop} />
+      <div className={rc.selectedProjects.overlayDarkBottom} />
+      <div className={rc.selectedProjects.overlayCyan} />
+
+      <div className={rc.selectedProjects.cardBorder} />
+
+      <div className={rc.selectedProjects.number}>{project.number}</div>
+
+      <div className={rc.selectedProjects.content}>
+        <h3 className={rc.selectedProjects.cardTitle}>{project.title}</h3>
+
+        <p className={rc.selectedProjects.category}>{project.category}</p>
+
+        <div className={rc.selectedProjects.divider} />
+
+        <div className={rc.selectedProjects.caseStudyRow}>
+          <span className={rc.selectedProjects.caseStudyText}>
+            View Case Study
+          </span>
+
+          <ArrowRight className={rc.selectedProjects.caseStudyIcon} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
