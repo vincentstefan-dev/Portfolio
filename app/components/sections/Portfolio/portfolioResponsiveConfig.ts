@@ -337,7 +337,6 @@ identity: {
   listDot:
     "h-2.5 w-2.5 shrink-0 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(125,220,255,0.95)]",
 },
-
   rotatingLogo: {
     section:
       "relative flex min-h-[80vh] w-full items-center justify-center overflow-visible px-6 py-20 text-[#F3F8FF] sm:px-10 lg:px-14",
@@ -531,79 +530,112 @@ identity: {
       "h-px w-28 bg-white/20",
   },
 
-  description: {
-    section:
-      "relative min-h-screen overflow-hidden bg-transparent px-6 py-20 text-[#F3F8FF] sm:px-10 lg:px-16",
+ description: {
+  section:
+    "relative overflow-hidden bg-transparent px-6 py-14 text-[#F3F8FF] sm:px-10 sm:py-20 lg:min-h-screen lg:px-16",
 
-    inner:
-      "relative z-10 mx-auto max-w-7xl",
+  inner:
+    "relative z-10 mx-auto max-w-7xl lg:min-h-screen",
 
-    textContent:
-      "relative z-20 max-w-3xl",
+  textContent:
+    "relative z-20 max-w-3xl lg:max-w-[58%]",
 
-    infoBlock:
-      "mb-7",
+  infoBlock:
+    "mb-7",
 
-    infoTitle:
-      "mb-3 text-3xl font-black uppercase tracking-[-0.04em] text-[#67E8F9] drop-shadow-[0_0_16px_rgba(34,211,238,0.35)] sm:text-4xl",
+  infoTitle:
+    "mb-3 text-3xl font-black uppercase tracking-[-0.04em] text-[#67E8F9] drop-shadow-[0_0_16px_rgba(34,211,238,0.35)] sm:text-4xl",
 
-    infoBody:
-      "max-w-3xl text-base font-medium leading-[1.18] text-[#F3F8FF]/85 sm:text-lg",
+  infoBody:
+    "max-w-3xl text-base font-medium leading-[1.18] text-[#F3F8FF]/85 sm:text-lg",
 
-    tagWrap:
-      "mt-4 flex flex-wrap gap-2",
+  tagWrap:
+    "mt-4 flex flex-wrap gap-2",
 
-    tag:
-      "rounded-md bg-[#2563EB] px-3 py-1 text-sm font-black uppercase tracking-[-0.02em] text-[#F3F8FF] shadow-[0_0_18px_rgba(37,99,235,0.25)]",
+  tag:
+    "rounded-md bg-[#2563EB] px-3 py-1 text-sm font-black uppercase tracking-[-0.02em] text-[#F3F8FF] shadow-[0_0_18px_rgba(37,99,235,0.25)]",
 
-    blogParagraph:
-      "mt-5",
+  blogParagraph:
+    "mt-5",
 
-    blogLink:
-      "inline-block hover:opacity-80",
+  blogLink:
+    "inline-block hover:opacity-80",
 
-    blogLinkText:
-      "inline-block overflow-visible animate-rainbow-text pb-[0.14em] font-semibold leading-[1.2]",
+  blogLinkText:
+    "inline-block overflow-visible animate-rainbow-text pb-[0.14em] font-semibold leading-[1.2]",
 
-    windowsWrap:
-      "pointer-events-none relative z-10 mt-12 grid gap-6 sm:grid-cols-2 lg:absolute lg:inset-0 lg:mt-0 lg:block",
+  mobileWindowsArea:
+    "relative z-20 mt-10 lg:hidden",
 
-    xpWindow:
-      "overflow-hidden rounded-[7px] border border-[#08348f] bg-[#ece9d8] shadow-[6px_8px_0_rgba(0,0,0,0.28),0_0_24px_rgba(103,232,249,0.18)] transition-transform duration-300 ease-out hover:scale-[1.03] lg:absolute lg:w-[230px]",
+  mobileWindowButtons:
+    "mb-5 flex justify-center gap-4",
 
-    xpTitleBar:
-      "flex h-7 items-center justify-between bg-gradient-to-b from-[#3f8cff] via-[#1456d8] to-[#073b9f] px-2 text-white",
+  mobileWindowButton:
+    "flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/40 bg-[#07111f]/60 text-cyan-200 shadow-[0_0_25px_rgba(34,211,238,0.2)] backdrop-blur-md transition hover:border-cyan-200 hover:bg-cyan-300/10",
 
-    xpTitleLeft:
-      "flex min-w-0 items-center gap-1.5",
+  mobileWindowButtonIcon:
+    "h-5 w-5",
 
-    xpFolderIcon:
-      "h-3 w-3 shrink-0 rounded-sm bg-[#f7d24c] shadow-[inset_-1px_-1px_0_rgba(0,0,0,0.28)]",
+  mobileWindowsTrack:
+    "flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
 
-    xpTitleText:
-      "truncate text-[11px] font-bold leading-none drop-shadow",
+  mobileWindowSlide:
+    "flex min-w-full snap-center justify-center px-1",
 
-    xpControls:
-      "flex shrink-0 items-center gap-1",
+  mobileWindowDots:
+    "mt-6 flex justify-center gap-2",
 
-    xpControlBlue:
-      "grid h-4 w-4 place-items-center rounded-sm bg-[#2f73e8] text-[10px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]",
+  mobileWindowDot:
+    "h-2 rounded-full transition",
 
-    xpControlBlueSmall:
-      "grid h-4 w-4 place-items-center rounded-sm bg-[#2f73e8] text-[9px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]",
+  mobileWindowDotActive:
+    "w-8 bg-cyan-200 shadow-[0_0_16px_rgba(103,232,249,0.9)]",
 
-    xpControlRed:
-      "grid h-4 w-4 place-items-center rounded-sm bg-[#e54835] text-[10px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]",
+  mobileWindowDotInactive:
+    "w-2 bg-cyan-200/30 hover:bg-cyan-200/60",
 
-    xpBody:
-      "border-x-2 border-b-2 border-[#1b55b9] bg-[#ece9d8] p-2",
+  windowsWrap:
+    "pointer-events-none absolute inset-0 z-10 hidden lg:block",
 
-    xpImageFrame:
-      "relative aspect-[3/4] overflow-hidden border border-[#8a867a] bg-white",
+  xpWindow:
+    "overflow-hidden rounded-[7px] border border-[#08348f] bg-[#ece9d8] shadow-[6px_8px_0_rgba(0,0,0,0.28),0_0_24px_rgba(103,232,249,0.18)] transition-transform duration-300 ease-out hover:scale-[1.03] lg:absolute lg:w-[250px] xl:w-[270px]",
 
-    xpImage:
-      "object-cover object-center",
-  },
+  xpWindowMobile:
+    "relative w-full max-w-[330px]",
+
+  xpTitleBar:
+    "flex h-7 items-center justify-between bg-gradient-to-b from-[#3f8cff] via-[#1456d8] to-[#073b9f] px-2 text-white",
+
+  xpTitleLeft:
+    "flex min-w-0 items-center gap-1.5",
+
+  xpFolderIcon:
+    "h-3 w-3 shrink-0 rounded-sm bg-[#f7d24c] shadow-[inset_-1px_-1px_0_rgba(0,0,0,0.28)]",
+
+  xpTitleText:
+    "truncate text-[11px] font-bold leading-none drop-shadow",
+
+  xpControls:
+    "flex shrink-0 items-center gap-1",
+
+  xpControlBlue:
+    "grid h-4 w-4 place-items-center rounded-sm bg-[#2f73e8] text-[10px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]",
+
+  xpControlBlueSmall:
+    "grid h-4 w-4 place-items-center rounded-sm bg-[#2f73e8] text-[9px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]",
+
+  xpControlRed:
+    "grid h-4 w-4 place-items-center rounded-sm bg-[#e54835] text-[10px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]",
+
+  xpBody:
+    "border-x-2 border-b-2 border-[#1b55b9] bg-[#ece9d8] p-2",
+
+  xpImageFrame:
+    "relative aspect-[3/4] overflow-hidden border border-[#8a867a] bg-white",
+
+  xpImage:
+    "object-cover object-center",
+},
 
 selectedProjects: {
   section:
