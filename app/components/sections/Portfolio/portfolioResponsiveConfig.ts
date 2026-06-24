@@ -184,88 +184,94 @@ neonHero: {
       "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(34,211,238,0.16),transparent_45%),linear-gradient(135deg,rgba(34,211,238,0.08),transparent_45%)]",
   },
 
-  projectsHero: {
-    section:
-      "relative min-h-screen overflow-hidden bg-transparent text-white",
+projectsHero: {
+  section:
+    "relative min-h-screen overflow-hidden bg-transparent text-white",
 
-    background:
-      "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.13),transparent_40%),radial-gradient(circle_at_70%_35%,rgba(37,99,235,0.09),transparent_36%)]",
+  background:
+    "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.13),transparent_40%),radial-gradient(circle_at_70%_35%,rgba(37,99,235,0.09),transparent_36%)]",
 
-    topRailWrap:
-      "pointer-events-none absolute left-8 top-8 z-20",
+  topRailWrap:
+    "pointer-events-none absolute left-8 top-8 z-20",
 
-    topRail:
-      "mt-5 h-16 border-l border-cyan-300/70 pl-4",
+  topRail:
+    "mt-5 h-16 border-l border-cyan-300/70 pl-4",
 
-    topRailMainLine:
-      "h-1 w-24 bg-cyan-300/70 shadow-[0_0_16px_rgba(34,211,238,0.65)]",
+  topRailMainLine:
+    "h-1 w-24 bg-cyan-300/70 shadow-[0_0_16px_rgba(34,211,238,0.65)]",
 
-    topRailLineLong:
-      "mt-3 h-px w-32 bg-white/10",
+  topRailLineLong:
+    "mt-3 h-px w-32 bg-white/10",
 
-    topRailLineShort:
-      "mt-2 h-px w-20 bg-white/10",
+  topRailLineShort:
+    "mt-2 h-px w-20 bg-white/10",
 
-    floatingIconPositionBase:
-      "pointer-events-none absolute z-20 hidden lg:flex",
+  floatingIconPositionBase:
+    "pointer-events-none absolute z-20 hidden lg:flex",
 
-    floatingIconBox:
-      "flex h-24 w-24 items-center justify-center rounded-[1.6rem] border border-cyan-300/45 bg-[#05070A]/45 shadow-[0_0_28px_rgba(34,211,238,0.32),inset_0_0_18px_rgba(103,232,249,0.06)] backdrop-blur-md",
+  floatingIconBox:
+    "flex h-24 w-24 items-center justify-center rounded-[1.6rem] border border-cyan-300/45 bg-[#05070A]/45 shadow-[0_0_28px_rgba(34,211,238,0.32),inset_0_0_18px_rgba(103,232,249,0.06)] backdrop-blur-md",
 
-    floatingIcon:
-      "h-10 w-10 text-cyan-300 drop-shadow-[0_0_14px_rgba(34,211,238,0.8)]",
+  floatingIcon:
+    "h-10 w-10 text-cyan-300 drop-shadow-[0_0_14px_rgba(34,211,238,0.8)]",
 
-    centerWrap:
-      "relative z-10 flex min-h-screen items-center justify-center px-6 py-24",
+  centerWrap:
+    "relative z-10 flex min-h-screen items-center justify-center px-6 py-24",
 
-    centerInner:
-      "relative flex w-full max-w-6xl flex-col items-center",
+  centerInner:
+    "relative flex w-full max-w-6xl flex-col items-center",
 
-    titleWrap:
-      "relative flex min-h-[250px] w-full items-center justify-center",
+  titleWrap:
+    "relative flex min-h-[250px] w-full items-center justify-center",
 
-    title:
-      "flex w-full items-center justify-center text-center font-black leading-none tracking-[-0.1em]",
+  title:
+    "flex w-full items-center justify-center text-center font-black leading-none tracking-[-0.1em]",
 
-    titleText:
-      "inline-flex w-full max-w-[900px] scale-x-[1.04] items-center justify-center gap-[0.035em] bg-gradient-to-b from-white via-cyan-100 to-blue-200 bg-clip-text text-[clamp(3.6rem,10vw,8.8rem)] leading-none text-transparent drop-shadow-[0_0_28px_rgba(34,211,238,0.72)] [text-shadow:0_0_42px_rgba(34,211,238,0.65)]",
+  titleText:
+    "flex w-full max-w-[900px] scale-x-[1.04] flex-col items-center justify-center bg-gradient-to-b from-white via-cyan-100 to-blue-200 bg-clip-text text-[clamp(3.6rem,10vw,8.8rem)] leading-[0.82] text-transparent drop-shadow-[0_0_28px_rgba(34,211,238,0.72)] [text-shadow:0_0_42px_rgba(34,211,238,0.65)]",
 
-    exclamation:
-      "neon-word neon-word-2 block",
+  titleLineTop:
+    "block",
 
-    titleGlow:
-      "pointer-events-none absolute left-1/2 top-1/2 h-32 w-[52rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/10 blur-[80px]",
+  titleLineBottom:
+    "inline-flex items-baseline justify-center gap-[0.08em]",
 
-    ctaWrap:
-      "mt-14 flex flex-col items-center justify-center gap-5 md:flex-row",
+  exclamation:
+    "neon-word neon-word-2 inline-block translate-y-[0.03em] text-[1.02em] leading-none",
 
-    primaryCta:
-      "group rounded-full border border-cyan-300/70 bg-cyan-300/5 px-8 py-4 text-xs font-bold uppercase tracking-[0.35em] text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.35),inset_0_0_18px_rgba(103,232,249,0.08)] backdrop-blur-md transition hover:bg-cyan-300/12 hover:text-white",
+  titleGlow:
+    "pointer-events-none absolute left-1/2 top-1/2 h-32 w-[52rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/10 blur-[80px]",
 
-    primaryCtaIcon:
-      "ml-3 inline-block transition group-hover:translate-x-1",
+  ctaWrap:
+    "mt-14 flex flex-col items-center justify-center gap-5 md:flex-row",
 
-    secondaryCta:
-      "rounded-full border border-cyan-300/25 bg-white/5 px-8 py-4 text-xs font-bold uppercase tracking-[0.35em] text-white/80 shadow-[0_0_16px_rgba(34,211,238,0.12)] backdrop-blur-md transition hover:border-cyan-300/60 hover:bg-cyan-300/10 hover:text-cyan-100",
+  primaryCta:
+    "group rounded-full border border-cyan-300/70 bg-cyan-300/5 px-8 py-4 text-xs font-bold uppercase tracking-[0.35em] text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.35),inset_0_0_18px_rgba(103,232,249,0.08)] backdrop-blur-md transition hover:bg-cyan-300/12 hover:text-white",
 
-    bottomRailWrap:
-      "pointer-events-none absolute bottom-8 left-8 z-20",
+  primaryCtaIcon:
+    "ml-3 inline-block transition group-hover:translate-x-1",
 
-    bottomRail:
-      "mt-4 flex items-center gap-3",
+  secondaryCta:
+    "rounded-full border border-cyan-300/25 bg-white/5 px-8 py-4 text-xs font-bold uppercase tracking-[0.35em] text-white/80 shadow-[0_0_16px_rgba(34,211,238,0.12)] backdrop-blur-md transition hover:border-cyan-300/60 hover:bg-cyan-300/10 hover:text-cyan-100",
 
-    bottomDotStrong:
-      "h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,0.8)]",
+  bottomRailWrap:
+    "pointer-events-none absolute bottom-8 left-8 z-20",
 
-    bottomDotMedium:
-      "h-1.5 w-1.5 rounded-full bg-cyan-300/70",
+  bottomRail:
+    "mt-4 flex items-center gap-3",
 
-    bottomDotSoft:
-      "h-1.5 w-1.5 rounded-full bg-cyan-300/40",
+  bottomDotStrong:
+    "h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,0.8)]",
 
-    bottomLine:
-      "h-px w-28 bg-white/20",
-  },
+  bottomDotMedium:
+    "h-1.5 w-1.5 rounded-full bg-cyan-300/70",
+
+  bottomDotSoft:
+    "h-1.5 w-1.5 rounded-full bg-cyan-300/40",
+
+  bottomLine:
+    "h-px w-28 bg-white/20",
+},
 
 identity: {
   section:

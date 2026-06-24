@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   Code2,
   FolderKanban,
@@ -90,23 +89,16 @@ export default function PortfolioProjectsSection() {
           <div className={rc.projectsHero.titleWrap}>
             <h2 className={rc.projectsHero.title}>
               <span className={rc.projectsHero.titleText}>
-                PROJECTS
-                <span className={rc.projectsHero.exclamation}>!</span>
+                <span className={rc.projectsHero.titleLineTop}>ALL</span>
+
+                <span className={rc.projectsHero.titleLineBottom}>
+                  PROJECTS
+                  <span className={rc.projectsHero.exclamation}>!</span>
+                </span>
               </span>
             </h2>
 
             <div className={rc.projectsHero.titleGlow} />
-          </div>
-
-          <div className={rc.projectsHero.ctaWrap}>
-            <Link href="#portfolio-index" className={rc.projectsHero.primaryCta}>
-              See all projects
-              <span className={rc.projectsHero.primaryCtaIcon}>↗</span>
-            </Link>
-
-            <Link href="/contact" className={rc.projectsHero.secondaryCta}>
-              Check starred projects!
-            </Link>
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ import PortfolioPaletteSection from "@/app/components/sections/Portfolio/Portfol
 import PortfolioProjectDescription from "@/app/components/sections/Portfolio/PortfolioProjectDescription";
 import PortfolioLogoSection from "@/app/components/sections/Portfolio/PortfolioLogoSection";
 import PortfolioSelectedProjectsSection from "@/app/components/sections/Portfolio/PortfolioSelectedProjectsSection";
+import PortfolioProjectsSection from "@/app/components/sections/Portfolio/PortfolioProjectsSection";
 
 import { portfolioRc as rc } from "@/app/components/sections/Portfolio/portfolioResponsiveConfig";
 
@@ -58,6 +59,8 @@ export default function PortfolioPage() {
         <PortfolioPaletteSection />
 
         <PortfolioLogoSection />
+        
+        <PortfolioProjectsSection />
 
         <PortfolioNavSection siteMode="basic" items={portfolioItems} />
 
