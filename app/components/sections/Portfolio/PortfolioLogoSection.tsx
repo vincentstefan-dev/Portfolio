@@ -10,7 +10,7 @@ const rotatingLogos = [
     alt: "Koyote 8-bit logo",
   },
   {
-    src: "/logos/16BIT.webp",
+    src: "/logos/16bit.webp", 
     alt: "Koyote 16-bit logo",
   },
   {
