@@ -5,7 +5,6 @@ import { House } from "lucide-react";
 import ThemedBackground from "@/app/components/template/theme/ThemedBackground";
 
 import PortfolioHeroSection from "@/app/components/sections/Portfolio/PortfolioHeroSection";
-import PortfolioProjectsSection from "@/app/components/sections/Portfolio/PortfolioProjectsSection";
 import PortfolioNavSection from "@/app/components/sections/Portfolio/PortfolioNavSection";
 import PortfolioExplanation from "@/app/components/sections/Portfolio/PortfolioExplanation";
 import PortfolioPaletteSection from "@/app/components/sections/Portfolio/PortfolioPaletteSection";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -61,6 +61,7 @@ const projects: ProjectCard[] = [
 
 export default function PortfolioSelectedProjectsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const mobileTrackRef = useRef<HTMLDivElement | null>(null);
 
   const visibleProjects = useMemo(() => {
     return [0, 1, 2].map((offset) => {
@@ -69,14 +70,45 @@ export default function PortfolioSelectedProjectsSection() {
     });
   }, [activeIndex]);
 
+  function scrollMobileTo(index: number) {
+    const track = mobileTrackRef.current;
+    if (!track) return;
+
+    track.scrollTo({
+      left: index * track.clientWidth,
+      behavior: "smooth",
+    });
+  }
+
+  function setProjectIndex(index: number) {
+    setActiveIndex(index);
+
+    requestAnimationFrame(() => {
+      scrollMobileTo(index);
+    });
+  }
+
   function goToNextProject() {
-    setActiveIndex((current) => (current + 1) % projects.length);
+    const nextIndex = (activeIndex + 1) % projects.length;
+    setProjectIndex(nextIndex);
   }
 
   function goToPreviousProject() {
-    setActiveIndex((current) =>
-      current === 0 ? projects.length - 1 : current - 1
-    );
+    const previousIndex =
+      activeIndex === 0 ? projects.length - 1 : activeIndex - 1;
+
+    setProjectIndex(previousIndex);
+  }
+
+  function handleMobileScroll() {
+    const track = mobileTrackRef.current;
+    if (!track) return;
+
+    const nextIndex = Math.round(track.scrollLeft / track.clientWidth);
+
+    if (nextIndex !== activeIndex && projects[nextIndex]) {
+      setActiveIndex(nextIndex);
+    }
   }
 
   function getCardTilt(index: number) {
@@ -144,59 +176,33 @@ export default function PortfolioSelectedProjectsSection() {
             </button>
           </div>
 
+          {/* MOBILE: one card per swipe */}
+          <div className={rc.selectedProjects.mobileCarousel}>
+            <div
+              ref={mobileTrackRef}
+              onScroll={handleMobileScroll}
+              className={rc.selectedProjects.mobileTrack}
+            >
+              {projects.map((project) => (
+                <div
+                  key={`${project.number}-${project.title}-mobile`}
+                  className={rc.selectedProjects.mobileSlide}
+                >
+                  <ProjectCardLink project={project} priority={false} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* DESKTOP: three cards visible */}
           <div className={rc.selectedProjects.grid}>
             {visibleProjects.map((project, index) => (
-              <Link
-                key={`${project.number}-${project.title}`}
-                href={project.href}
-                className={`${rc.selectedProjects.cardBase} ${getCardTilt(
-                  index
-                )}`}
-              >
-                <div className={rc.selectedProjects.imageWrap}>
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} project preview`}
-                    fill
-                    priority={index === 1}
-                    className={rc.selectedProjects.image}
-                    style={{
-                      objectPosition: project.imagePosition,
-                    }}
-                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 33vw"
-                  />
-                </div>
-
-                <div className={rc.selectedProjects.overlayDarkTop} />
-                <div className={rc.selectedProjects.overlayDarkBottom} />
-                <div className={rc.selectedProjects.overlayCyan} />
-
-                <div className={rc.selectedProjects.cardBorder} />
-
-                <div className={rc.selectedProjects.number}>
-                  {project.number}
-                </div>
-
-                <div className={rc.selectedProjects.content}>
-                  <h3 className={rc.selectedProjects.cardTitle}>
-                    {project.title}
-                  </h3>
-
-                  <p className={rc.selectedProjects.category}>
-                    {project.category}
-                  </p>
-
-                  <div className={rc.selectedProjects.divider} />
-
-                  <div className={rc.selectedProjects.caseStudyRow}>
-                    <span className={rc.selectedProjects.caseStudyText}>
-                      View Case Study
-                    </span>
-
-                    <ArrowRight className={rc.selectedProjects.caseStudyIcon} />
-                  </div>
-                </div>
-              </Link>
+              <ProjectCardLink
+                key={`${project.number}-${project.title}-desktop`}
+                project={project}
+                priority={index === 1}
+                className={getCardTilt(index)}
+              />
             ))}
           </div>
 
@@ -206,7 +212,7 @@ export default function PortfolioSelectedProjectsSection() {
                 key={project.number}
                 type="button"
                 aria-label={`Show project ${project.number}`}
-                onClick={() => setActiveIndex(index)}
+                onClick={() => setProjectIndex(index)}
                 className={`${rc.selectedProjects.dot} ${
                   activeIndex === index
                     ? rc.selectedProjects.dotActive
@@ -218,5 +224,60 @@ export default function PortfolioSelectedProjectsSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+function ProjectCardLink({
+  project,
+  priority,
+  className = "",
+}: {
+  project: ProjectCard;
+  priority: boolean;
+  className?: string;
+}) {
+  return (
+    <Link
+      href={project.href}
+      className={`${rc.selectedProjects.cardBase} ${className}`}
+    >
+      <div className={rc.selectedProjects.imageWrap}>
+        <Image
+          src={project.image}
+          alt={`${project.title} project preview`}
+          fill
+          priority={priority}
+          className={rc.selectedProjects.image}
+          style={{
+            objectPosition: project.imagePosition,
+          }}
+          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 33vw"
+        />
+      </div>
+
+      <div className={rc.selectedProjects.overlayDarkTop} />
+      <div className={rc.selectedProjects.overlayDarkBottom} />
+      <div className={rc.selectedProjects.overlayCyan} />
+
+      <div className={rc.selectedProjects.cardBorder} />
+
+      <div className={rc.selectedProjects.number}>{project.number}</div>
+
+      <div className={rc.selectedProjects.content}>
+        <h3 className={rc.selectedProjects.cardTitle}>{project.title}</h3>
+
+        <p className={rc.selectedProjects.category}>{project.category}</p>
+
+        <div className={rc.selectedProjects.divider} />
+
+        <div className={rc.selectedProjects.caseStudyRow}>
+          <span className={rc.selectedProjects.caseStudyText}>
+            View Case Study
+          </span>
+
+          <ArrowRight className={rc.selectedProjects.caseStudyIcon} />
+        </div>
+      </div>
+    </Link>
   );
 }
