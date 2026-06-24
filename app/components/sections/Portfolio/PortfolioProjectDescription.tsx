@@ -13,42 +13,42 @@ const portraitWindows = [
     src: "/potraits/ChatGPT Image Jun 22, 2026, 04_36_11 PM.png",
     alt: "Koyote portrait image 1",
     className:
-      "lg:left-[61%] lg:top-[9%] lg:translate-x-[95px] lg:rotate-[-3deg] lg:z-30",
+      "lg:left-[56%] lg:top-[6%] lg:translate-x-[90px] lg:rotate-[-3deg] lg:z-30",
   },
   {
     title: "Antonia Amazing Girlfriend",
     src: "/potraits/antonia.png",
     alt: "Koyote portrait image 2",
     className:
-      "lg:left-[73%] lg:top-[8%] lg:translate-x-[95px] lg:rotate-[2deg] lg:z-20",
+      "lg:left-[73%] lg:top-[6%] lg:translate-x-[90px] lg:rotate-[2deg] lg:z-20",
   },
   {
     title: "Daniela Designer",
     src: "/potraits/danielabit.png",
     alt: "Koyote portrait image 3",
     className:
-      "lg:left-[85%] lg:top-[10%] lg:translate-x-[95px] lg:rotate-[6deg] lg:z-30",
+      "lg:left-[90%] lg:top-[8%] lg:translate-x-[90px] lg:rotate-[6deg] lg:z-30",
   },
   {
     title: "Dominique Designer",
     src: "/potraits/dominique.png",
     alt: "Koyote portrait image 4",
     className:
-      "lg:left-[61%] lg:top-[47%] lg:translate-x-[95px] lg:rotate-[4deg] lg:z-20",
+      "lg:left-[56%] lg:top-[52%] lg:translate-x-[90px] lg:rotate-[4deg] lg:z-20",
   },
   {
     title: "Alex Project Friend",
     src: "/potraits/alex.png",
     alt: "Koyote portrait image 5",
     className:
-      "lg:left-[73%] lg:top-[50%] lg:translate-x-[95px] lg:rotate-[-3deg] lg:z-30",
+      "lg:left-[73%] lg:top-[52%] lg:translate-x-[90px] lg:rotate-[-3deg] lg:z-30",
   },
   {
     title: "Koyote Support",
     src: "/potraits/mishi.png",
     alt: "Koyote portrait image 6",
     className:
-      "lg:left-[85%] lg:top-[52%] lg:translate-x-[95px] lg:rotate-[5deg] lg:z-10",
+      "lg:left-[90%] lg:top-[53%] lg:translate-x-[90px] lg:rotate-[5deg] lg:z-10",
   },
 ];
 
