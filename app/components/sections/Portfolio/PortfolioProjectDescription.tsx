@@ -1,7 +1,9 @@
 "use client";
 
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { portfolioRc as rc } from "./portfolioResponsiveConfig";
 
@@ -10,41 +12,91 @@ const portraitWindows = [
     title: "Vini Creator of Koyote",
     src: "/potraits/ChatGPT Image Jun 22, 2026, 04_36_11 PM.png",
     alt: "Koyote portrait image 1",
-    className: "lg:left-[63%] lg:top-[6%] rotate-[-3deg] z-30",
+    className:
+      "lg:left-[61%] lg:top-[9%] lg:translate-x-[95px] lg:rotate-[-3deg] lg:z-30",
   },
   {
     title: "Antonia Amazing Girlfriend",
     src: "/potraits/antonia.png",
     alt: "Koyote portrait image 2",
-    className: "lg:right-[0%] lg:top-[6%] rotate-[2deg] z-20",
+    className:
+      "lg:left-[73%] lg:top-[8%] lg:translate-x-[95px] lg:rotate-[2deg] lg:z-20",
   },
   {
     title: "Daniela Designer",
     src: "/potraits/danielabit.png",
     alt: "Koyote portrait image 3",
-    className: "lg:right-[-18%] lg:top-[8%] rotate-[8deg] z-30",
+    className:
+      "lg:left-[85%] lg:top-[10%] lg:translate-x-[95px] lg:rotate-[6deg] lg:z-30",
   },
   {
     title: "Dominique Designer",
     src: "/potraits/dominique.png",
     alt: "Koyote portrait image 4",
-    className: "lg:left-[61%] lg:top-[50%] rotate-[4deg] z-20",
+    className:
+      "lg:left-[61%] lg:top-[47%] lg:translate-x-[95px] lg:rotate-[4deg] lg:z-20",
   },
   {
     title: "Alex Project Friend",
     src: "/potraits/alex.png",
     alt: "Koyote portrait image 5",
-    className: "lg:right-[2%] lg:top-[53%] rotate-[-3deg] z-30",
+    className:
+      "lg:left-[73%] lg:top-[50%] lg:translate-x-[95px] lg:rotate-[-3deg] lg:z-30",
   },
   {
     title: "Koyote Support",
     src: "/potraits/mishi.png",
     alt: "Koyote portrait image 6",
-    className: "lg:right-[-17%] lg:top-[55%] rotate-[5deg] z-10",
+    className:
+      "lg:left-[85%] lg:top-[52%] lg:translate-x-[95px] lg:rotate-[5deg] lg:z-10",
   },
 ];
 
 export default function ProjectDescriptionSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const mobileTrackRef = useRef<HTMLDivElement | null>(null);
+
+  function scrollMobileTo(index: number) {
+    const track = mobileTrackRef.current;
+    if (!track) return;
+
+    track.scrollTo({
+      left: index * track.clientWidth,
+      behavior: "smooth",
+    });
+  }
+
+  function setWindowIndex(index: number) {
+    setActiveIndex(index);
+
+    requestAnimationFrame(() => {
+      scrollMobileTo(index);
+    });
+  }
+
+  function goToNextWindow() {
+    const nextIndex = (activeIndex + 1) % portraitWindows.length;
+    setWindowIndex(nextIndex);
+  }
+
+  function goToPreviousWindow() {
+    const previousIndex =
+      activeIndex === 0 ? portraitWindows.length - 1 : activeIndex - 1;
+
+    setWindowIndex(previousIndex);
+  }
+
+  function handleMobileScroll() {
+    const track = mobileTrackRef.current;
+    if (!track) return;
+
+    const nextIndex = Math.round(track.scrollLeft / track.clientWidth);
+
+    if (portraitWindows[nextIndex] && nextIndex !== activeIndex) {
+      setActiveIndex(nextIndex);
+    }
+  }
+
   return (
     <section className={rc.description.section}>
       <div className={rc.description.inner}>
@@ -119,9 +171,74 @@ export default function ProjectDescriptionSection() {
           </InfoBlock>
         </div>
 
+        <div className={rc.description.mobileWindowsArea}>
+          <div className={rc.description.mobileWindowButtons}>
+            <button
+              type="button"
+              aria-label="Previous portrait"
+              onClick={goToPreviousWindow}
+              className={rc.description.mobileWindowButton}
+            >
+              <ArrowLeft className={rc.description.mobileWindowButtonIcon} />
+            </button>
+
+            <button
+              type="button"
+              aria-label="Next portrait"
+              onClick={goToNextWindow}
+              className={rc.description.mobileWindowButton}
+            >
+              <ArrowRight className={rc.description.mobileWindowButtonIcon} />
+            </button>
+          </div>
+
+          <div
+            ref={mobileTrackRef}
+            onScroll={handleMobileScroll}
+            className={rc.description.mobileWindowsTrack}
+          >
+            {portraitWindows.map((item) => (
+              <div
+                key={`${item.title}-mobile`}
+                className={rc.description.mobileWindowSlide}
+              >
+                <XpImageWindow
+                  title={item.title}
+                  src={item.src}
+                  alt={item.alt}
+                  className=""
+                  mobile
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className={rc.description.mobileWindowDots}>
+            {portraitWindows.map((item, index) => (
+              <button
+                key={`${item.title}-dot`}
+                type="button"
+                aria-label={`Show ${item.title}`}
+                onClick={() => setWindowIndex(index)}
+                className={`${rc.description.mobileWindowDot} ${
+                  activeIndex === index
+                    ? rc.description.mobileWindowDotActive
+                    : rc.description.mobileWindowDotInactive
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
         <div className={rc.description.windowsWrap}>
           {portraitWindows.map((item) => (
-            <XpImageWindow key={item.src} {...item} />
+            <XpImageWindow
+              key={`${item.title}-desktop`}
+              title={item.title}
+              src={item.src}
+              alt={item.alt}
+              className={item.className}
+            />
           ))}
         </div>
       </div>
@@ -154,14 +271,20 @@ function XpImageWindow({
   src,
   alt,
   className,
+  mobile = false,
 }: {
   title: string;
   src: string;
   alt: string;
   className: string;
+  mobile?: boolean;
 }) {
   return (
-    <div className={`${rc.description.xpWindow} ${className}`}>
+    <div
+      className={`${rc.description.xpWindow} ${
+        mobile ? rc.description.xpWindowMobile : ""
+      } ${className}`}
+    >
       <div className={rc.description.xpTitleBar}>
         <div className={rc.description.xpTitleLeft}>
           <span className={rc.description.xpFolderIcon} />
@@ -182,7 +305,11 @@ function XpImageWindow({
             src={src}
             alt={alt}
             fill
-            sizes="(min-width: 1024px) 230px, 70vw"
+            sizes={
+              mobile
+                ? "90vw"
+                : "(min-width: 1280px) 176px, (min-width: 1024px) 162px, 90vw"
+            }
             className={rc.description.xpImage}
             priority={false}
           />

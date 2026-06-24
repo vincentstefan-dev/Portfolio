@@ -538,7 +538,7 @@ description: {
     "relative z-10 mx-auto max-w-7xl lg:min-h-screen",
 
   textContent:
-    "relative z-20 max-w-3xl lg:max-w-[58%]",
+    "relative z-20 max-w-3xl lg:max-w-[52%]",
 
   infoBlock:
     "mb-7",
@@ -598,8 +598,7 @@ description: {
     "pointer-events-none absolute inset-0 z-10 hidden lg:block",
 
   xpWindow:
-    "overflow-hidden rounded-[6px] border border-[#08348f] bg-[#ece9d8] shadow-[4px_6px_0_rgba(0,0,0,0.28),0_0_18px_rgba(103,232,249,0.16)] transition-transform duration-300 ease-out hover:scale-[1.04] lg:absolute lg:w-[125px] xl:w-[135px]",
-
+    "overflow-hidden rounded-[6px] border border-[#08348f] bg-[#ece9d8] shadow-[4px_6px_0_rgba(0,0,0,0.28),0_0_18px_rgba(103,232,249,0.16)] transition-transform duration-300 ease-out hover:scale-[2.04] lg:absolute lg:w-[220px] xl:w-[220px]",
   xpWindowMobile:
     "relative w-full max-w-[330px]",
 
