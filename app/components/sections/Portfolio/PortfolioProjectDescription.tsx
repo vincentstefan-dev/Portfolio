@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-  const portraitWindows = [
-  // FIRST ROW
+import { portfolioRc as rc } from "./portfolioResponsiveConfig";
+
+const portraitWindows = [
   {
     title: "Vini Creator of Koyote",
     src: "/potraits/ChatGPT Image Jun 22, 2026, 04_36_11 PM.png",
@@ -23,8 +24,6 @@ import Link from "next/link";
     alt: "Koyote portrait image 3",
     className: "lg:right-[-18%] lg:top-[8%] rotate-[8deg] z-30",
   },
-
-  // SECOND ROW
   {
     title: "Dominique Designer",
     src: "/potraits/dominique.png",
@@ -47,10 +46,9 @@ import Link from "next/link";
 
 export default function ProjectDescriptionSection() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-transparent px-6 py-20 text-[#F3F8FF] sm:px-10 lg:px-16">
-      <div className="relative z-10 mx-auto max-w-7xl">
-        {/* TEXT CONTENT */}
-        <div className="relative z-20 max-w-3xl">
+    <section className={rc.description.section}>
+      <div className={rc.description.inner}>
+        <div className={rc.description.textContent}>
           <InfoBlock title="Where does it start?">
             <p>
               Koyote is my personal creative project, where I combine what I
@@ -104,27 +102,24 @@ export default function ProjectDescriptionSection() {
               American roots deeply embedded in bold creative expression.
             </p>
 
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className={rc.description.tagWrap}>
               <Tag>Strategy</Tag>
               <Tag>Sustainability</Tag>
               <Tag>Creativity</Tag>
               <Tag>Technical expertise</Tag>
             </div>
 
-            <p className="mt-5">
+            <p className={rc.description.blogParagraph}>
               You should check the{" "}
-              <Link href="/blog" className="inline-block hover:opacity-80">
-                <span className="inline-block overflow-visible animate-rainbow-text pb-[0.14em] font-semibold leading-[1.2]">
-                  Blog area
-                </span>
+              <Link href="/blog" className={rc.description.blogLink}>
+                <span className={rc.description.blogLinkText}>Blog area</span>
               </Link>{" "}
               to see our creative expression at the fullest.
             </p>
           </InfoBlock>
         </div>
 
-        {/* WINDOWS XP IMAGE POPUPS */}
-        <div className="pointer-events-none relative z-10 mt-12 grid gap-6 sm:grid-cols-2 lg:absolute lg:inset-0 lg:mt-0 lg:block">
+        <div className={rc.description.windowsWrap}>
           {portraitWindows.map((item) => (
             <XpImageWindow key={item.src} {...item} />
           ))}
@@ -142,24 +137,16 @@ function InfoBlock({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mb-7">
-      <h2 className="mb-3 text-3xl font-black uppercase tracking-[-0.04em] text-[#67E8F9] drop-shadow-[0_0_16px_rgba(34,211,238,0.35)] sm:text-4xl">
-        {title}
-      </h2>
+    <div className={rc.description.infoBlock}>
+      <h2 className={rc.description.infoTitle}>{title}</h2>
 
-      <div className="max-w-3xl text-base font-medium leading-[1.18] text-[#F3F8FF]/85 sm:text-lg">
-        {children}
-      </div>
+      <div className={rc.description.infoBody}>{children}</div>
     </div>
   );
 }
 
 function Tag({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="rounded-md bg-[#2563EB] px-3 py-1 text-sm font-black uppercase tracking-[-0.02em] text-[#F3F8FF] shadow-[0_0_18px_rgba(37,99,235,0.25)]">
-      {children}
-    </span>
-  );
+  return <span className={rc.description.tag}>{children}</span>;
 }
 
 function XpImageWindow({
@@ -174,50 +161,29 @@ function XpImageWindow({
   className: string;
 }) {
   return (
-    <div
-      className={[
-        "overflow-hidden rounded-[7px] border border-[#08348f] bg-[#ece9d8]",
-        "shadow-[6px_8px_0_rgba(0,0,0,0.28),0_0_24px_rgba(103,232,249,0.18)]",
-        "transition-transform duration-300 ease-out",
-        "hover:scale-[1.03]",
-        "lg:absolute lg:w-[230px]",
-        className,
-      ].join(" ")}
-    >
-      {/* XP TITLE BAR */}
-      <div className="flex h-7 items-center justify-between bg-gradient-to-b from-[#3f8cff] via-[#1456d8] to-[#073b9f] px-2 text-white">
-        <div className="flex min-w-0 items-center gap-1.5">
-          <span className="h-3 w-3 shrink-0 rounded-sm bg-[#f7d24c] shadow-[inset_-1px_-1px_0_rgba(0,0,0,0.28)]" />
+    <div className={`${rc.description.xpWindow} ${className}`}>
+      <div className={rc.description.xpTitleBar}>
+        <div className={rc.description.xpTitleLeft}>
+          <span className={rc.description.xpFolderIcon} />
 
-          <span className="truncate text-[11px] font-bold leading-none drop-shadow">
-            {title}
-          </span>
+          <span className={rc.description.xpTitleText}>{title}</span>
         </div>
 
-        <div className="flex shrink-0 items-center gap-1">
-          <span className="grid h-4 w-4 place-items-center rounded-sm bg-[#2f73e8] text-[10px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]">
-            _
-          </span>
-
-          <span className="grid h-4 w-4 place-items-center rounded-sm bg-[#2f73e8] text-[9px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]">
-            □
-          </span>
-
-          <span className="grid h-4 w-4 place-items-center rounded-sm bg-[#e54835] text-[10px] font-black leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]">
-            ×
-          </span>
+        <div className={rc.description.xpControls}>
+          <span className={rc.description.xpControlBlue}>_</span>
+          <span className={rc.description.xpControlBlueSmall}>□</span>
+          <span className={rc.description.xpControlRed}>×</span>
         </div>
       </div>
 
-      {/* IMAGE BODY */}
-      <div className="border-x-2 border-b-2 border-[#1b55b9] bg-[#ece9d8] p-2">
-        <div className="relative aspect-[3/4] overflow-hidden border border-[#8a867a] bg-white">
+      <div className={rc.description.xpBody}>
+        <div className={rc.description.xpImageFrame}>
           <Image
             src={src}
             alt={alt}
             fill
             sizes="(min-width: 1024px) 230px, 70vw"
-            className="object-cover object-center"
+            className={rc.description.xpImage}
             priority={false}
           />
         </div>

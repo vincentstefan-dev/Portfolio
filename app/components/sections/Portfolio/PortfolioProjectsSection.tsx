@@ -12,6 +12,8 @@ import {
   Type,
 } from "lucide-react";
 
+import { portfolioRc as rc } from "./portfolioResponsiveConfig";
+
 const toolIcons = [
   {
     label: "Projects",
@@ -57,16 +59,14 @@ const toolIcons = [
 
 export default function PortfolioProjectsSection() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-transparent text-white">
-      {/* BLUE / WHITE PALETTE EFFECT LAYERS */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.13),transparent_40%),radial-gradient(circle_at_70%_35%,rgba(37,99,235,0.09),transparent_36%)]" />
+    <section className={rc.projectsHero.section}>
+      <div className={rc.projectsHero.background} />
 
-
-      <div className="pointer-events-none absolute left-8 top-8 z-20">
-        <div className="mt-5 h-16 border-l border-cyan-300/70 pl-4">
-          <div className="h-1 w-24 bg-cyan-300/70 shadow-[0_0_16px_rgba(34,211,238,0.65)]" />
-          <div className="mt-3 h-px w-32 bg-white/10" />
-          <div className="mt-2 h-px w-20 bg-white/10" />
+      <div className={rc.projectsHero.topRailWrap}>
+        <div className={rc.projectsHero.topRail}>
+          <div className={rc.projectsHero.topRailMainLine} />
+          <div className={rc.projectsHero.topRailLineLong} />
+          <div className={rc.projectsHero.topRailLineShort} />
         </div>
       </div>
 
@@ -76,57 +76,47 @@ export default function PortfolioProjectsSection() {
         return (
           <div
             key={item.label}
-            className={`pointer-events-none absolute z-20 hidden lg:flex ${item.className}`}
+            className={`${rc.projectsHero.floatingIconPositionBase} ${item.className}`}
           >
-            <div className="flex h-24 w-24 items-center justify-center rounded-[1.6rem] border border-cyan-300/45 bg-[#05070A]/45 shadow-[0_0_28px_rgba(34,211,238,0.32),inset_0_0_18px_rgba(103,232,249,0.06)] backdrop-blur-md">
-              <Icon className="h-10 w-10 text-cyan-300 drop-shadow-[0_0_14px_rgba(34,211,238,0.8)]" />
+            <div className={rc.projectsHero.floatingIconBox}>
+              <Icon className={rc.projectsHero.floatingIcon} />
             </div>
           </div>
         );
       })}
 
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-24">
-        <div className="relative flex w-full max-w-6xl flex-col items-center">
-          {/* PROJECTS TEXT */}
-          <div className="relative flex min-h-[250px] w-full items-center justify-center">
-            <h2 className="flex w-full items-center justify-center text-center font-black leading-none tracking-[-0.1em]">
-              <span className="inline-flex w-full max-w-[900px] scale-x-[1.04] items-center justify-center gap-[0.035em] bg-gradient-to-b from-white via-cyan-100 to-blue-200 bg-clip-text text-[clamp(3.6rem,10vw,8.8rem)] leading-none text-transparent drop-shadow-[0_0_28px_rgba(34,211,238,0.72)] [text-shadow:0_0_42px_rgba(34,211,238,0.65)]">
+      <div className={rc.projectsHero.centerWrap}>
+        <div className={rc.projectsHero.centerInner}>
+          <div className={rc.projectsHero.titleWrap}>
+            <h2 className={rc.projectsHero.title}>
+              <span className={rc.projectsHero.titleText}>
                 PROJECTS
-
-               <span className="neon-word neon-word-2 block">!</span>
+                <span className={rc.projectsHero.exclamation}>!</span>
               </span>
             </h2>
 
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-32 w-[52rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/10 blur-[80px]" />
+            <div className={rc.projectsHero.titleGlow} />
           </div>
 
-          <div className="mt-14 flex flex-col items-center justify-center gap-5 md:flex-row">
-            <Link
-              href="#portfolio-index"
-              className="group rounded-full border border-cyan-300/70 bg-cyan-300/5 px-8 py-4 text-xs font-bold uppercase tracking-[0.35em] text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.35),inset_0_0_18px_rgba(103,232,249,0.08)] backdrop-blur-md transition hover:bg-cyan-300/12 hover:text-white"
-            >
+          <div className={rc.projectsHero.ctaWrap}>
+            <Link href="#portfolio-index" className={rc.projectsHero.primaryCta}>
               See all projects
-              <span className="ml-3 inline-block transition group-hover:translate-x-1">
-                ↗
-              </span>
+              <span className={rc.projectsHero.primaryCtaIcon}>↗</span>
             </Link>
 
-            <Link
-              href="/contact"
-              className="rounded-full border border-cyan-300/25 bg-white/5 px-8 py-4 text-xs font-bold uppercase tracking-[0.35em] text-white/80 shadow-[0_0_16px_rgba(34,211,238,0.12)] backdrop-blur-md transition hover:border-cyan-300/60 hover:bg-cyan-300/10 hover:text-cyan-100"
-            >
+            <Link href="/contact" className={rc.projectsHero.secondaryCta}>
               Check starred projects!
             </Link>
           </div>
         </div>
       </div>
 
-      <div className="pointer-events-none absolute bottom-8 left-8 z-20">
-        <div className="mt-4 flex items-center gap-3">
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/70" />
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/40" />
-          <span className="h-px w-28 bg-white/20" />
+      <div className={rc.projectsHero.bottomRailWrap}>
+        <div className={rc.projectsHero.bottomRail}>
+          <span className={rc.projectsHero.bottomDotStrong} />
+          <span className={rc.projectsHero.bottomDotMedium} />
+          <span className={rc.projectsHero.bottomDotSoft} />
+          <span className={rc.projectsHero.bottomLine} />
         </div>
       </div>
     </section>

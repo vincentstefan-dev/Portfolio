@@ -1,3 +1,7 @@
+import React from "react";
+import Link from "next/link";
+import { House } from "lucide-react";
+
 import ThemedBackground from "@/app/components/template/theme/ThemedBackground";
 
 import PortfolioHeroSection from "@/app/components/sections/Portfolio/PortfolioHeroSection";
@@ -8,9 +12,8 @@ import PortfolioPaletteSection from "@/app/components/sections/Portfolio/Portfol
 import PortfolioProjectDescription from "@/app/components/sections/Portfolio/PortfolioProjectDescription";
 import PortfolioLogoSection from "@/app/components/sections/Portfolio/PortfolioLogoSection";
 import PortfolioSelectedProjectsSection from "@/app/components/sections/Portfolio/PortfolioSelectedProjectsSection";
-import React from "react";
-import Link from "next/link";
-import { House } from "lucide-react";
+
+import { portfolioRc as rc } from "@/app/components/sections/Portfolio/portfolioResponsiveConfig";
 
 const portfolioItems = [
   {
@@ -41,40 +44,33 @@ const portfolioItems = [
 
 export default function PortfolioPage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-white">
+    <main className={rc.page.main}>
       <ThemedBackground />
 
-      <div className="relative z-10">
-        
-
+      <div className={rc.page.content}>
         <PortfolioHeroSection />
 
         <PortfolioSelectedProjectsSection />
-    
+
         <PortfolioExplanation />
 
-        <PortfolioProjectDescription /> 
+        <PortfolioProjectDescription />
 
-        <PortfolioPaletteSection /> 
+        <PortfolioPaletteSection />
 
         <PortfolioLogoSection />
-        
+
         <PortfolioNavSection siteMode="basic" items={portfolioItems} />
 
-        {/* BACK BUTTON */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <Link
-          href="/"
-          aria-label="Return to HOME"
-          className="group flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md transition hover:bg-white/50"
-        >
-          <House
-            className="h-5 w-5 text-white transition-transform duration-100 group-hover:scale-110"
-            strokeWidth={1.5}
-          />
-        </Link>
-      </div>
-
+        <div className={rc.page.backButtonWrap}>
+          <Link
+            href="/"
+            aria-label="Return to HOME"
+            className={rc.page.backButton}
+          >
+            <House className={rc.page.backIcon} strokeWidth={1.5} />
+          </Link>
+        </div>
       </div>
     </main>
   );

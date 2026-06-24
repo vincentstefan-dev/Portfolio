@@ -16,6 +16,8 @@ import ThemedNavIcon from "@/app/components/template/theme/ThemedNavIcon";
 import { useThemeGlow } from "@/app/components/template/layout/useThemeGlow";
 import type { SiteMode } from "@/app/components/template/theme/ThemeProvider";
 
+import { portfolioRc as rc } from "./portfolioResponsiveConfig";
+
 type MenuItem = {
   label: string;
   href: string;
@@ -139,27 +141,16 @@ export default function PortfolioIconNav({
   }, [playIconIntro]);
 
   return (
-    <nav
-      aria-label="Portfolio navigation"
-      className="relative flex min-h-[120vh] w-full items-center justify-center px-6 py-24 text-white"
-    >
-      {/* LOCAL BACKGROUND DEPTH */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-[42%] h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[100px]" />
-
-        <div className="absolute left-[22%] top-[30%] h-[32rem] w-[54rem] rotate-[-12deg] rounded-[50%] border border-cyan-300/10" />
-
-        <div className="absolute left-[30%] top-[42%] h-[28rem] w-[50rem] rotate-[10deg] rounded-[50%] border border-blue-300/10" />
-
-        <div className="absolute inset-0 opacity-[0.1] bg-[linear-gradient(rgba(56,189,248,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.08)_1px,transparent_1px)] bg-[size:48px_48px]" />
+    <nav aria-label="Portfolio navigation" className={rc.iconNav.nav}>
+      <div className={rc.iconNav.background}>
+        <div className={rc.iconNav.glow} />
+        <div className={rc.iconNav.orbitOne} />
+        <div className={rc.iconNav.orbitTwo} />
+        <div className={rc.iconNav.grid} />
       </div>
 
-      {/* MAIN 100VH VISUAL AREA */}
-      <div className="relative z-10 flex min-h-[100vh] w-full max-w-7xl items-center justify-center">
-        <div
-          ref={navClusterRef}
-          className="flex flex-wrap items-center justify-center gap-10 md:gap-14 lg:gap-20"
-        >
+      <div className={rc.iconNav.visualArea}>
+        <div ref={navClusterRef} className={rc.iconNav.cluster}>
           {items.map((item, index) => {
             const offset = iconOffsets[index] ?? { x: 0, y: 0 };
 
@@ -169,7 +160,7 @@ export default function PortfolioIconNav({
                 ref={(el) => {
                   itemRefs.current[index] = el;
                 }}
-                className="will-change-transform will-change-opacity"
+                className={rc.iconNav.animatedItem}
                 style={{
                   opacity: areIconOffsetsReady
                     ? isIconIntroActive
@@ -188,17 +179,14 @@ export default function PortfolioIconNav({
                   filter: isIconIntroActive ? "blur(0px)" : "blur(8px)",
                 }}
               >
-                <Link
-                  href={item.href}
-                  className="group block rounded-2xl focus:outline-none focus:ring-2 focus:ring-white/60"
-                >
-                  <div className="flex w-24 flex-col items-center justify-center gap-3 rounded-2xl px-2 py-3 text-center transition duration-300 hover:-translate-y-1">
-                    <div className="relative flex h-12 w-12 items-center justify-center">
+                <Link href={item.href} className={rc.iconNav.link}>
+                  <div className={rc.iconNav.item}>
+                    <div className={rc.iconNav.iconWrap}>
                       {item.image ? (
                         <img
                           src={item.image}
                           alt={item.label}
-                          className="h-14 w-14 object-contain transition duration-300 group-hover:scale-110"
+                          className={rc.iconNav.image}
                         />
                       ) : item.icon && item.gif ? (
                         <ThemedNavIcon
@@ -211,19 +199,15 @@ export default function PortfolioIconNav({
                         <>
                           <item.icon
                             strokeWidth={1.8}
-                            className={`h-12 w-12 text-white transition duration-300 group-hover:scale-110 ${glow.text} ${glow.shadow}`}
+                            className={`${rc.iconNav.lucideIcon} ${glow.text} ${glow.shadow}`}
                           />
 
-                          <div
-                            className={`absolute inset-0 rounded-full bg-white/0 blur-xl transition duration-300 ${glow.bg}`}
-                          />
+                          <div className={`${rc.iconNav.glowOrb} ${glow.bg}`} />
                         </>
                       ) : null}
                     </div>
 
-                    <span className="text-sm font-light tracking-tight text-[#e9d5ff]/70 group-hover:text-[#e9d5ff]/70">
-                      {item.label}
-                    </span>
+                    <span className={rc.iconNav.label}>{item.label}</span>
                   </div>
                 </Link>
               </div>
