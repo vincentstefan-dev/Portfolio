@@ -267,76 +267,76 @@ neonHero: {
       "h-px w-28 bg-white/20",
   },
 
-  identity: {
-    section:
-      "relative min-h-screen w-full overflow-hidden text-white",
+identity: {
+  section:
+    "relative w-full overflow-hidden py-14 text-white lg:min-h-screen lg:py-0",
 
-    rail:
-      "pointer-events-none absolute left-8 top-10 hidden h-[86vh] w-px bg-white/10 md:block",
+  rail:
+    "pointer-events-none absolute left-8 top-10 hidden h-[86vh] w-px bg-white/10 md:block",
 
-    railDotTop:
-      "absolute -left-[5px] top-10 h-2.5 w-2.5 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(125,230,255,0.9)]",
+  railDotTop:
+    "absolute -left-[5px] top-10 h-2.5 w-2.5 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(125,230,255,0.9)]",
 
-    railDotBottom:
-      "absolute -left-[5px] bottom-8 h-2.5 w-2.5 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(125,230,255,0.9)]",
+  railDotBottom:
+    "absolute -left-[5px] bottom-8 h-2.5 w-2.5 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(125,230,255,0.9)]",
 
-    railDots:
-      "absolute left-[-2px] top-[48%] flex flex-col gap-3",
+  railDots:
+    "absolute left-[-2px] top-[48%] flex flex-col gap-3",
 
-    railDotOne:
-      "h-1 w-1 rounded-full bg-blue-200/80",
+  railDotOne:
+    "h-1 w-1 rounded-full bg-blue-200/80",
 
-    railDotTwo:
-      "h-1 w-1 rounded-full bg-blue-200/60",
+  railDotTwo:
+    "h-1 w-1 rounded-full bg-blue-200/60",
 
-    railDotThree:
-      "h-1 w-1 rounded-full bg-blue-200/40",
+  railDotThree:
+    "h-1 w-1 rounded-full bg-blue-200/40",
 
-    railDotFour:
-      "h-1 w-1 rounded-full bg-blue-200/30",
+  railDotFour:
+    "h-1 w-1 rounded-full bg-blue-200/30",
 
-    inner:
-      "relative z-10 mx-auto flex min-h-screen w-full max-w-[1500px] items-center px-8 py-24 md:px-16 lg:px-24",
+  inner:
+    "relative z-10 mx-auto flex w-full max-w-[1500px] items-center px-6 py-0 sm:px-8 md:px-16 lg:min-h-screen lg:px-24 lg:py-24",
 
-    grid:
-      "grid w-full grid-cols-1 items-center gap-16 lg:grid-cols-[1fr_0.85fr]",
+  grid:
+    "grid w-full grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center lg:gap-16",
 
-    kicker:
-      "mb-8 text-xs uppercase tracking-[0.55em] text-cyan-100/45",
+  kicker:
+    "mb-5 text-xs uppercase tracking-[0.55em] text-cyan-100/45 lg:mb-8",
 
-    title:
-      "max-w-[980px] overflow-visible text-left text-[clamp(2.45rem,calc(4vw-2px),4.65rem)] font-black leading-[1.22] tracking-[-0.055em]",
+  title:
+    "max-w-[980px] overflow-visible text-left text-[clamp(2.25rem,10vw,3.45rem)] font-black leading-[1.08] tracking-[-0.055em] lg:text-[clamp(2.45rem,calc(4vw-2px),4.65rem)] lg:leading-[1.22]",
 
-    titleLineOne:
-      "block overflow-visible whitespace-nowrap py-[0.08em] drop-shadow-[0_0_24px_rgba(140,180,255,0.35)]",
+  titleLineOne:
+    "block overflow-visible whitespace-normal py-[0.08em] drop-shadow-[0_0_24px_rgba(140,180,255,0.35)] sm:whitespace-nowrap",
 
-    titleGradientOne:
-      "bg-gradient-to-r from-white via-blue-100 to-violet-300 bg-clip-text text-transparent",
+  titleGradientOne:
+    "bg-gradient-to-r from-white via-blue-100 to-violet-300 bg-clip-text text-transparent",
 
-    rainbowWord:
-      "inline-block overflow-visible animate-rainbow-text pb-[0.14em] font-semibold leading-[1.2]",
+  rainbowWord:
+    "inline-block overflow-visible animate-rainbow-text pb-[0.14em] font-semibold leading-[1.2]",
 
-    titleLineTwo:
-      "block overflow-visible bg-gradient-to-r from-white via-blue-100 to-slate-200 bg-clip-text py-[0.08em] text-transparent drop-shadow-[0_0_24px_rgba(140,180,255,0.28)]",
+  titleLineTwo:
+    "block overflow-visible bg-gradient-to-r from-white via-blue-100 to-slate-200 bg-clip-text py-[0.08em] text-transparent drop-shadow-[0_0_24px_rgba(140,180,255,0.28)]",
 
-    titleLineThree:
-      "block overflow-visible bg-gradient-to-r from-blue-200 via-white to-violet-300 bg-clip-text py-[0.08em] text-transparent drop-shadow-[0_0_28px_rgba(150,180,255,0.45)]",
+  titleLineThree:
+    "block overflow-visible bg-gradient-to-r from-blue-200 via-white to-violet-300 bg-clip-text py-[0.08em] text-transparent drop-shadow-[0_0_28px_rgba(150,180,255,0.45)]",
 
-    listWrap:
-      "relative",
+  listWrap:
+    "relative",
 
-    listGlow:
-      "absolute -inset-20 rounded-full bg-cyan-400/10 blur-[90px]",
+  listGlow:
+    "absolute -inset-10 rounded-full bg-cyan-400/10 blur-[70px] lg:-inset-20 lg:blur-[90px]",
 
-    list:
-      "relative ml-2 space-y-7 text-[clamp(1.25rem,1.65vw,2rem)] font-light tracking-[-0.04em] text-blue-50/90",
+  list:
+    "relative ml-1 space-y-5 text-[clamp(1.15rem,6vw,1.65rem)] font-light tracking-[-0.04em] text-blue-50/90 lg:ml-2 lg:space-y-7 lg:text-[clamp(1.25rem,1.65vw,2rem)]",
 
-    listItem:
-      "flex items-center gap-6",
+  listItem:
+    "flex items-center gap-4 lg:gap-6",
 
-    listDot:
-      "h-2.5 w-2.5 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(125,220,255,0.95)]",
-  },
+  listDot:
+    "h-2.5 w-2.5 shrink-0 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(125,220,255,0.95)]",
+},
 
   rotatingLogo: {
     section:
