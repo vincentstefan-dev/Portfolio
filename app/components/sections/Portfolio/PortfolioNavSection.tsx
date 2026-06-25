@@ -10,7 +10,14 @@ import React, {
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { House, TreeDeciduous } from "lucide-react";
+import {
+  AppWindow,
+  Clapperboard,
+  FolderKanban,
+  HeartHandshake,
+  House,
+  TreeDeciduous,
+} from "lucide-react";
 
 import ThemedNavIcon from "@/app/components/template/theme/ThemedNavIcon";
 import { useThemeGlow } from "@/app/components/template/layout/useThemeGlow";
@@ -18,10 +25,21 @@ import type { SiteMode } from "@/app/components/template/theme/ThemeProvider";
 
 import { portfolioRc as rc } from "./portfolioResponsiveConfig";
 
+type IconKey =
+  | "home"
+  | "she"
+  | "antonia"
+  | "heart"
+  | "film"
+  | "app"
+  | "folder";
+
 type MenuItem = {
+  title?: string;
   label: string;
+  description?: string;
   href: string;
-  icon?: React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  iconKey?: IconKey;
   image?: string;
   gif?: string;
 };
@@ -36,21 +54,34 @@ type PortfolioIconNavProps = {
   items?: MenuItem[];
 };
 
+const iconMap = {
+  home: House,
+  she: HeartHandshake,
+  antonia: TreeDeciduous,
+  heart: HeartHandshake,
+  film: Clapperboard,
+  app: AppWindow,
+  folder: FolderKanban,
+};
+
 const defaultMenuItems: MenuItem[] = [
   {
+    title: "Home",
     label: "Home",
-    icon: House,
+    iconKey: "home",
     href: "/",
     gif: "/Gifs/mystar.gif",
   },
   {
-    label: "SHE",
+    title: "SHE",
+    label: "Sacred Human Experience",
     image: "/Icons/SHE.png",
     href: "/portfolio/SHE",
   },
   {
+    title: "Antonia",
     label: "Antonia Website",
-    icon: TreeDeciduous,
+    iconKey: "antonia",
     href: "/portfolio/antonia",
   },
 ];
@@ -71,6 +102,12 @@ export default function PortfolioIconNav({
 
   const [isIconIntroActive, setIsIconIntroActive] = useState(false);
   const [areIconOffsetsReady, setAreIconOffsetsReady] = useState(false);
+
+  useEffect(() => {
+    itemRefs.current = itemRefs.current.slice(0, items.length);
+    setIconOffsets(items.map(() => ({ x: 0, y: 0 })));
+    setAreIconOffsetsReady(false);
+  }, [items]);
 
   const measureIconOffsets = useCallback(() => {
     const navEl = navClusterRef.current;
@@ -153,6 +190,8 @@ export default function PortfolioIconNav({
         <div ref={navClusterRef} className={rc.iconNav.cluster}>
           {items.map((item, index) => {
             const offset = iconOffsets[index] ?? { x: 0, y: 0 };
+            const Icon = item.iconKey ? iconMap[item.iconKey] : null;
+            const displayTitle = item.title ?? item.label;
 
             return (
               <div
@@ -179,35 +218,47 @@ export default function PortfolioIconNav({
                   filter: isIconIntroActive ? "blur(0px)" : "blur(8px)",
                 }}
               >
-                <Link href={item.href} className={rc.iconNav.link}>
+                <Link href={item.href} className={`${rc.iconNav.link} group`}>
                   <div className={rc.iconNav.item}>
-                    <div className={rc.iconNav.iconWrap}>
+                    <div className="relative mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-cyan-200/25 bg-black/35 shadow-[0_0_30px_rgba(103,232,249,0.28)] backdrop-blur-md transition duration-500 group-hover:scale-110 group-hover:border-cyan-200/60 group-hover:shadow-[0_0_45px_rgba(103,232,249,0.5)]">
+                      <div className="absolute inset-0 rounded-2xl bg-cyan-200/10 blur-xl" />
+
                       {item.image ? (
                         <img
                           src={item.image}
                           alt={item.label}
-                          className={rc.iconNav.image}
+                          className="relative z-10 h-10 w-10 object-contain drop-shadow-[0_0_14px_rgba(103,232,249,0.55)]"
                         />
-                      ) : item.icon && item.gif ? (
-                        <ThemedNavIcon
-                          label={item.label}
-                          icon={item.icon}
-                          gif={item.gif}
-                          glow={glow}
-                        />
-                      ) : item.icon ? (
-                        <>
-                          <item.icon
-                            strokeWidth={1.8}
-                            className={`${rc.iconNav.lucideIcon} ${glow.text} ${glow.shadow}`}
+                      ) : Icon && item.gif ? (
+                        <div className="relative z-10 flex h-10 w-10 items-center justify-center">
+                          <ThemedNavIcon
+                            label={item.label}
+                            icon={Icon}
+                            gif={item.gif}
+                            glow={glow}
                           />
-
-                          <div className={`${rc.iconNav.glowOrb} ${glow.bg}`} />
-                        </>
+                        </div>
+                      ) : Icon ? (
+                        <Icon
+                          strokeWidth={1.8}
+                          className="relative z-10 h-9 w-9 text-cyan-100 drop-shadow-[0_0_14px_rgba(103,232,249,0.75)]"
+                        />
                       ) : null}
                     </div>
 
-                    <span className={rc.iconNav.label}>{item.label}</span>
+                    <div className="flex flex-col items-center text-center">
+                      <span className={rc.iconNav.label}>{displayTitle}</span>
+
+                      {item.description ? (
+                        <span className="mt-2 max-w-[13rem] text-xs leading-snug text-white/55">
+                          {item.description}
+                        </span>
+                      ) : item.title && item.label !== item.title ? (
+                        <span className="mt-2 max-w-[13rem] text-xs leading-snug text-white/55">
+                          {item.label}
+                        </span>
+                      ) : null}
+                    </div>
                   </div>
                 </Link>
               </div>

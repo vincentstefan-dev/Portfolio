@@ -15,30 +15,44 @@ import PortfolioProjectsSection from "@/app/components/sections/Portfolio/Portfo
 
 import { portfolioRc as rc } from "@/app/components/sections/Portfolio/portfolioResponsiveConfig";
 
-const portfolioItems = [
+type PortfolioIconKey = "heart" | "film" | "app" | "folder";
+
+type PortfolioItem = {
+  title: string;
+  href: string;
+  label: string;
+  description: string;
+  iconKey: PortfolioIconKey;
+};
+
+const portfolioItems: PortfolioItem[] = [
   {
     title: "SHE",
     href: "/portfolio/SHE",
-    label: "Web Experience",
+    label: "Sacred Human Experience",
     description: "Immersive visual direction and interface system.",
+    iconKey: "heart",
   },
   {
     title: "Antonia",
     href: "/portfolio/antonia",
-    label: "Client Website",
+    label: "Antonia Schindler Portfolio",
     description: "Film portfolio and production identity website.",
+    iconKey: "film",
   },
   {
     title: "Moodboard",
     href: "/moodboard",
-    label: "Visual Research",
+    label: "Apps",
     description: "Collected references, layouts, and style directions.",
+    iconKey: "app",
   },
   {
     title: "Projects",
     href: "/projects",
-    label: "Personal Builds",
+    label: "Personal projects",
     description: "Hardware mods, experiments, and digital systems.",
+    iconKey: "folder",
   },
 ];
 
@@ -59,7 +73,7 @@ export default function PortfolioPage() {
         <PortfolioPaletteSection />
 
         <PortfolioLogoSection />
-        
+
         <PortfolioProjectsSection />
 
         <PortfolioNavSection siteMode="basic" items={portfolioItems} />
