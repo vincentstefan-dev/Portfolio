@@ -2,6 +2,9 @@
 
 import { portfolioRc as rc } from "./portfolioResponsiveConfig";
 
+const pixelFont =
+  "font-mono uppercase tracking-[0.08em] [font-family:var(--font-pixel),var(--font-vt323),'Press_Start_2P','Courier_New',monospace]";
+
 const palette = [
   {
     name: "Black",
@@ -37,7 +40,13 @@ const palette = [
   },
   {
     name: "Cyan Glow",
-    displayName: "Cyan Glow",
+    displayName: (
+      <>
+        Cyan
+        <br />
+        Glow
+      </>
+    ),
     hex: "#22D3EE",
     role: "Glow / active state",
     className: "bg-[#22D3EE]",
@@ -81,51 +90,88 @@ export default function PortfolioPaletteSection() {
         <div className={rc.palette.header}>
           <p className={rc.palette.kicker}>Visual System</p>
 
-          <h2 className={rc.palette.title}>
-            Color
-            <br />
-            Palette.
+          <h2 className={`${rc.palette.title} whitespace-nowrap`}>
+            Color Palette.
           </h2>
         </div>
 
         <div className={rc.palette.shelf}>
           <div className={rc.palette.shelfLine} />
 
-          <div className={rc.palette.grid}>
+          <div className="relative z-10 grid w-full grid-cols-1 overflow-hidden rounded-[10px] border-2 border-[#0055df] bg-[#ece9d8] shadow-[inset_1px_1px_0_rgba(255,255,255,0.8),inset_-1px_-1px_0_rgba(0,0,0,0.35),0_24px_70px_rgba(0,0,0,0.45)] sm:grid-cols-2 lg:grid-cols-6">
             {palette.map((color, index) => (
               <article
                 key={color.hex}
-                className={rc.palette.article}
+                className="group relative min-h-[420px] border-b border-[#003c9d]/50 transition duration-500 hover:-translate-y-2 hover:z-30 sm:border-r lg:min-h-[540px] lg:border-b-0"
                 style={{
                   zIndex: palette.length - index,
                 }}
               >
-                <div
-                  className={`${rc.palette.swatchBase} ${color.className} ${color.textClass}`}
-                >
-                  <div className={rc.palette.swatchGlow}>
-                    <div className={rc.palette.swatchGlowLeft} />
-                    <div className={rc.palette.swatchGlowRight} />
-                    <div className={rc.palette.swatchGlowBlur} />
+                <div className="flex h-full flex-col overflow-hidden">
+                  <div className="flex h-8 shrink-0 items-center justify-between border-r border-white/20 bg-gradient-to-b from-[#3d95ff] via-[#1266d6] to-[#0647a8] px-2 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]">
+                    <div className="flex min-w-0 items-center gap-2">
+                      <div className="h-4 w-4 shrink-0 rounded-[3px] border border-white/60 bg-gradient-to-b from-[#9be7ff] to-[#1f7cff] shadow-[inset_1px_1px_0_rgba(255,255,255,0.9)]" />
+
+                      <span
+                        className={`${pixelFont} truncate text-[9px] font-bold leading-none drop-shadow-[1px_1px_0_rgba(0,0,0,0.5)]`}
+                      >
+                        {String(index + 1).padStart(2, "0")} — {color.name}
+                      </span>
+                    </div>
+
+                    <div className="ml-2 flex shrink-0 gap-1">
+                      <span className="grid h-4 w-4 place-items-center rounded-[2px] border border-white/60 bg-gradient-to-b from-[#78b8ff] to-[#1d61c8] text-[9px] leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.65)]">
+                        _
+                      </span>
+
+                      <span className="grid h-4 w-4 place-items-center rounded-[2px] border border-white/60 bg-gradient-to-b from-[#ff9b7a] to-[#d83516] text-[10px] font-bold leading-none shadow-[inset_1px_1px_0_rgba(255,255,255,0.7)]">
+                        ×
+                      </span>
+                    </div>
                   </div>
 
-                  <div className={rc.palette.swatchTop}>
-                    <span className={rc.palette.index}>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+                  <div
+                    className={`relative flex h-full min-h-0 flex-1 overflow-hidden ${color.className} ${color.textClass}`}
+                  >
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-white/15" />
+                    <div className="pointer-events-none absolute inset-y-0 left-0 w-px bg-white/35" />
+                    <div className="pointer-events-none absolute inset-y-0 right-0 w-px bg-black/25" />
 
-                    <span className={rc.palette.hex}>{color.hex}</span>
+                    <div className="pointer-events-none absolute -left-16 top-10 h-32 w-32 rounded-full bg-white/20 blur-3xl transition duration-700 group-hover:scale-150" />
+                    <div className="pointer-events-none absolute -right-20 bottom-20 h-40 w-40 rounded-full bg-black/20 blur-3xl transition duration-700 group-hover:scale-150" />
+
+                    <div className="relative z-10 flex h-full w-full flex-col justify-between p-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <span
+                          className={`${pixelFont} text-[10px] opacity-80`}
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+
+                        <span
+                          className={`${pixelFont} text-[8px] opacity-80 [writing-mode:vertical-rl]`}
+                        >
+                          {color.hex.replace("#", "")}
+                        </span>
+                      </div>
+
+                      <div>
+                        <h3
+                          className={`${pixelFont} text-[1.25rem] font-black leading-[0.95] drop-shadow-[2px_2px_0_rgba(0,0,0,0.22)] sm:text-[1.45rem] lg:text-[0.95rem] xl:text-[1.2rem] 2xl:text-[1.45rem]`}
+                        >
+                          {color.displayName}
+                        </h3>
+
+                        <p
+                          className={`${pixelFont} mt-6 text-[8px] leading-relaxed tracking-[0.32em] opacity-75`}
+                        >
+                          {color.role}
+                        </p>
+                      </div>
+
+                      <div className="h-px w-full bg-current opacity-25" />
+                    </div>
                   </div>
-
-                  <div className={rc.palette.swatchText}>
-                    <h3 className={rc.palette.colorName}>
-                      {color.displayName}
-                    </h3>
-
-                    <p className={rc.palette.role}>{color.role}</p>
-                  </div>
-
-                  <div className={rc.palette.bottomLine} />
                 </div>
               </article>
             ))}
