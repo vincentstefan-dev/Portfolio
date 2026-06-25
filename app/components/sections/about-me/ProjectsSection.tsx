@@ -23,7 +23,7 @@ const projects: ProjectItem[] = [
     title: "KOYOTE",
     type: "PROJECT 1",
     text: "Experimental portfolio and digital identity system for Koyote. UI design, brand logic, content architecture, and front-end development built to translate strategy, process, and creative work into an interactive web experience.",    
-    img: "/logos/16bit.png",
+    img: "/logos/16bit.webp",
     pos: "left-[50%] top-[20px]",
     size: "featured",
     color: "violet",
@@ -48,7 +48,7 @@ const projects: ProjectItem[] = [
     href: "/portfolio"
   },
   {
-    title: "CPU Visual Tools",
+    title: "PIXELATE",
     type: "PROJECT 3",
     text: "Visual application concept for modifying images through CPU-based processing. Local image workflows, resource-aware tooling, and experimental creative utilities.",
     img: "/Icons/angel.png",
@@ -62,10 +62,10 @@ const projects: ProjectItem[] = [
     href: "/coolstuff"
   },
 {
-  title: "Brand System Lab",
+  title: "Friends and family",
   type: "PROJECT 4",
-  text: "Experimental visual system exploring logos, identity fragments, color logic, and modular brand assets for future client work.",
-  img: "/catridges/gold.png",
+  text: "Experimental visual system exploring potraits of friends and family",
+  img: "/potraits/babyvini.png",
   pos: "left-[5%] top-[430px]",
   size: "normal",
   color: "blue",
@@ -76,10 +76,10 @@ const projects: ProjectItem[] = [
   href: "/portfolio"
 },
 {
-  title: "AI Research Workflow",
+  title: "Austronaut",
   type: "PROJECT 5",
-  text: "Structured workflow for reviewing academic papers, extracting variables, and organizing research insights into usable decision frameworks.",
-  img: "/catridges/Green.png",
+  text: "Click base comic story",
+  img: "/Images/Astronaut/astronaut-intro.png",
   pos: "left-[31%] top-[510px]",
   size: "normal",
   color: "pink",
