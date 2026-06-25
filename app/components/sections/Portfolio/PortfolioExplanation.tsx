@@ -45,17 +45,17 @@ export default function JunixIdentitySection() {
             <ul className={rc.identity.list}>
               <li className={rc.identity.listItem}>
                 <span className={rc.identity.listDot} />
+                Our concept
+              </li>
+
+              <li className={rc.identity.listItem}>
+                <span className={rc.identity.listDot} />
+                Color Palette
+              </li>
+
+              <li className={rc.identity.listItem}>
+                <span className={rc.identity.listDot} />
                 Logo
-              </li>
-
-              <li className={rc.identity.listItem}>
-                <span className={rc.identity.listDot} />
-                Brand Identity
-              </li>
-
-              <li className={rc.identity.listItem}>
-                <span className={rc.identity.listDot} />
-                Social Media Posts
               </li>
             </ul>
           </div>
