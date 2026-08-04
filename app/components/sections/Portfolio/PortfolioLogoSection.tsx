@@ -46,7 +46,7 @@ const rotatingLogos = [
     alt: "Koyote liquid metal logo",
   },
   {
-    src: "/logos/Microsoft.webp",
+    src: "/logos/microsoft.webp",
     alt: "Koyote Microsoft logo",
   },
   {
