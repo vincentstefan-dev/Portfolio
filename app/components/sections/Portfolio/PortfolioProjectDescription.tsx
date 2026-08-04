@@ -10,7 +10,7 @@ import { portfolioRc as rc } from "./portfolioResponsiveConfig";
 const portraitWindows = [
   {
     title: "Vini Creator of Koyote",
-    src: "/potraits/ChatGPT Image Jun 22, 2026, 04_36_11 PM.png",
+    src: "/potraits/babyvini.png",
     alt: "Koyote portrait image 1",
     className:
       "lg:left-[49%] lg:top-[6%] lg:translate-x-[90px] lg:rotate-[-3deg] lg:z-30",
