@@ -1,14 +1,13 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import {
+  ArrowUpRight,
   Code2,
   FolderKanban,
-  ImageIcon,
   Layers3,
   PenTool,
-  Play,
-  Scan,
-  Type,
 } from "lucide-react";
 
 import { portfolioRc as rc } from "./portfolioResponsiveConfig";
@@ -17,48 +16,52 @@ const toolIcons = [
   {
     label: "Projects",
     icon: FolderKanban,
-    className: "left-[8%] top-[20%] rotate-[-10deg]",
+    className: "left-[7%] top-[17%] rotate-[-10deg]",
   },
   {
     label: "Vector",
     icon: PenTool,
-    className: "left-[21%] top-[8%] rotate-[-7deg]",
-  },
-  {
-    label: "Video",
-    icon: Play,
-    className: "right-[30%] top-[7%] rotate-[2deg]",
-  },
-  {
-    label: "Layers",
-    icon: Layers3,
-    className: "right-[12%] top-[18%] rotate-[8deg]",
-  },
-  {
-    label: "Type",
-    icon: Type,
-    className: "left-[8%] top-[52%] rotate-[-3deg]",
+    className: "left-[22%] top-[7%] rotate-[-7deg]",
   },
   {
     label: "Code",
     icon: Code2,
-    className: "left-[24%] bottom-[13%] rotate-[1deg]",
+    className: "right-[21%] top-[8%] rotate-[5deg]",
   },
   {
-    label: "Motion",
-    icon: Scan,
-    className: "right-[28%] bottom-[13%] rotate-[-5deg]",
+    label: "Layers",
+    icon: Layers3,
+    className: "right-[7%] top-[18%] rotate-[8deg]",
+  },
+];
+
+const projectPreviews = [
+  {
+    title: "SHE",
+    category: "Web Design",
+    src: "/3TO6/SHE.png",
+    className:
+      "left-[3%] top-[34%] rotate-[-7deg] xl:left-[8%] xl:top-[31%]",
   },
   {
-    label: "Image",
-    icon: ImageIcon,
-    className: "right-[9%] bottom-[25%] rotate-[4deg]",
+    title: "Koyote",
+    category: "Brand Identity",
+    src: "/3TO6/KOYOTEFINAL.png",
+    className:
+      "right-[4%] top-[31%] rotate-[6deg] xl:right-[9%] xl:top-[27%]",
+  },
+  {
+    title: "Astronaut",
+    category: "Creative Development",
+    src: "/3TO6/astronaut.png",
+    className:
+      "bottom-[1%] left-1/2 -translate-x-1/2 rotate-[-2deg] xl:bottom-[2%]",
   },
 ];
 
 export default function PortfolioProjectsSection() {
   return (
-    <section className={rc.projectsHero.section}>
+    <section className={`${rc.projectsHero.section} overflow-hidden`}>
       <div className={rc.projectsHero.background} />
 
       <div className={rc.projectsHero.topRailWrap}>
@@ -84,9 +87,41 @@ export default function PortfolioProjectsSection() {
         );
       })}
 
-      <div className={rc.projectsHero.centerWrap}>
+      <div className="pointer-events-none absolute inset-0 z-10 hidden overflow-hidden md:block">
+        {projectPreviews.map((project) => (
+          <div
+            key={project.title}
+            className={`absolute w-[205px] rounded-[22px] border border-white/15 bg-white/[0.06] p-2 shadow-2xl backdrop-blur-md lg:w-[235px] xl:w-[260px] ${project.className}`}
+          >
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] bg-black/20">
+              <Image
+                src={project.src}
+                alt={`${project.title} project preview`}
+                fill
+                sizes="(min-width: 1280px) 260px, (min-width: 1024px) 235px, 205px"
+                className="object-cover"
+              />
+            </div>
+
+            <div className="flex items-center justify-between px-2 pb-1 pt-3 text-white">
+              <div>
+                <p className="text-sm font-semibold">{project.title}</p>
+
+                <p className="mt-0.5 text-[11px] text-white/50">
+                  {project.category}
+                </p>
+              </div>
+
+              <ArrowUpRight className="h-4 w-4 text-white/55" />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className={`${rc.projectsHero.centerWrap} z-20`}>
         <div className={rc.projectsHero.centerInner}>
           <div className={rc.projectsHero.titleWrap}>
+
             <h2 className={rc.projectsHero.title}>
               <span className={rc.projectsHero.titleText}>
                 <span className={rc.projectsHero.titleLineTop}>ALL</span>
@@ -98,10 +133,12 @@ export default function PortfolioProjectsSection() {
               </span>
             </h2>
 
+
             <div className={rc.projectsHero.titleGlow} />
           </div>
         </div>
       </div>
+
 
       <div className={rc.projectsHero.bottomRailWrap}>
         <div className={rc.projectsHero.bottomRail}>

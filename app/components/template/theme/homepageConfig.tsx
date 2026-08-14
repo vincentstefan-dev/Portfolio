@@ -24,8 +24,8 @@ export const menuItems: MenuItem[] = [
   { label: "Home", icon: House, href: "/", gif: "/Gifs/mystar.gif" },
   { label: "Portfolio", icon: Dna, href: "/portfolio", gif: "/Gifs/portfolio.gif" },
   { label: "About me", icon: Bug, href: "/aboutme", gif: "/Gifs/eyes.gif" },
-  { label: "Apps", icon: Cpu, href: "/coolstuff", gif: "/Gifs/MUSIC.gif" },
-  { label: "Personal Projects", icon: BookImage, href: "/personalprojects", gif: "/Gifs/mariostar.gif" },
+  { label: "The Laboratory", icon: Cpu, href: "/coolstuff", gif: "/Gifs/MUSIC.gif" },
+  { label: "Blog", icon: BookImage, href: "/personalprojects", gif: "/Gifs/mariostar.gif" },
   { label: "Contact me", icon: AtSign, href: "/contact", gif: "/Gifs/at.gif" },
 ];
 

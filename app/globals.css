@@ -32,32 +32,42 @@
 
 @keyframes themeParticleRandomDrift {
   0% {
-    transform: translate3d(0, 0, 0) scale(var(--particle-scale-start, 1));
+    transform:
+      translate3d(0, 0, 0)
+      scale(var(--particle-scale-start, 1));
+
     opacity: var(--particle-opacity-start, 0.35);
   }
 
   35% {
-    transform: translate3d(
+    transform:
+      translate3d(
         var(--particle-x-a, 8px),
         var(--particle-y-a, -10px),
         0
       )
       scale(var(--particle-scale-mid, 1.35));
+
     opacity: var(--particle-opacity-mid, 0.9);
   }
 
   70% {
-    transform: translate3d(
+    transform:
+      translate3d(
         var(--particle-x-b, -6px),
         var(--particle-y-b, 8px),
         0
       )
       scale(var(--particle-scale-end, 1.1));
+
     opacity: var(--particle-opacity-end, 0.55);
   }
 
   100% {
-    transform: translate3d(0, 0, 0) scale(var(--particle-scale-start, 1));
+    transform:
+      translate3d(0, 0, 0)
+      scale(var(--particle-scale-start, 1));
+
     opacity: var(--particle-opacity-start, 0.35);
   }
 }
@@ -75,7 +85,143 @@
 
 .theme-particle-random {
   animation:
-    themeParticleRandomDrift var(--particle-duration, 6s) ease-in-out infinite,
-    themeParticlePulse var(--particle-pulse-duration, 3s) ease-in-out infinite;
+    themeParticleRandomDrift
+      var(--particle-duration, 6s)
+      ease-in-out
+      infinite,
+    themeParticlePulse
+      var(--particle-pulse-duration, 3s)
+      ease-in-out
+      infinite;
+
   animation-delay: var(--particle-delay, 0s);
+}
+
+/* =========================
+   PIXEL FACE FLOATING
+========================= */
+
+.pixel-face-float {
+  animation-name: pixelFaceFloating;
+  animation-duration: 4s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(4, end);
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes pixelFaceFloating {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  20% {
+    transform: translate3d(-4px, -14px, 0) rotate(-1deg);
+  }
+
+  40% {
+    transform: translate3d(4px, -6px, 0) rotate(0deg);
+  }
+
+  60% {
+    transform: translate3d(3px, -16px, 0) rotate(1deg);
+  }
+
+  80% {
+    transform: translate3d(-3px, -4px, 0) rotate(0deg);
+  }
+}
+
+/* =========================
+   COOL STUFF FLOATING
+========================= */
+
+.cool-stuff-float {
+  animation-name: coolStuffFloating;
+  animation-duration: 5.2s;
+  animation-delay: -1.4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(6, end);
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes coolStuffFloating {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  16% {
+    transform: translate3d(-2px, -7px, 0) rotate(-0.25deg);
+  }
+
+  33% {
+    transform: translate3d(3px, -12px, 0) rotate(0.35deg);
+  }
+
+  50% {
+    transform: translate3d(1px, -5px, 0) rotate(0deg);
+  }
+
+  66% {
+    transform: translate3d(-3px, -11px, 0) rotate(-0.3deg);
+  }
+
+  83% {
+    transform: translate3d(2px, -4px, 0) rotate(0.2deg);
+  }
+}
+
+/* =========================
+   COOL STUFF PIXEL OVERLAY
+========================= */
+
+.cool-stuff-pixel-overlay {
+  opacity: 0.7;
+  pointer-events: none;
+  animation-name: coolStuffPixelFlicker;
+  animation-duration: 1.8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(3, end);
+  will-change: opacity;
+}
+
+@keyframes coolStuffPixelFlicker {
+  0%,
+  100% {
+    opacity: 0.58;
+  }
+
+  33% {
+    opacity: 0.78;
+  }
+
+  66% {
+    opacity: 0.66;
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-particle-random,
+  .pixel-face-float,
+  .cool-stuff-float,
+  .cool-stuff-pixel-overlay {
+    animation: none;
+  }
+
+  .pixel-face-float,
+  .cool-stuff-float {
+    transform: none;
+  }
+
+  .cool-stuff-pixel-overlay {
+    opacity: 0.7;
+  }
 }
