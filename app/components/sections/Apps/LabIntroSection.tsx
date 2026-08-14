@@ -19,6 +19,12 @@ type ExploreLetterData = {
   rotation: number;
 };
 
+type FloatingAssetStyle = CSSProperties & {
+  "--asset-float-x": string;
+  "--asset-float-y": string;
+  "--asset-float-rotation": string;
+};
+
 const exploreLetters: ExploreLetterData[] = [
   { char: "E", color: "#ff3ec2", rotation: -3 },
   { char: "X", color: "#39cf35", rotation: 2 },
@@ -54,6 +60,74 @@ const exploreLetters: ExploreLetterData[] = [
   { char: "L", color: "#1caeaa", rotation: 2 },
   { char: "T", color: "#ffdf22", rotation: -3 },
 ];
+
+const floatingAssetSettings = {
+  camera: {
+    duration: 4.2,
+    delay: -0.7,
+    direction: "normal",
+    x: "7px",
+    y: "-12px",
+    rotation: "1deg",
+  },
+  globe: {
+    duration: 5.1,
+    delay: -2.1,
+    direction: "reverse",
+    x: "-8px",
+    y: "-14px",
+    rotation: "-1deg",
+  },
+  tools: {
+    duration: 4.7,
+    delay: -1.4,
+    direction: "normal",
+    x: "8px",
+    y: "-10px",
+    rotation: "1.2deg",
+  },
+  pencilCup: {
+    duration: 3.9,
+    delay: -2.6,
+    direction: "reverse",
+    x: "-6px",
+    y: "-13px",
+    rotation: "-1.3deg",
+  },
+  cursor: {
+    duration: 3.3,
+    delay: -1.1,
+    direction: "normal",
+    x: "10px",
+    y: "-16px",
+    rotation: "2deg",
+  },
+  document: {
+    duration: 4.5,
+    delay: -3.2,
+    direction: "reverse",
+    x: "-7px",
+    y: "-11px",
+    rotation: "-1deg",
+  },
+} as const;
+
+type FloatingAssetName = keyof typeof floatingAssetSettings;
+
+function getFloatingAssetStyle(
+  assetName: FloatingAssetName,
+): FloatingAssetStyle {
+  const settings = floatingAssetSettings[assetName];
+
+  return {
+    "--asset-float-x": settings.x,
+    "--asset-float-y": settings.y,
+    "--asset-float-rotation": settings.rotation,
+    animationDuration: `${settings.duration}s`,
+    animationDelay: `${settings.delay}s`,
+    animationDirection: settings.direction,
+  };
+}
 
 function TileLetter({
   children,
@@ -232,7 +306,6 @@ export default function LabIntroSection() {
             ))}
           </div>
 
-          {/* COLORFUL PROJECT LINK */}
           <ExploreBuildsLink />
         </div>
 
@@ -248,7 +321,11 @@ export default function LabIntroSection() {
               alt=""
               width={1255}
               height={994}
-              className="lab-intro__asset-image"
+              className="
+                lab-intro__asset-image
+                lab-intro__asset-image--floating
+              "
+              style={getFloatingAssetStyle("camera")}
               draggable={false}
             />
           </div>
@@ -260,20 +337,28 @@ export default function LabIntroSection() {
               alt=""
               width={1254}
               height={1254}
-              className="lab-intro__asset-image"
+              className="
+                lab-intro__asset-image
+                lab-intro__asset-image--floating
+              "
+              style={getFloatingAssetStyle("globe")}
               draggable={false}
               priority
             />
           </div>
 
-          {/* TOOLS / TINKERING GRAPHIC */}
+          {/* TOOLS */}
           <div className="lab-intro__asset lab-intro__asset--tools">
             <Image
               src="/lab/lab-tools.png"
               alt=""
               width={823}
               height={699}
-              className="lab-intro__asset-image"
+              className="
+                lab-intro__asset-image
+                lab-intro__asset-image--floating
+              "
+              style={getFloatingAssetStyle("tools")}
               draggable={false}
             />
           </div>
@@ -285,7 +370,11 @@ export default function LabIntroSection() {
               alt=""
               width={1100}
               height={1100}
-              className="lab-intro__asset-image"
+              className="
+                lab-intro__asset-image
+                lab-intro__asset-image--floating
+              "
+              style={getFloatingAssetStyle("pencilCup")}
               draggable={false}
             />
           </div>
@@ -297,7 +386,11 @@ export default function LabIntroSection() {
               alt=""
               width={674}
               height={1200}
-              className="lab-intro__asset-image"
+              className="
+                lab-intro__asset-image
+                lab-intro__asset-image--floating
+              "
+              style={getFloatingAssetStyle("cursor")}
               draggable={false}
             />
           </div>
@@ -309,7 +402,11 @@ export default function LabIntroSection() {
               alt=""
               width={909}
               height={853}
-              className="lab-intro__asset-image"
+              className="
+                lab-intro__asset-image
+                lab-intro__asset-image--floating
+              "
+              style={getFloatingAssetStyle("document")}
               draggable={false}
             />
           </div>

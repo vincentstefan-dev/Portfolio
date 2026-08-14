@@ -223,6 +223,72 @@
   user-select: none;
 }
 
+/* ========================================
+   FLOATING PNG ANIMATION
+======================================== */
+
+.lab-intro__asset-image--floating {
+  --asset-float-x: 6px;
+  --asset-float-y: -12px;
+  --asset-float-rotation: 1deg;
+
+  animation-name: lab-asset-pixel-float;
+  animation-timing-function: steps(10, end);
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes lab-asset-pixel-float {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg);
+  }
+
+  20% {
+    transform:
+      translate3d(
+        var(--asset-float-x),
+        0,
+        0
+      )
+      rotate(0deg);
+  }
+
+  45% {
+    transform:
+      translate3d(
+        var(--asset-float-x),
+        var(--asset-float-y),
+        0
+      )
+      rotate(var(--asset-float-rotation));
+  }
+
+  70% {
+    transform:
+      translate3d(
+        0,
+        var(--asset-float-y),
+        0
+      )
+      rotate(var(--asset-float-rotation));
+  }
+
+  85% {
+    transform:
+      translate3d(
+        calc(var(--asset-float-x) * -0.35),
+        calc(var(--asset-float-y) * -0.15),
+        0
+      )
+      rotate(0deg);
+  }
+}
+
 /* Camera — upper left */
 
 .lab-intro__asset--camera {
@@ -488,7 +554,8 @@
 ======================================== */
 
 .enter-lab-link,
-a[aria-label="Enter the Lab"] {
+a[aria-label="Enter the Lab"],
+a[aria-label="Go to the Lab introduction"] {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -504,20 +571,23 @@ a[aria-label="Enter the Lab"] {
 }
 
 .enter-lab-link:hover,
-a[aria-label="Enter the Lab"]:hover {
+a[aria-label="Enter the Lab"]:hover,
+a[aria-label="Go to the Lab introduction"]:hover {
   transform: translateX(6px);
   filter: saturate(1.12) brightness(1.08);
 }
 
 .enter-lab-link:focus-visible,
-a[aria-label="Enter the Lab"]:focus-visible {
+a[aria-label="Enter the Lab"]:focus-visible,
+a[aria-label="Go to the Lab introduction"]:focus-visible {
   border-radius: 3px;
   outline: 2px solid #1265d8;
   outline-offset: 7px;
 }
 
 .enter-lab-title,
-a[aria-label="Enter the Lab"] > span:first-child {
+a[aria-label="Enter the Lab"] > span:first-child,
+a[aria-label="Go to the Lab introduction"] > span:first-child {
   display: inline-flex;
   align-items: flex-end;
   font-family: "Arial Black", Arial, sans-serif;
@@ -529,7 +599,10 @@ a[aria-label="Enter the Lab"] > span:first-child {
 }
 
 .enter-lab-title > span,
-a[aria-label="Enter the Lab"] > span:first-child > span {
+a[aria-label="Enter the Lab"] > span:first-child > span,
+a[aria-label="Go to the Lab introduction"]
+  > span:first-child
+  > span {
   position: relative;
   display: inline-block;
   transform-origin: center bottom;
@@ -541,6 +614,9 @@ a[aria-label="Enter the Lab"] > span:first-child > span {
 .enter-lab-link:hover .enter-lab-title > span,
 a[aria-label="Enter the Lab"]:hover
   > span:first-child
+  > span,
+a[aria-label="Go to the Lab introduction"]:hover
+  > span:first-child
   > span {
   filter: brightness(1.12);
 }
@@ -551,7 +627,8 @@ a[aria-label="Enter the Lab"]:hover
 }
 
 .enter-lab-arrow,
-a[aria-label="Enter the Lab"] > span:last-child {
+a[aria-label="Enter the Lab"] > span:last-child,
+a[aria-label="Go to the Lab introduction"] > span:last-child {
   display: inline-block;
   color: #1265d8;
   font-family: "Arial Black", Arial, sans-serif;
@@ -568,6 +645,8 @@ a[aria-label="Enter the Lab"] > span:last-child {
 
 .enter-lab-link:hover .enter-lab-arrow,
 a[aria-label="Enter the Lab"]:hover
+  > span:last-child,
+a[aria-label="Go to the Lab introduction"]:hover
   > span:last-child {
   color: #1caeaa;
   transform: translateX(8px);
@@ -641,7 +720,8 @@ a[aria-label="Enter the Lab"]:hover
   }
 
   .enter-lab-link,
-  a[aria-label="Enter the Lab"] {
+  a[aria-label="Enter the Lab"],
+  a[aria-label="Go to the Lab introduction"] {
     font-size: clamp(1.2rem, 3.6vw, 2rem);
   }
 }
@@ -755,14 +835,16 @@ a[aria-label="Enter the Lab"]:hover
   }
 
   .enter-lab-link,
-  a[aria-label="Enter the Lab"] {
+  a[aria-label="Enter the Lab"],
+  a[aria-label="Go to the Lab introduction"] {
     gap: 0.45rem;
     margin-top: 0.75rem;
     font-size: clamp(1.05rem, 5vw, 1.5rem);
   }
 
   .enter-lab-title,
-  a[aria-label="Enter the Lab"] > span:first-child {
+  a[aria-label="Enter the Lab"] > span:first-child,
+  a[aria-label="Go to the Lab introduction"] > span:first-child {
     letter-spacing: -0.075em;
   }
 }
@@ -772,11 +854,18 @@ a[aria-label="Enter the Lab"]:hover
 ======================================== */
 
 @media (prefers-reduced-motion: reduce) {
+  .lab-intro__asset-image--floating {
+    animation: none;
+    transform: none;
+  }
+
   .enter-lab-link,
   .enter-lab-title > span,
   .enter-lab-arrow,
   a[aria-label="Enter the Lab"],
-  a[aria-label="Enter the Lab"] > span {
+  a[aria-label="Enter the Lab"] > span,
+  a[aria-label="Go to the Lab introduction"],
+  a[aria-label="Go to the Lab introduction"] > span {
     transition: none;
   }
 }
