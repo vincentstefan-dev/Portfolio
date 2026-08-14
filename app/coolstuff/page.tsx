@@ -1,28 +1,18 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import {
-  House,
-  LoaderPinwheel,
-  FileScan,
-  Eye,
-} from "lucide-react";
 import { Space_Mono } from "next/font/google";
 
-import { useThemeMode } from "@/app/components/template/theme/ThemeProvider";
-import ThemedBackground from "@/app/components/template/theme/ThemedBackground";
-import ThemedNavIcon from "@/app/components/template/theme/ThemedNavIcon";
 import AtomicPlayer from "@/app/components/media/atomicplayer";
-import PageTransitionWrapper from "@/app/components/template/layout/PageTransitionWrapper";
 import SiteSignature from "@/app/components/hero/SiteSignature";
-
-import { useAtomicPlayerControls } from "@/app/components/template/layout/useAtomicPlayerControls";
-import { usePageTransition } from "@/app/components/template/layout/usePageTransition";
-import { useThemeGlow } from "@/app/components/template/layout/useThemeGlow";
 
 import Introduction from "@/app/components/sections/Apps/Introduction";
 import LabIntroSection from "@/app/components/sections/Apps/LabIntroSection";
+import LabProjectsSection from "@/app/components/sections/Apps/LabProjectsSection";
+
+import PageTransitionWrapper from "@/app/components/template/layout/PageTransitionWrapper";
+import { useAtomicPlayerControls } from "@/app/components/template/layout/useAtomicPlayerControls";
+import { usePageTransition } from "@/app/components/template/layout/usePageTransition";
+import ThemedBackground from "@/app/components/template/theme/ThemedBackground";
 
 import { coolstuffRc as rc } from "./coolstuffResponsiveConfig";
 
@@ -31,64 +21,7 @@ const spaceMono = Space_Mono({
   weight: ["400"],
 });
 
-type MenuItem = {
-  label: string;
-  href: string;
-  icon: React.ComponentType<{
-    className?: string;
-    strokeWidth?: number;
-  }>;
-  gif: string;
-};
-
-const menuItems: MenuItem[] = [
-  {
-    label: "Home",
-    icon: House,
-    href: "/",
-    gif: "/Gifs/mystar.gif",
-  },
-  {
-    label: "Background Remover",
-    icon: FileScan,
-    href: "/coolstuff/background_remover",
-    gif: "/Gifs/portfolio.gif",
-  },
-  {
-    label: "Pixelate",
-    icon: LoaderPinwheel,
-    href: "/coolstuff/pixelate",
-    gif: "/Gifs/final.gif",
-  },
-  {
-    label: "Theme Viewer",
-    icon: Eye,
-    href: "/coolstuff/theme-lab",
-    gif: "/Gifs/themeviewer.gif",
-  },
-  {
-    label: "JSON Thesis Dataset",
-    icon: Eye,
-    href: "/coolstuff/thesis-paper-dataset",
-    gif: "/Gifs/sdcard.gif",
-  },
-  {
-    label: "Astronaut",
-    icon: Eye,
-    href: "/coolstuff/Astronaut",
-    gif: "/catridges/bronce.png",
-  },
-  {
-    label: "Gameboy Portrait",
-    icon: LoaderPinwheel,
-    href: "/coolstuff/gameboyprinter",
-    gif: "/catridges/bronce.png",
-  },
-];
-
 export default function CleanPage() {
-  const { siteMode } = useThemeMode();
-
   const {
     playerRef,
     isPlaying,
@@ -100,7 +33,6 @@ export default function CleanPage() {
     handlePlayerReady,
   } = useAtomicPlayerControls();
 
-  const glow = useThemeGlow(siteMode);
   const isInitialBlur = usePageTransition(0);
 
   return (
@@ -122,7 +54,7 @@ export default function CleanPage() {
       <PageTransitionWrapper isBlurred={isInitialBlur}>
         <div className="relative z-10 flex w-full flex-col">
           {/* ========================================
-              FIRST SECTION — COOL STUFF INTRODUCTION
+              FIRST SECTION — COOL STUFF
           ======================================== */}
           <section className="relative w-full">
             <Introduction />
@@ -131,63 +63,18 @@ export default function CleanPage() {
           {/* ========================================
               SECOND SECTION — ABOUT THE LAB
           ======================================== */}
-          <div
+          <section
             id="lab-introduction"
+            aria-label="About the Lab"
             className="relative w-full scroll-mt-0"
           >
             <LabIntroSection />
-          </div>
+          </section>
 
           {/* ========================================
-              THIRD SECTION — APPLICATIONS AND BUILDS
+              THIRD SECTION — LAB PROJECTS
           ======================================== */}
-          <section
-            id="lab-projects"
-            aria-labelledby="apps-heading"
-            className="
-              relative flex min-h-screen w-full
-              scroll-mt-0 flex-col justify-center
-              px-4 py-20 sm:px-8
-            "
-          >
-            <h2 id="apps-heading" className="sr-only">
-              Applications and experimental builds
-            </h2>
-
-            <div
-              className={`
-                ${rc.centerWrap}
-                !relative !inset-auto !h-auto !min-h-0
-                !translate-x-0 !translate-y-0
-              `}
-            >
-              <nav
-                aria-label="Laboratory projects"
-                className={rc.nav}
-              >
-                <div className={rc.grid}>
-                  {menuItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={rc.link}
-                    >
-                      <ThemedNavIcon
-                        label={item.label}
-                        icon={item.icon}
-                        gif={item.gif}
-                        glow={glow}
-                      />
-
-                      <span className={rc.label}>
-                        {item.label}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </nav>
-            </div>
-          </section>
+          <LabProjectsSection />
 
           {/* ========================================
               FOOTER

@@ -1,0 +1,1205 @@
+/* ========================================
+   SECTION
+======================================== */
+
+.lab-projects {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+  padding:
+    clamp(6rem, 10vw, 10rem)
+    clamp(1rem, 4vw, 4.5rem);
+  color: white;
+}
+
+.lab-projects__inner {
+  position: relative;
+  z-index: 4;
+  width: min(1500px, 100%);
+  margin: 0 auto;
+}
+
+/* ========================================
+   BACKGROUND
+======================================== */
+
+.lab-projects__background-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.3) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.3) 1px,
+      transparent 1px
+    );
+  background-size: 44px 44px;
+}
+
+.lab-projects__background-word {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  z-index: -2;
+  color: rgba(255, 255, 255, 0.018);
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: clamp(12rem, 29vw, 34rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.11em;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.lab-projects__ambient {
+  position: absolute;
+  z-index: -2;
+  width: min(34vw, 520px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0.16;
+  pointer-events: none;
+  filter: blur(120px);
+}
+
+.lab-projects__ambient--one {
+  top: 8%;
+  left: -12%;
+  background: #1265d8;
+}
+
+.lab-projects__ambient--two {
+  right: -11%;
+  bottom: 4%;
+  background: #ff3ec2;
+}
+
+/* ========================================
+   DECORATIVE PNGS
+======================================== */
+
+.lab-projects__decorations {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.lab-projects__decoration {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+.lab-projects__decoration-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  image-rendering: pixelated;
+  pointer-events: none;
+  user-select: none;
+  filter:
+    drop-shadow(5px 7px 0 rgba(0, 0, 0, 0.16))
+    drop-shadow(0 0 14px rgba(255, 255, 255, 0.1));
+  animation:
+    lab-project-decoration-float
+    4.8s
+    steps(10, end)
+    infinite;
+  transform: translate3d(0, 0, 0);
+  transform-origin: center;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* USB */
+
+.lab-projects__decoration--camera {
+  top: 2.7rem;
+  right: 14%;
+  width: clamp(90px, 9vw, 155px);
+  transform: rotate(3deg);
+}
+
+/* Hard drive */
+
+.lab-projects__decoration--globe {
+  top: 5.3rem;
+  right: 3%;
+  width: clamp(75px, 7vw, 125px);
+  transform: rotate(-4deg);
+}
+
+/* Chip */
+
+.lab-projects__decoration--pencils {
+  top: 11.5rem;
+  right: 9%;
+  width: clamp(110px, 11vw, 190px);
+  transform: rotate(7deg);
+}
+
+/* Document */
+
+.lab-projects__decoration--document {
+  top: 18rem;
+  right: 1%;
+  width: clamp(115px, 11vw, 190px);
+  opacity: 0.9;
+  transform: rotate(6deg);
+}
+
+/* Cursor */
+
+.lab-projects__decoration--cursor {
+  top: 25rem;
+  right: 15%;
+  width: clamp(42px, 4.5vw, 76px);
+  opacity: 0.94;
+  transform: rotate(-9deg);
+}
+
+/* Individual animation timing */
+
+.lab-projects__decoration--camera
+  .lab-projects__decoration-image {
+  animation-duration: 4.2s;
+  animation-delay: -0.8s;
+}
+
+.lab-projects__decoration--globe
+  .lab-projects__decoration-image {
+  animation-duration: 5.1s;
+  animation-delay: -1.7s;
+  animation-direction: reverse;
+}
+
+.lab-projects__decoration--pencils
+  .lab-projects__decoration-image {
+  animation-duration: 4.6s;
+  animation-delay: -3s;
+}
+
+.lab-projects__decoration--document
+  .lab-projects__decoration-image {
+  animation-duration: 5.4s;
+  animation-delay: -2.2s;
+  animation-direction: reverse;
+}
+
+.lab-projects__decoration--cursor
+  .lab-projects__decoration-image {
+  animation-duration: 3.7s;
+  animation-delay: -1.1s;
+}
+
+@keyframes lab-project-decoration-float {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg);
+  }
+
+  25% {
+    transform:
+      translate3d(5px, -6px, 0)
+      rotate(0.5deg);
+  }
+
+  50% {
+    transform:
+      translate3d(7px, -12px, 0)
+      rotate(1deg);
+  }
+
+  75% {
+    transform:
+      translate3d(-4px, -6px, 0)
+      rotate(-0.5deg);
+  }
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.lab-projects__header {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(300px, 0.85fr);
+  gap: clamp(3rem, 7vw, 8rem);
+  align-items: end;
+  margin-bottom: clamp(3.5rem, 7vw, 6rem);
+  padding-right: clamp(0rem, 11vw, 10rem);
+}
+
+.lab-projects__heading-group {
+  min-width: 0;
+}
+
+.lab-projects__eyebrow {
+  margin: 0 0 1.4rem;
+  font-family: "Space Mono", monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ========================================
+   STACKED TITLE
+======================================== */
+
+.lab-projects__title {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 0.04em;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: clamp(3.4rem, 7.3vw, 7.8rem);
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: -0.08em;
+}
+
+.lab-projects__title-word {
+  display: flex;
+  align-items: flex-end;
+  width: fit-content;
+  max-width: 100%;
+  white-space: nowrap;
+  transform-origin: left center;
+}
+
+.lab-projects__title-word--projects {
+  margin-top: 0.06em;
+  font-size: 0.82em;
+}
+
+.lab-projects__title-letter {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  transform-origin: center bottom;
+  text-shadow:
+    3px 3px 0 rgba(0, 0, 0, 0.18),
+    6px 6px 0 rgba(0, 0, 0, 0.09),
+    0 0 15px currentColor;
+}
+
+.lab-projects__title-letter::after {
+  position: absolute;
+  inset: 4% 5%;
+  content: "";
+  opacity: 0.25;
+  background-image:
+    linear-gradient(
+      rgba(3, 20, 54, 0.55) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(3, 20, 54, 0.55) 1px,
+      transparent 1px
+    );
+  background-size: 0.13em 0.13em;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* ========================================
+   TITLE UNDERLINE
+======================================== */
+
+.lab-projects__underline {
+  position: relative;
+  width: min(620px, 92%);
+  height: 42px;
+  margin-top: 0.8rem;
+}
+
+.lab-projects__underline span {
+  position: absolute;
+  left: 0;
+  display: block;
+  height: 6px;
+  border-radius: 999px;
+}
+
+.lab-projects__underline span:first-child {
+  top: 5px;
+  width: 88%;
+  background: #1265d8;
+  transform: rotate(-1deg);
+}
+
+.lab-projects__underline span:last-child {
+  top: 23px;
+  left: 38%;
+  width: 44%;
+  background: #1caeaa;
+  transform: rotate(4deg);
+}
+
+/* ========================================
+   HEADER INTRODUCTION
+======================================== */
+
+.lab-projects__introduction {
+  position: relative;
+  max-width: 500px;
+  padding-bottom: 1rem;
+}
+
+.lab-projects__introduction p {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: clamp(0.84rem, 1.15vw, 1rem);
+  line-height: 1.85;
+  color: rgba(245, 249, 255, 0.84);
+}
+
+.lab-projects__process {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  margin-top: 1.7rem;
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.lab-projects__process i {
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.lab-projects__process--blue {
+  color: #3a8bff;
+}
+
+.lab-projects__process--orange {
+  color: #f89d1c;
+}
+
+.lab-projects__process--pink {
+  color: #ff3ec2;
+}
+
+.lab-projects__process--green {
+  color: #39cf35;
+}
+
+.lab-projects__header-arrow {
+  position: relative;
+  width: 92%;
+  height: 40px;
+  margin-top: 0.8rem;
+}
+
+.lab-projects__header-arrow-line {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 88%;
+  height: 4px;
+  border-radius: 999px;
+  background: #1265d8;
+}
+
+.lab-projects__header-arrow-head {
+  position: absolute;
+  top: 5px;
+  right: 5%;
+  width: 25px;
+  height: 25px;
+  border-right: 4px solid #1265d8;
+  border-bottom: 4px solid #1265d8;
+  transform: rotate(-45deg);
+}
+
+/* ========================================
+   GRID
+======================================== */
+
+.lab-projects__nav {
+  position: relative;
+}
+
+.lab-projects__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+/* ========================================
+   PROJECT CARD — PARENT
+======================================== */
+
+.lab-project-card {
+  position: relative;
+  display: flex;
+  grid-column: span 4;
+  flex-direction: column;
+  min-height: 310px;
+  overflow: hidden;
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  border: 1px solid color-mix(
+    in srgb,
+    var(--project-accent) 38%,
+    transparent
+  );
+  border-radius: 20px;
+  color: white;
+  text-decoration: none;
+  background:
+    linear-gradient(
+      145deg,
+      var(--project-accent-soft),
+      rgba(4, 18, 31, 0.54) 45%,
+      rgba(3, 13, 24, 0.68)
+    );
+  box-shadow:
+    0 24px 65px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(13px);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 260ms ease,
+    box-shadow 320ms ease;
+  will-change: transform;
+}
+
+.lab-project-card--featured {
+  grid-column: span 6;
+  grid-row: span 2;
+  min-height: 470px;
+}
+
+.lab-project-card:not(.lab-project-card--featured) {
+  grid-column: span 3;
+}
+
+.lab-project-card:not(.lab-project-card--placeholder):hover {
+  border-color: var(--project-accent);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.27),
+    0 0 28px var(--project-accent-soft),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translate3d(0, -8px, 0);
+}
+
+.lab-project-card:focus-visible {
+  outline: 3px solid var(--project-accent);
+  outline-offset: 5px;
+}
+
+/* ========================================
+   SMOOTH TOP ACCENT BAR — CHILD
+======================================== */
+
+.lab-project-card__accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--project-accent);
+  box-shadow: 0 0 15px var(--project-accent);
+  transform: translate3d(0, 0, 0) scaleX(0.38);
+  transform-origin: left center;
+  backface-visibility: hidden;
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.lab-project-card:not(.lab-project-card--placeholder):hover
+  .lab-project-card__accent,
+.lab-project-card:focus-visible
+  .lab-project-card__accent {
+  transform: translate3d(0, 0, 0) scaleX(1);
+}
+
+/* ========================================
+   CARD NUMBER — CHILD
+======================================== */
+
+.lab-project-card__number {
+  position: absolute;
+  top: -0.25em;
+  right: -0.06em;
+  color: rgba(255, 255, 255, 0.035);
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: clamp(6rem, 8vw, 9rem);
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+  transition:
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lab-project-card:not(.lab-project-card--placeholder):hover
+  .lab-project-card__number {
+  transform: translate3d(-8px, 7px, 0);
+}
+
+/* ========================================
+   CARD META
+======================================== */
+
+.lab-project-card__meta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Space Mono", monospace;
+  font-size: 0.59rem;
+  letter-spacing: 0.16em;
+}
+
+.lab-project-card__category {
+  color: var(--project-accent);
+}
+
+.lab-project-card__status {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.lab-project-card__status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--project-accent);
+  box-shadow: 0 0 8px var(--project-accent);
+}
+
+/* ========================================
+   CARD BODY
+======================================== */
+
+.lab-project-card__body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 1;
+  gap: 1.2rem;
+  align-items: center;
+  padding: 2rem 0 1.6rem;
+}
+
+.lab-project-card--featured
+  .lab-project-card__body {
+  gap: clamp(1.5rem, 3vw, 3rem);
+  justify-content: center;
+}
+
+/* ========================================
+   CARD VISUAL — 50% LARGER
+======================================== */
+
+.lab-project-card__visual {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+
+  /*
+   * Previous size:
+   * width: 88px;
+   * min-height: 90px;
+   *
+   * New size: 50% larger.
+   */
+  width: 132px;
+  min-height: 135px;
+
+  overflow: visible;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/*
+ * Makes the actual ThemedNavIcon or Plus child
+ * visually 50% larger.
+ *
+ * The glow span is excluded.
+ */
+
+.lab-project-card__visual
+  > :not(.lab-project-card__glow) {
+  position: relative;
+  z-index: 2;
+  scale: 1.5;
+  transform-origin: center;
+}
+
+/*
+ * Featured visual container is also 50% larger.
+ *
+ * Previous:
+ * clamp(120px, 13vw, 190px)
+ * min-height: 180px
+ *
+ * New:
+ * clamp(180px, 19.5vw, 285px)
+ * min-height: 270px
+ */
+
+.lab-project-card--featured
+  .lab-project-card__visual {
+  width: clamp(180px, 19.5vw, 285px);
+  min-height: 270px;
+}
+
+.lab-project-card:not(.lab-project-card--placeholder):hover
+  .lab-project-card__visual {
+  transform:
+    translate3d(0, 0, 0)
+    scale(1.08)
+    rotate(2deg);
+}
+
+.lab-project-card__glow {
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  opacity: 0.32;
+  background: var(--project-accent);
+  filter: blur(24px);
+}
+
+/* ========================================
+   CARD TEXT
+======================================== */
+
+.lab-project-card__content {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+.lab-project-card__title {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: clamp(1.15rem, 1.8vw, 1.6rem);
+  line-height: 1.22;
+  letter-spacing: -0.045em;
+}
+
+.lab-project-card--featured
+  .lab-project-card__title {
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+}
+
+.lab-project-card__description {
+  max-width: 410px;
+  margin: 0.85rem 0 0;
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  line-height: 1.75;
+  color: rgba(240, 246, 255, 0.65);
+}
+
+.lab-project-card--featured
+  .lab-project-card__description {
+  font-size: clamp(0.76rem, 1vw, 0.9rem);
+}
+
+/* ========================================
+   CARD FOOTER
+======================================== */
+
+.lab-project-card__footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: auto;
+  font-family: "Space Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.15em;
+  color: var(--project-accent);
+}
+
+.lab-project-card__arrow {
+  width: 17px;
+  height: 17px;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lab-project-card:not(.lab-project-card--placeholder):hover
+  .lab-project-card__arrow {
+  transform: translate3d(3px, -3px, 0);
+}
+
+/* ========================================
+   CARD SPARK
+======================================== */
+
+.lab-project-card__spark {
+  position: absolute;
+  top: 24px;
+  right: 22px;
+  width: 30px;
+  height: 30px;
+  opacity: 0.82;
+}
+
+.lab-project-card__spark span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--project-accent);
+}
+
+.lab-project-card__spark span:nth-child(1) {
+  transform: translate(-50%, -50%);
+}
+
+.lab-project-card__spark span:nth-child(2) {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.lab-project-card__spark span:nth-child(3) {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.lab-project-card__spark span:nth-child(4) {
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+/* ========================================
+   EMPTY APP PLACEHOLDER PARENT
+======================================== */
+
+.lab-project-card--placeholder {
+  cursor: default;
+  border-style: dashed;
+  border-color: color-mix(
+    in srgb,
+    var(--project-accent) 52%,
+    transparent
+  );
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.015) 0,
+      rgba(255, 255, 255, 0.015) 12px,
+      transparent 12px,
+      transparent 24px
+    ),
+    linear-gradient(
+      145deg,
+      var(--project-accent-soft),
+      rgba(4, 18, 31, 0.44) 45%,
+      rgba(3, 13, 24, 0.58)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 18px 45px rgba(0, 0, 0, 0.1);
+}
+
+/* Placeholder accent */
+
+.lab-project-card--placeholder
+  .lab-project-card__accent {
+  opacity: 0.58;
+  transform: translate3d(0, 0, 0) scaleX(0.2);
+}
+
+/* Placeholder number */
+
+.lab-project-card--placeholder
+  .lab-project-card__number {
+  color: color-mix(
+    in srgb,
+    var(--project-accent) 8%,
+    transparent
+  );
+}
+
+/* ========================================
+   PLACEHOLDER VISUAL — 50% LARGER
+======================================== */
+
+.lab-project-card--placeholder
+  .lab-project-card__visual {
+  /*
+   * Previous size:
+   * 94px × 94px
+   *
+   * New size:
+   * 141px × 141px
+   */
+  width: 141px;
+  min-height: 141px;
+  border: 1px dashed color-mix(
+    in srgb,
+    var(--project-accent) 55%,
+    transparent
+  );
+  border-radius: 24px;
+  background: color-mix(
+    in srgb,
+    var(--project-accent) 6%,
+    transparent
+  );
+}
+
+.lab-project-card--placeholder
+  .lab-project-card__glow {
+  inset: 14%;
+  opacity: 0.18;
+  filter: blur(20px);
+}
+
+.lab-project-card--placeholder
+  .lab-project-card__title {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.lab-project-card--placeholder
+  .lab-project-card__description {
+  color: rgba(240, 246, 255, 0.45);
+}
+
+.lab-project-card--placeholder
+  .lab-project-card__footer {
+  color: color-mix(
+    in srgb,
+    var(--project-accent) 72%,
+    rgba(255, 255, 255, 0.6)
+  );
+}
+
+.lab-project-card--placeholder
+  .lab-project-card__status-dot {
+  animation:
+    lab-placeholder-status-pulse
+    2.4s
+    ease-in-out
+    infinite;
+}
+
+@keyframes lab-placeholder-status-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* ========================================
+   BOTTOM NOTE
+======================================== */
+
+.lab-projects__note {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+  padding: 0.85rem 1.4rem;
+  border: 1px dashed rgba(255, 223, 34, 0.42);
+  border-radius: 999px;
+  background: rgba(3, 16, 29, 0.35);
+  backdrop-filter: blur(8px);
+}
+
+.lab-projects__note p {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: 0.69rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.63);
+}
+
+.lab-projects__note strong {
+  margin-left: 1.5rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 400;
+}
+
+.lab-projects__note-icon {
+  color: #b8a1ff;
+  font-size: 1.4rem;
+}
+
+.lab-projects__note-spark {
+  color: #ff3ec2;
+  font-size: 1.3rem;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1100px) {
+  .lab-projects__header {
+    grid-template-columns: 1fr;
+    padding-right: 0;
+  }
+
+  .lab-projects__introduction {
+    max-width: 650px;
+  }
+
+  .lab-projects__decorations {
+    opacity: 0.58;
+  }
+
+  .lab-projects__decoration--camera {
+    top: 3rem;
+    right: 22%;
+    width: clamp(80px, 13vw, 130px);
+  }
+
+  .lab-projects__decoration--globe {
+    top: 5rem;
+    right: 5%;
+    width: clamp(70px, 11vw, 110px);
+  }
+
+  .lab-projects__decoration--pencils {
+    top: 13rem;
+    right: 8%;
+    width: clamp(105px, 17vw, 165px);
+  }
+
+  .lab-projects__decoration--document {
+    top: 25rem;
+    right: 4%;
+    width: clamp(95px, 15vw, 145px);
+  }
+
+  .lab-projects__decoration--cursor {
+    top: 34rem;
+    right: 2%;
+    width: clamp(38px, 7vw, 62px);
+  }
+
+  .lab-projects__title {
+    font-size: clamp(3.5rem, 10.5vw, 7rem);
+  }
+
+  .lab-projects__title-word--projects {
+    font-size: 0.78em;
+  }
+
+  .lab-project-card--featured {
+    grid-column: span 12;
+    grid-row: auto;
+    min-height: 430px;
+  }
+
+  .lab-project-card:not(.lab-project-card--featured) {
+    grid-column: span 6;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+  .lab-projects {
+    padding:
+      6rem
+      1rem;
+  }
+
+  .lab-projects__title {
+    font-size: clamp(3.1rem, 17vw, 5rem);
+  }
+
+  .lab-projects__title-word--projects {
+    font-size: 0.7em;
+  }
+
+  .lab-projects__underline {
+    width: 100%;
+  }
+
+  .lab-projects__decorations {
+    display: none;
+  }
+
+  .lab-projects__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-project-card,
+  .lab-project-card--featured,
+  .lab-project-card:not(.lab-project-card--featured) {
+    grid-column: 1;
+    min-height: 340px;
+  }
+
+  .lab-project-card--featured {
+    min-height: 450px;
+  }
+
+  .lab-project-card__body,
+  .lab-project-card--featured
+    .lab-project-card__body {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  /*
+   * Featured mobile visual:
+   *
+   * Previous:
+   * 120px × 115px
+   *
+   * New:
+   * 180px × 173px
+   */
+
+  .lab-project-card--featured
+    .lab-project-card__visual {
+    width: 180px;
+    min-height: 173px;
+  }
+
+  /*
+   * Placeholder mobile visual:
+   *
+   * Previous:
+   * 90px × 90px
+   *
+   * New:
+   * 135px × 135px
+   */
+
+  .lab-project-card--placeholder
+    .lab-project-card__visual {
+    width: 135px;
+    min-height: 135px;
+  }
+
+  .lab-projects__note {
+    align-items: flex-start;
+    border-radius: 18px;
+  }
+
+  .lab-projects__note strong {
+    display: block;
+    margin: 0.35rem 0 0;
+  }
+}
+
+/* ========================================
+   VERY SMALL MOBILE
+======================================== */
+
+@media (max-width: 430px) {
+  .lab-projects__title {
+    font-size: clamp(2.7rem, 16vw, 4.2rem);
+  }
+
+  .lab-projects__title-word--projects {
+    font-size: 0.66em;
+    letter-spacing: -0.09em;
+  }
+
+  /*
+   * Prevent very large icons from competing with text
+   * on extremely narrow screens.
+   */
+
+  .lab-project-card__visual {
+    width: 120px;
+    min-height: 120px;
+  }
+
+  .lab-project-card--featured
+    .lab-project-card__visual {
+    width: 165px;
+    min-height: 165px;
+  }
+
+  .lab-project-card--placeholder
+    .lab-project-card__visual {
+    width: 128px;
+    min-height: 128px;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-projects__decoration-image,
+  .lab-project-card--placeholder
+    .lab-project-card__status-dot {
+    animation: none;
+    transform: none;
+  }
+
+  .lab-project-card,
+  .lab-project-card__accent,
+  .lab-project-card__number,
+  .lab-project-card__visual,
+  .lab-project-card__arrow {
+    transition: none;
+  }
+
+  .lab-project-card:hover {
+    transform: none;
+  }
+
+  .lab-project-card:hover
+    .lab-project-card__visual {
+    transform: none;
+  }
+
+  .lab-project-card:hover
+    .lab-project-card__arrow {
+    transform: none;
+  }
+}
