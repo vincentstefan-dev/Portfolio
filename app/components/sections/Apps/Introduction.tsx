@@ -3,6 +3,8 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 
+import { coolstuffRc as rc } from "@/app/coolstuff/coolstuffResponsiveConfig";
+
 import "./cool-stuff-intro.css";
 
 type EnterLabLetterData = {
@@ -259,20 +261,13 @@ function getFloatingAssetStyle(
 
 function EnterLabTitle() {
   return (
-    <span
-      aria-hidden="true"
-      className="
-        inline-flex items-end
-        font-[Arial_Black] font-black
-        leading-none tracking-[-0.065em]
-      "
-    >
+    <span aria-hidden="true" className={rc.introduction.enterTitle}>
       {enterLabLetters.map((letter, index) => {
         if (letter.char === " ") {
           return (
             <span
               key={`enter-lab-space-${index}`}
-              className="w-[0.34em] shrink-0"
+              className={rc.introduction.enterSpace}
             />
           );
         }
@@ -290,7 +285,7 @@ function EnterLabTitle() {
         return (
           <span
             key={`enter-lab-${index}`}
-            className="relative inline-block"
+            className={rc.introduction.enterLetter}
             style={letterStyle}
           >
             {letter.char}
@@ -305,28 +300,12 @@ export default function Introduction() {
   return (
     <section
       aria-label="Cool Stuff"
-      className="
-        relative z-10 flex min-h-[75svh] w-full
-        items-center overflow-hidden bg-transparent
-        py-10 sm:py-14 lg:py-16
-      "
+      className={rc.introduction.section}
     >
-      <div
-        className="
-          flex w-full translate-y-[35px] items-center
-          sm:translate-y-[45px]
-          lg:translate-y-[55px]
-        "
-      >
+      <div className={rc.introduction.contentRow}>
         {/* LEFT SIDE */}
-        <div
-          className="
-            flex w-full items-center justify-start
-            px-5
-            lg:w-1/2 lg:pr-6
-          "
-        >
-          <div className="w-full translate-x-[20%]">
+        <div className={rc.introduction.leftColumn}>
+          <div className={rc.introduction.leftContent}>
             <Image
               src="/website-icons/coolstuff.png"
               alt="Cool Stuff"
@@ -334,41 +313,19 @@ export default function Introduction() {
               height={1100}
               priority
               draggable={false}
-              className="
-                cool-stuff-float
-                block h-auto w-full
-                max-w-[760px]
-                object-contain
-                sm:max-w-[850px]
-                lg:max-w-none
-              "
+              className={rc.introduction.heroImage}
             />
 
             <a
               href="#lab-introduction"
               aria-label="Go to the Lab introduction"
-              className="
-                group mt-3 inline-flex items-center gap-3
-                text-[clamp(1.25rem,2.2vw,2.5rem)]
-                no-underline
-                transition-transform duration-200
-                hover:translate-x-1
-                focus-visible:outline
-                focus-visible:outline-2
-                focus-visible:outline-offset-4
-                focus-visible:outline-[#1265d8]
-                sm:mt-5
-              "
+              className={rc.introduction.enterLink}
             >
               <EnterLabTitle />
 
               <span
                 aria-hidden="true"
-                className="
-                  inline-block text-[#1265d8]
-                  transition-transform duration-200
-                  group-hover:translate-x-2
-                "
+                className={rc.introduction.enterArrow}
               >
                 →
               </span>
@@ -378,185 +335,110 @@ export default function Introduction() {
 
         {/* RIGHT SIDE — RANDOMIZED MOVING PNGS */}
         <div
-          className="
-            relative hidden w-1/2 items-center justify-center
-            px-5 lg:flex
-          "
+          className={rc.introduction.rightColumn}
           aria-hidden="true"
         >
-          <div className="relative min-h-[680px] w-full max-w-[650px]">
-            {/* STAR RAINBOW — UPPER LEFT */}
-            <div
-              className="
-                absolute left-[2%] top-[-4%] z-[1]
-                w-[clamp(280px,25vw,420px)]
-                rotate-[3deg]
-              "
-            >
+          <div className={rc.introduction.assetStage}>
+            {/* STAR RAINBOW */}
+            <div className={rc.introduction.assets.starRainbow}>
               <Image
                 src="/website-icons/starrainbow.png"
                 alt=""
                 width={1254}
                 height={1254}
-                className="
-                  cool-stuff-asset-image
-                  cool-stuff-asset-image--floating
-                "
+                className={rc.introduction.assetImage}
                 style={getFloatingAssetStyle("starRainbow")}
                 draggable={false}
                 priority
               />
             </div>
 
-            {/* BOOKS — UPPER RIGHT */}
-            <div
-              className="
-                absolute right-[-3%] top-[2%] z-[2]
-                w-[clamp(220px,19vw,320px)]
-                rotate-[-7deg]
-              "
-            >
+            {/* BOOKS */}
+            <div className={rc.introduction.assets.books}>
               <Image
                 src="/website-icons/books.png"
                 alt=""
                 width={909}
                 height={853}
-                className="
-                  cool-stuff-asset-image
-                  cool-stuff-asset-image--floating
-                "
+                className={rc.introduction.assetImage}
                 style={getFloatingAssetStyle("books")}
                 draggable={false}
               />
             </div>
 
-            {/* MOON — TOP CENTER */}
-            <div
-              className="
-                absolute left-[43%] top-[1%] z-[6]
-                w-[clamp(68px,5.95vw,102px)]
-                rotate-[-14deg]
-              "
-            >
+            {/* MOON */}
+            <div className={rc.introduction.assets.moon}>
               <Image
                 src="/website-icons/moon.png"
                 alt=""
                 width={674}
                 height={1200}
-                className="
-                  cool-stuff-asset-image
-                  cool-stuff-asset-image--floating
-                "
+                className={rc.introduction.assetImage}
                 style={getFloatingAssetStyle("moon")}
                 draggable={false}
               />
             </div>
 
-            {/* PAPER AIRPLANE — TOP RIGHT */}
-            <div
-              className="
-                absolute right-[20%] top-[10%] z-[4]
-                w-[clamp(149px,13.6vw,225px)]
-                rotate-[-8deg]
-              "
-            >
+            {/* PAPER AIRPLANE */}
+            <div className={rc.introduction.assets.paperAirplane}>
               <Image
                 src="/website-icons/paperairplane.png"
                 alt=""
                 width={1100}
                 height={1100}
-                className="
-                  cool-stuff-asset-image
-                  cool-stuff-asset-image--floating
-                "
+                className={rc.introduction.assetImage}
                 style={getFloatingAssetStyle("paperAirplane")}
                 draggable={false}
               />
             </div>
 
-            {/* ATOM — CENTER LEFT */}
-            <div
-              className="
-                absolute left-[7%] top-[43%] z-[5]
-                w-[clamp(80px,7vw,120px)]
-                rotate-[12deg]
-              "
-            >
+            {/* ATOM */}
+            <div className={rc.introduction.assets.atom}>
               <Image
                 src="/website-icons/atom.png"
                 alt=""
                 width={674}
                 height={1200}
-                className="
-                  cool-stuff-asset-image
-                  cool-stuff-asset-image--floating
-                "
+                className={rc.introduction.assetImage}
                 style={getFloatingAssetStyle("atom")}
                 draggable={false}
               />
             </div>
 
-            {/* PC — CENTER RIGHT */}
-            <div
-              className="
-                absolute right-[8%] top-[28%] z-[3]
-                w-[clamp(280px,24vw,400px)]
-                rotate-[5deg]
-              "
-            >
+            {/* PC */}
+            <div className={rc.introduction.assets.pc}>
               <Image
                 src="/website-icons/pc.png"
                 alt=""
                 width={1255}
                 height={994}
-                className="
-                  cool-stuff-asset-image
-                  cool-stuff-asset-image--floating
-                "
+                className={rc.introduction.assetImage}
                 style={getFloatingAssetStyle("pc")}
                 draggable={false}
               />
             </div>
 
-            {/* UFO — LOWER LEFT */}
-            <div
-              className="
-                absolute bottom-[-3%] left-[-2%] z-[2]
-                w-[clamp(270px,25vw,410px)]
-                rotate-[-4deg]
-              "
-            >
+            {/* UFO */}
+            <div className={rc.introduction.assets.ufo}>
               <Image
                 src="/website-icons/ufo.png"
                 alt=""
                 width={823}
                 height={699}
-                className="
-                  cool-stuff-asset-image
-                  cool-stuff-asset-image--floating
-                "
+                className={rc.introduction.assetImage}
                 style={getFloatingAssetStyle("ufo")}
                 draggable={false}
               />
             </div>
 
-            {/* LAB — LOWER RIGHT */}
-            <div
-              className="
-                absolute bottom-[1%] right-[-3%] z-[4]
-                w-[clamp(175px,16vw,265px)]
-                rotate-[10deg]
-              "
-            >
+            {/* LAB */}
+            <div className={rc.introduction.assets.lab}>
               <Image
                 src="/website-icons/lab.png"
                 alt=""
                 width={1100}
                 height={1100}
-                className="
-                  cool-stuff-asset-image
-                  cool-stuff-asset-image--floating
-                "
+                className={rc.introduction.assetImage}
                 style={getFloatingAssetStyle("lab")}
                 draggable={false}
               />

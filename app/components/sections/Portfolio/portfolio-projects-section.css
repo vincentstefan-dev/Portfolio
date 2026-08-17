@@ -1,0 +1,120 @@
+/* portfolio-projects-section.css */
+
+/* ========================================
+   FLOATING PORTFOLIO PNG ASSETS
+======================================== */
+
+.portfolio-png-float {
+  width: 100%;
+  transform-origin: center;
+  animation-name: portfolio-png-pixel-float;
+  animation-timing-function: steps(8, end);
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+/* ========================================
+   INDIVIDUAL MOVEMENT TIMING
+======================================== */
+
+.portfolio-png-float--one {
+  animation-duration: 6.4s;
+  animation-delay: -1.2s;
+}
+
+.portfolio-png-float--two {
+  animation-duration: 7.2s;
+  animation-delay: -3.1s;
+  animation-direction: reverse;
+}
+
+.portfolio-png-float--three {
+  animation-duration: 5.8s;
+  animation-delay: -2.2s;
+}
+
+.portfolio-png-float--four {
+  animation-duration: 8s;
+  animation-delay: -4.1s;
+  animation-direction: reverse;
+}
+
+.portfolio-png-float--five {
+  animation-duration: 7.6s;
+  animation-delay: -2.8s;
+}
+
+.portfolio-png-float--six {
+  animation-duration: 5.4s;
+  animation-delay: -1.7s;
+  animation-direction: reverse;
+}
+
+.portfolio-png-float--seven {
+  animation-duration: 6.8s;
+  animation-delay: -3.4s;
+}
+
+.portfolio-png-float--eight {
+  animation-duration: 4.8s;
+  animation-delay: -2.1s;
+  animation-direction: reverse;
+}
+
+.portfolio-png-float--nine {
+  animation-duration: 7.1s;
+  animation-delay: -4.3s;
+}
+
+/* ========================================
+   PIXEL-STYLE STEPPED MOVEMENT
+======================================== */
+
+@keyframes portfolio-png-pixel-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  12.5% {
+    transform: translate3d(4px, -4px, 0);
+  }
+
+  25% {
+    transform: translate3d(8px, -8px, 0);
+  }
+
+  37.5% {
+    transform: translate3d(4px, -12px, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -16px, 0);
+  }
+
+  62.5% {
+    transform: translate3d(-4px, -12px, 0);
+  }
+
+  75% {
+    transform: translate3d(-8px, -8px, 0);
+  }
+
+  87.5% {
+    transform: translate3d(-4px, -4px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-png-float {
+    animation: none;
+    transform: none;
+  }
+}

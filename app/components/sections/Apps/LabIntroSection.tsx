@@ -3,6 +3,8 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 
+import { coolstuffRc as rc } from "@/app/coolstuff/coolstuffResponsiveConfig";
+
 import "./lab-intro-section.css";
 
 const processSteps = ["TINKER", "TEST", "BREAK", "REBUILD"];
@@ -70,6 +72,7 @@ const floatingAssetSettings = {
     y: "-12px",
     rotation: "1deg",
   },
+
   globe: {
     duration: 5.1,
     delay: -2.1,
@@ -78,6 +81,7 @@ const floatingAssetSettings = {
     y: "-14px",
     rotation: "-1deg",
   },
+
   tools: {
     duration: 4.7,
     delay: -1.4,
@@ -86,6 +90,7 @@ const floatingAssetSettings = {
     y: "-10px",
     rotation: "1.2deg",
   },
+
   pencilCup: {
     duration: 3.9,
     delay: -2.6,
@@ -94,6 +99,7 @@ const floatingAssetSettings = {
     y: "-13px",
     rotation: "-1.3deg",
   },
+
   cursor: {
     duration: 3.3,
     delay: -1.1,
@@ -102,6 +108,7 @@ const floatingAssetSettings = {
     y: "-16px",
     rotation: "2deg",
   },
+
   document: {
     duration: 4.5,
     delay: -3.2,
@@ -151,31 +158,18 @@ function ExploreBuildsLink() {
     <a
       href="#lab-projects"
       aria-label="Explore what I have built"
-      className="
-        group mt-8 inline-flex max-w-full items-center gap-3
-        no-underline transition-transform duration-200
-        hover:translate-x-1
-        focus-visible:rounded-sm
-        focus-visible:outline
-        focus-visible:outline-2
-        focus-visible:outline-offset-4
-        focus-visible:outline-[#ffdf22]
-      "
+      className={rc.labIntro.exploreLink}
     >
       <span
         aria-hidden="true"
-        className="
-          inline-flex max-w-full flex-wrap items-end
-          font-[Arial_Black] text-[clamp(1.1rem,1.7vw,1.75rem)]
-          font-black leading-[1.15] tracking-[-0.055em]
-        "
+        className={rc.labIntro.exploreTitle}
       >
         {exploreLetters.map((letter, index) => {
           if (letter.char === " ") {
             return (
               <span
                 key={`explore-space-${index}`}
-                className="w-[0.38em] shrink-0"
+                className={rc.labIntro.exploreSpace}
               />
             );
           }
@@ -193,11 +187,7 @@ function ExploreBuildsLink() {
           return (
             <span
               key={`explore-letter-${index}`}
-              className="
-                relative inline-block origin-bottom
-                transition-transform duration-200
-                group-hover:-translate-y-0.5
-              "
+              className={rc.labIntro.exploreLetter}
               style={letterStyle}
             >
               {letter.char}
@@ -208,13 +198,7 @@ function ExploreBuildsLink() {
 
       <span
         aria-hidden="true"
-        className="
-          inline-block shrink-0
-          font-[Arial_Black] text-[clamp(1.4rem,2vw,2rem)]
-          font-black leading-none text-[#ff3ec2]
-          transition-transform duration-200
-          group-hover:translate-x-2
-        "
+        className={rc.labIntro.exploreArrow}
         style={{
           textShadow:
             "2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 10px rgba(255, 62, 194, 0.5)",
@@ -321,10 +305,7 @@ export default function LabIntroSection() {
               alt=""
               width={1255}
               height={994}
-              className="
-                lab-intro__asset-image
-                lab-intro__asset-image--floating
-              "
+              className={rc.labIntro.assetImage}
               style={getFloatingAssetStyle("camera")}
               draggable={false}
             />
@@ -337,10 +318,7 @@ export default function LabIntroSection() {
               alt=""
               width={1254}
               height={1254}
-              className="
-                lab-intro__asset-image
-                lab-intro__asset-image--floating
-              "
+              className={rc.labIntro.assetImage}
               style={getFloatingAssetStyle("globe")}
               draggable={false}
               priority
@@ -354,10 +332,7 @@ export default function LabIntroSection() {
               alt=""
               width={823}
               height={699}
-              className="
-                lab-intro__asset-image
-                lab-intro__asset-image--floating
-              "
+              className={rc.labIntro.assetImage}
               style={getFloatingAssetStyle("tools")}
               draggable={false}
             />
@@ -370,10 +345,7 @@ export default function LabIntroSection() {
               alt=""
               width={1100}
               height={1100}
-              className="
-                lab-intro__asset-image
-                lab-intro__asset-image--floating
-              "
+              className={rc.labIntro.assetImage}
               style={getFloatingAssetStyle("pencilCup")}
               draggable={false}
             />
@@ -386,10 +358,7 @@ export default function LabIntroSection() {
               alt=""
               width={674}
               height={1200}
-              className="
-                lab-intro__asset-image
-                lab-intro__asset-image--floating
-              "
+              className={rc.labIntro.assetImage}
               style={getFloatingAssetStyle("cursor")}
               draggable={false}
             />
@@ -402,10 +371,7 @@ export default function LabIntroSection() {
               alt=""
               width={909}
               height={853}
-              className="
-                lab-intro__asset-image
-                lab-intro__asset-image--floating
-              "
+              className={rc.labIntro.assetImage}
               style={getFloatingAssetStyle("document")}
               draggable={false}
             />

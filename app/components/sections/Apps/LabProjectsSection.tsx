@@ -19,9 +19,11 @@ import {
   Rocket,
 } from "lucide-react";
 
-import ThemedNavIcon from "@/app/components/template/theme/ThemedNavIcon";
 import { useThemeGlow } from "@/app/components/template/layout/useThemeGlow";
+import ThemedNavIcon from "@/app/components/template/theme/ThemedNavIcon";
 import { useThemeMode } from "@/app/components/template/theme/ThemeProvider";
+
+import { coolstuffRc as rc } from "@/app/coolstuff/coolstuffResponsiveConfig";
 
 import "./lab-projects-section.css";
 
@@ -33,10 +35,6 @@ type ProjectItem = {
   label: string;
   href: string;
 
-  /*
-   * icon and gif are optional because placeholder cards
-   * do not need a real application visual yet.
-   */
   icon?: ComponentType<{
     className?: string;
     strokeWidth?: number;
@@ -61,11 +59,6 @@ type ProjectCardStyle = CSSProperties & {
 type ProjectCardProps = {
   item: ProjectItem;
   index: number;
-
-  /*
-   * This glow value comes from LabProjectsSection.
-   * ProjectCard receives it as a prop.
-   */
   glow: ReturnType<typeof useThemeGlow>;
 };
 
@@ -74,6 +67,30 @@ type TitleLetter = {
   color: string;
   rotation: number;
 };
+
+/* ========================================
+   CLASS NAME HELPER
+======================================== */
+
+/*
+ * Removes accidental leading, trailing, or repeated whitespace.
+ *
+ * This keeps the server-rendered and client-rendered className
+ * attributes identical during hydration.
+ */
+function classNames(
+  ...values: Array<string | false | null | undefined>
+): string {
+  return values
+    .filter(
+      (
+        value,
+      ): value is string => typeof value === "string" && value.length > 0,
+    )
+    .map((value) => value.trim().replace(/\s+/g, " "))
+    .filter(Boolean)
+    .join(" ");
+}
 
 /* ========================================
    TITLE
@@ -224,27 +241,6 @@ const projectItems: ProjectItem[] = [
       "Return to the main page and continue exploring the rest of the site.",
     accent: "#1caeaa",
   },
-
-  /*
-   * ==========================================================
-   * EMPTY APP EXAMPLE 01
-   *
-   * Replace:
-   * - label
-   * - href
-   * - category
-   * - status
-   * - description
-   * - accent
-   *
-   * Add:
-   * - icon
-   * - gif
-   *
-   * Then remove:
-   * placeholder: true
-   * ==========================================================
-   */
   {
     label: "New App Example 01",
     href: "/coolstuff/new-app-example-01",
@@ -255,27 +251,6 @@ const projectItems: ProjectItem[] = [
     accent: "#ff5f87",
     placeholder: true,
   },
-
-  /*
-   * ==========================================================
-   * EMPTY APP EXAMPLE 02
-   *
-   * Replace:
-   * - label
-   * - href
-   * - category
-   * - status
-   * - description
-   * - accent
-   *
-   * Add:
-   * - icon
-   * - gif
-   *
-   * Then remove:
-   * placeholder: true
-   * ==========================================================
-   */
   {
     label: "New App Example 02",
     href: "/coolstuff/new-app-example-02",
@@ -297,52 +272,39 @@ function LabProjectsTitle() {
     <h2
       id="apps-heading"
       aria-label="Lab Projects"
-      className="lab-projects__title"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        flexWrap: "nowrap",
-        alignItems: "flex-start",
-        width: "fit-content",
-        maxWidth: "100%",
-      }}
+      className={classNames(rc.labProjects.header.title)}
     >
-      {titleWords.map((word, wordIndex) => (
-        <span
-          key={`title-word-${wordIndex}`}
-          aria-hidden="true"
-          className={[
-            "lab-projects__title-word",
-            wordIndex === 1
-              ? "lab-projects__title-word--projects"
-              : "",
-          ]
-            .filter(Boolean)
-            .join(" ")}
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            width: "fit-content",
-            maxWidth: "100%",
-            whiteSpace: "nowrap",
-            marginTop: wordIndex === 1 ? "0.06em" : 0,
-            fontSize: wordIndex === 1 ? "0.82em" : "1em",
-          }}
-        >
-          {word.map((letter, letterIndex) => (
-            <span
-              key={`title-letter-${wordIndex}-${letterIndex}`}
-              className="lab-projects__title-letter"
-              style={{
-                color: letter.color,
-                transform: `rotate(${letter.rotation}deg)`,
-              }}
-            >
-              {letter.char}
-            </span>
-          ))}
-        </span>
-      ))}
+      {titleWords.map((word, wordIndex) => {
+        const wordClassName = classNames(
+          rc.labProjects.header.titleWord,
+          wordIndex === 1
+            ? rc.labProjects.header.titleWordProjects
+            : rc.labProjects.header.titleWordLab,
+        );
+
+        return (
+          <span
+            key={`title-word-${wordIndex}`}
+            aria-hidden="true"
+            className={wordClassName}
+          >
+            {word.map((letter, letterIndex) => (
+              <span
+                key={`title-letter-${wordIndex}-${letterIndex}`}
+                className={classNames(
+                  rc.labProjects.header.titleLetter,
+                )}
+                style={{
+                  color: letter.color,
+                  transform: `rotate(${letter.rotation}deg)`,
+                }}
+              >
+                {letter.char}
+              </span>
+            ))}
+          </span>
+        );
+      })}
     </h2>
   );
 }
@@ -356,10 +318,7 @@ function ProjectCard({
   index,
   glow,
 }: ProjectCardProps) {
-  const projectNumber = String(index + 1).padStart(
-    2,
-    "0",
-  );
+  const projectNumber = String(index + 1).padStart(2, "0");
 
   const style: ProjectCardStyle = {
     "--project-accent": item.accent,
@@ -367,53 +326,23 @@ function ProjectCard({
     "--project-index": `"${projectNumber}"`,
   };
 
-  /*
-   * ==========================================================
-   * PROJECT VISUAL LOGIC
-   *
-   * This variable decides which child visual appears inside
-   * .lab-project-card__visual.
-   * ==========================================================
-   */
-
   let projectVisual: ReactNode = null;
 
   if (item.placeholder) {
-    /*
-     * PLACEHOLDER CHILD:
-     *
-     * When placeholder is true, the card displays a Plus icon.
-     * It does not use ThemedNavIcon yet.
-     */
     projectVisual = (
       <Plus
         aria-hidden="true"
-        size={58}
+        className={classNames(
+          rc.labProjects.card.placeholderIcon,
+        )}
         strokeWidth={1.4}
         style={{
-          position: "relative",
-          zIndex: 2,
           color: item.accent,
-          filter: `drop-shadow(
-            0 0 10px ${item.accent}
-          )`,
+          filter: `drop-shadow(0 0 10px ${item.accent})`,
         }}
       />
     );
   } else if (item.icon && item.gif) {
-    /*
-     * REAL APP CHILD:
-     *
-     * The glow value originally came from LabProjectsSection.
-     *
-     * Flow:
-     *
-     * LabProjectsSection
-     *       ↓
-     * ProjectCard
-     *       ↓
-     * ThemedNavIcon
-     */
     projectVisual = (
       <ThemedNavIcon
         label={item.label}
@@ -424,39 +353,22 @@ function ProjectCard({
     );
   }
 
-  /*
-   * Everything inside cardContent is a child of either:
-   *
-   * 1. <Link className="lab-project-card">
-   * 2. <article className="lab-project-card">
-   *
-   * This allows CSS parent selectors such as:
-   *
-   * .lab-project-card:hover
-   *   .lab-project-card__visual
-   *
-   * or:
-   *
-   * .lab-project-card--placeholder
-   *   .lab-project-card__title
-   */
-
   const cardContent: ReactNode = (
     <>
       <span
-        className="lab-project-card__number"
+        className={classNames(rc.labProjects.card.number)}
         aria-hidden="true"
       >
         {projectNumber}
       </span>
 
       <span
-        className="lab-project-card__accent"
+        className={classNames(rc.labProjects.card.accent)}
         aria-hidden="true"
       />
 
       <span
-        className="lab-project-card__spark"
+        className={classNames(rc.labProjects.card.spark)}
         aria-hidden="true"
       >
         <span />
@@ -465,15 +377,21 @@ function ProjectCard({
         <span />
       </span>
 
-      <div className="lab-project-card__meta">
-        <span className="lab-project-card__category">
+      <div className={classNames(rc.labProjects.card.meta)}>
+        <span
+          className={classNames(rc.labProjects.card.category)}
+        >
           {item.featured ? "FEATURED / " : ""}
           {item.category}
         </span>
 
-        <span className="lab-project-card__status">
+        <span
+          className={classNames(rc.labProjects.card.status)}
+        >
           <span
-            className="lab-project-card__status-dot"
+            className={classNames(
+              rc.labProjects.card.statusDot,
+            )}
             aria-hidden="true"
           />
 
@@ -481,28 +399,36 @@ function ProjectCard({
         </span>
       </div>
 
-      <div className="lab-project-card__body">
-        <div className="lab-project-card__visual">
+      <div className={classNames(rc.labProjects.card.body)}>
+        <div className={classNames(rc.labProjects.card.visual)}>
           <span
-            className="lab-project-card__glow"
+            className={classNames(rc.labProjects.card.glow)}
             aria-hidden="true"
           />
 
           {projectVisual}
         </div>
 
-        <div className="lab-project-card__content">
-          <h3 className="lab-project-card__title">
+        <div
+          className={classNames(rc.labProjects.card.content)}
+        >
+          <h3
+            className={classNames(rc.labProjects.card.title)}
+          >
             {item.label}
           </h3>
 
-          <p className="lab-project-card__description">
+          <p
+            className={classNames(
+              rc.labProjects.card.description,
+            )}
+          >
             {item.description}
           </p>
         </div>
       </div>
 
-      <div className="lab-project-card__footer">
+      <div className={classNames(rc.labProjects.card.footer)}>
         <span>
           {item.placeholder
             ? "Empty slot"
@@ -513,7 +439,9 @@ function ProjectCard({
 
         {!item.placeholder && (
           <ArrowUpRight
-            className="lab-project-card__arrow"
+            className={classNames(
+              rc.labProjects.card.arrow,
+            )}
             strokeWidth={2}
             aria-hidden="true"
           />
@@ -522,37 +450,17 @@ function ProjectCard({
     </>
   );
 
-  /*
-   * Base parent class:
-   * lab-project-card
-   *
-   * Optional parent modifier classes:
-   * lab-project-card--featured
-   * lab-project-card--placeholder
-   */
-
-  const className = [
-    "lab-project-card",
-    item.featured
-      ? "lab-project-card--featured"
-      : "",
-    item.placeholder
-      ? "lab-project-card--placeholder"
-      : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-
-  /*
-   * Placeholder cards use an article because they should
-   * not navigate to a page yet.
-   */
+  const projectCardClassName = classNames(
+    rc.labProjects.card.base,
+    item.featured && rc.labProjects.card.featured,
+    item.placeholder && rc.labProjects.card.placeholder,
+  );
 
   if (item.placeholder) {
     return (
       <article
         style={style}
-        className={className}
+        className={projectCardClassName}
         aria-label={`${item.label}, empty project slot`}
       >
         {cardContent}
@@ -560,15 +468,11 @@ function ProjectCard({
     );
   }
 
-  /*
-   * Real application cards use a Link.
-   */
-
   return (
     <Link
       href={item.href}
       style={style}
-      className={className}
+      className={projectCardClassName}
     >
       {cardContent}
     </Link>
@@ -581,47 +485,41 @@ function ProjectCard({
 
 export default function LabProjectsSection() {
   const { siteMode } = useThemeMode();
-
-  /*
-   * STEP 1:
-   *
-   * useThemeGlow calculates the glow value for the
-   * currently active site theme.
-   */
-
   const glow = useThemeGlow(siteMode);
 
   return (
     <section
       id="lab-projects"
       aria-labelledby="apps-heading"
-      className="lab-projects"
+      className={classNames(rc.labProjects.section)}
     >
       <div
-        className="lab-projects__background-grid"
+        className={classNames(
+          rc.labProjects.background.grid,
+        )}
         aria-hidden="true"
       />
 
       <div
-        className="lab-projects__background-word"
+        className={classNames(
+          rc.labProjects.background.word,
+        )}
         aria-hidden="true"
       >
         BUILDS
       </div>
 
       <div
-        className="
-          lab-projects__ambient
-          lab-projects__ambient--one
-        "
+        className={classNames(
+          rc.labProjects.background.ambientOne,
+        )}
         aria-hidden="true"
       />
 
       <div
-        className="
-          lab-projects__ambient
-          lab-projects__ambient--two
-        "
+        className={classNames(
+          rc.labProjects.background.ambientTwo,
+        )}
         aria-hidden="true"
       />
 
@@ -630,111 +528,127 @@ export default function LabProjectsSection() {
       ====================================== */}
 
       <div
-        className="lab-projects__decorations"
+        className={classNames(
+          rc.labProjects.decorations.wrapper,
+        )}
         aria-hidden="true"
       >
         {/* USB */}
-
         <div
-          className="
-            lab-projects__decoration
-            lab-projects__decoration--camera
-          "
+          className={classNames(
+            rc.labProjects.decorations.usb,
+          )}
         >
           <Image
             src="/lab/lab-usb.png"
             alt=""
             width={1255}
             height={994}
-            className="lab-projects__decoration-image"
+            className={classNames(
+              rc.labProjects.decorations.image,
+            )}
             draggable={false}
           />
         </div>
 
         {/* HARD DRIVE */}
-
         <div
-          className="
-            lab-projects__decoration
-            lab-projects__decoration--globe
-          "
+          className={classNames(
+            rc.labProjects.decorations.hardDrive,
+          )}
         >
           <Image
             src="/lab/lab-harddrive.png"
             alt=""
             width={1254}
             height={1254}
-            className="lab-projects__decoration-image"
+            className={classNames(
+              rc.labProjects.decorations.image,
+            )}
             draggable={false}
           />
         </div>
 
         {/* CHIP */}
-
         <div
-          className="
-            lab-projects__decoration
-            lab-projects__decoration--pencils
-          "
+          className={classNames(
+            rc.labProjects.decorations.chip,
+          )}
         >
           <Image
             src="/lab/lab-chip.jpg"
             alt=""
             width={1100}
             height={1100}
-            className="lab-projects__decoration-image"
+            className={classNames(
+              rc.labProjects.decorations.image,
+            )}
             draggable={false}
           />
         </div>
 
         {/* DOCUMENT */}
-
         <div
-          className="
-            lab-projects__decoration
-            lab-projects__decoration--document
-          "
+          className={classNames(
+            rc.labProjects.decorations.document,
+          )}
         >
           <Image
             src="/lab/lab-document.png"
             alt=""
             width={909}
             height={853}
-            className="lab-projects__decoration-image"
+            className={classNames(
+              rc.labProjects.decorations.image,
+            )}
             draggable={false}
           />
         </div>
 
         {/* CURSOR */}
-
         <div
-          className="
-            lab-projects__decoration
-            lab-projects__decoration--cursor
-          "
+          className={classNames(
+            rc.labProjects.decorations.cursor,
+          )}
         >
           <Image
             src="/lab/lab-cursor.png"
             alt=""
             width={674}
             height={1200}
-            className="lab-projects__decoration-image"
+            className={classNames(
+              rc.labProjects.decorations.image,
+            )}
             draggable={false}
           />
         </div>
       </div>
 
-      <div className="lab-projects__inner">
-        <header className="lab-projects__header">
-          <div className="lab-projects__heading-group">
-            <p className="lab-projects__eyebrow">
+      <div className={classNames(rc.labProjects.inner)}>
+        <header
+          className={classNames(
+            rc.labProjects.header.wrapper,
+          )}
+        >
+          <div
+            className={classNames(
+              rc.labProjects.header.headingGroup,
+            )}
+          >
+            <p
+              className={classNames(
+                rc.labProjects.header.eyebrow,
+              )}
+            >
               KOYOTE PROJECT ARCHIVE
             </p>
 
             <LabProjectsTitle />
 
             <div
-              className="lab-projects__underline"
+              className={classNames(
+                rc.labProjects.header.underline,
+              )}
               aria-hidden="true"
             >
               <span />
@@ -742,84 +656,114 @@ export default function LabProjectsSection() {
             </div>
           </div>
 
-          <div className="lab-projects__introduction">
+          <div
+            className={classNames(
+              rc.labProjects.header.introduction,
+            )}
+          >
             <p>
-              A collection of small tools, apps, and
-              experiments built to explore ideas, solve tiny
-              problems, and see what happens.
+              A collection of small tools, apps, and experiments
+              built to explore ideas, solve tiny problems, and see
+              what happens.
             </p>
 
             <div
-              className="lab-projects__process"
+              className={classNames(
+                rc.labProjects.header.process,
+              )}
               aria-label="Lab process"
             >
-              <span className="lab-projects__process--blue">
+              <span
+                className={classNames(
+                  rc.labProjects.header.processBlue,
+                )}
+              >
                 TINKER
               </span>
 
-              <i>•</i>
+              <i aria-hidden="true">•</i>
 
-              <span className="lab-projects__process--orange">
+              <span
+                className={classNames(
+                  rc.labProjects.header.processOrange,
+                )}
+              >
                 TEST
               </span>
 
-              <i>•</i>
+              <i aria-hidden="true">•</i>
 
-              <span className="lab-projects__process--pink">
+              <span
+                className={classNames(
+                  rc.labProjects.header.processPink,
+                )}
+              >
                 BREAK
               </span>
 
-              <i>•</i>
+              <i aria-hidden="true">•</i>
 
-              <span className="lab-projects__process--green">
+              <span
+                className={classNames(
+                  rc.labProjects.header.processGreen,
+                )}
+              >
                 REBUILD
               </span>
             </div>
 
             <div
-              className="lab-projects__header-arrow"
+              className={classNames(
+                rc.labProjects.header.arrow,
+              )}
               aria-hidden="true"
             >
-              <span className="lab-projects__header-arrow-line" />
+              <span
+                className={classNames(
+                  rc.labProjects.header.arrowLine,
+                )}
+              />
 
-              <span className="lab-projects__header-arrow-head" />
+              <span
+                className={classNames(
+                  rc.labProjects.header.arrowHead,
+                )}
+              />
             </div>
           </div>
         </header>
 
         <nav
           aria-label="Laboratory projects"
-          className="lab-projects__nav"
+          className={classNames(
+            rc.labProjects.projects.nav,
+          )}
         >
-          <div className="lab-projects__grid">
-            {/*
-             * STEP 2:
-             *
-             * map() creates one ProjectCard child for every
-             * object inside projectItems.
-             */}
-
+          <div
+            className={classNames(
+              rc.labProjects.projects.grid,
+            )}
+          >
             {projectItems.map((item, index) => (
               <ProjectCard
                 key={`${item.label}-${index}`}
                 item={item}
                 index={index}
-
-                /*
-                 * STEP 3:
-                 *
-                 * The parent LabProjectsSection passes glow
-                 * into the child ProjectCard.
-                 */
                 glow={glow}
               />
             ))}
           </div>
         </nav>
 
-        <div className="lab-projects__note">
+        <div
+          className={classNames(
+            rc.labProjects.note.wrapper,
+          )}
+        >
           <span
-            className="lab-projects__note-icon"
+            className={classNames(
+              rc.labProjects.note.icon,
+            )}
             aria-hidden="true"
           >
             ⚗
@@ -827,14 +771,13 @@ export default function LabProjectsSection() {
 
           <p>
             New ideas. Small builds. Frequent experiments.
-
-            <strong>
-              This lab is always open.
-            </strong>
+            <strong>This lab is always open.</strong>
           </p>
 
           <span
-            className="lab-projects__note-spark"
+            className={classNames(
+              rc.labProjects.note.spark,
+            )}
             aria-hidden="true"
           >
             ✦

@@ -1,0 +1,137 @@
+/* ========================================
+   SELECTED PROJECTS FLOATING PNGS
+======================================== */
+
+.selected-projects-png-float {
+  width: 100%;
+  transform-origin: center;
+  animation-name: selected-projects-png-pixel-float;
+  animation-timing-function: steps(8, end);
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+/* ========================================
+   INDIVIDUAL ANIMATION SETTINGS
+======================================== */
+
+.selected-projects-png-float--one {
+  animation-duration: 6.4s;
+  animation-delay: -1.2s;
+}
+
+.selected-projects-png-float--two {
+  animation-duration: 7.2s;
+  animation-delay: -3.1s;
+  animation-direction: reverse;
+}
+
+.selected-projects-png-float--three {
+  animation-duration: 5.8s;
+  animation-delay: -2.2s;
+}
+
+.selected-projects-png-float--four {
+  animation-duration: 7.8s;
+  animation-delay: -4.1s;
+  animation-direction: reverse;
+}
+
+.selected-projects-png-float--five {
+  animation-duration: 6.9s;
+  animation-delay: -2.8s;
+}
+
+.selected-projects-png-float--six {
+  animation-duration: 8s;
+  animation-delay: -3.6s;
+  animation-direction: reverse;
+}
+
+.selected-projects-png-float--seven {
+  animation-duration: 7.5s;
+  animation-delay: -2.5s;
+}
+
+.selected-projects-png-float--eight {
+  animation-duration: 5.2s;
+  animation-delay: -1.9s;
+  animation-direction: reverse;
+}
+
+.selected-projects-png-float--nine {
+  animation-duration: 6.7s;
+  animation-delay: -3.8s;
+}
+
+/* ========================================
+   PIXEL-STYLE STEPPED MOVEMENT
+======================================== */
+
+@keyframes selected-projects-png-pixel-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  12.5% {
+    transform: translate3d(4px, -4px, 0);
+  }
+
+  25% {
+    transform: translate3d(8px, -8px, 0);
+  }
+
+  37.5% {
+    transform: translate3d(4px, -12px, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -16px, 0);
+  }
+
+  62.5% {
+    transform: translate3d(-4px, -12px, 0);
+  }
+
+  75% {
+    transform: translate3d(-8px, -8px, 0);
+  }
+
+  87.5% {
+    transform: translate3d(-4px, -4px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ========================================
+   SMALL NATURAL ROTATION VARIATION
+======================================== */
+
+.selected-projects-png-float--one,
+.selected-projects-png-float--three,
+.selected-projects-png-float--five,
+.selected-projects-png-float--seven,
+.selected-projects-png-float--nine {
+  transform-origin: 48% 52%;
+}
+
+.selected-projects-png-float--two,
+.selected-projects-png-float--four,
+.selected-projects-png-float--six,
+.selected-projects-png-float--eight {
+  transform-origin: 52% 48%;
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .selected-projects-png-float {
+    animation: none;
+    transform: none;
+  }
+}

@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { Space_Mono } from "next/font/google";
+import { House } from "lucide-react";
 
 import AtomicPlayer from "@/app/components/media/atomicplayer";
 import SiteSignature from "@/app/components/hero/SiteSignature";
@@ -51,12 +53,33 @@ export default function CleanPage() {
         setVolume={setVolume}
       />
 
+{/* ========================================
+    FIXED BACK BUTTON
+    Stays bottom-right while scrolling
+======================================== */}
+<div className="fixed bottom-6 right-6 z-[200]">
+  <Link
+    href="/"
+    aria-label="Return to portfolio"
+    className="group flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/20 text-white backdrop-blur-md transition duration-200 hover:scale-110 hover:border-white/40 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:h-12 sm:w-12"
+  >
+    <House
+      aria-hidden="true"
+      className="h-5 w-5 transition-transform duration-200 group-hover:scale-110 sm:h-6 sm:w-6"
+      strokeWidth={1.5}
+    />
+  </Link>
+</div>
+
       <PageTransitionWrapper isBlurred={isInitialBlur}>
         <div className="relative z-10 flex w-full flex-col">
           {/* ========================================
               FIRST SECTION — COOL STUFF
           ======================================== */}
-          <section className="relative w-full">
+          <section
+            aria-label="Cool Stuff"
+            className="relative w-full"
+          >
             <Introduction />
           </section>
 

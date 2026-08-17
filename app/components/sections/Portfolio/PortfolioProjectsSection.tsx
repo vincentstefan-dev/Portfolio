@@ -1,39 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import {
-  ArrowUpRight,
-  Code2,
-  FolderKanban,
-  Layers3,
-  PenTool,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import { portfolioRc as rc } from "./portfolioResponsiveConfig";
-
-const toolIcons = [
-  {
-    label: "Projects",
-    icon: FolderKanban,
-    className: "left-[7%] top-[17%] rotate-[-10deg]",
-  },
-  {
-    label: "Vector",
-    icon: PenTool,
-    className: "left-[22%] top-[7%] rotate-[-7deg]",
-  },
-  {
-    label: "Code",
-    icon: Code2,
-    className: "right-[21%] top-[8%] rotate-[5deg]",
-  },
-  {
-    label: "Layers",
-    icon: Layers3,
-    className: "right-[7%] top-[18%] rotate-[8deg]",
-  },
-];
+import "./portfolio-projects-section.css";
 
 const projectPreviews = [
   {
@@ -59,11 +30,90 @@ const projectPreviews = [
   },
 ];
 
+const floatingPngs = [
+  {
+    label: "Floating brain",
+    src: "/website-icons/brain.png",
+    positionClass:
+      "left-[3%] top-[8%] w-[90px] rotate-[-8deg] lg:left-[4%] lg:w-[120px] xl:w-[140px]",
+    animationClass: "portfolio-png-float--one",
+  },
+  {
+    label: "Floating hand",
+    src: "/website-icons/hand.png",
+    positionClass:
+      "right-[3%] top-[7%] w-[100px] rotate-[8deg] lg:right-[4%] lg:w-[140px] xl:w-[160px]",
+    animationClass: "portfolio-png-float--two",
+  },
+  {
+    label: "Floating hard drive",
+    src: "/website-icons/hdd.png",
+    positionClass:
+      "bottom-[7%] left-[6%] w-[100px] rotate-[6deg] lg:left-[8%] lg:w-[140px] xl:w-[155px]",
+    animationClass: "portfolio-png-float--three",
+  },
+  {
+    label: "Floating CD",
+    src: "/website-icons/cd.png",
+    positionClass:
+      "bottom-[7%] right-[6%] w-[100px] rotate-[-7deg] lg:right-[8%] lg:w-[140px] xl:w-[155px]",
+    animationClass: "portfolio-png-float--four",
+  },
+
+  // Large top-center anchor.
+  {
+    label: "Floating gaming console",
+    src: "/website-icons/gaming.png",
+    positionClass:
+      "left-1/2 top-[1%] w-[125px] -translate-x-1/2 rotate-[-3deg] lg:w-[165px] xl:w-[195px]",
+    animationClass: "portfolio-png-float--five",
+  },
+
+  // Small upper-left accent.
+  {
+    label: "Floating atom",
+    src: "/website-icons/atom.png",
+    positionClass:
+      "left-[27%] top-[18%] w-[48px] rotate-[11deg] lg:w-[65px] xl:w-[78px]",
+    animationClass: "portfolio-png-float--six",
+  },
+
+  // Small upper-right accent.
+  {
+    label: "Floating mail",
+    src: "/website-icons/mail.png",
+    positionClass:
+      "right-[27%] top-[19%] w-[52px] rotate-[-10deg] lg:w-[70px] xl:w-[82px]",
+    animationClass: "portfolio-png-float--seven",
+  },
+
+  // Accent beside the central title.
+  {
+    label: "Floating paper airplane",
+    src: "/website-icons/paperairplane.png",
+    positionClass:
+      "right-[23%] top-[55%] w-[55px] rotate-[10deg] lg:w-[75px] xl:w-[90px]",
+    animationClass: "portfolio-png-float--eight",
+  },
+
+  // Lower-left-center accent.
+  {
+    label: "Floating rainbow star",
+    src: "/website-icons/starrainbow.png",
+    positionClass:
+      "bottom-[15%] left-[25%] w-[65px] rotate-[-8deg] lg:w-[90px] xl:w-[110px]",
+    animationClass: "portfolio-png-float--nine",
+  },
+];
+
 export default function PortfolioProjectsSection() {
   return (
     <section className={`${rc.projectsHero.section} overflow-hidden`}>
       <div className={rc.projectsHero.background} />
 
+      {/* ========================================
+          TOP RAIL
+      ======================================== */}
       <div className={rc.projectsHero.topRailWrap}>
         <div className={rc.projectsHero.topRail}>
           <div className={rc.projectsHero.topRailMainLine} />
@@ -72,21 +122,37 @@ export default function PortfolioProjectsSection() {
         </div>
       </div>
 
-      {toolIcons.map((item) => {
-        const Icon = item.icon;
-
-        return (
+      {/* ========================================
+          FLOATING PNG ASSETS
+      ======================================== */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[15] hidden overflow-hidden md:block"
+      >
+        {floatingPngs.map((asset) => (
           <div
-            key={item.label}
-            className={`${rc.projectsHero.floatingIconPositionBase} ${item.className}`}
+            key={asset.label}
+            className={`absolute ${asset.positionClass}`}
           >
-            <div className={rc.projectsHero.floatingIconBox}>
-              <Icon className={rc.projectsHero.floatingIcon} />
+            <div
+              className={`portfolio-png-float ${asset.animationClass}`}
+            >
+              <Image
+                src={asset.src}
+                alt=""
+                width={220}
+                height={220}
+                sizes="(min-width: 1280px) 195px, (min-width: 1024px) 165px, 100px"
+                className="h-auto w-full select-none object-contain"
+              />
             </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
 
+      {/* ========================================
+          PROJECT PREVIEW CARDS
+      ======================================== */}
       <div className="pointer-events-none absolute inset-0 z-10 hidden overflow-hidden md:block">
         {projectPreviews.map((project) => (
           <div
@@ -112,16 +178,21 @@ export default function PortfolioProjectsSection() {
                 </p>
               </div>
 
-              <ArrowUpRight className="h-4 w-4 text-white/55" />
+              <ArrowUpRight
+                aria-hidden="true"
+                className="h-4 w-4 text-white/55"
+              />
             </div>
           </div>
         ))}
       </div>
 
+      {/* ========================================
+          CENTRAL TITLE
+      ======================================== */}
       <div className={`${rc.projectsHero.centerWrap} z-20`}>
         <div className={rc.projectsHero.centerInner}>
           <div className={rc.projectsHero.titleWrap}>
-
             <h2 className={rc.projectsHero.title}>
               <span className={rc.projectsHero.titleText}>
                 <span className={rc.projectsHero.titleLineTop}>ALL</span>
@@ -133,13 +204,14 @@ export default function PortfolioProjectsSection() {
               </span>
             </h2>
 
-
             <div className={rc.projectsHero.titleGlow} />
           </div>
         </div>
       </div>
 
-
+      {/* ========================================
+          BOTTOM RAIL
+      ======================================== */}
       <div className={rc.projectsHero.bottomRailWrap}>
         <div className={rc.projectsHero.bottomRail}>
           <span className={rc.projectsHero.bottomDotStrong} />
