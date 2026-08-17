@@ -98,43 +98,6 @@
 }
 
 /* =========================
-   PIXEL FACE FLOATING
-========================= */
-
-.pixel-face-float {
-  animation-name: pixelFaceFloating;
-  animation-duration: 4s;
-  animation-delay: 0s;
-  animation-iteration-count: infinite;
-  animation-timing-function: steps(4, end);
-  transform-origin: center;
-  will-change: transform;
-}
-
-@keyframes pixelFaceFloating {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-
-  20% {
-    transform: translate3d(-4px, -14px, 0) rotate(-1deg);
-  }
-
-  40% {
-    transform: translate3d(4px, -6px, 0) rotate(0deg);
-  }
-
-  60% {
-    transform: translate3d(3px, -16px, 0) rotate(1deg);
-  }
-
-  80% {
-    transform: translate3d(-3px, -4px, 0) rotate(0deg);
-  }
-}
-
-/* =========================
    COOL STUFF FLOATING
 ========================= */
 
@@ -176,52 +139,16 @@
 }
 
 /* =========================
-   COOL STUFF PIXEL OVERLAY
-========================= */
-
-.cool-stuff-pixel-overlay {
-  opacity: 0.7;
-  pointer-events: none;
-  animation-name: coolStuffPixelFlicker;
-  animation-duration: 1.8s;
-  animation-iteration-count: infinite;
-  animation-timing-function: steps(3, end);
-  will-change: opacity;
-}
-
-@keyframes coolStuffPixelFlicker {
-  0%,
-  100% {
-    opacity: 0.58;
-  }
-
-  33% {
-    opacity: 0.78;
-  }
-
-  66% {
-    opacity: 0.66;
-  }
-}
-
-/* =========================
    REDUCED MOTION
 ========================= */
 
 @media (prefers-reduced-motion: reduce) {
   .theme-particle-random,
-  .pixel-face-float,
-  .cool-stuff-float,
-  .cool-stuff-pixel-overlay {
+  .cool-stuff-float {
     animation: none;
   }
 
-  .pixel-face-float,
   .cool-stuff-float {
     transform: none;
-  }
-
-  .cool-stuff-pixel-overlay {
-    opacity: 0.7;
   }
 }

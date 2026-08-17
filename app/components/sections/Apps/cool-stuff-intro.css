@@ -1,0 +1,111 @@
+/* ========================================
+   COOL STUFF PNG ASSETS
+======================================== */
+
+.cool-stuff-asset-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  image-rendering: pixelated;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ========================================
+   RANDOMIZED FLOATING PNG ANIMATION
+======================================== */
+
+.cool-stuff-asset-image--floating {
+  --cool-stuff-asset-x-a: 6px;
+  --cool-stuff-asset-y-a: -8px;
+  --cool-stuff-asset-rotation-a: 1deg;
+
+  --cool-stuff-asset-x-b: -5px;
+  --cool-stuff-asset-y-b: -15px;
+  --cool-stuff-asset-rotation-b: -1deg;
+
+  --cool-stuff-asset-x-c: 4px;
+  --cool-stuff-asset-y-c: -10px;
+  --cool-stuff-asset-rotation-c: 0.5deg;
+
+  --cool-stuff-asset-x-d: -3px;
+  --cool-stuff-asset-y-d: -5px;
+  --cool-stuff-asset-rotation-d: -0.5deg;
+
+  animation-name: cool-stuff-asset-random-float;
+  animation-timing-function: steps(12, end);
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes cool-stuff-asset-random-float {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg);
+  }
+
+  18% {
+    transform:
+      translate3d(
+        var(--cool-stuff-asset-x-a),
+        var(--cool-stuff-asset-y-a),
+        0
+      )
+      rotate(
+        var(--cool-stuff-asset-rotation-a)
+      );
+  }
+
+  42% {
+    transform:
+      translate3d(
+        var(--cool-stuff-asset-x-b),
+        var(--cool-stuff-asset-y-b),
+        0
+      )
+      rotate(
+        var(--cool-stuff-asset-rotation-b)
+      );
+  }
+
+  67% {
+    transform:
+      translate3d(
+        var(--cool-stuff-asset-x-c),
+        var(--cool-stuff-asset-y-c),
+        0
+      )
+      rotate(
+        var(--cool-stuff-asset-rotation-c)
+      );
+  }
+
+  84% {
+    transform:
+      translate3d(
+        var(--cool-stuff-asset-x-d),
+        var(--cool-stuff-asset-y-d),
+        0
+      )
+      rotate(
+        var(--cool-stuff-asset-rotation-d)
+      );
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .cool-stuff-asset-image--floating {
+    animation: none;
+    transform: none;
+  }
+}

@@ -1,93 +1,112 @@
-import React from "react";
+"use client";
+
 import Link from "next/link";
+import { Space_Mono } from "next/font/google";
 import { House } from "lucide-react";
 
+import AtomicPlayer from "@/app/components/media/atomicplayer";
+import SiteSignature from "@/app/components/hero/SiteSignature";
+
+import Introduction from "@/app/components/sections/Apps/Introduction";
+import LabIntroSection from "@/app/components/sections/Apps/LabIntroSection";
+import LabProjectsSection from "@/app/components/sections/Apps/LabProjectsSection";
+
+import PageTransitionWrapper from "@/app/components/template/layout/PageTransitionWrapper";
+import { useAtomicPlayerControls } from "@/app/components/template/layout/useAtomicPlayerControls";
+import { usePageTransition } from "@/app/components/template/layout/usePageTransition";
 import ThemedBackground from "@/app/components/template/theme/ThemedBackground";
 
-import PortfolioHeroSection from "@/app/components/sections/Portfolio/PortfolioHeroSection";
-import PortfolioNavSection from "@/app/components/sections/Portfolio/PortfolioNavSection";
-import PortfolioExplanation from "@/app/components/sections/Portfolio/PortfolioExplanation";
-import PortfolioPaletteSection from "@/app/components/sections/Portfolio/PortfolioPaletteSection";
-import PortfolioProjectDescription from "@/app/components/sections/Portfolio/PortfolioProjectDescription";
-import PortfolioLogoSection from "@/app/components/sections/Portfolio/PortfolioLogoSection";
-import PortfolioSelectedProjectsSection from "@/app/components/sections/Portfolio/PortfolioSelectedProjectsSection";
-import PortfolioProjectsSection from "@/app/components/sections/Portfolio/PortfolioProjectsSection";
+import { coolstuffRc as rc } from "@/app/coolstuff/coolstuffResponsiveConfig";
 
-import { portfolioRc as rc } from "@/app/components/sections/Portfolio/portfolioResponsiveConfig";
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
-type PortfolioIconKey = "heart" | "film" | "app" | "folder";
+export default function CleanPage() {
+  const {
+    playerRef,
+    isPlaying,
+    setIsPlaying,
+    isMuted,
+    setIsMuted,
+    volume,
+    setVolume,
+    handlePlayerReady,
+  } = useAtomicPlayerControls();
 
-type PortfolioItem = {
-  title: string;
-  href: string;
-  label: string;
-  description: string;
-  iconKey: PortfolioIconKey;
-};
+  const isInitialBlur = usePageTransition(0);
 
-const portfolioItems: PortfolioItem[] = [
-  {
-    title: "SHE",
-    href: "/portfolio/SHE",
-    label: "Sacred Human Experience",
-    description: "",
-    iconKey: "heart",
-  },
-  {
-    title: "Antonia",
-    href: "/portfolio/antonia",
-    label: "Antonia Schindler Portfolio",
-    description: "",
-    iconKey: "film",
-  },
-  {
-    title: "Moodboard",
-    href: "/moodboard",
-    label: "Apps",
-    description: "",
-    iconKey: "app",
-  },
-  {
-    title: "Projects",
-    href: "/projects",
-    label: "Personal projects",
-    description: "",
-    iconKey: "folder",
-  },
-];
-
-export default function PortfolioPage() {
   return (
-    <main className={rc.page.main}>
-      <ThemedBackground />
+    <main className={rc.main}>
+      <ThemedBackground onReady={handlePlayerReady} />
 
-      <div className={rc.page.content}>
-        <PortfolioHeroSection />
+      <AtomicPlayer
+        playerRef={playerRef}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        isMuted={isMuted}
+        setIsMuted={setIsMuted}
+        volume={volume}
+        setVolume={setVolume}
+      />
 
-        <PortfolioSelectedProjectsSection />
+      <PageTransitionWrapper isBlurred={isInitialBlur}>
+        <div className="relative z-10 flex w-full flex-col">
+          {/* ========================================
+              HOME BUTTON
+          ======================================== */}
+          <div className={rc.page.backButtonWrap}>
+            <Link
+              href="/"
+              aria-label="Return to home"
+              className={rc.page.backButton}
+            >
+              <House
+                aria-hidden="true"
+                className={rc.page.backIcon}
+                strokeWidth={1.5}
+              />
+            </Link>
+          </div>
 
-        <PortfolioExplanation />
+          {/* ========================================
+              FIRST SECTION — COOL STUFF
+          ======================================== */}
+          <section aria-label="Cool Stuff" className="relative w-full">
+            <Introduction />
+          </section>
 
-        <PortfolioProjectDescription />
-
-        <PortfolioPaletteSection />
-
-        <PortfolioLogoSection />
-
-        <PortfolioProjectsSection />
-
-        <PortfolioNavSection siteMode="basic" items={portfolioItems} />
-
-        <div className={rc.page.backButtonWrap}>
-          <Link
-            href="/"
-            aria-label="Return to HOME"
-            className={rc.page.backButton}
+          {/* ========================================
+              SECOND SECTION — ABOUT THE LAB
+          ======================================== */}
+          <section
+            id="lab-introduction"
+            aria-label="About the Lab"
+            className="relative w-full scroll-mt-0"
           >
-            <House className={rc.page.backIcon} strokeWidth={1.5} />
-          </Link>
+            <LabIntroSection />
+          </section>
+
+          {/* ========================================
+              THIRD SECTION — LAB PROJECTS
+          ======================================== */}
+          <section
+            id="lab-projects"
+            aria-label="Lab Projects"
+            className="relative w-full"
+          >
+            <LabProjectsSection />
+          </section>
+
+          {/* ========================================
+              FOOTER
+          ======================================== */}
+          <footer className="relative w-full">
+            <SiteSignature fontClass={spaceMono.className} />
+          </footer>
         </div>
-      </div>
+      </PageTransitionWrapper>
     </main>
   );
 }
