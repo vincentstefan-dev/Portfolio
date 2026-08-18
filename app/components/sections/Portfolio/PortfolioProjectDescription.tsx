@@ -1,11 +1,53 @@
 "use client";
 
-import { useRef, useState } from "react";
+import {
+  type CSSProperties,
+  type ReactNode,
+  useRef,
+  useState,
+} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { portfolioRc as rc } from "./portfolioResponsiveConfig";
+import "./project-description-section.css";
+
+type DecorativePng = {
+  id: string;
+  src: string;
+  animationClass: string;
+  imageClass?: string;
+};
+
+const decorativePngs: DecorativePng[] = [
+  {
+    id: "description-png-one",
+    src: "/website-icons/elephant.png",
+    animationClass: "project-description-png--one",
+  },
+  {
+    id: "description-png-two",
+    src: "/website-icons/bear.png",
+    animationClass: "project-description-png--two",
+  },
+  {
+    id: "description-png-three",
+    src: "/website-icons/giraffe.png",
+    animationClass: "project-description-png--three",
+  },
+  {
+    id: "description-png-four",
+    src: "/website-icons/cow.png",
+    animationClass: "project-description-png--four",
+  },
+  {
+    id: "description-png-five",
+    src: "/website-icons/franchesca.png",
+    animationClass: "project-description-png--five",
+    imageClass: "project-description-png__image--smaller",
+  },
+];
 
 const portraitWindows = [
   {
@@ -58,7 +100,10 @@ export default function ProjectDescriptionSection() {
 
   function scrollMobileTo(index: number) {
     const track = mobileTrackRef.current;
-    if (!track) return;
+
+    if (!track) {
+      return;
+    }
 
     track.scrollTo({
       left: index * track.clientWidth,
@@ -81,51 +126,105 @@ export default function ProjectDescriptionSection() {
 
   function goToPreviousWindow() {
     const previousIndex =
-      activeIndex === 0 ? portraitWindows.length - 1 : activeIndex - 1;
+      activeIndex === 0
+        ? portraitWindows.length - 1
+        : activeIndex - 1;
 
     setWindowIndex(previousIndex);
   }
 
   function handleMobileScroll() {
     const track = mobileTrackRef.current;
-    if (!track) return;
 
-    const nextIndex = Math.round(track.scrollLeft / track.clientWidth);
+    if (!track || track.clientWidth === 0) {
+      return;
+    }
 
-    if (portraitWindows[nextIndex] && nextIndex !== activeIndex) {
+    const nextIndex = Math.round(
+      track.scrollLeft / track.clientWidth,
+    );
+
+    if (
+      portraitWindows[nextIndex] &&
+      nextIndex !== activeIndex
+    ) {
       setActiveIndex(nextIndex);
     }
   }
 
   return (
-    <section className={rc.description.section}>
-      <div className={rc.description.inner}>
+    <section
+      className={`${rc.description.section} relative isolate overflow-hidden`}
+    >
+      {/* ========================================
+          FIVE DECORATIVE PNGS
+      ======================================== */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[5] hidden overflow-hidden lg:block"
+      >
+        {decorativePngs.map((png, index) => (
+          <div
+            key={png.id}
+            className="project-description-png-position absolute left-[53%] top-[45%] w-[82px] xl:w-[105px] 2xl:w-[120px]"
+            style={
+              {
+                "--project-description-png-index": index,
+              } as CSSProperties
+            }
+          >
+            <div
+              className={`project-description-png ${png.animationClass}`}
+            >
+              <Image
+                src={png.src}
+                alt=""
+                width={220}
+                height={220}
+                sizes="(min-width: 1536px) 120px, (min-width: 1280px) 105px, 82px"
+                className={`project-description-png__image ${
+                  png.imageClass ?? ""
+                }`}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className={`${rc.description.inner} relative z-10`}>
+        {/* ========================================
+            TEXT CONTENT
+        ======================================== */}
         <div className={rc.description.textContent}>
           <InfoBlock title="Where does it start?">
             <p>
-              Koyote is my personal creative project, where I combine what I
-              have learned throughout my university career in Business,
-              Marketing, and Game Theory with my deep personal passions for
-              coding, illustration, and, most importantly, creative flexibility.
+              Koyote is my personal creative project, where I
+              combine what I have learned throughout my university
+              career in Business, Marketing, and Game Theory with
+              my deep personal passions for coding, illustration,
+              and, most importantly, creative flexibility.
               <br />
               <br />
-              I believe that, for both myself and Koyote, the essence of good
-              work comes from flexibility, growth, and the desire to change.
-              Being experimental and learning as a project is assembled is the
-              key to creating something functional, aligned, and sustainable.
+              I believe that, for both myself and Koyote, the
+              essence of good work comes from flexibility, growth,
+              and the desire to change. Being experimental and
+              learning as a project is assembled is the key to
+              creating something functional, aligned, and
+              sustainable.
               <br />
               <br />
-              I align deeply and personally with Koyote, and I hope that this
-              alignment can meet you.
+              I align deeply and personally with Koyote, and I hope
+              that this alignment can meet you.
             </p>
           </InfoBlock>
 
           <InfoBlock title="The mentality">
             <p>
-              My small team and I address project challenges by being boldly
-              experimental without being chaotic. We agreed to approach each
-              project the same way we explored and completed our favorite video
-              games: with curiosity, strategy, and a weirdly huge amount of
+              My small team and I address project challenges by
+              being boldly experimental without being chaotic. We
+              agreed to approach each project the same way we
+              explored and completed our favorite video games: with
+              curiosity, strategy, and a weirdly huge amount of
               research.
               <br />
               <br />
@@ -135,23 +234,25 @@ export default function ProjectDescriptionSection() {
               <br />
               • Game Theory, for strategic solutions
               <br />
-              • Business acumen, after all, that is why we got these degrees
+              • Business acumen, after all, that is why we got
+              these degrees
               <br />
               • Human interaction above all
               <br />
               <br />
-              Our goal is to create projects that are sustainable, and to ensure
-              that every handshake, virtual or in real life, leaves a lasting
-              impression of friendship.
+              Our goal is to create projects that are sustainable,
+              and to ensure that every handshake, virtual or in
+              real life, leaves a lasting impression of friendship.
             </p>
           </InfoBlock>
 
           <InfoBlock title="Goal">
             <p>
-              <strong>Our final Goal with you</strong> is to deliver a project
-              that meets the German standard of technical expertise, Strategy
-              and Implementation <strong> without </strong> losing our Latin
-              American roots deeply embedded in bold creative expression.
+              <strong>Our final Goal with you</strong> is to deliver
+              a project that meets the German standard of technical
+              expertise, Strategy and Implementation{" "}
+              <strong>without</strong> losing our Latin American
+              roots deeply embedded in bold creative expression.
             </p>
 
             <div className={rc.description.tagWrap}>
@@ -163,14 +264,22 @@ export default function ProjectDescriptionSection() {
 
             <p className={rc.description.blogParagraph}>
               You should check the{" "}
-              <Link href="/blog" className={rc.description.blogLink}>
-                <span className={rc.description.blogLinkText}>Blog area</span>
+              <Link
+                href="/blog"
+                className={rc.description.blogLink}
+              >
+                <span className={rc.description.blogLinkText}>
+                  Blog area
+                </span>
               </Link>{" "}
               to see our creative expression at the fullest.
             </p>
           </InfoBlock>
         </div>
 
+        {/* ========================================
+            MOBILE PORTRAIT CAROUSEL
+        ======================================== */}
         <div className={rc.description.mobileWindowsArea}>
           <div className={rc.description.mobileWindowButtons}>
             <button
@@ -179,7 +288,12 @@ export default function ProjectDescriptionSection() {
               onClick={goToPreviousWindow}
               className={rc.description.mobileWindowButton}
             >
-              <ArrowLeft className={rc.description.mobileWindowButtonIcon} />
+              <ArrowLeft
+                aria-hidden="true"
+                className={
+                  rc.description.mobileWindowButtonIcon
+                }
+              />
             </button>
 
             <button
@@ -188,7 +302,12 @@ export default function ProjectDescriptionSection() {
               onClick={goToNextWindow}
               className={rc.description.mobileWindowButton}
             >
-              <ArrowRight className={rc.description.mobileWindowButtonIcon} />
+              <ArrowRight
+                aria-hidden="true"
+                className={
+                  rc.description.mobileWindowButtonIcon
+                }
+              />
             </button>
           </div>
 
@@ -220,7 +339,9 @@ export default function ProjectDescriptionSection() {
                 type="button"
                 aria-label={`Show ${item.title}`}
                 onClick={() => setWindowIndex(index)}
-                className={`${rc.description.mobileWindowDot} ${
+                className={`${
+                  rc.description.mobileWindowDot
+                } ${
                   activeIndex === index
                     ? rc.description.mobileWindowDotActive
                     : rc.description.mobileWindowDotInactive
@@ -230,6 +351,9 @@ export default function ProjectDescriptionSection() {
           </div>
         </div>
 
+        {/* ========================================
+            DESKTOP PORTRAIT WINDOWS
+        ======================================== */}
         <div className={rc.description.windowsWrap}>
           {portraitWindows.map((item) => (
             <XpImageWindow
@@ -251,19 +375,31 @@ function InfoBlock({
   children,
 }: {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <div className={rc.description.infoBlock}>
-      <h2 className={rc.description.infoTitle}>{title}</h2>
+      <h2 className={rc.description.infoTitle}>
+        {title}
+      </h2>
 
-      <div className={rc.description.infoBody}>{children}</div>
+      <div className={rc.description.infoBody}>
+        {children}
+      </div>
     </div>
   );
 }
 
-function Tag({ children }: { children: React.ReactNode }) {
-  return <span className={rc.description.tag}>{children}</span>;
+function Tag({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  return (
+    <span className={rc.description.tag}>
+      {children}
+    </span>
+  );
 }
 
 function XpImageWindow({
@@ -289,13 +425,23 @@ function XpImageWindow({
         <div className={rc.description.xpTitleLeft}>
           <span className={rc.description.xpFolderIcon} />
 
-          <span className={rc.description.xpTitleText}>{title}</span>
+          <span className={rc.description.xpTitleText}>
+            {title}
+          </span>
         </div>
 
         <div className={rc.description.xpControls}>
-          <span className={rc.description.xpControlBlue}>_</span>
-          <span className={rc.description.xpControlBlueSmall}>□</span>
-          <span className={rc.description.xpControlRed}>×</span>
+          <span className={rc.description.xpControlBlue}>
+            _
+          </span>
+
+          <span className={rc.description.xpControlBlueSmall}>
+            □
+          </span>
+
+          <span className={rc.description.xpControlRed}>
+            ×
+          </span>
         </div>
       </div>
 

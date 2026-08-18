@@ -1,0 +1,143 @@
+/* ========================================
+   BLOCKY RANDOM-COLOR TITLE
+======================================== */
+
+.portfolio-allprojects-block-title {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  color: white;
+  font-family:
+    "Arial Black",
+    Impact,
+    Arial,
+    sans-serif;
+  font-size: clamp(4.7rem, 9.4vw, 10.5rem);
+  font-weight: 950;
+  line-height: 0.72;
+  letter-spacing: -0.075em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.portfolio-allprojects-block-title__line {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.portfolio-allprojects-block-title__top {
+  margin-bottom: 0.11em;
+  font-size: 0.74em;
+  letter-spacing: -0.05em;
+}
+
+.portfolio-allprojects-block-title__bottom {
+  font-size: 1em;
+}
+
+.portfolio-allprojects-block-letter {
+  position: relative;
+  display: inline-block;
+  color: var(--block-letter-color);
+  transform:
+    translateY(var(--block-letter-offset))
+    rotate(var(--block-letter-rotation));
+  transform-origin: center bottom;
+  -webkit-text-stroke: 1px rgb(255 255 255 / 7%);
+  paint-order: stroke fill;
+
+  text-shadow:
+    0 3px 0 var(--block-letter-shadow),
+    0 6px 0 var(--block-letter-shadow),
+    0 9px 0 rgb(0 0 0 / 28%),
+    0 0 10px var(--block-letter-color),
+    0 0 24px
+      color-mix(
+        in srgb,
+        var(--block-letter-color) 48%,
+        transparent
+      );
+
+  filter:
+    drop-shadow(5px 7px 0 rgb(0 0 0 / 18%));
+
+  transition:
+    transform 240ms ease,
+    filter 240ms ease;
+}
+
+.portfolio-allprojects-block-title:hover
+  .portfolio-allprojects-block-letter {
+  transform:
+    translateY(calc(var(--block-letter-offset) - 4px))
+    rotate(var(--block-letter-rotation));
+}
+
+/* ========================================
+   TABLET TITLE
+======================================== */
+
+@media (max-width: 1023px) {
+  .portfolio-allprojects-block-title {
+    font-size: clamp(4.2rem, 11vw, 7.5rem);
+  }
+}
+
+/* ========================================
+   MOBILE TITLE
+======================================== */
+
+@media (max-width: 639px) {
+  .portfolio-allprojects-block-title {
+    width: 100%;
+    font-size: clamp(2.55rem, 13.4vw, 4.4rem);
+    line-height: 0.78;
+    letter-spacing: -0.08em;
+  }
+
+  .portfolio-allprojects-block-title__top {
+    margin-bottom: 0.16em;
+    font-size: 0.82em;
+  }
+
+  .portfolio-allprojects-block-letter {
+    text-shadow:
+      0 2px 0 var(--block-letter-shadow),
+      0 4px 0 var(--block-letter-shadow),
+      0 6px 0 rgb(0 0 0 / 28%),
+      0 0 8px var(--block-letter-color),
+      0 0 17px
+        color-mix(
+          in srgb,
+          var(--block-letter-color) 42%,
+          transparent
+        );
+
+    filter:
+      drop-shadow(3px 4px 0 rgb(0 0 0 / 18%));
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-allprojects-block-letter {
+    transition: none;
+  }
+
+  .portfolio-allprojects-block-title:hover
+    .portfolio-allprojects-block-letter {
+    transform:
+      translateY(var(--block-letter-offset))
+      rotate(var(--block-letter-rotation));
+  }
+}

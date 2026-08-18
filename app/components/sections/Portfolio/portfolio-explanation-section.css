@@ -1,0 +1,369 @@
+/* ========================================
+   PORTFOLIO EXPLANATION PNGS
+======================================== */
+
+.portfolio-explanation-png {
+  width: 100%;
+  transform-origin: center;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.22, 1);
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.portfolio-explanation-png__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 12px rgb(255 111 178 / 22%));
+}
+
+/* ========================================
+   INDIVIDUAL MOVEMENT
+======================================== */
+
+.portfolio-explanation-png--one {
+  animation-name: portfolio-explanation-float-one;
+  animation-duration: 8.2s;
+  animation-delay: -1.8s;
+}
+
+.portfolio-explanation-png--two {
+  animation-name: portfolio-explanation-float-two;
+  animation-duration: 7.4s;
+  animation-delay: -3.9s;
+}
+
+.portfolio-explanation-png--three {
+  animation-name: portfolio-explanation-float-three;
+  animation-duration: 9.1s;
+  animation-delay: -5.6s;
+}
+
+.portfolio-explanation-png--four {
+  animation-name: portfolio-explanation-float-four;
+  animation-duration: 7.9s;
+  animation-delay: -2.6s;
+}
+
+.portfolio-explanation-png--five {
+  animation-name: portfolio-explanation-float-five;
+  animation-duration: 9.8s;
+  animation-delay: -5.2s;
+}
+
+.portfolio-explanation-png--six {
+  animation-name: portfolio-explanation-float-six;
+  animation-duration: 8.5s;
+  animation-delay: -3.7s;
+}
+
+.portfolio-explanation-png--seven {
+  animation-name: portfolio-explanation-float-seven;
+  animation-duration: 7.2s;
+  animation-delay: -1.4s;
+}
+
+.portfolio-explanation-png--eight {
+  animation-name: portfolio-explanation-float-eight;
+  animation-duration: 10.2s;
+  animation-delay: -6.4s;
+}
+
+.portfolio-explanation-png--nine {
+  animation-name: portfolio-explanation-float-nine;
+  animation-duration: 8.9s;
+  animation-delay: -4.8s;
+}
+
+.portfolio-explanation-png--ten {
+  animation-name: portfolio-explanation-float-ten;
+  animation-duration: 9.4s;
+  animation-delay: -5.1s;
+}
+
+/* ========================================
+   FLOAT PATH ONE
+======================================== */
+
+@keyframes portfolio-explanation-float-one {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  20% {
+    transform: translate3d(4px, -5px, 0) rotate(0.8deg) scale(1.01);
+  }
+
+  40% {
+    transform: translate3d(8px, -11px, 0) rotate(1deg) scale(1.015);
+  }
+
+  60% {
+    transform: translate3d(2px, -15px, 0) rotate(0.2deg) scale(1.01);
+  }
+
+  80% {
+    transform: translate3d(-5px, -8px, 0) rotate(-0.6deg) scale(1);
+  }
+}
+
+/* ========================================
+   FLOAT PATH TWO
+======================================== */
+
+@keyframes portfolio-explanation-float-two {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  18% {
+    transform: translate3d(-4px, -4px, 0) rotate(-0.7deg) scale(1.01);
+  }
+
+  38% {
+    transform: translate3d(-7px, -10px, 0) rotate(-1deg) scale(1.015);
+  }
+
+  62% {
+    transform: translate3d(3px, -13px, 0) rotate(0.6deg) scale(1.01);
+  }
+
+  82% {
+    transform: translate3d(6px, -5px, 0) rotate(0.2deg) scale(1);
+  }
+}
+
+/* ========================================
+   FLOAT PATH THREE
+======================================== */
+
+@keyframes portfolio-explanation-float-three {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  22% {
+    transform: translate3d(5px, -4px, 0) rotate(0.6deg) scale(1.01);
+  }
+
+  44% {
+    transform: translate3d(9px, -9px, 0) rotate(1deg) scale(1.015);
+  }
+
+  68% {
+    transform: translate3d(1px, -15px, 0) rotate(-0.4deg) scale(1.01);
+  }
+
+  86% {
+    transform: translate3d(-6px, -7px, 0) rotate(-0.8deg) scale(1);
+  }
+}
+
+/* ========================================
+   FLOAT PATH FOUR
+======================================== */
+
+@keyframes portfolio-explanation-float-four {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  16% {
+    transform: translate3d(-3px, -3px, 0) rotate(-0.4deg) scale(1.005);
+  }
+
+  36% {
+    transform: translate3d(-8px, -8px, 0) rotate(-0.8deg) scale(1.015);
+  }
+
+  58% {
+    transform: translate3d(-2px, -14px, 0) rotate(0.6deg) scale(1.01);
+  }
+
+  80% {
+    transform: translate3d(7px, -7px, 0) rotate(0.4deg) scale(1);
+  }
+}
+
+/* ========================================
+   FLOAT PATH FIVE
+======================================== */
+
+@keyframes portfolio-explanation-float-five {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  20% {
+    transform: translate3d(-5px, -6px, 0) rotate(-0.5deg) scale(1.01);
+  }
+
+  42% {
+    transform: translate3d(-9px, -12px, 0) rotate(-0.8deg) scale(1.015);
+  }
+
+  66% {
+    transform: translate3d(2px, -16px, 0) rotate(0.7deg) scale(1.01);
+  }
+
+  84% {
+    transform: translate3d(7px, -8px, 0) rotate(0.3deg) scale(1);
+  }
+}
+
+/* ========================================
+   FLOAT PATH SIX
+======================================== */
+
+@keyframes portfolio-explanation-float-six {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  17% {
+    transform: translate3d(4px, -3px, 0) rotate(0.5deg) scale(1.005);
+  }
+
+  39% {
+    transform: translate3d(8px, -8px, 0) rotate(0.8deg) scale(1.015);
+  }
+
+  61% {
+    transform: translate3d(3px, -13px, 0) rotate(-0.3deg) scale(1.01);
+  }
+
+  83% {
+    transform: translate3d(-5px, -6px, 0) rotate(-0.6deg) scale(1);
+  }
+}
+
+/* ========================================
+   FLOAT PATH SEVEN
+======================================== */
+
+@keyframes portfolio-explanation-float-seven {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  19% {
+    transform: translate3d(-3px, -4px, 0) rotate(0.4deg) scale(1.005);
+  }
+
+  41% {
+    transform: translate3d(3px, -9px, 0) rotate(0.7deg) scale(1.01);
+  }
+
+  64% {
+    transform: translate3d(7px, -5px, 0) rotate(-0.4deg) scale(1.005);
+  }
+
+  84% {
+    transform: translate3d(-2px, 1px, 0) rotate(-0.2deg) scale(1);
+  }
+}
+
+/* ========================================
+   FLOAT PATH EIGHT
+======================================== */
+
+@keyframes portfolio-explanation-float-eight {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  18% {
+    transform: translate3d(4px, -5px, 0) rotate(0.4deg) scale(1.005);
+  }
+
+  40% {
+    transform: translate3d(7px, -11px, 0) rotate(0.8deg) scale(1.015);
+  }
+
+  63% {
+    transform: translate3d(-3px, -15px, 0) rotate(-0.5deg) scale(1.01);
+  }
+
+  84% {
+    transform: translate3d(-8px, -6px, 0) rotate(-0.3deg) scale(1);
+  }
+}
+
+/* ========================================
+   FLOAT PATH NINE
+======================================== */
+
+@keyframes portfolio-explanation-float-nine {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  21% {
+    transform: translate3d(-4px, -5px, 0) rotate(-0.4deg) scale(1.01);
+  }
+
+  43% {
+    transform: translate3d(-8px, -10px, 0) rotate(-0.7deg) scale(1.015);
+  }
+
+  67% {
+    transform: translate3d(2px, -14px, 0) rotate(0.4deg) scale(1.01);
+  }
+
+  85% {
+    transform: translate3d(6px, -7px, 0) rotate(0.2deg) scale(1);
+  }
+}
+
+/* ========================================
+   FLOAT PATH TEN
+======================================== */
+
+@keyframes portfolio-explanation-float-ten {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  20% {
+    transform: translate3d(5px, -4px, 0) rotate(0.5deg) scale(1.01);
+  }
+
+  42% {
+    transform: translate3d(9px, -9px, 0) rotate(0.8deg) scale(1.015);
+  }
+
+  65% {
+    transform: translate3d(1px, -14px, 0) rotate(-0.4deg) scale(1.01);
+  }
+
+  86% {
+    transform: translate3d(-6px, -6px, 0) rotate(-0.5deg) scale(1);
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-explanation-png {
+    animation: none;
+    transform: none;
+  }
+}

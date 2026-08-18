@@ -1,0 +1,213 @@
+/* ========================================
+   PROJECT DESCRIPTION PNG POSITIONING
+======================================== */
+
+.project-description-png-position {
+  /*
+   * Each PNG moves one complete image width plus
+   * an additional 20% gap.
+   */
+  transform:
+    translate(-50%, -50%)
+    translateX(
+      calc(var(--project-description-png-index) * 120%)
+    );
+}
+
+/* ========================================
+   PROJECT DESCRIPTION PNGS
+======================================== */
+
+.project-description-png {
+  width: 100%;
+  transform-origin: center;
+  animation-timing-function: cubic-bezier(
+    0.42,
+    0,
+    0.22,
+    1
+  );
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.project-description-png__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  image-rendering: pixelated;
+  transform-origin: center;
+  filter:
+    drop-shadow(0 0 8px rgb(103 232 249 / 28%))
+    drop-shadow(0 0 18px rgb(37 99 235 / 15%));
+}
+
+/*
+ * The fifth GIF has a larger visible drawing inside
+ * its canvas, so only its image is scaled down.
+ */
+.project-description-png__image--smaller {
+  transform: scale(0.68);
+}
+
+/* ========================================
+   INDIVIDUAL MOVEMENT
+======================================== */
+
+.project-description-png--one {
+  animation-name: project-description-png-float-one;
+  animation-duration: 8.5s;
+  animation-delay: -3.4s;
+}
+
+.project-description-png--two {
+  animation-name: project-description-png-float-two;
+  animation-duration: 9.2s;
+  animation-delay: -5.1s;
+}
+
+.project-description-png--three {
+  animation-name: project-description-png-float-three;
+  animation-duration: 7.8s;
+  animation-delay: -2.2s;
+}
+
+.project-description-png--four {
+  animation-name: project-description-png-float-one;
+  animation-duration: 10.1s;
+  animation-delay: -6.3s;
+  animation-direction: reverse;
+}
+
+.project-description-png--five {
+  animation-name: project-description-png-float-two;
+  animation-duration: 8.9s;
+  animation-delay: -4.4s;
+  animation-direction: reverse;
+}
+
+/* ========================================
+   SMOOTH FLOAT PATH ONE
+======================================== */
+
+@keyframes project-description-png-float-one {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg);
+  }
+
+  20% {
+    transform:
+      translate3d(4px, -4px, 0)
+      rotate(0.5deg);
+  }
+
+  42% {
+    transform:
+      translate3d(7px, -10px, 0)
+      rotate(0.8deg);
+  }
+
+  64% {
+    transform:
+      translate3d(-2px, -14px, 0)
+      rotate(-0.4deg);
+  }
+
+  84% {
+    transform:
+      translate3d(-6px, -5px, 0)
+      rotate(-0.6deg);
+  }
+}
+
+/* ========================================
+   SMOOTH FLOAT PATH TWO
+======================================== */
+
+@keyframes project-description-png-float-two {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg);
+  }
+
+  18% {
+    transform:
+      translate3d(-4px, -3px, 0)
+      rotate(-0.4deg);
+  }
+
+  40% {
+    transform:
+      translate3d(-7px, -9px, 0)
+      rotate(-0.7deg);
+  }
+
+  63% {
+    transform:
+      translate3d(2px, -13px, 0)
+      rotate(0.5deg);
+  }
+
+  83% {
+    transform:
+      translate3d(6px, -5px, 0)
+      rotate(0.3deg);
+  }
+}
+
+/* ========================================
+   SMOOTH FLOAT PATH THREE
+======================================== */
+
+@keyframes project-description-png-float-three {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg);
+  }
+
+  21% {
+    transform:
+      translate3d(5px, -3px, 0)
+      rotate(0.4deg);
+  }
+
+  43% {
+    transform:
+      translate3d(8px, -8px, 0)
+      rotate(0.7deg);
+  }
+
+  66% {
+    transform:
+      translate3d(1px, -13px, 0)
+      rotate(-0.3deg);
+  }
+
+  85% {
+    transform:
+      translate3d(-6px, -6px, 0)
+      rotate(-0.5deg);
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .project-description-png {
+    animation: none;
+    transform: none;
+  }
+}

@@ -1,120 +1,309 @@
 "use client";
 
+import {
+  type CSSProperties,
+  useEffect,
+  useState,
+} from "react";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 
 import { portfolioRc as rc } from "./portfolioResponsiveConfig";
-import "./portfolio-projects-section.css";
+import "./portfolio-allprojects-section.css";
 
-const projectPreviews = [
+type PixelStar = {
+  id: string;
+  shapeClass: string;
+  positionClass: string;
+  animationClass: string;
+};
+
+type DecorativePng = {
+  id: string;
+  src: string;
+  positionClass: string;
+  animationClass: string;
+};
+
+type LetterColor = {
+  color: string;
+  shadow: string;
+};
+
+const titlePalette: LetterColor[] = [
   {
-    title: "SHE",
-    category: "Web Design",
-    src: "/3TO6/SHE.png",
-    className:
-      "left-[3%] top-[34%] rotate-[-7deg] xl:left-[8%] xl:top-[31%]",
+    color: "#2487ff",
+    shadow: "#1050b8",
   },
   {
-    title: "Koyote",
-    category: "Brand Identity",
-    src: "/3TO6/KOYOTEFINAL.png",
-    className:
-      "right-[4%] top-[31%] rotate-[6deg] xl:right-[9%] xl:top-[27%]",
+    color: "#f02f93",
+    shadow: "#a4145d",
   },
   {
-    title: "Astronaut",
-    category: "Creative Development",
-    src: "/3TO6/astronaut.png",
-    className:
-      "bottom-[1%] left-1/2 -translate-x-1/2 rotate-[-2deg] xl:bottom-[2%]",
+    color: "#ff354f",
+    shadow: "#b01831",
+  },
+  {
+    color: "#42df31",
+    shadow: "#168d18",
+  },
+  {
+    color: "#ffe02d",
+    shadow: "#c28d0b",
+  },
+  {
+    color: "#ff9f1c",
+    shadow: "#bd5d0c",
+  },
+  {
+    color: "#34d9e8",
+    shadow: "#148496",
+  },
+  {
+    color: "#a866ff",
+    shadow: "#6031ac",
   },
 ];
 
-const floatingPngs = [
-  {
-    label: "Floating brain",
-    src: "/website-icons/brain.png",
-    positionClass:
-      "left-[3%] top-[8%] w-[90px] rotate-[-8deg] lg:left-[4%] lg:w-[120px] xl:w-[140px]",
-    animationClass: "portfolio-png-float--one",
-  },
-  {
-    label: "Floating hand",
-    src: "/website-icons/hand.png",
-    positionClass:
-      "right-[3%] top-[7%] w-[100px] rotate-[8deg] lg:right-[4%] lg:w-[140px] xl:w-[160px]",
-    animationClass: "portfolio-png-float--two",
-  },
-  {
-    label: "Floating hard drive",
-    src: "/website-icons/hdd.png",
-    positionClass:
-      "bottom-[7%] left-[6%] w-[100px] rotate-[6deg] lg:left-[8%] lg:w-[140px] xl:w-[155px]",
-    animationClass: "portfolio-png-float--three",
-  },
-  {
-    label: "Floating CD",
-    src: "/website-icons/cd.png",
-    positionClass:
-      "bottom-[7%] right-[6%] w-[100px] rotate-[-7deg] lg:right-[8%] lg:w-[140px] xl:w-[155px]",
-    animationClass: "portfolio-png-float--four",
-  },
+const initialTitleColors: LetterColor[] = [
+  titlePalette[0],
+  titlePalette[4],
+  titlePalette[1],
+  titlePalette[6],
+  titlePalette[2],
+  titlePalette[3],
+  titlePalette[7],
+  titlePalette[4],
+  titlePalette[5],
+  titlePalette[1],
+  titlePalette[3],
+  titlePalette[6],
+];
 
-  // Large top-center anchor.
-  {
-    label: "Floating gaming console",
-    src: "/website-icons/gaming.png",
-    positionClass:
-      "left-1/2 top-[1%] w-[125px] -translate-x-1/2 rotate-[-3deg] lg:w-[165px] xl:w-[195px]",
-    animationClass: "portfolio-png-float--five",
-  },
+const letterRotations = [
+  "-2deg",
+  "1deg",
+  "-1deg",
+  "1deg",
+  "-2deg",
+  "1.5deg",
+  "-1deg",
+  "2deg",
+  "-1.5deg",
+  "1deg",
+  "-2deg",
+  "1.5deg",
+];
 
-  // Small upper-left accent.
+const letterOffsets = [
+  "1px",
+  "-2px",
+  "2px",
+  "0px",
+  "3px",
+  "-1px",
+  "2px",
+  "-2px",
+  "1px",
+  "3px",
+  "-1px",
+  "1px",
+];
+
+const pixelStars: PixelStar[] = [
   {
-    label: "Floating atom",
+    id: "star-one",
+    shapeClass: "portfolio-allprojects-star--cross",
+    positionClass: "left-[5%] top-[21%] h-[16px] w-[16px]",
+    animationClass: "portfolio-allprojects-star--one",
+  },
+  {
+    id: "star-two",
+    shapeClass: "portfolio-allprojects-star--dot",
+    positionClass: "left-[12%] top-[39%] h-[5px] w-[5px]",
+    animationClass: "portfolio-allprojects-star--two",
+  },
+  {
+    id: "star-three",
+    shapeClass: "portfolio-allprojects-star--diamond",
+    positionClass: "left-[20%] top-[12%] h-[8px] w-[8px]",
+    animationClass: "portfolio-allprojects-star--three",
+  },
+  {
+    id: "star-four",
+    shapeClass: "portfolio-allprojects-star--cross",
+    positionClass: "left-[36%] top-[14%] h-[12px] w-[12px]",
+    animationClass: "portfolio-allprojects-star--four",
+  },
+  {
+    id: "star-five",
+    shapeClass: "portfolio-allprojects-star--dot",
+    positionClass: "left-[43%] top-[29%] h-[4px] w-[4px]",
+    animationClass: "portfolio-allprojects-star--one",
+  },
+  {
+    id: "star-six",
+    shapeClass: "portfolio-allprojects-star--diamond",
+    positionClass: "right-[39%] top-[11%] h-[9px] w-[9px]",
+    animationClass: "portfolio-allprojects-star--two",
+  },
+  {
+    id: "star-seven",
+    shapeClass: "portfolio-allprojects-star--cross",
+    positionClass: "right-[25%] top-[19%] h-[14px] w-[14px]",
+    animationClass: "portfolio-allprojects-star--three",
+  },
+  {
+    id: "star-eight",
+    shapeClass: "portfolio-allprojects-star--dot",
+    positionClass: "right-[13%] top-[37%] h-[5px] w-[5px]",
+    animationClass: "portfolio-allprojects-star--four",
+  },
+  {
+    id: "star-nine",
+    shapeClass: "portfolio-allprojects-star--diamond",
+    positionClass: "right-[5%] top-[24%] h-[10px] w-[10px]",
+    animationClass: "portfolio-allprojects-star--one",
+  },
+  {
+    id: "star-ten",
+    shapeClass: "portfolio-allprojects-star--cross",
+    positionClass: "left-[16%] bottom-[23%] h-[13px] w-[13px]",
+    animationClass: "portfolio-allprojects-star--two",
+  },
+  {
+    id: "star-eleven",
+    shapeClass: "portfolio-allprojects-star--dot",
+    positionClass: "left-[31%] bottom-[12%] h-[5px] w-[5px]",
+    animationClass: "portfolio-allprojects-star--three",
+  },
+  {
+    id: "star-twelve",
+    shapeClass: "portfolio-allprojects-star--diamond",
+    positionClass: "left-[43%] bottom-[18%] h-[8px] w-[8px]",
+    animationClass: "portfolio-allprojects-star--four",
+  },
+  {
+    id: "star-thirteen",
+    shapeClass: "portfolio-allprojects-star--cross",
+    positionClass: "right-[36%] bottom-[12%] h-[15px] w-[15px]",
+    animationClass: "portfolio-allprojects-star--one",
+  },
+  {
+    id: "star-fourteen",
+    shapeClass: "portfolio-allprojects-star--dot",
+    positionClass: "right-[22%] bottom-[25%] h-[4px] w-[4px]",
+    animationClass: "portfolio-allprojects-star--two",
+  },
+  {
+    id: "star-fifteen",
+    shapeClass: "portfolio-allprojects-star--diamond",
+    positionClass: "right-[9%] bottom-[16%] h-[9px] w-[9px]",
+    animationClass: "portfolio-allprojects-star--three",
+  },
+];
+
+const decorativePngs: DecorativePng[] = [
+  {
+    id: "upper-left-ufo",
+    src: "/website-icons/ufo.png",
+    positionClass:
+      "left-[6%] top-[8%] w-[115px] lg:w-[145px] xl:w-[180px]",
+    animationClass: "portfolio-allprojects-png--one",
+  },
+  {
+    id: "upper-moon",
+    src: "/website-icons/moon.png",
+    positionClass:
+      "left-[30%] top-[7%] w-[68px] lg:w-[86px] xl:w-[105px]",
+    animationClass: "portfolio-allprojects-png--two",
+  },
+  {
+    id: "upper-right-pc",
+    src: "/website-icons/pc.png",
+    positionClass:
+      "right-[8%] top-[12%] w-[95px] lg:w-[120px] xl:w-[145px]",
+    animationClass: "portfolio-allprojects-png--three",
+  },
+  {
+    id: "middle-left-atom",
     src: "/website-icons/atom.png",
     positionClass:
-      "left-[27%] top-[18%] w-[48px] rotate-[11deg] lg:w-[65px] xl:w-[78px]",
-    animationClass: "portfolio-png-float--six",
+      "left-[4%] top-[48%] w-[54px] lg:w-[68px] xl:w-[82px]",
+    animationClass: "portfolio-allprojects-png--four",
   },
-
-  // Small upper-right accent.
   {
-    label: "Floating mail",
-    src: "/website-icons/mail.png",
+    id: "middle-right-brain",
+    src: "/website-icons/brain.png",
     positionClass:
-      "right-[27%] top-[19%] w-[52px] rotate-[-10deg] lg:w-[70px] xl:w-[82px]",
-    animationClass: "portfolio-png-float--seven",
+      "right-[3%] top-[49%] w-[78px] lg:w-[98px] xl:w-[118px]",
+    animationClass: "portfolio-allprojects-png--five",
   },
-
-  // Accent beside the central title.
   {
-    label: "Floating paper airplane",
+    id: "lower-left-drive",
+    src: "/website-icons/hdd.png",
+    positionClass:
+      "bottom-[7%] left-[9%] w-[82px] lg:w-[105px] xl:w-[128px]",
+    animationClass: "portfolio-allprojects-png--six",
+  },
+  {
+    id: "lower-center-cd",
+    src: "/website-icons/cd.png",
+    positionClass:
+      "bottom-[2%] left-1/2 w-[75px] -translate-x-1/2 lg:w-[96px] xl:w-[115px]",
+    animationClass: "portfolio-allprojects-png--seven",
+  },
+  {
+    id: "lower-right-airplane",
     src: "/website-icons/paperairplane.png",
     positionClass:
-      "right-[23%] top-[55%] w-[55px] rotate-[10deg] lg:w-[75px] xl:w-[90px]",
-    animationClass: "portfolio-png-float--eight",
-  },
-
-  // Lower-left-center accent.
-  {
-    label: "Floating rainbow star",
-    src: "/website-icons/starrainbow.png",
-    positionClass:
-      "bottom-[15%] left-[25%] w-[65px] rotate-[-8deg] lg:w-[90px] xl:w-[110px]",
-    animationClass: "portfolio-png-float--nine",
+      "bottom-[7%] right-[11%] w-[68px] lg:w-[88px] xl:w-[108px]",
+    animationClass: "portfolio-allprojects-png--eight",
   },
 ];
 
+function createRandomTitleColors(count: number): LetterColor[] {
+  const colors: LetterColor[] = [];
+  let previousColor = "";
+
+  for (let index = 0; index < count; index += 1) {
+    const availableColors = titlePalette.filter(
+      (paletteColor) => paletteColor.color !== previousColor,
+    );
+
+    const randomIndex = Math.floor(
+      Math.random() * availableColors.length,
+    );
+
+    const selectedColor = availableColors[randomIndex];
+
+    colors.push(selectedColor);
+    previousColor = selectedColor.color;
+  }
+
+  return colors;
+}
+
 export default function PortfolioProjectsSection() {
+  const [titleColors, setTitleColors] =
+    useState<LetterColor[]>(initialTitleColors);
+
+  useEffect(() => {
+    setTitleColors(createRandomTitleColors(12));
+  }, []);
+
+  const allColors = titleColors.slice(0, 3);
+  const projectsColors = titleColors.slice(3);
+
   return (
-    <section className={`${rc.projectsHero.section} overflow-hidden`}>
+    <section
+      className={`${rc.projectsHero.section} relative isolate overflow-hidden`}
+    >
       <div className={rc.projectsHero.background} />
 
       {/* ========================================
           TOP RAIL
       ======================================== */}
-      <div className={rc.projectsHero.topRailWrap}>
+      <div className={`${rc.projectsHero.topRailWrap} relative z-30`}>
         <div className={rc.projectsHero.topRail}>
           <div className={rc.projectsHero.topRailMainLine} />
           <div className={rc.projectsHero.topRailLineLong} />
@@ -123,27 +312,42 @@ export default function PortfolioProjectsSection() {
       </div>
 
       {/* ========================================
-          FLOATING PNG ASSETS
+          PIXEL STARS
       ======================================== */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-[15] hidden overflow-hidden md:block"
+        className="pointer-events-none absolute inset-0 z-[4] overflow-hidden"
       >
-        {floatingPngs.map((asset) => (
+        {pixelStars.map((star) => (
+          <span
+            key={star.id}
+            className={`portfolio-allprojects-star absolute ${star.shapeClass} ${star.positionClass} ${star.animationClass}`}
+          />
+        ))}
+      </div>
+
+      {/* ========================================
+          DECORATIVE PNGS
+      ======================================== */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[8] hidden overflow-hidden md:block"
+      >
+        {decorativePngs.map((png) => (
           <div
-            key={asset.label}
-            className={`absolute ${asset.positionClass}`}
+            key={png.id}
+            className={`absolute ${png.positionClass}`}
           >
             <div
-              className={`portfolio-png-float ${asset.animationClass}`}
+              className={`portfolio-allprojects-png ${png.animationClass}`}
             >
               <Image
-                src={asset.src}
+                src={png.src}
                 alt=""
-                width={220}
-                height={220}
-                sizes="(min-width: 1280px) 195px, (min-width: 1024px) 165px, 100px"
-                className="h-auto w-full select-none object-contain"
+                width={280}
+                height={280}
+                sizes="(min-width: 1280px) 180px, (min-width: 1024px) 145px, 115px"
+                className="portfolio-allprojects-png__image"
               />
             </div>
           </div>
@@ -151,57 +355,28 @@ export default function PortfolioProjectsSection() {
       </div>
 
       {/* ========================================
-          PROJECT PREVIEW CARDS
-      ======================================== */}
-      <div className="pointer-events-none absolute inset-0 z-10 hidden overflow-hidden md:block">
-        {projectPreviews.map((project) => (
-          <div
-            key={project.title}
-            className={`absolute w-[205px] rounded-[22px] border border-white/15 bg-white/[0.06] p-2 shadow-2xl backdrop-blur-md lg:w-[235px] xl:w-[260px] ${project.className}`}
-          >
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] bg-black/20">
-              <Image
-                src={project.src}
-                alt={`${project.title} project preview`}
-                fill
-                sizes="(min-width: 1280px) 260px, (min-width: 1024px) 235px, 205px"
-                className="object-cover"
-              />
-            </div>
-
-            <div className="flex items-center justify-between px-2 pb-1 pt-3 text-white">
-              <div>
-                <p className="text-sm font-semibold">{project.title}</p>
-
-                <p className="mt-0.5 text-[11px] text-white/50">
-                  {project.category}
-                </p>
-              </div>
-
-              <ArrowUpRight
-                aria-hidden="true"
-                className="h-4 w-4 text-white/55"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* ========================================
-          CENTRAL TITLE
+          BLOCKY RANDOM-COLOR TITLE
       ======================================== */}
       <div className={`${rc.projectsHero.centerWrap} z-20`}>
         <div className={rc.projectsHero.centerInner}>
           <div className={rc.projectsHero.titleWrap}>
-            <h2 className={rc.projectsHero.title}>
-              <span className={rc.projectsHero.titleText}>
-                <span className={rc.projectsHero.titleLineTop}>ALL</span>
+            <h2
+              className="portfolio-allprojects-block-title"
+              aria-label="All Projects"
+            >
+              <BlockTitleLine
+                text="ALL"
+                colors={allColors}
+                startIndex={0}
+                className="portfolio-allprojects-block-title__top"
+              />
 
-                <span className={rc.projectsHero.titleLineBottom}>
-                  PROJECTS
-                  <span className={rc.projectsHero.exclamation}>!</span>
-                </span>
-              </span>
+              <BlockTitleLine
+                text="PROJECTS!"
+                colors={projectsColors}
+                startIndex={3}
+                className="portfolio-allprojects-block-title__bottom"
+              />
             </h2>
 
             <div className={rc.projectsHero.titleGlow} />
@@ -212,7 +387,9 @@ export default function PortfolioProjectsSection() {
       {/* ========================================
           BOTTOM RAIL
       ======================================== */}
-      <div className={rc.projectsHero.bottomRailWrap}>
+      <div
+        className={`${rc.projectsHero.bottomRailWrap} relative z-30`}
+      >
         <div className={rc.projectsHero.bottomRail}>
           <span className={rc.projectsHero.bottomDotStrong} />
           <span className={rc.projectsHero.bottomDotMedium} />
@@ -221,5 +398,47 @@ export default function PortfolioProjectsSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+function BlockTitleLine({
+  text,
+  colors,
+  startIndex,
+  className,
+}: {
+  text: string;
+  colors: LetterColor[];
+  startIndex: number;
+  className: string;
+}) {
+  return (
+    <span className={`portfolio-allprojects-block-title__line ${className}`}>
+      {text.split("").map((letter, index) => {
+        const color =
+          colors[index] ?? titlePalette[index % titlePalette.length];
+
+        const globalIndex = startIndex + index;
+
+        return (
+          <span
+            key={`${letter}-${globalIndex}`}
+            className="portfolio-allprojects-block-letter"
+            style={
+              {
+                "--block-letter-color": color.color,
+                "--block-letter-shadow": color.shadow,
+                "--block-letter-rotation":
+                  letterRotations[globalIndex] ?? "0deg",
+                "--block-letter-offset":
+                  letterOffsets[globalIndex] ?? "0px",
+              } as CSSProperties
+            }
+          >
+            {letter}
+          </span>
+        );
+      })}
+    </span>
   );
 }

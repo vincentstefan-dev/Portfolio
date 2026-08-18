@@ -17,8 +17,8 @@ type ProjectCard = {
   imagePosition: string;
 };
 
-type FloatingPng = {
-  label: string;
+type DecorativePng = {
+  id: string;
   src: string;
   positionClass: string;
   animationClass: string;
@@ -67,84 +67,38 @@ const projects: ProjectCard[] = [
   },
 ];
 
-const floatingPngs: FloatingPng[] = [
-  // ========================================
-  // TOP FRAME
-  // ========================================
+/*
+ * The same temporary PNG is repeated four times.
+ * Replace the individual src values later with your final assets.
+ */
+const decorativePngs: DecorativePng[] = [
   {
-    label: "Floating brain",
-    src: "/website-icons/brain.png",
+    id: "top-left",
+    src: "/website-icons/paintspray.png",
     positionClass:
-      "left-[4%] top-[6%] w-[78px] rotate-[-10deg] lg:left-[5%] lg:w-[105px] xl:w-[120px]",
+      "left-[16%] top-[28%] w-[92px] lg:left-[17%] lg:w-[150px] xl:w-[150px]",
     animationClass: "selected-projects-png-float--one",
   },
   {
-    label: "Floating gaming console",
-    src: "/website-icons/gaming.png",
+    id: "top-center-right",
+    src: "/website-icons/moon.png",
     positionClass:
-      "left-1/2 top-[1%] w-[90px] -translate-x-1/2 rotate-[-2deg] lg:w-[120px] xl:w-[145px]",
-    animationClass: "selected-projects-png-float--seven",
-  },
-  {
-    label: "Floating hand",
-    src: "/website-icons/hand.png",
-    positionClass:
-      "right-[4%] top-[5%] w-[82px] rotate-[8deg] lg:right-[5%] lg:w-[110px] xl:w-[125px]",
+      "left-[65%] top-[7%] w-[78px] lg:w-[100px] xl:w-[200px]",
     animationClass: "selected-projects-png-float--two",
   },
-
-  // ========================================
-  // SIDE FRAME
-  // ========================================
   {
-    label: "Floating atom",
-    src: "/website-icons/atom.png",
+    id: "top-right",
+    src: "/website-icons/lightbulb.png",
     positionClass:
-      "left-[3%] top-[46%] w-[52px] rotate-[10deg] lg:left-[3%] lg:w-[72px] xl:w-[84px]",
+      "right-[15%] top-[27%] w-[82px] lg:right-[11%] lg:w-[105px] xl:w-[200px]",
     animationClass: "selected-projects-png-float--three",
   },
   {
-    label: "Floating paper airplane",
-    src: "/website-icons/paperairplane.png",
+    id: "bottom-center",
+    src: "/website-icons/paintbucket.png",
     positionClass:
-      "right-[3%] top-[45%] w-[66px] rotate-[-10deg] lg:right-[3%] lg:w-[92px] xl:w-[108px]",
+      "bottom-[3%] left-[40%] w-[90px] lg:left-[41%] lg:w-[115px] xl:w-[200px]",
     animationClass: "selected-projects-png-float--four",
-  },
-
-  // ========================================
-  // BOTTOM CORNERS
-  // ========================================
-  {
-    label: "Floating hard drive",
-    src: "/website-icons/hdd.png",
-    positionClass:
-      "bottom-[-1%] left-[6%] w-[88px] rotate-[7deg] lg:left-[8%] lg:w-[120px] xl:w-[140px]",
-    animationClass: "selected-projects-png-float--five",
-  },
-  {
-    label: "Floating CD",
-    src: "/website-icons/cd.png",
-    positionClass:
-      "bottom-[-1%] right-[6%] w-[88px] rotate-[-8deg] lg:right-[8%] lg:w-[120px] xl:w-[140px]",
-    animationClass: "selected-projects-png-float--six",
-  },
-
-  // ========================================
-  // INNER LOWER ACCENTS
-  // ========================================
-  {
-    label: "Floating mail",
-    src: "/website-icons/mail.png",
-    positionClass:
-      "bottom-[9%] left-[26%] w-[46px] rotate-[-8deg] lg:w-[62px] xl:w-[74px]",
-    animationClass: "selected-projects-png-float--eight",
-  },
-  {
-    label: "Floating rainbow star",
-    src: "/website-icons/starrainbow.png",
-    positionClass:
-      "bottom-[9%] right-[26%] w-[52px] rotate-[9deg] lg:w-[72px] xl:w-[84px]",
-    animationClass: "selected-projects-png-float--nine",
   },
 ];
 
@@ -235,26 +189,26 @@ export default function PortfolioSelectedProjectsSection() {
       </div>
 
       {/* ========================================
-          FLOATING PNG ASSETS
+          FOUR DECORATIVE PNG ASSETS
       ======================================== */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-[5] hidden overflow-hidden md:block"
       >
-        {floatingPngs.map((asset) => (
+        {decorativePngs.map((png) => (
           <div
-            key={asset.label}
-            className={`absolute ${asset.positionClass}`}
+            key={png.id}
+            className={`absolute ${png.positionClass}`}
           >
             <div
-              className={`selected-projects-png-float ${asset.animationClass}`}
+              className={`selected-projects-png-float ${png.animationClass}`}
             >
               <Image
-                src={asset.src}
+                src={png.src}
                 alt=""
-                width={220}
-                height={220}
-                sizes="(min-width: 1280px) 145px, (min-width: 1024px) 120px, 90px"
+                width={240}
+                height={240}
+                sizes="(min-width: 1280px) 135px, (min-width: 1024px) 115px, 90px"
                 className="h-auto w-full select-none object-contain"
               />
             </div>

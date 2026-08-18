@@ -1,271 +1,399 @@
 "use client";
 
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
-
+import type { CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import {
-  AppWindow,
-  Clapperboard,
-  FolderKanban,
-  HeartHandshake,
-  House,
-  TreeDeciduous,
-} from "lucide-react";
-
-import ThemedNavIcon from "@/app/components/template/theme/ThemedNavIcon";
-import { useThemeGlow } from "@/app/components/template/layout/useThemeGlow";
-import type { SiteMode } from "@/app/components/template/theme/ThemeProvider";
+import { ArrowUpRight } from "lucide-react";
 
 import { portfolioRc as rc } from "./portfolioResponsiveConfig";
+import "./portfolioprojectsshowcase-section.css";
 
-type IconKey =
-  | "home"
-  | "she"
-  | "antonia"
-  | "heart"
-  | "film"
-  | "app"
-  | "folder";
-
-type MenuItem = {
-  title?: string;
+type ProjectItem = {
+  id: string;
+  number: string;
   label: string;
-  description?: string;
+  status: string;
+  title: string;
+  category: string;
+  description: string;
   href: string;
-  iconKey?: IconKey;
-  image?: string;
-  gif?: string;
+  image: string;
+  imagePosition: string;
+  accent: string;
+  featured?: boolean;
 };
 
-type IconOffset = {
-  x: number;
-  y: number;
+type PixelStar = {
+  id: string;
+  className: string;
 };
 
-type PortfolioIconNavProps = {
-  siteMode: SiteMode;
-  items?: MenuItem[];
-};
-
-const iconMap = {
-  home: House,
-  she: HeartHandshake,
-  antonia: TreeDeciduous,
-  heart: HeartHandshake,
-  film: Clapperboard,
-  app: AppWindow,
-  folder: FolderKanban,
-};
-
-const defaultMenuItems: MenuItem[] = [
+const pixelStars: PixelStar[] = [
   {
-    title: "Home",
-    label: "Home",
-    iconKey: "home",
-    href: "/",
-    gif: "/Gifs/mystar.gif",
+    id: "star-one",
+    className: "left-[4%] top-[20%] h-[5px] w-[5px]",
   },
   {
-    title: "SHE",
-    label: "Sacred Human Experience",
-    image: "/Icons/SHE.png",
-    href: "/portfolio/SHE",
+    id: "star-two",
+    className: "left-[11%] top-[44%] h-[8px] w-[8px]",
   },
   {
-    title: "Antonia",
-    label: "Antonia Website",
-    iconKey: "antonia",
-    href: "/portfolio/antonia",
+    id: "star-three",
+    className: "left-[31%] top-[9%] h-[4px] w-[4px]",
+  },
+  {
+    id: "star-four",
+    className: "right-[35%] top-[17%] h-[6px] w-[6px]",
+  },
+  {
+    id: "star-five",
+    className: "right-[12%] top-[30%] h-[5px] w-[5px]",
+  },
+  {
+    id: "star-six",
+    className: "right-[5%] top-[58%] h-[8px] w-[8px]",
+  },
+  {
+    id: "star-seven",
+    className: "left-[7%] bottom-[20%] h-[6px] w-[6px]",
+  },
+  {
+    id: "star-eight",
+    className: "left-[38%] bottom-[8%] h-[5px] w-[5px]",
+  },
+  {
+    id: "star-nine",
+    className: "right-[29%] bottom-[14%] h-[7px] w-[7px]",
+  },
+  {
+    id: "star-ten",
+    className: "right-[7%] bottom-[8%] h-[4px] w-[4px]",
   },
 ];
 
-export default function PortfolioIconNav({
-  siteMode,
-  items = defaultMenuItems,
-}: PortfolioIconNavProps) {
-  const pathname = usePathname();
-  const glow = useThemeGlow(siteMode);
+const projectItems: ProjectItem[] = [
+  {
+    id: "koyote",
+    number: "01",
+    label: "Brand Identity",
+    status: "Featured",
+    title: "Koyote",
+    category: "Small business project",
+    description:
+      "The creation of Koyote’s visual identity, digital language, logo system, and experimental creative direction.",
+    href: "/portfolio",
+    image: "/3TO6/KOYOTEFINAL.png",
+    imagePosition: "center",
+    accent: "#238cff",
+    featured: true,
+  },
+  {
+    id: "she",
+    number: "02",
+    label: "Brand Identity",
+    status: "Case Study",
+    title: "SHE",
+    category: "Small business project",
+    description:
+      "A visual identity project built around atmosphere, personality, typography, and a carefully controlled brand system.",
+    href: "/portfolio/SHE",
+    image: "/3TO6/SHE.png",
+    imagePosition: "center",
+    accent: "#44ef61",
+  },
+  {
+    id: "pixelate",
+    number: "03",
+    label: "Web Application",
+    status: "Live",
+    title: "Pixelate",
+    category: "Image manipulation",
+    description:
+      "A browser-based application for transforming images into customizable pixel-art compositions.",
+    href: "/portfolio/antonia",
+    image: "/3TO6/PIXEL.png",
+    imagePosition: "center",
+    accent: "#a86dff",
+  },
+  {
+    id: "astronaut",
+    number: "04",
+    label: "Interactive Story",
+    status: "Experiment",
+    title: "Astronaut",
+    category: "Built with Pixelate",
+    description:
+      "A small click-based visual story combining space imagery, pixel graphics, interaction, and playful experimentation.",
+    href: "/portfolio/junix",
+    image: "/3TO6/astronaut.png",
+    imagePosition: "center",
+    accent: "#ffae20",
+  },
+  {
+    id: "concept-of-i",
+    number: "05",
+    label: "Personal Blog",
+    status: "Ongoing",
+    title: "The Concept of I",
+    category: "Writing and visual experimentation",
+    description:
+      "A personal publishing space for ideas, visual exploration, reflection, and experimental digital expression.",
+    href: "/theme-lab",
+    image: "/3TO6/babyfinal.gif",
+    imagePosition: "center",
+    accent: "#f03ca9",
+  },
+];
 
-  const navClusterRef = useRef<HTMLDivElement | null>(null);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  const [iconOffsets, setIconOffsets] = useState<IconOffset[]>(
-    items.map(() => ({ x: 0, y: 0 }))
-  );
-
-  const [isIconIntroActive, setIsIconIntroActive] = useState(false);
-  const [areIconOffsetsReady, setAreIconOffsetsReady] = useState(false);
-
-  useEffect(() => {
-    itemRefs.current = itemRefs.current.slice(0, items.length);
-    setIconOffsets(items.map(() => ({ x: 0, y: 0 })));
-    setAreIconOffsetsReady(false);
-  }, [items]);
-
-  const measureIconOffsets = useCallback(() => {
-    const navEl = navClusterRef.current;
-    if (!navEl) return;
-
-    const navRect = navEl.getBoundingClientRect();
-    const navCenterX = navRect.left + navRect.width / 2;
-    const navCenterY = navRect.top + navRect.height / 2;
-
-    const nextOffsets = items.map((_, index) => {
-      const itemEl = itemRefs.current[index];
-      if (!itemEl) return { x: 0, y: 0 };
-
-      const itemRect = itemEl.getBoundingClientRect();
-      const itemCenterX = itemRect.left + itemRect.width / 2;
-      const itemCenterY = itemRect.top + itemRect.height / 2;
-
-      return {
-        x: navCenterX - itemCenterX,
-        y: navCenterY - itemCenterY,
-      };
-    });
-
-    setIconOffsets(nextOffsets);
-    setAreIconOffsetsReady(true);
-  }, [items]);
-
-  const playIconIntro = useCallback(() => {
-    setIsIconIntroActive(false);
-
-    requestAnimationFrame(() => {
-      measureIconOffsets();
-
-      requestAnimationFrame(() => {
-        setIsIconIntroActive(true);
-      });
-    });
-  }, [measureIconOffsets]);
-
-  useLayoutEffect(() => {
-    measureIconOffsets();
-  }, [measureIconOffsets]);
-
-  useEffect(() => {
-    window.addEventListener("resize", measureIconOffsets);
-
-    return () => {
-      window.removeEventListener("resize", measureIconOffsets);
-    };
-  }, [measureIconOffsets]);
-
-  useEffect(() => {
-    playIconIntro();
-  }, [pathname, playIconIntro]);
-
-  useEffect(() => {
-    const handlePageShow = (event: PageTransitionEvent) => {
-      if (event.persisted) {
-        playIconIntro();
-      }
-    };
-
-    window.addEventListener("pageshow", handlePageShow);
-
-    return () => {
-      window.removeEventListener("pageshow", handlePageShow);
-    };
-  }, [playIconIntro]);
-
+export default function PortfolioProjectsShowcaseSection() {
   return (
-    <nav aria-label="Portfolio navigation" className={rc.iconNav.nav}>
-      <div className={rc.iconNav.background}>
-        <div className={rc.iconNav.glow} />
-        <div className={rc.iconNav.orbitOne} />
-        <div className={rc.iconNav.orbitTwo} />
-        <div className={rc.iconNav.grid} />
+    <section
+      className={`${rc.projectsHero.section} portfolio-projects-showcase-section`}
+    >
+      <div className={rc.projectsHero.background} />
+
+      {/* ========================================
+          PIXEL STAR LAYER
+      ======================================== */}
+      <div
+        aria-hidden="true"
+        className="portfolio-projects-showcase-stars"
+      >
+        {pixelStars.map((star, index) => (
+          <span
+            key={star.id}
+            className={`portfolio-projects-showcase-star ${star.className}`}
+            style={
+              {
+                "--showcase-star-delay": `${index * -0.67}s`,
+                "--showcase-star-duration": `${
+                  4.8 + (index % 4) * 0.9
+                }s`,
+              } as CSSProperties
+            }
+          />
+        ))}
       </div>
 
-      <div className={rc.iconNav.visualArea}>
-        <div ref={navClusterRef} className={rc.iconNav.cluster}>
-          {items.map((item, index) => {
-            const offset = iconOffsets[index] ?? { x: 0, y: 0 };
-            const Icon = item.iconKey ? iconMap[item.iconKey] : null;
-            const displayTitle = item.title ?? item.label;
+      {/* ========================================
+          SECTION CONTENT
+      ======================================== */}
+      <div className="portfolio-projects-showcase-inner">
+        {/* ========================================
+            HEADER
+        ======================================== */}
+        <header className="portfolio-projects-showcase-header">
+          <div className="portfolio-projects-showcase-heading">
+            <p className="portfolio-projects-showcase-kicker">
+              Koyote Project Archive
+            </p>
 
-            return (
-              <div
-                key={`${item.href}-${item.label}-${index}`}
-                ref={(el) => {
-                  itemRefs.current[index] = el;
-                }}
-                className={rc.iconNav.animatedItem}
-                style={{
-                  opacity: areIconOffsetsReady
-                    ? isIconIntroActive
-                      ? 1
-                      : 0.15
-                    : 0,
-                  transform: areIconOffsetsReady
-                    ? isIconIntroActive
-                      ? "translate3d(0, 0, 0) scale(1)"
-                      : `translate3d(${offset.x}px, ${offset.y}px, 0) scale(0.35)`
-                    : "translate3d(0, 0, 0) scale(0.35)",
-                  transitionProperty: "transform, opacity, filter",
-                  transitionDuration: "1100ms",
-                  transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
-                  transitionDelay: `${index * 70}ms`,
-                  filter: isIconIntroActive ? "blur(0px)" : "blur(8px)",
-                }}
-              >
-                <Link href={item.href} className={`${rc.iconNav.link} group`}>
-                  <div className={rc.iconNav.item}>
-                    <div className="relative mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-cyan-200/25 bg-black/35 shadow-[0_0_30px_rgba(103,232,249,0.28)] backdrop-blur-md transition duration-500 group-hover:scale-110 group-hover:border-cyan-200/60 group-hover:shadow-[0_0_45px_rgba(103,232,249,0.5)]">
-                      <div className="absolute inset-0 rounded-2xl bg-cyan-200/10 blur-xl" />
+            <h2
+              className="portfolio-projects-showcase-title"
+              aria-label="Portfolio Projects"
+            >
+              <span className="portfolio-projects-showcase-title__lab">
+                PORTFOLIO
+              </span>
 
-                      {item.image ? (
-                        <img
-                          src={item.image}
-                          alt={item.label}
-                          className="relative z-10 h-10 w-10 object-contain drop-shadow-[0_0_14px_rgba(103,232,249,0.55)]"
-                        />
-                      ) : Icon && item.gif ? (
-                        <div className="relative z-10 flex h-10 w-10 items-center justify-center">
-                          <ThemedNavIcon
-                            label={item.label}
-                            icon={Icon}
-                            gif={item.gif}
-                            glow={glow}
-                          />
-                        </div>
-                      ) : Icon ? (
-                        <Icon
-                          strokeWidth={1.8}
-                          className="relative z-10 h-9 w-9 text-cyan-100 drop-shadow-[0_0_14px_rgba(103,232,249,0.75)]"
-                        />
-                      ) : null}
-                    </div>
+              <span className="portfolio-projects-showcase-title__projects">
+                <span className="portfolio-projects-showcase-letter portfolio-projects-showcase-letter--blue">
+                  P
+                </span>
 
-                    <div className="flex flex-col items-center text-center">
-                      <span className={rc.iconNav.label}>{displayTitle}</span>
+                <span className="portfolio-projects-showcase-letter portfolio-projects-showcase-letter--pink">
+                  R
+                </span>
 
-                      {item.description ? (
-                        <span className="mt-2 max-w-[13rem] text-xs leading-snug text-white/55">
-                          {item.description}
-                        </span>
-                      ) : item.title && item.label !== item.title ? (
-                        <span className="mt-2 max-w-[13rem] text-xs leading-snug text-white/55">
-                          {item.label}
-                        </span>
-                      ) : null}
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            );
-          })}
+                <span className="portfolio-projects-showcase-letter portfolio-projects-showcase-letter--red">
+                  O
+                </span>
+
+                <span className="portfolio-projects-showcase-letter portfolio-projects-showcase-letter--green">
+                  J
+                </span>
+
+                <span className="portfolio-projects-showcase-letter portfolio-projects-showcase-letter--yellow">
+                  E
+                </span>
+
+                <span className="portfolio-projects-showcase-letter portfolio-projects-showcase-letter--orange">
+                  C
+                </span>
+
+                <span className="portfolio-projects-showcase-letter portfolio-projects-showcase-letter--pink">
+                  T
+                </span>
+
+                <span className="portfolio-projects-showcase-letter portfolio-projects-showcase-letter--green">
+                  S
+                </span>
+              </span>
+            </h2>
+
+            <div className="portfolio-projects-showcase-title-lines">
+              <span />
+              <span />
+            </div>
+          </div>
+
+          <div className="portfolio-projects-showcase-intro">
+            <p className="portfolio-projects-showcase-intro__text">
+              A collection of brand identities, web applications,
+              interactive stories, and personal experiments developed
+              through research, curiosity, and visual exploration.
+            </p>
+
+            <p className="portfolio-projects-showcase-process">
+              <span>Research</span>
+              <span>•</span>
+              <span>Design</span>
+              <span>•</span>
+              <span>Build</span>
+              <span>•</span>
+              <span>Experiment</span>
+            </p>
+
+            <div className="portfolio-projects-showcase-intro-line">
+              <span />
+              <i />
+            </div>
+          </div>
+        </header>
+
+        {/* ========================================
+            PROJECT GRID
+        ======================================== */}
+        <div className="portfolio-projects-showcase-grid">
+          {projectItems.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+            />
+          ))}
+        </div>
+
+        {/* ========================================
+            BOTTOM MESSAGE
+        ======================================== */}
+        <div className="portfolio-projects-showcase-footer">
+          <span className="portfolio-projects-showcase-footer__icon">
+            ✦
+          </span>
+
+          <span>
+            Identity systems. Applications. Visual experiments.
+          </span>
+
+          <strong>More projects are always being built.</strong>
+
+          <span className="portfolio-projects-showcase-footer__spark">
+            ✦
+          </span>
         </div>
       </div>
-    </nav>
+    </section>
+  );
+}
+
+function ProjectCard({
+  project,
+}: {
+  project: ProjectItem;
+}) {
+  const cardClassName = [
+    "portfolio-projects-showcase-card",
+    project.featured
+      ? "portfolio-projects-showcase-card--featured"
+      : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const cardStyle = {
+    "--project-accent": project.accent,
+  } as CSSProperties;
+
+  return (
+    <Link
+      href={project.href}
+      className={cardClassName}
+      style={cardStyle}
+    >
+      <ProjectCardChrome project={project} />
+
+      <div className="portfolio-projects-showcase-card__body">
+        <div className="portfolio-projects-showcase-card__image-wrap">
+          <Image
+            src={project.image}
+            alt={`${project.title} project preview`}
+            fill
+            priority={project.featured}
+            className="portfolio-projects-showcase-card__image"
+            style={{
+              objectPosition: project.imagePosition,
+            }}
+            sizes={
+              project.featured
+                ? "(max-width: 639px) 100vw, (max-width: 1023px) 90vw, 50vw"
+                : "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
+            }
+          />
+
+          <div className="portfolio-projects-showcase-card__image-overlay" />
+        </div>
+
+        <div className="portfolio-projects-showcase-card__copy">
+          <p className="portfolio-projects-showcase-card__category">
+            {project.category}
+          </p>
+
+          <h3>{project.title}</h3>
+
+          <p className="portfolio-projects-showcase-card__description">
+            {project.description}
+          </p>
+        </div>
+      </div>
+
+      <div className="portfolio-projects-showcase-card__footer">
+        <span>View Case Study</span>
+
+        <ArrowUpRight
+          aria-hidden="true"
+          size={14}
+          strokeWidth={1.8}
+        />
+      </div>
+    </Link>
+  );
+}
+
+function ProjectCardChrome({
+  project,
+}: {
+  project: ProjectItem;
+}) {
+  return (
+    <>
+      <div className="portfolio-projects-showcase-card__top-line" />
+
+      <div className="portfolio-projects-showcase-card__meta">
+        <span>{project.label}</span>
+
+        <span className="portfolio-projects-showcase-card__status">
+          <i />
+          {project.status}
+        </span>
+      </div>
+
+      <span className="portfolio-projects-showcase-card__number">
+        {project.number}
+      </span>
+
+      <span className="portfolio-projects-showcase-card__spark">
+        ✦
+      </span>
+    </>
   );
 }

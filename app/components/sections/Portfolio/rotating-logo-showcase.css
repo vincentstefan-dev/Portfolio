@@ -1,0 +1,67 @@
+/* ========================================
+   TOP DECORATIVE PNG
+======================================== */
+
+.rotating-logo-decorative-png {
+  width: 100%;
+  transform-origin: center;
+  animation-name: rotating-logo-decorative-float;
+  animation-duration: 8.5s;
+  animation-delay: -3.2s;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.22, 1);
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.rotating-logo-decorative-png__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  image-rendering: pixelated;
+
+  filter:
+    drop-shadow(0 0 8px rgb(103 232 249 / 28%))
+    drop-shadow(0 0 16px rgb(37 99 235 / 18%));
+}
+
+/* ========================================
+   SMOOTH MOVEMENT
+======================================== */
+
+@keyframes rotating-logo-decorative-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  20% {
+    transform: translate3d(4px, -4px, 0) rotate(0.5deg);
+  }
+
+  42% {
+    transform: translate3d(7px, -10px, 0) rotate(0.8deg);
+  }
+
+  64% {
+    transform: translate3d(-2px, -14px, 0) rotate(-0.4deg);
+  }
+
+  84% {
+    transform: translate3d(-6px, -5px, 0) rotate(-0.6deg);
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .rotating-logo-decorative-png {
+    animation: none;
+    transform: none;
+  }
+}

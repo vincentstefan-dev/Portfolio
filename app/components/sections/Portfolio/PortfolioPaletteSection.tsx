@@ -1,9 +1,64 @@
 "use client";
 
+import Image from "next/image";
+
 import { portfolioRc as rc } from "./portfolioResponsiveConfig";
+import "./portfolio-palette-section.css";
 
 const pixelFont =
   "font-mono uppercase tracking-[0.08em] [font-family:var(--font-pixel),var(--font-vt323),'Press_Start_2P','Courier_New',monospace]";
+
+type DecorativePng = {
+  id: string;
+  src: string;
+  positionClass: string;
+  animationClass: string;
+};
+
+const decorativePngs: DecorativePng[] = [
+  {
+    id: "upper-left",
+    src: "/website-icons/purpleglobe.png",
+    positionClass:
+      "left-[14%] top-[32%] w-[78px] lg:w-[100px] xl:w-[122px]",
+    animationClass: "portfolio-palette-png--one",
+  },
+  {
+    id: "upper-center",
+    src: "/website-icons/paperairplane.png",
+    positionClass:
+      "left-[59%] top-[19%] w-[72px] lg:w-[94px] xl:w-[112px]",
+    animationClass: "portfolio-palette-png--two",
+  },
+  {
+    id: "upper-right",
+    src: "/website-icons/paintdropper.png",
+    positionClass:
+      "right-[11%] top-[28%] w-[82px] lg:w-[108px] xl:w-[130px]",
+    animationClass: "portfolio-palette-png--three",
+  },
+  {
+    id: "lower-left",
+    src: "/website-icons/paintbucket.png",
+    positionClass:
+      "bottom-[6%] left-[14.5%] w-[68px] lg:w-[88px] xl:w-[104px]",
+    animationClass: "portfolio-palette-png--four",
+  },
+  {
+    id: "lower-center",
+    src: "/website-icons/paintspray.png",
+    positionClass:
+      "bottom-[-2%] left-[48%] w-[72px] lg:w-[94px] xl:w-[112px]",
+    animationClass: "portfolio-palette-png--five",
+  },
+  {
+    id: "lower-right",
+    src: "/website-icons/windowcloud.png",
+    positionClass:
+      "bottom-[-1%] right-[13%] w-[76px] lg:w-[100px] xl:w-[118px]",
+    animationClass: "portfolio-palette-png--six",
+  },
+];
 
 const palette = [
   {
@@ -70,7 +125,12 @@ const palette = [
 
 export default function PortfolioPaletteSection() {
   return (
-    <section className={rc.palette.section}>
+    <section
+      className={`${rc.palette.section} relative isolate overflow-hidden`}
+    >
+      {/* ========================================
+          BACKGROUND
+      ======================================== */}
       <div className={rc.palette.background}>
         <div className={rc.palette.backgroundGlow} />
         <div className={rc.palette.backgroundGrid} />
@@ -78,7 +138,39 @@ export default function PortfolioPaletteSection() {
         <div className={rc.palette.orbitTwo} />
       </div>
 
-      <div className={rc.palette.topMarkWrap}>
+      {/* ========================================
+          SIX DECORATIVE PNGS
+          These are inside the same section.
+      ======================================== */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[30] hidden overflow-hidden md:block"
+      >
+        {decorativePngs.map((png) => (
+          <div
+            key={png.id}
+            className={`absolute ${png.positionClass}`}
+          >
+            <div
+              className={`portfolio-palette-png ${png.animationClass}`}
+            >
+              <Image
+                src={png.src}
+                alt=""
+                width={260}
+                height={260}
+                sizes="(min-width: 1280px) 130px, (min-width: 1024px) 108px, 82px"
+                className="portfolio-palette-png__image"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* ========================================
+          TOP MARK
+      ======================================== */}
+      <div className={`${rc.palette.topMarkWrap} relative z-10`}>
         <div className={rc.palette.topMark}>
           <div className={rc.palette.topMarkMainLine} />
           <div className={rc.palette.topMarkLineLong} />
@@ -86,7 +178,10 @@ export default function PortfolioPaletteSection() {
         </div>
       </div>
 
-      <div className={rc.palette.inner}>
+      {/* ========================================
+          CONTENT
+      ======================================== */}
+      <div className={`${rc.palette.inner} relative z-10`}>
         <div className={rc.palette.header}>
           <p className={rc.palette.kicker}>Visual System</p>
 
@@ -102,7 +197,7 @@ export default function PortfolioPaletteSection() {
             {palette.map((color, index) => (
               <article
                 key={color.hex}
-                className="group relative min-h-[420px] border-b border-[#003c9d]/50 transition duration-500 hover:-translate-y-2 hover:z-30 sm:border-r lg:min-h-[540px] lg:border-b-0"
+                className="group relative min-h-[420px] border-b border-[#003c9d]/50 transition duration-500 hover:z-30 hover:-translate-y-2 sm:border-r lg:min-h-[540px] lg:border-b-0"
                 style={{
                   zIndex: palette.length - index,
                 }}
@@ -179,7 +274,10 @@ export default function PortfolioPaletteSection() {
         </div>
       </div>
 
-      <div className={rc.palette.bottomMarkWrap}>
+      {/* ========================================
+          BOTTOM MARK
+      ======================================== */}
+      <div className={`${rc.palette.bottomMarkWrap} relative z-10`}>
         <div className={rc.palette.bottomMark}>
           <span className={rc.palette.bottomDotStrong} />
           <span className={rc.palette.bottomDotMedium} />

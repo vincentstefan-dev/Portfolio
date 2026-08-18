@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import Image from "next/image";
 
 import { portfolioRc as rc } from "./portfolioResponsiveConfig";
+import "./rotating-logo-showcase.css";
 
 const rotatingLogos = [
   {
@@ -10,7 +12,7 @@ const rotatingLogos = [
     alt: "Koyote 8-bit logo",
   },
   {
-    src: "/logos/16bit.webp", 
+    src: "/logos/16bit.webp",
     alt: "Koyote 16-bit logo",
   },
   {
@@ -107,8 +109,29 @@ export default function RotatingLogoShowcase() {
   const activeLogo = rotatingLogos[activeIndex];
 
   return (
-    <section className={rc.rotatingLogo.section}>
-      <div className={rc.rotatingLogo.grid}>
+    <section
+      className={`${rc.rotatingLogo.section} relative isolate overflow-hidden`}
+    >
+      {/* ========================================
+          TOP DECORATIVE PNG
+      ======================================== */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-[12%] top-[13%] z-[5] hidden w-[58px] md:block lg:w-[72px] xl:w-[88px]"
+      >
+        <div className="rotating-logo-decorative-png">
+          <Image
+            src="/website-icons/paperairplane.png"
+            alt=""
+            width={180}
+            height={180}
+            sizes="(min-width: 1280px) 88px, (min-width: 1024px) 72px, 50px"
+            className="rotating-logo-decorative-png__image"
+          />
+        </div>
+      </div>
+
+      <div className={`${rc.rotatingLogo.grid} relative z-10`}>
         <div className={rc.rotatingLogo.textColumn}>
           <div className={rc.rotatingLogo.leftDecorLine} />
           <div className={rc.rotatingLogo.leftDecorDotTop} />
@@ -179,7 +202,9 @@ export default function RotatingLogoShowcase() {
               alt="Koyote 16-bit wordmark"
               className={rc.rotatingLogo.wordmarkImage}
               onError={() => {
-                console.error("Wordmark failed to load: /OSnames/16bit.webp");
+                console.error(
+                  "Wordmark failed to load: /OSnames/16bit.webp",
+                );
               }}
             />
           </div>

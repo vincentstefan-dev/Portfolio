@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import { House } from "lucide-react";
 
@@ -14,47 +13,6 @@ import PortfolioSelectedProjectsSection from "@/app/components/sections/Portfoli
 import PortfolioProjectsSection from "@/app/components/sections/Portfolio/PortfolioProjectsSection";
 
 import { portfolioRc as rc } from "@/app/components/sections/Portfolio/portfolioResponsiveConfig";
-
-type PortfolioIconKey = "heart" | "film" | "app" | "folder";
-
-type PortfolioItem = {
-  title: string;
-  href: string;
-  label: string;
-  description: string;
-  iconKey: PortfolioIconKey;
-};
-
-const portfolioItems: PortfolioItem[] = [
-  {
-    title: "SHE",
-    href: "/portfolio/SHE",
-    label: "Sacred Human Experience",
-    description: "",
-    iconKey: "heart",
-  },
-  {
-    title: "Antonia",
-    href: "/portfolio/antonia",
-    label: "Antonia Schindler Portfolio",
-    description: "",
-    iconKey: "film",
-  },
-  {
-    title: "Moodboard",
-    href: "/moodboard",
-    label: "Apps",
-    description: "",
-    iconKey: "app",
-  },
-  {
-    title: "Projects",
-    href: "/projects",
-    label: "Projects",
-    description: "",
-    iconKey: "folder",
-  },
-];
 
 export default function PortfolioPage() {
   return (
@@ -100,10 +58,7 @@ export default function PortfolioPage() {
         {/* ========================================
             PORTFOLIO NAVIGATION
         ======================================== */}
-        <PortfolioNavSection
-          siteMode="basic"
-          items={portfolioItems}
-        />
+        <PortfolioNavSection />
       </div>
 
       {/* ========================================

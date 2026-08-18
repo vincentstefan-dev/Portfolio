@@ -1,0 +1,140 @@
+/* ========================================
+   PORTFOLIO PALETTE PNGS
+======================================== */
+
+.portfolio-palette-png {
+  width: 100%;
+  transform-origin: center;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.portfolio-palette-png__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  image-rendering: pixelated;
+}
+
+/* ========================================
+   INDIVIDUAL PNG MOTION
+======================================== */
+
+.portfolio-palette-png--one {
+  animation: portfolio-palette-float-one 10.5s infinite;
+  animation-delay: -2.1s;
+}
+
+.portfolio-palette-png--two {
+  animation: portfolio-palette-float-two 12s infinite;
+  animation-delay: -5.4s;
+}
+
+.portfolio-palette-png--three {
+  animation: portfolio-palette-float-three 9.8s infinite;
+  animation-delay: -3.6s;
+}
+
+.portfolio-palette-png--four {
+  animation: portfolio-palette-float-two 11.4s infinite reverse;
+  animation-delay: -6.2s;
+}
+
+.portfolio-palette-png--five {
+  animation: portfolio-palette-float-one 10.8s infinite reverse;
+  animation-delay: -4.7s;
+}
+
+.portfolio-palette-png--six {
+  animation: portfolio-palette-float-three 12.6s infinite;
+  animation-delay: -7.1s;
+}
+
+/* ========================================
+   SMOOTH FLOAT PATH ONE
+======================================== */
+
+@keyframes portfolio-palette-float-one {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate3d(6px, -9px, 0) rotate(1deg);
+  }
+
+  50% {
+    transform: translate3d(-2px, -17px, 0) rotate(-1deg);
+  }
+
+  75% {
+    transform: translate3d(-7px, -6px, 0) rotate(0.5deg);
+  }
+}
+
+/* ========================================
+   SMOOTH FLOAT PATH TWO
+======================================== */
+
+@keyframes portfolio-palette-float-two {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  22% {
+    transform: translate3d(-6px, -7px, 0) rotate(-0.8deg);
+  }
+
+  48% {
+    transform: translate3d(5px, -15px, 0) rotate(1deg);
+  }
+
+  74% {
+    transform: translate3d(8px, -4px, 0) rotate(0.3deg);
+  }
+}
+
+/* ========================================
+   SMOOTH FLOAT PATH THREE
+======================================== */
+
+@keyframes portfolio-palette-float-three {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  20% {
+    transform: translate3d(8px, -5px, 0) rotate(0.8deg);
+  }
+
+  46% {
+    transform: translate3d(3px, -16px, 0) rotate(-0.8deg);
+  }
+
+  72% {
+    transform: translate3d(-8px, -10px, 0) rotate(-1deg);
+  }
+
+  88% {
+    transform: translate3d(-3px, -3px, 0) rotate(0.4deg);
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-palette-png {
+    animation: none;
+    transform: none;
+  }
+}

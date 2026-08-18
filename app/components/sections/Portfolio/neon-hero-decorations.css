@@ -1,0 +1,207 @@
+/* =========================================================
+   DECORATIVE PNGS
+   Responsive position, size, rotation, layering, and
+   individually randomized movement
+========================================================= */
+
+.decorative-png {
+  /*
+   * FALLBACK MOVEMENT VALUES
+   *
+   * These are used briefly before the React component
+   * generates unique values for each PNG.
+   */
+
+  --png-x-1: 4px;
+  --png-y-1: -6px;
+  --png-rotate-1: 2deg;
+
+  --png-x-2: -7px;
+  --png-y-2: -12px;
+  --png-rotate-2: -3deg;
+
+  --png-x-3: 3px;
+  --png-y-3: -5px;
+  --png-rotate-3: 1deg;
+
+  --png-duration: 7s;
+  --png-delay: 0s;
+
+  /*
+   * MOBILE POSITION
+   */
+
+  position: absolute;
+
+  left: var(--png-mobile-left);
+  top: var(--png-mobile-top);
+
+  width: var(--png-mobile-width);
+  height: auto;
+
+  --png-current-rotation: var(--png-mobile-rotation);
+
+  /*
+   * LAYERING
+   *
+   * Carousel uses z-index: 10.
+   * These PNGs use z-index: 0, so they remain behind it.
+   */
+
+  z-index: 0;
+
+  pointer-events: none;
+  user-select: none;
+
+  object-fit: contain;
+
+  filter: drop-shadow(
+    0 0 14px rgba(255, 255, 255, 0.3)
+  );
+
+  transform-origin: center center;
+
+  transform:
+    translate3d(0, 0, 0)
+    rotate(var(--png-current-rotation));
+
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* =========================================================
+   START THE INDIVIDUALLY RANDOMIZED MOVEMENT
+========================================================= */
+
+.decorative-png--ready {
+  animation-name: decorative-png-random-float;
+  animation-duration: var(--png-duration);
+  animation-delay: var(--png-delay);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+/* =========================================================
+   RANDOMIZED FLOATING PATH
+========================================================= */
+
+@keyframes decorative-png-random-float {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(var(--png-current-rotation));
+  }
+
+  25% {
+    transform:
+      translate3d(
+        var(--png-x-1),
+        var(--png-y-1),
+        0
+      )
+      rotate(
+        calc(
+          var(--png-current-rotation) +
+          var(--png-rotate-1)
+        )
+      );
+  }
+
+  50% {
+    transform:
+      translate3d(
+        var(--png-x-2),
+        var(--png-y-2),
+        0
+      )
+      rotate(
+        calc(
+          var(--png-current-rotation) +
+          var(--png-rotate-2)
+        )
+      );
+  }
+
+  75% {
+    transform:
+      translate3d(
+        var(--png-x-3),
+        var(--png-y-3),
+        0
+      )
+      rotate(
+        calc(
+          var(--png-current-rotation) +
+          var(--png-rotate-3)
+        )
+      );
+  }
+}
+
+/* =========================================================
+   SMALL SCREENS
+   Tailwind sm breakpoint
+========================================================= */
+
+@media (min-width: 640px) {
+  .decorative-png {
+    left: var(--png-small-left);
+    top: var(--png-small-top);
+
+    width: var(--png-small-width);
+
+    --png-current-rotation: var(--png-small-rotation);
+  }
+}
+
+/* =========================================================
+   MEDIUM SCREENS
+   Tailwind md breakpoint
+========================================================= */
+
+@media (min-width: 768px) {
+  .decorative-png {
+    left: var(--png-medium-left);
+    top: var(--png-medium-top);
+
+    width: var(--png-medium-width);
+
+    --png-current-rotation: var(--png-medium-rotation);
+  }
+}
+
+/* =========================================================
+   LARGE SCREENS
+   Tailwind lg breakpoint
+========================================================= */
+
+@media (min-width: 1024px) {
+  .decorative-png {
+    left: var(--png-large-left);
+    top: var(--png-large-top);
+
+    width: var(--png-large-width);
+
+    --png-current-rotation: var(--png-large-rotation);
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .decorative-png--ready {
+    animation: none;
+  }
+
+  .decorative-png {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(var(--png-current-rotation));
+
+    will-change: auto;
+  }
+}
